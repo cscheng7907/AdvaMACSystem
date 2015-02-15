@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace CanComunication
+namespace AdvaMACSystem
 {
     public class AdvaCanBus
     {
@@ -282,7 +282,7 @@ namespace CanComunication
             uint ErrorCode = 0;
 
             //nRet = Device.acWaitEvent(msgRecieve, nReadCount, ref pulNumberofRead, ref ErrorCode);
-            nRet = Device.acCanRead(msgRead, nReadCount, ref pulNumberofRead);
+            nRet = Device.acCanRead(msgRecieve, nReadCount, ref pulNumberofRead);
             if (nRet == AdvCANIO.TIME_OUT)
             {
                 //"Package receiving timeout!";

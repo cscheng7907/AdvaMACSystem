@@ -56,6 +56,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdvaCanBus.cs" />
+    <Compile Include="AdvCan.cs" />
+    <Compile Include="AdvCANIO.cs" />
+    <Compile Include="DataPool.cs" />
     <Compile Include="mainForm.cs">
       <SubType>Form</SubType>
     </Compile>
