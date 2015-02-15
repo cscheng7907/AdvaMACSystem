@@ -1,0 +1,11 @@
+D:\work\小项目\2015-02\Bump1\Bump1\bin\Debug\Bump1.exe
+D:\work\小项目\2015-02\Bump1\Bump1\bin\Debug\Bump1.pdb
+D:\work\小项目\2015-02\Bump1\Bump1\obj\Debug\ResolveAssemblyReference.cache
+D:\work\小项目\2015-02\Bump1\Bump1\obj\Debug\Bump1.CurrentStatusBlock.resources
+D:\work\小项目\2015-02\Bump1\Bump1\obj\Debug\Bump1.CustomStatusBar.resources
+D:\work\小项目\2015-02\Bump1\Bump1\obj\Debug\Bump1.Form1.resources
+D:\work\小项目\2015-02\Bump1\Bump1\obj\Debug\Bump1.Properties.Resources.resources
+D:\work\小项目\2015-02\Bump1\Bump1\obj\Debug\Bump1.csproj.GenerateResource.Cache
+D:\work\小项目\2015-02\Bump1\Bump1\obj\Debug\Bump1.exe
+D:\work\小项目\2015-02\Bump1\Bump1\obj\Debug\Bump1.pdb
+D:\work\小项目\2015-02\Bump1\Bump1\obj\Debug\Bump1.Resource1.resources
