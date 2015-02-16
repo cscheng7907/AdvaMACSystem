@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using System.ComponentModel;
 using System.Drawing.Imaging;
 
 namespace ComCtrls
@@ -51,6 +49,20 @@ namespace ComCtrls
                 set
                 {
                     backimg = value;
+                    this.DoRefresh();
+                }
+            }
+
+            private Image checkedBackimg = null;
+            public Image CheckedBackImg
+            {
+                get
+                {
+                    return checkedBackimg;
+                }
+                set
+                {
+                    checkedBackimg = value;
                     this.DoRefresh();
                 }
             }
@@ -143,7 +155,12 @@ namespace ComCtrls
                 if (!Enabled)
                     bgimage = IMGContainer.ImgDisable;
                 else
-                    bgimage = IMGContainer.BackImg;
+                {
+                    if (Checked && IMGContainer.CheckedBackImg != null)
+                        bgimage = IMGContainer.CheckedBackImg;
+                    else
+                        bgimage = IMGContainer.BackImg;
+                }
 
                 //Center the image relativelly to the control
                 int imageLeft = (this.Width - bgimage.Width) / 2;
@@ -231,9 +248,13 @@ namespace ComCtrls
                         backBrush = new SolidBrush(Color.Gray);
                     }
 
-                    gxOff.DrawString(this.Text, this.Font, backBrush,
-                        (this.ClientSize.Width - gxOff.MeasureString(this.Text, this.Font).Width) / 2,
-                        (this.ClientSize.Height - gxOff.MeasureString(this.Text, this.Font).Height) / 2);
+                    if (textX <0 || textY < 0)
+                        gxOff.DrawString(this.Text, this.Font, backBrush,
+                            (this.ClientSize.Width - gxOff.MeasureString(this.Text, this.Font).Width) / 2,
+                            (this.ClientSize.Height - gxOff.MeasureString(this.Text, this.Font).Height) / 2);
+                    else
+                        gxOff.DrawString(this.Text, this.Font, backBrush, textX, textY);
+
                 }
             }
 
@@ -256,7 +277,46 @@ namespace ComCtrls
             }
         }
 
+        private bool cChecked;
+        [DefaultValue(false)]
+        public bool Checked
+        {
+            get
+            {
+                return cChecked;
+            }
+            set
+            {
+                if (cChecked != value)
+                {
+                    cChecked = value;
 
+                    this.Invalidate();
+                }
+            }
+        }
+
+        private float textX = -1;//绘制文字的起始X坐标
+        public float TextX
+        {
+            get { return textX; }
+            set
+            {
+                textX = value;
+                this.Invalidate();
+            }
+        }
+
+        private float textY = -1;//绘制文字的起始Y坐标
+        public float TextY
+        {
+            get { return textY; }
+            set
+            {
+                textY = value;
+                this.Invalidate();
+            }
+        }
 
         private bool transparent;
         [DefaultValue(false)]

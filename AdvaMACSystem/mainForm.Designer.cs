@@ -44,7 +44,7 @@
             this.lb_Now.Size = new System.Drawing.Size(204, 20);
             this.lb_Now.Text = "2015-02-12 12:11:18";
             // 
-            // Form1
+            // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -53,7 +53,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.lb_Now);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Form1";
+            this.Name = "mainForm";
             this.Text = "Form1";
             this.ResumeLayout(false);
 
