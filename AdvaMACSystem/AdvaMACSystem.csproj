@@ -59,6 +59,12 @@
     <Compile Include="AdvaCanBus.cs" />
     <Compile Include="AdvCan.cs" />
     <Compile Include="AdvCANIO.cs" />
+    <Compile Include="CylinderCellBlock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CylinderCellBlock.designer.cs">
+      <DependentUpon>CylinderCellBlock.cs</DependentUpon>
+    </Compile>
     <Compile Include="mainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +103,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CylinderCellBlock.resx">
+      <DependentUpon>CylinderCellBlock.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="mainForm.resx">
       <DependentUpon>mainForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -1,4 +1,4 @@
-﻿namespace CylinderCell
+﻿namespace AdvaMACSystem
 {
     partial class CylinderCellBlock
     {
