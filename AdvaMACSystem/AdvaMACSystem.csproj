@@ -100,6 +100,9 @@
     <EmbeddedResource Include="mainForm.resx">
       <DependentUpon>mainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PageViewDiagnose.resx">
+      <DependentUpon>PageViewDiagnose.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -115,6 +118,12 @@
     <Compile Include="UIControlbase.Designer.cs">
       <DependentUpon>UIControlbase.cs</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ComCtrls\ComCtrls.csproj">
+      <Project>{1682E463-6EF1-49DA-B035-648379F21646}</Project>
+      <Name>ComCtrls</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataPool\DataPool.csproj">

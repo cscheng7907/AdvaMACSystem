@@ -28,8 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // PageViewDiagnose
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Name = "PageViewDiagnose";
+            this.Size = new System.Drawing.Size(1024, 600);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
