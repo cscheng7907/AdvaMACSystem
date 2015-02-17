@@ -18,7 +18,7 @@ namespace AdvaMACSystem
         private const uint M_SENDCOUNT = 1;
         private AdvCan.canmsg_t[] msgSend = new AdvCan.canmsg_t[M_SENDCOUNT];                 //Package for write 
 
-        private const uint M_RECIEVECOUNT = 1;
+        private const uint M_RECIEVECOUNT = 40;
         private AdvCan.canmsg_t[] msgRecieve = new AdvCan.canmsg_t[M_RECIEVECOUNT];                 //Package for write 
 
         public AdvaCanBus()
@@ -397,19 +397,19 @@ namespace AdvaMACSystem
                                         Idx_Pump = (idArray0 - 1) / 2 + 1;
 
                                         Idx_Cylinder = 1 + (((idArray0 % 2) == 0) ? 4 : 0);
-                                        CanDatapool.Pressure_Real[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
+                                        CanDatapool.in_Pressure_Real[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
                                             msgRecieve[j].data[0] + (msgRecieve[j].data[1] << 8);
 
                                         Idx_Cylinder = 2 + (((idArray0 % 2) == 0) ? 4 : 0);
-                                        CanDatapool.Pressure_Real[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
+                                        CanDatapool.in_Pressure_Real[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
                                             msgRecieve[j].data[2] + (msgRecieve[j].data[3] << 8);
 
                                         Idx_Cylinder = 3 + (((idArray0 % 2) == 0) ? 4 : 0);
-                                        CanDatapool.Pressure_Real[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
+                                        CanDatapool.in_Pressure_Real[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
                                             msgRecieve[j].data[4] + (msgRecieve[j].data[5] << 8);
 
                                         Idx_Cylinder = 4 + (((idArray0 % 2) == 0) ? 4 : 0);
-                                        CanDatapool.Pressure_Real[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
+                                        CanDatapool.in_Pressure_Real[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
                                             msgRecieve[j].data[6] + (msgRecieve[j].data[7] << 8);
 
                                         break;
@@ -468,19 +468,19 @@ namespace AdvaMACSystem
                                         Idx_Pump = (idArray0 - 1) / 2 + 1;
 
                                         Idx_Cylinder = 1 + (((idArray0 % 2) == 0) ? 4 : 0);
-                                        CanDatapool.Position_Real[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
+                                        CanDatapool.in_Position_Real[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
                                             msgRecieve[j].data[0] + (msgRecieve[j].data[1] << 8);
 
                                         Idx_Cylinder = 2 + (((idArray0 % 2) == 0) ? 4 : 0);
-                                        CanDatapool.Position_Real[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
+                                        CanDatapool.in_Position_Real[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
                                             msgRecieve[j].data[2] + (msgRecieve[j].data[3] << 8);
 
                                         Idx_Cylinder = 3 + (((idArray0 % 2) == 0) ? 4 : 0);
-                                        CanDatapool.Position_Real[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
+                                        CanDatapool.in_Position_Real[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
                                             msgRecieve[j].data[4] + (msgRecieve[j].data[5] << 8);
 
                                         Idx_Cylinder = 4 + (((idArray0 % 2) == 0) ? 4 : 0);
-                                        CanDatapool.Position_Real[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
+                                        CanDatapool.in_Position_Real[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
                                             msgRecieve[j].data[6] + (msgRecieve[j].data[7] << 8);
 
                                         break;
@@ -572,14 +572,14 @@ namespace AdvaMACSystem
                                         {
                                             for (int k = 0; k < msgRecieve[j].data.Length; k++)
                                             {
-                                                CanDatapool.MachLockState_Real[(idArray0 - 1) * 4 + k] = (StateType)msgRecieve[j].data[k];
+                                                CanDatapool.in_MachLockState_Real[(idArray0 - 1) * 4 + k] = (StateType)msgRecieve[j].data[k];
                                             }
                                         }
                                         else //奇数 油缸运行状态
                                         {
                                             for (int k = 0; k < msgRecieve[j].data.Length; k++)
                                             {
-                                                CanDatapool.cylinderState_Real[(idArray0 - 1) * 4 + k] = (StateType)msgRecieve[j].data[k];
+                                                CanDatapool.in_cylinderState_Real[(idArray0 - 1) * 4 + k] = (StateType)msgRecieve[j].data[k];
                                             }
                                         }
 
@@ -673,18 +673,18 @@ namespace AdvaMACSystem
                                         idArray = BitConverter.GetBytes(msgRecieve[j].id);
                                         idArray0 = idArray[0];
 
-                                        CanDatapool.Pressure_Pump_Real[idArray0] =
+                                        CanDatapool.in_Pressure_Pump_Real[idArray0] =
                                              msgRecieve[j].data[0] + (msgRecieve[j].data[1] << 8);
-                                        CanDatapool.Voltage_Real[idArray0] =
+                                        CanDatapool.in_Voltage_Real[idArray0] =
                                              msgRecieve[j].data[2] + (msgRecieve[j].data[3] << 8);
 
-                                        CanDatapool.PowerSupply[idArray0] = (msgRecieve[j].data[4] != 0);
+                                        CanDatapool.in_PowerSupply[idArray0] = (msgRecieve[j].data[4] != 0);
 
                                         for (int k = 0; k < 8; k++)
                                         {
-                                            CanDatapool.Limit_5[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[5] & (1 << k)) != 0);
+                                            CanDatapool.in_Limit_5[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[5] & (1 << k)) != 0);
 
-                                            CanDatapool.Limit_10[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[6] & (1 << k)) != 0);
+                                            CanDatapool.in_Limit_10[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[6] & (1 << k)) != 0);
                                         }
 
                                         break;
@@ -834,10 +834,10 @@ namespace AdvaMACSystem
 
                                         for (int k = 0; k < 8; k++)
                                         {
-                                            CanDatapool.Warn_LowPressure[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[0] & (1 << k)) != 0);
-                                            CanDatapool.Warn_HighPressure[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[1] & (1 << k)) != 0);
-                                            CanDatapool.Warn_LowPosition[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[2] & (1 << k)) != 0);
-                                            CanDatapool.Warn_HighPosition[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[3] & (1 << k)) != 0);
+                                            CanDatapool.in_Warn_LowPressure[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[0] & (1 << k)) != 0);
+                                            CanDatapool.in_Warn_HighPressure[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[1] & (1 << k)) != 0);
+                                            CanDatapool.in_Warn_LowPosition[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[2] & (1 << k)) != 0);
+                                            CanDatapool.in_Warn_HighPosition[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[3] & (1 << k)) != 0);
 
                                         }
 
@@ -966,11 +966,11 @@ namespace AdvaMACSystem
 
                                         for (int k = 0; k < 8; k++)
                                         {
-                                            CanDatapool.Error_Pump[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[0] & (1 << k)) != 0);
-                                            CanDatapool.Error_Pump[(idArray0) * 8 + k] = ((msgRecieve[j].data[1] & (1 << k)) != 0);
+                                            CanDatapool.in_Error_Pump[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[0] & (1 << k)) != 0);
+                                            CanDatapool.in_Error_Pump[(idArray0) * 8 + k] = ((msgRecieve[j].data[1] & (1 << k)) != 0);
 
-                                            CanDatapool.Error_PressureSenser[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[2] & (1 << k)) != 0);
-                                            CanDatapool.Error_PositionSenser[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[3] & (1 << k)) != 0);
+                                            CanDatapool.in_Error_PressureSenser[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[2] & (1 << k)) != 0);
+                                            CanDatapool.in_Error_PositionSenser[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[3] & (1 << k)) != 0);
 
                                         }
 
@@ -1256,9 +1256,9 @@ namespace AdvaMACSystem
                                                 for (int l = 0; l < 8; l++)
                                                 {
                                                     if (l % 2 == 0)
-                                                        CanDatapool.Error_cylinder_extend[(8 * k + l) / 2] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
+                                                        CanDatapool.in_Error_cylinder_extend[(8 * k + l) / 2] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
                                                     else
-                                                        CanDatapool.Error_cylinder_retract[(8 * k + l) / 2] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
+                                                        CanDatapool.in_Error_cylinder_retract[(8 * k + l) / 2] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
                                                 }
                                             }
                                             else //油缸机械锁伸出/缩回电磁阀线路断路
@@ -1267,9 +1267,9 @@ namespace AdvaMACSystem
                                                 for (int l = 0; l < 8; l++)
                                                 {
                                                     if (l % 2 == 0)
-                                                        CanDatapool.Error_MachLock_extend[(8 * (k - 4) + l) / 2] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
+                                                        CanDatapool.in_Error_MachLock_extend[(8 * (k - 4) + l) / 2] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
                                                     else
-                                                        CanDatapool.Error_MachLock_retract[(8 * (k - 4) + l) / 2] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
+                                                        CanDatapool.in_Error_MachLock_retract[(8 * (k - 4) + l) / 2] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
                                                 }
                                             }
                                         }

@@ -9,65 +9,65 @@ namespace DataPool
     {
         public CDataPool()
         {
-            Pressure_Real = new List<int>();
-            Position_Real = new List<int>();
-            cylinderState_Real = new List<StateType>();
-            MachLockState_Real = new List<StateType>();
+            in_Pressure_Real = new List<int>();
+            in_Position_Real = new List<int>();
+            in_cylinderState_Real = new List<StateType>();
+            in_MachLockState_Real = new List<StateType>();
 
-            Limit_5 = new List<bool>();
-            Limit_10 = new List<bool>();
+            in_Limit_5 = new List<bool>();
+            in_Limit_10 = new List<bool>();
 
 
-            Warn_HighPressure = new List<bool>();
-            Warn_LowPressure = new List<bool>();
-            Warn_HighPosition = new List<bool>();
-            Warn_LowPosition = new List<bool>();
+            in_Warn_HighPressure = new List<bool>();
+            in_Warn_LowPressure = new List<bool>();
+            in_Warn_HighPosition = new List<bool>();
+            in_Warn_LowPosition = new List<bool>();
 
-            Error_PressureSenser = new List<bool>();
-            Error_PositionSenser = new List<bool>();
-            Error_cylinder_extend = new List<bool>();
-            Error_cylinder_retract = new List<bool>();
-            Error_MachLock_extend = new List<bool>();
-            Error_MachLock_retract = new List<bool>();
+            in_Error_PressureSenser = new List<bool>();
+            in_Error_PositionSenser = new List<bool>();
+            in_Error_cylinder_extend = new List<bool>();
+            in_Error_cylinder_retract = new List<bool>();
+            in_Error_MachLock_extend = new List<bool>();
+            in_Error_MachLock_retract = new List<bool>();
 
 
             for (int i = 0; i < Number_Pump; i++)
             {
                 for (int j = 0; j < Number_Cylinder; j++)
                 {
-                    Pressure_Real.Add(0);
-                    Position_Real.Add(0);
-                    Limit_5.Add(false);
-                    Limit_10.Add(false);
-                    Warn_HighPressure.Add(false);
-                    Warn_LowPressure.Add(false);
-                    Warn_HighPosition.Add(false);
-                    Warn_LowPosition.Add(false);
+                    in_Pressure_Real.Add(0);
+                    in_Position_Real.Add(0);
+                    in_Limit_5.Add(false);
+                    in_Limit_10.Add(false);
+                    in_Warn_HighPressure.Add(false);
+                    in_Warn_LowPressure.Add(false);
+                    in_Warn_HighPosition.Add(false);
+                    in_Warn_LowPosition.Add(false);
 
-                    Error_PressureSenser.Add(false);
-                    Error_PositionSenser.Add(false);
-                    Error_cylinder_extend.Add(false);
-                    Error_cylinder_retract.Add(false);
-                    Error_MachLock_extend.Add(false);
-                    Error_MachLock_retract.Add(false);
+                    in_Error_PressureSenser.Add(false);
+                    in_Error_PositionSenser.Add(false);
+                    in_Error_cylinder_extend.Add(false);
+                    in_Error_cylinder_retract.Add(false);
+                    in_Error_MachLock_extend.Add(false);
+                    in_Error_MachLock_retract.Add(false);
                 }
             }
 
-            Pressure_Pump_Real = new List<int>();
-            Voltage_Real = new List<int>();
-            PowerSupply = new List<bool>();
-            Error_Pump = new List<bool>();
+            in_Pressure_Pump_Real = new List<int>();
+            in_Voltage_Real = new List<int>();
+            in_PowerSupply = new List<bool>();
+            in_Error_Pump = new List<bool>();
 
 
             for (int i = 0; i < Number_Pump; i++)
             {
-                Pressure_Pump_Real.Add(0);
-                Voltage_Real.Add(0);
-                PowerSupply.Add(false);
+                in_Pressure_Pump_Real.Add(0);
+                in_Voltage_Real.Add(0);
+                in_PowerSupply.Add(false);
 
                 for (int j = 0; j < 16; j++)
                 {
-                    Error_Pump.Add(false);
+                    in_Error_Pump.Add(false);
                 }
             }
 
@@ -79,35 +79,35 @@ namespace DataPool
         private uint Number_Pump = 4;
         private uint Number_Cylinder = 8;
 
-        public List<int> Pressure_Real = null;// 油缸压力当前值 4*8
-        public List<int> Position_Real = null;// 油缸当前长度值 4*8
+        public List<int> in_Pressure_Real = null;// 油缸压力当前值 4*8
+        public List<int> in_Position_Real = null;// 油缸当前长度值 4*8
 
-        public List<StateType> cylinderState_Real = null;// 油缸运行状态 4*8
-        public List<StateType> MachLockState_Real = null;// 油缸机械锁运行状态 4*8
+        public List<StateType> in_cylinderState_Real = null;// 油缸运行状态 4*8
+        public List<StateType> in_MachLockState_Real = null;// 油缸机械锁运行状态 4*8
 
-        public List<int> Pressure_Pump_Real = null;// 泵站压力 4
-        public List<int> Voltage_Real = null;// 控制器电压 4
-        public List<bool> PowerSupply = null;// 控制器检测当前供电 0：市电 1：发电机 4
+        public List<int> in_Pressure_Pump_Real = null;// 泵站压力 4
+        public List<int> in_Voltage_Real = null;// 控制器电压 4
+        public List<bool> in_PowerSupply = null;// 控制器检测当前供电 0：市电 1：发电机 4
 
-        public List<bool> Limit_5 = null;// 油缸5mm接近开关限位 4*8
-        public List<bool> Limit_10 = null;// 油缸10mm接近开关限位 4*8
+        public List<bool> in_Limit_5 = null;// 油缸5mm接近开关限位 4*8
+        public List<bool> in_Limit_10 = null;// 油缸10mm接近开关限位 4*8
 
-        public List<bool> Warn_HighPressure = null;// 油缸压力过高 4*8
-        public List<bool> Warn_LowPressure = null;// 油缸压力过低 4*8
-        public List<bool> Warn_HighPosition = null;// 油缸长度过高 4*8
-        public List<bool> Warn_LowPosition = null;// 油缸长度过低 4*8
+        public List<bool> in_Warn_HighPressure = null;// 油缸压力过高 4*8
+        public List<bool> in_Warn_LowPressure = null;// 油缸压力过低 4*8
+        public List<bool> in_Warn_HighPosition = null;// 油缸长度过高 4*8
+        public List<bool> in_Warn_LowPosition = null;// 油缸长度过低 4*8
 
 
-        public List<bool> Error_Pump = null;//泵站及控制器 故障 4*16
+        public List<bool> in_Error_Pump = null;//泵站及控制器 故障 4*16
 
-        public List<bool> Error_PressureSenser = null;//油缸压力传感器故障 4*8
-        public List<bool> Error_PositionSenser = null;//油缸长度传感器故障 4*8
+        public List<bool> in_Error_PressureSenser = null;//油缸压力传感器故障 4*8
+        public List<bool> in_Error_PositionSenser = null;//油缸长度传感器故障 4*8
 
-        public List<bool> Error_cylinder_extend = null;//油缸伸出电磁阀线路短路 4*8
-        public List<bool> Error_cylinder_retract = null;//油缸缩回电磁阀线路短路 4*8
+        public List<bool> in_Error_cylinder_extend = null;//油缸伸出电磁阀线路短路 4*8
+        public List<bool> in_Error_cylinder_retract = null;//油缸缩回电磁阀线路短路 4*8
 
-        public List<bool> Error_MachLock_extend = null;//油缸机械锁伸出电磁阀线路短路 4*8
-        public List<bool> Error_MachLock_retract = null;//油缸机械锁缩回电磁阀线路短路 4*8
+        public List<bool> in_Error_MachLock_extend = null;//油缸机械锁伸出电磁阀线路短路 4*8
+        public List<bool> in_Error_MachLock_retract = null;//油缸机械锁缩回电磁阀线路短路 4*8
 
         //Get function
         public double GetRealValue(int id, int subid, CmdDataType type)
@@ -117,19 +117,19 @@ namespace DataPool
             switch (type)
             {
                 case CmdDataType.cdtPressure_Real:// 油缸压力当前值 4*8
-                    rtv = Pressure_Real[id * 8 + subid] * 0.1;
+                    rtv = in_Pressure_Real[id * 8 + subid] * 0.1;
 
                     break;
                 case CmdDataType.cdtPosition_Real:// 油缸当前长度值 4*8
-                    rtv = Position_Real[id * 8 + subid] * 0.1;
+                    rtv = in_Position_Real[id * 8 + subid] * 0.1;
 
                     break;
                 case CmdDataType.cdtPressure_Pump_Real:// 泵站压力 4
-                    rtv = Pressure_Pump_Real[id] * 0.1;
+                    rtv = in_Pressure_Pump_Real[id] * 0.1;
 
                     break;
                 case CmdDataType.cdtVoltage_Real:// 控制器电压 4
-                    rtv = Voltage_Real[id] * 0.1;
+                    rtv = in_Voltage_Real[id] * 0.1;
 
                     break;
                 default:
@@ -146,10 +146,10 @@ namespace DataPool
             switch (type)
             {
                 case CmdDataType.cdtcylinderState_Real:// 油缸运行状态 4*8
-                    rtv = (int)cylinderState_Real[id * 8 + subid];
+                    rtv = (int)in_cylinderState_Real[id * 8 + subid];
                     break;
                 case CmdDataType.cdtMachLockState_Real:// 油缸机械锁运行状态 4*8
-                    rtv = (int)MachLockState_Real[id * 8 + subid];
+                    rtv = (int)in_MachLockState_Real[id * 8 + subid];
                     break;
                 default:
                     break;
@@ -165,55 +165,55 @@ namespace DataPool
             switch (type)
             {
                 case CmdDataType.cdtPowerSupply:// 控制器检测当前供电 0：市电 1：发电机 4
-                    rtv = PowerSupply[id];
+                    rtv = in_PowerSupply[id];
                     break;
                 case CmdDataType.cdtLimit_5:// 油缸5mm接近开关限位 4*8
-                    rtv = Limit_5[id * 8 + subid];
+                    rtv = in_Limit_5[id * 8 + subid];
                     break;
 
                 case CmdDataType.cdtLimit_10:// 油缸10mm接近开关限位 4*8
-                    rtv = Limit_10[id * 8 + subid];
+                    rtv = in_Limit_10[id * 8 + subid];
                     break;
 
                 case CmdDataType.cdtWarn_HighPressure:// 油缸压力过高 4*8
-                    rtv = Warn_HighPressure[id * 8 + subid];
+                    rtv = in_Warn_HighPressure[id * 8 + subid];
                     break;
                 case CmdDataType.cdtWarn_LowPressure:// 油缸压力过低 4*8
-                    rtv = Warn_LowPressure[id * 8 + subid];
+                    rtv = in_Warn_LowPressure[id * 8 + subid];
                     break;
                 case CmdDataType.cdtWarn_HighPosition:// 油缸长度过高 4*8
-                    rtv = Warn_HighPosition[id * 8 + subid];
+                    rtv = in_Warn_HighPosition[id * 8 + subid];
                     break;
                 case CmdDataType.cdtWarn_LowPosition:// 油缸长度过低 4*8
-                    rtv = Warn_LowPosition[id * 8 + subid];
+                    rtv = in_Warn_LowPosition[id * 8 + subid];
                     break;
 
                 case CmdDataType.cdtError_Pump://泵站及控制器 故障 4*16
-                    rtv = Error_Pump[id * 8 + subid];
+                    rtv = in_Error_Pump[id * 8 + subid];
                     break;
 
                 case CmdDataType.cdtError_PressureSenser://油缸压力传感器故障 4*8
-                    rtv = Error_PressureSenser[id * 8 + subid];
+                    rtv = in_Error_PressureSenser[id * 8 + subid];
                     break;
 
                 case CmdDataType.cdtError_PositionSenser://油缸长度传感器故障 4*8
-                    rtv = Error_PositionSenser[id * 8 + subid];
+                    rtv = in_Error_PositionSenser[id * 8 + subid];
                     break;
 
                 case CmdDataType.cdtError_cylinder_extend://油缸伸出电磁阀线路短路 4*8
-                    rtv = Error_cylinder_extend[id * 8 + subid];
+                    rtv = in_Error_cylinder_extend[id * 8 + subid];
                     break;
 
                 case CmdDataType.cdtError_cylinder_retract://油缸缩回电磁阀线路短路 4*8
-                    rtv = Error_cylinder_retract[id * 8 + subid];
+                    rtv = in_Error_cylinder_retract[id * 8 + subid];
 
                     break;
                 case CmdDataType.cdtError_MachLock_extend://油缸机械锁伸出电磁阀线路短路 4*8
-                    rtv = Error_MachLock_extend[id * 8 + subid];
+                    rtv = in_Error_MachLock_extend[id * 8 + subid];
 
                     break;
                 case CmdDataType.cdtError_MachLock_retract://油缸机械锁缩回电磁阀线路短路 4*8
-                    rtv = Error_MachLock_retract[id * 8 + subid];
+                    rtv = in_Error_MachLock_retract[id * 8 + subid];
 
                     break;
                 default:
@@ -223,6 +223,39 @@ namespace DataPool
 
             return rtv;
         }
+
+
+        public List<bool> out_Installed  = null;//油缸是否安装 4*8
+
+//        泵站压力报警值 4
+
+
+//油缸压力上限报警功能开启
+
+//油缸长度上限报警功能开启
+//油缸长度下限报警功能开启
+//油缸长度控制功能开启
+
+//油缸压力上限报警值设定
+//油缸压力下限报警值设定
+//油缸长度上限报警值设定
+//油缸长度下限报警值设定
+
+//油缸压力设定值
+//油缸长度设定值
+
+//油缸长度传感器低位值
+//油缸长度传感器高位值
+
+//-------sign
+//进入“安装设定”界面标志位
+//安装确定标志
+//进入“参数设定”界面标志位
+//进入“传感器标定”界面标志位
+
+//油缸长度传感器低位值确认
+//油缸长度传感器高位值确认
+
 
         //Init XML 导入结构
 
