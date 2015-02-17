@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComCtrls", "ComCtrls\ComCtr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CylinderCell", "CylinderCell\CylinderCell.csproj", "{5D1AFCA9-C700-43AC-96CF-25466E924178}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataPool", "DataPool\DataPool.csproj", "{5E8A714E-7AA1-41C4-8EE0-4D64438CFC8E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{5D1AFCA9-C700-43AC-96CF-25466E924178}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D1AFCA9-C700-43AC-96CF-25466E924178}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D1AFCA9-C700-43AC-96CF-25466E924178}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E8A714E-7AA1-41C4-8EE0-4D64438CFC8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E8A714E-7AA1-41C4-8EE0-4D64438CFC8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E8A714E-7AA1-41C4-8EE0-4D64438CFC8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E8A714E-7AA1-41C4-8EE0-4D64438CFC8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -59,7 +59,6 @@
     <Compile Include="AdvaCanBus.cs" />
     <Compile Include="AdvCan.cs" />
     <Compile Include="AdvCANIO.cs" />
-    <Compile Include="DataPool.cs" />
     <Compile Include="mainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +123,12 @@
     <ProjectReference Include="..\ComCtrls\ComCtrls.csproj">
       <Project>{1682E463-6EF1-49DA-B035-648379F21646}</Project>
       <Name>ComCtrls</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataPool\DataPool.csproj">
+      <Project>{5E8A714E-7AA1-41C4-8EE0-4D64438CFC8E}</Project>
+      <Name>DataPool</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
