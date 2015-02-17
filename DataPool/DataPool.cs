@@ -224,6 +224,13 @@ namespace DataPool
             return rtv;
         }
 
+
+        public List<bool> Installed  = null;//油缸是否安装 4*8
+
+
+
+
+
         //Init XML 导入结构
 
 
