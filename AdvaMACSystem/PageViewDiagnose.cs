@@ -6,6 +6,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using ComCtrls;
+using DataPool;
 
 namespace AdvaMACSystem
 {
@@ -18,7 +19,11 @@ namespace AdvaMACSystem
             cylinderList = new List<ImageLabel>();
             buttonList = new List<ImageButton>();
             buttonImage = new ImagesContaner();
+            
             cylinderImage = new ComCtrls.ImageLabel.SimpleImagesContaner();
+            cylinderImage.BackImg = AdvaMACSystemRes.gray_off;
+            cylinderImage.ImgDisable = AdvaMACSystemRes.gray_off;
+            cylinderImage.CheckedBackImg = AdvaMACSystemRes.green_on;
 
             currentFont = new Font("微软雅黑", 14F, FontStyle.Regular);
             //new cylinders
@@ -40,9 +45,10 @@ namespace AdvaMACSystem
                 cylinder.Location = new Point(IOMarginLeft + (i / 8) * (IOWidth + IOSpacingX), IOMarginTop + (i % 8 +3) * (IOHeight + IOSpacingY));
                 cylinder.IMGContainer = cylinderImage;
                 cylinder.Font = currentFont;
-                cylinder.TextX = 30;
+                cylinder.TextX = 50;
                 cylinder.TextY = 5;
-                cylinder.Text = String.Format("{0}#油缸", i + 1);
+                cylinder.Text = String.Format("{0}#油缸", i % 8 + 1);
+                //cylinder.Checked =( i % 2 )== 0;
                 this.Controls.Add(cylinder);
             }
             for (int i = 0; i < 2; i++)
