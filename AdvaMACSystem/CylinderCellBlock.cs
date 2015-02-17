@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using ComCtrls;
 
-namespace CylinderCell
+namespace AdvaMACSystem
 {
     public partial class CylinderCellBlock : UserControl
     {
