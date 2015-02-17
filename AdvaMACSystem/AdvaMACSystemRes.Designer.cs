@@ -57,9 +57,23 @@ namespace AdvaMACSystem {
             }
         }
         
+        internal static System.Drawing.Bitmap bluebar {
+            get {
+                object obj = ResourceManager.GetObject("bluebar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap gray_off {
             get {
                 object obj = ResourceManager.GetObject("gray_off", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap graybar {
+            get {
+                object obj = ResourceManager.GetObject("graybar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -74,6 +88,27 @@ namespace AdvaMACSystem {
         internal static System.Drawing.Bitmap green_on {
             get {
                 object obj = ResourceManager.GetObject("green_on", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap greenbar {
+            get {
+                object obj = ResourceManager.GetObject("greenbar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap redbar {
+            get {
+                object obj = ResourceManager.GetObject("redbar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap yellowbar {
+            get {
+                object obj = ResourceManager.GetObject("yellowbar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

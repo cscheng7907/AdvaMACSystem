@@ -121,6 +121,9 @@
     <EmbeddedResource Include="PageViewDiagnose.resx">
       <DependentUpon>PageViewDiagnose.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PageViewMAC.resx">
+      <DependentUpon>PageViewMAC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -160,6 +163,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\gray-off.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bluebar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\graybar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\greenbar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\redbar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\yellowbar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

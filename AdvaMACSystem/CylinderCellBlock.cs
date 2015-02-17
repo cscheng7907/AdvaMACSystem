@@ -16,49 +16,80 @@ namespace AdvaMACSystem
         {
             InitializeComponent();
         }
-        private float minValue;
-        public float MinValue
+        private CProgressBarImagesContainer imgContainer = null;
+        public CProgressBarImagesContainer IMGContainer
+        {
+            get
+            {
+                return imgContainer;
+            }
+            set
+            {
+                if (imgContainer != value)
+                {
+                    imgContainer = value;
+                    if (progressBar != null)
+                        progressBar.IMGContainer = imgContainer;
+                }
+            }
+        }
+
+        private double minValue;
+        public double MinValue
         {
             set
             {
                 minValue = value;
-                this.labelMin.Text = "Min:" + minValue.ToString();
+                this.lbMinDis.Text = "Min:" + minValue.ToString();
             }
         }
 
-        private float maxValue;
-        public float MaxValue
+        private double maxValue;
+        public double MaxValue
         {
             set
             {
-                maxValue = value; this.labelMax.Text = "Max:" + maxValue.ToString();
+                maxValue = value; this.lbMaxDis.Text = "Max:" + maxValue.ToString();
             }
         }
 
-        private float warningValue;
-        public float WarningValue
+        private double warningValue;
+        public double WarningValue
         {
-            set { warningValue = value; this.label3.Text = "warn:" + warningValue.ToString();
-            this.customStatusBar1.WarningPercentage = (warningValue - minValue) / (maxValue - minValue);
+            set { warningValue = value; this.lbWarningDis.Text = "warn:" + warningValue.ToString();
+            this.progressBar.WarningPercentage = (warningValue - minValue) / (maxValue - minValue);
             }
         }
 
-        private float settingValue;
-        public float SettingValue
+        private double settingValue;
+        public double SettingValue
         {
             set { settingValue = value;
-            this.label4.Text = "set:" + settingValue.ToString();
-            this.customStatusBar1.SettingPercentage = (settingValue - minValue) / (maxValue - minValue);
+            this.lbSettingDis.Text = "set:" + settingValue.ToString();
+            this.progressBar.SettingPercentage = (settingValue - minValue) / (maxValue - minValue);
             }
         }
-        private float currentValue;
-        public float CurrentValue
+        private double currentValue;
+        public double CurrentValue
         {
             set
             {
                 currentValue = value;
-                this.customStatusBar1.ValuePercentage = (currentValue - minValue) / (maxValue - minValue);
+                this.progressBar.ValuePercentage = (currentValue - minValue) / (maxValue - minValue);
             }
+        }
+
+        private int pumpIndex;//泵的编号
+        private int cylinderIndex;
+        public void InitialInstance(int PumpIndex, int CylinderIndex)
+        {
+            this.pumpIndex = PumpIndex;
+            this.cylinderIndex = CylinderIndex;
+        }
+
+        public void DoRefresh()
+        {
+            //CurrentValue = 采样数据;
         }
     }
 }

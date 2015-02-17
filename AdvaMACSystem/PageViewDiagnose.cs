@@ -19,7 +19,7 @@ namespace AdvaMACSystem
             cylinderList = new List<ImageLabel>();
             buttonList = new List<ImageButton>();
             buttonImage = new ImagesContaner();
-            
+
             cylinderImage = new ComCtrls.ImageLabel.SimpleImagesContaner();
             cylinderImage.BackImg = AdvaMACSystemRes.gray_off;
             cylinderImage.ImgDisable = AdvaMACSystemRes.gray_off;
