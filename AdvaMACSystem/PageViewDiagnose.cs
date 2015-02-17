@@ -76,5 +76,34 @@ namespace AdvaMACSystem
         private int ButtonHeight = 50;
         private int BUttonSpacingX = 15;
         #endregion
+
+        #region 属性
+        private CDataPool _candatapool = null;
+        public CDataPool CanDatapool
+        {
+            get { return _candatapool; }
+            set
+            {
+                if (_candatapool != value)
+                    _candatapool = value;
+            }
+        }
+        #endregion
+
+        #region 方法
+        public void DoRefresh()
+        {
+            if (_candatapool != null)
+            {
+                //取数据
+                //赋值ImageLabel
+            }
+        }
+        #endregion
+
+        private void timer_Refresh_Tick(object sender, EventArgs e)
+        {
+            DoRefresh();
+        }
     }
 }
