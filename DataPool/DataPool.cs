@@ -7,7 +7,18 @@ namespace DataPool
 {
     public class CDataPool
     {
-        public CDataPool()
+        private static CDataPool DataPoolObject = null;
+
+        public static CDataPool GetDataPoolObject()
+        {
+            if (DataPoolObject == null)
+                DataPoolObject = new CDataPool();
+
+            return DataPoolObject;
+        }
+
+
+        private CDataPool()
         {
             in_Pressure_Real = new List<int>();
             in_Position_Real = new List<int>();
@@ -225,36 +236,36 @@ namespace DataPool
         }
 
 
-        public List<bool> out_Installed  = null;//油缸是否安装 4*8
+        public List<bool> out_Installed = null;//油缸是否安装 4*8
 
-//        泵站压力报警值 4
+        public List<int> out_PressureAlarm_Pump = null;//泵站压力报警值 4
 
 
-//油缸压力上限报警功能开启
+        public List<bool> out_PressureUpperLimitAlarm_Enable = null;//油缸压力上限报警功能开启 4*8
 
-//油缸长度上限报警功能开启
-//油缸长度下限报警功能开启
-//油缸长度控制功能开启
+        public List<bool> out_PositionUpperLimitAlarm_Enable = null;//油缸长度上限报警功能开启 4*8
+        public List<bool> out_PositionLowerLimitAlarm_Enable = null;//油缸长度下限报警功能开启 4*8
+        public List<bool> out_PositionControl_Enable = null;//油缸长度控制功能开启
 
-//油缸压力上限报警值设定
-//油缸压力下限报警值设定
-//油缸长度上限报警值设定
-//油缸长度下限报警值设定
+        public List<int> out_PressureUpperLimitAlarm_Value = null;//油缸压力上限报警值设定 4*8
+        public List<int> out_PressureLowerLimitAlarm_Value = null;//油缸压力下限报警值设定 4*8
+        public List<int> out_PositionUpperLimitAlarm_Value = null; //油缸长度上限报警值设定 4*8
+        public List<int> out_PositionLowerLimitAlarm_Value = null; //油缸长度下限报警值设定 4*8
 
-//油缸压力设定值
-//油缸长度设定值
+        public List<int> out_Pressure_Value = null;//油缸压力设定值
+        public List<int> out_Position_Value = null; //油缸长度设定值
 
-//油缸长度传感器低位值
-//油缸长度传感器高位值
+        public List<byte> out_PositionSenserLow_Value = null;//油缸长度传感器低位值
+        public List<byte> out_PositionSenserHigh_Value = null;//油缸长度传感器高位值
 
-//-------sign
-//进入“安装设定”界面标志位
-//安装确定标志
-//进入“参数设定”界面标志位
-//进入“传感器标定”界面标志位
+        //-------sign
+        public bool sign_View_Setup = false;//进入“安装设定”界面标志位
+        public bool sign_View_Setup_Confirm = false;//安装确定标志
+        public bool sign_View_Parameter = false; //进入“参数设定”界面标志位
+        public bool sign_View_SenserCalibration = false;  //进入“传感器标定”界面标志位
 
-//油缸长度传感器低位值确认
-//油缸长度传感器高位值确认
+        public bool sign_View_PositionSenserLow__Confirm = false;//油缸长度传感器低位值确认
+        public bool sign_View_PositionSenserHigh__Confirm = false;//油缸长度传感器高位值确认
 
 
         //Init XML 导入结构
