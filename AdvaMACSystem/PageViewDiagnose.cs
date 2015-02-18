@@ -18,7 +18,7 @@ namespace AdvaMACSystem
             cylinderList = new List<ImageLabel>();
             buttonList = new List<ImageButton>();
             buttonImage = new ImagesContaner();
-            cylinderImage = new ComCtrls.ImageLabel.SimpleImagesContaner();
+            cylinderImage = new ComCtrls.SimpleImagesContaner();
 
             currentFont = new Font("微软雅黑", 14F, FontStyle.Regular);
             //new cylinders
@@ -61,7 +61,7 @@ namespace AdvaMACSystem
         private List<ImageLabel> cylinderList = null;//四泵三十二缸列表
         private List<ImageButton> buttonList = null;//切换按钮列表
         private ImagesContaner buttonImage = null;//按钮背景图
-        private ComCtrls.ImageLabel.SimpleImagesContaner cylinderImage = null;//IO标签背景图
+        private ComCtrls.SimpleImagesContaner cylinderImage = null;//IO标签背景图
 
         #region 布局
         private Font currentFont = null;//字体
