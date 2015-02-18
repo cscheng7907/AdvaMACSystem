@@ -57,6 +57,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdvaCanBus.cs" />
+    <Compile Include="AdvaMACSystemRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdvaMACSystemRes.resx</DependentUpon>
+    </Compile>
     <Compile Include="AdvCan.cs" />
     <Compile Include="AdvCANIO.cs" />
     <Compile Include="CylinderCellBlock.cs">
@@ -103,6 +108,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AdvaMACSystemRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AdvaMACSystemRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="CylinderCellBlock.resx">
       <DependentUpon>CylinderCellBlock.cs</DependentUpon>
     </EmbeddedResource>
@@ -111,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PageViewDiagnose.resx">
       <DependentUpon>PageViewDiagnose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PageViewMAC.resx">
+      <DependentUpon>PageViewMAC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -139,6 +151,33 @@
       <Project>{5E8A714E-7AA1-41C4-8EE0-4D64438CFC8E}</Project>
       <Name>DataPool</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MSYH.TTF" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\green-off.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\green-on.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gray-off.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bluebar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\graybar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\greenbar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\redbar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\yellowbar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

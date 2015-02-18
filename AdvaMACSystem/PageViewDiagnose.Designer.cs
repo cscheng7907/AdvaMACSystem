@@ -28,7 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.timer_Refresh = new System.Windows.Forms.Timer();
             this.SuspendLayout();
+            // 
+            // timer_Refresh
+            // 
+            this.timer_Refresh.Interval = 500;
+            this.timer_Refresh.Tick += new System.EventHandler(this.timer_Refresh_Tick);
             // 
             // PageViewDiagnose
             // 
@@ -41,5 +47,7 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Timer timer_Refresh;
     }
 }

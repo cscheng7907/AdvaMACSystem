@@ -9,15 +9,110 @@ using System.Windows.Forms;
 
 namespace ComCtrls
 {
+    public class CProgressBarImagesContainer : Component
+    {
+
+        public CProgressBarImagesContainer()
+        {
+            ownerlst = new List<Control>();
+        }
+
+        private List<Control> ownerlst = null;
+
+        public void AddOwner(Control Owner)
+        {
+            ownerlst.Add(Owner);
+        }
+
+        public void RemoveOwner(Control Owner)
+        {
+            ownerlst.Remove(Owner);
+        }
+
+        public void DoRefresh()
+        {
+            foreach (Control c in ownerlst)
+            {
+                c.Invalidate();
+            }
+        }
+
+        private Image bgImage = null;
+        public Image BgImage
+        {
+            get
+            {
+                return bgImage;
+            }
+            set
+            {
+                bgImage = value;
+                this.DoRefresh();
+            }
+        }
+
+        private Image frontImage = null;
+        public Image FrontImage
+        {
+            get
+            {
+                return frontImage;
+            }
+            set
+            {
+                frontImage = value;
+                this.DoRefresh();
+            }
+        }
+
+        private Image frontImage_Unpass = null;
+        public Image FrontImage_Unpass
+        {
+            get
+            {
+                return frontImage_Unpass;
+            }
+            set
+            {
+                frontImage_Unpass = value;
+                this.DoRefresh();
+            }
+        }
+
+        private Image warningImage = null;
+        public Image WarningImage
+        {
+            get
+            {
+                return warningImage;
+            }
+            set
+            {
+                warningImage = value;
+                this.DoRefresh();
+            }
+        }
+        private Image settingImage = null;
+        public Image SettingImage
+        {
+            get
+            {
+                return settingImage;
+            }
+            set
+            {
+                settingImage = value;
+                this.DoRefresh();
+            }
+        }
+
+    }
+
+
     public partial class CustomProgressBar : Control
     {
         public CustomProgressBar()
         {
-            this.warningImage = Resource1.Warning;
-            this.settingImage = Resource1.Setting;
-            this.bgImage = Resource1.backGround;
-            this.valueImage = Resource1.front;
-            this.unpassValueImage = Resource1.unpass;
             InitializeComponent();
             this.Size = new Size(300, 30);
             this.TabStop = false;
@@ -49,15 +144,9 @@ namespace ComCtrls
             Rectangle imgRect; //image rectangle
             int imageLeft;
             int imageTop;
-            Brush backBrush; //brush for filling a backcolor
-            //Pen framepen;//pen for draw frame
-            TextureBrush backImageBrush = new TextureBrush(this.bgImage);
-            TextureBrush frontImageBrush = null;
-            if (valuePercentage >= warningPercentage)
-                frontImageBrush = new TextureBrush(valueImage);
-            else
-                frontImageBrush = new TextureBrush(unpassValueImage);
-
+            Brush backImageBrush = null;
+            Brush frontImageBrush = null;
+            Pen cutOffRule;
             if (m_bmpOffscreen == null) //Bitmap for doublebuffering
             {
                 m_bmpOffscreen = new Bitmap(ClientSize.Width, ClientSize.Height);
@@ -65,10 +154,37 @@ namespace ComCtrls
 
             gxOff = Graphics.FromImage(m_bmpOffscreen);
 
-            backBrush = new SolidBrush(Color.White);
-
             gxOff.Clear(this.BackColor);
 
+            if (imglst != null)
+            {
+                if (this.IMGContainer.BgImage != null)
+                    backImageBrush = new TextureBrush(this.IMGContainer.BgImage);
+                else
+                    backImageBrush = new SolidBrush(this.BackColor);
+
+                if (valuePercentage >= warningPercentage)
+                {
+                    if (this.IMGContainer.FrontImage != null)
+                        frontImageBrush = new TextureBrush(this.IMGContainer.FrontImage);
+                    else
+                        frontImageBrush = new SolidBrush(this.ForeColor);
+                }
+                else
+                {
+                    if (this.IMGContainer.FrontImage_Unpass != null)
+                        frontImageBrush = new TextureBrush(this.IMGContainer.FrontImage_Unpass);
+                    else if (this.IMGContainer.FrontImage != null)
+                        frontImageBrush = new TextureBrush(this.IMGContainer.FrontImage);
+                    else
+                        frontImageBrush = new SolidBrush(this.ForeColor);
+                }
+            }
+            else
+            {
+                backImageBrush = new SolidBrush(this.BackColor);
+                frontImageBrush = new SolidBrush(this.ForeColor);
+            }
             //画背景
             gxOff.FillRectangle(backImageBrush, this.ClientRectangle);
 
@@ -76,32 +192,52 @@ namespace ComCtrls
             int valueWidth = (int)(this.ClientRectangle.Width * valuePercentage);
             gxOff.FillRectangle(frontImageBrush, new Rectangle(0, 0, valueWidth, this.ClientRectangle.Height));
 
-            //标注报警值位置
-            if (warningImage != null)
+            if (imglst != null)
             {
-                int warningPos = (int)(this.ClientRectangle.Width * warningPercentage);
-                imageLeft = warningPos - warningImage.Width / 2;
-                imageTop = 0;
-                imgRect = new Rectangle(imageLeft, imageTop, warningImage.Width, warningImage.Height);
-                gxOff.DrawImage(warningImage, imgRect, new Rectangle(0, 0, warningImage.Width, warningImage.Height), GraphicsUnit.Pixel);
+                //标注报警值位置
+                if (IMGContainer.WarningImage != null)
+                {
+                    int warningPos = (int)(this.ClientRectangle.Width * warningPercentage);
+                    imageLeft = warningPos - IMGContainer.WarningImage.Width / 2;
+                    imageTop = 0;
+                    imgRect = new Rectangle(imageLeft, imageTop, IMGContainer.WarningImage.Width, IMGContainer.WarningImage.Height);
+                    gxOff.DrawImage(IMGContainer.WarningImage, imgRect, new Rectangle(0, 0, IMGContainer.WarningImage.Width, IMGContainer.WarningImage.Height), GraphicsUnit.Pixel);
+                }
+                else
+                {
+                    int warningPos = (int)(this.ClientRectangle.Width * warningPercentage);
+                    if (warningPos > 0)
+                    {
+                        cutOffRule = new Pen(Color.Red, 2);
+                        gxOff.DrawLine(cutOffRule, warningPos, this.ClientRectangle.Top, warningPos, this.ClientRectangle.Bottom);
+                    }
+                }
+                //标注设定值位置
+                if (IMGContainer.SettingImage != null)
+                {
+                    int settingPos = (int)(this.ClientRectangle.Width * settingPercentage);
+                    imageLeft = settingPos - IMGContainer.SettingImage.Width / 2;
+                    imageTop = 0;
+                    imgRect = new Rectangle(imageLeft, imageTop, IMGContainer.SettingImage.Width, IMGContainer.SettingImage.Height);
+                    gxOff.DrawImage(IMGContainer.SettingImage, imgRect, new Rectangle(0, 0, IMGContainer.SettingImage.Width, IMGContainer.SettingImage.Height), GraphicsUnit.Pixel);
+                }
+                else
+                {
+                    int settingPos = (int)(this.ClientRectangle.Width * settingPercentage);
+                    if (settingPos > 0)
+                    {
+                        cutOffRule = new Pen(Color.Blue, 2);
+                        gxOff.DrawLine(cutOffRule, settingPos, this.ClientRectangle.Top, settingPos, this.ClientRectangle.Bottom);
+                    }
+                }
             }
 
-            //标注设定值位置
-            if (settingImage != null)
-            {
-                int settingPos = (int)(this.ClientRectangle.Width * settingPercentage);
-                imageLeft = settingPos - settingImage.Width / 2;
-                imageTop = 0;
-                imgRect = new Rectangle(imageLeft, imageTop, settingImage.Width, settingImage.Height);
-                gxOff.DrawImage(settingImage, imgRect, new Rectangle(0, 0, settingImage.Width, settingImage.Height), GraphicsUnit.Pixel);
-            }
-            
             //Draw from the memory bitmap
             e.Graphics.DrawImage(m_bmpOffscreen, 0, 0);
         }
 
-        private float warningPercentage;
-        public float WarningPercentage
+        private double warningPercentage;
+        public double WarningPercentage
         {
             set
             {
@@ -114,8 +250,8 @@ namespace ComCtrls
 
         }
 
-        private float settingPercentage;
-        public float SettingPercentage
+        private double settingPercentage;
+        public double SettingPercentage
         {
             set
             {
@@ -127,8 +263,8 @@ namespace ComCtrls
             }
         }
 
-        private float valuePercentage;
-        public float ValuePercentage
+        private double valuePercentage;
+        public double ValuePercentage
         {
             set
             {
@@ -140,48 +276,27 @@ namespace ComCtrls
             }
         }
 
-        private Image bgImage;
-        public Image BgImage
+        private CProgressBarImagesContainer imglst = null;
+        public CProgressBarImagesContainer IMGContainer
         {
-            set
+            get
             {
-                bgImage = value;
+                return imglst;
             }
-        }
-
-        private Image valueImage = null;
-        public Image ValueImage
-        {
             set
             {
-                valueImage = value;
-            }
-        }
+                if (imglst != value)
+                {
+                    if (imglst != null)
+                        imglst.RemoveOwner(this);
 
-        private Image unpassValueImage = null;
-        public Image UnpassValueImage
-        {
-            set
-            {
-                unpassValueImage = value;
-            }
-        }
+                    imglst = value;
 
-        private Image warningImage = null;
-        public Image WarningImage
-        {
-            set
-            {
-                warningImage = value;
-            }
-        }
+                    if (value != null)
+                        value.AddOwner(this);
 
-        private Image settingImage = null;
-        public Image SettingImage
-        {
-            set
-            {
-                settingImage = value;
+                    this.Invalidate();
+                }
             }
         }
 

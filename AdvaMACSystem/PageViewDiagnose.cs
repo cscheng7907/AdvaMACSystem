@@ -6,6 +6,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using ComCtrls;
+using DataPool;
 
 namespace AdvaMACSystem
 {
@@ -19,6 +20,9 @@ namespace AdvaMACSystem
             buttonList = new List<ImageButton>();
             buttonImage = new ImagesContaner();
             cylinderImage = new ComCtrls.SimpleImagesContaner();
+            cylinderImage.BackImg = AdvaMACSystemRes.gray_off;
+            cylinderImage.ImgDisable = AdvaMACSystemRes.gray_off;
+            cylinderImage.CheckedBackImg = AdvaMACSystemRes.green_on;
 
             currentFont = new Font("微软雅黑", 14F, FontStyle.Regular);
             //new cylinders
@@ -40,9 +44,10 @@ namespace AdvaMACSystem
                 cylinder.Location = new Point(IOMarginLeft + (i / 8) * (IOWidth + IOSpacingX), IOMarginTop + (i % 8 +3) * (IOHeight + IOSpacingY));
                 cylinder.IMGContainer = cylinderImage;
                 cylinder.Font = currentFont;
-                cylinder.TextX = 30;
+                cylinder.TextX = 50;
                 cylinder.TextY = 5;
-                cylinder.Text = String.Format("{0}#油缸", i + 1);
+                cylinder.Text = String.Format("{0}#油缸", i % 8 + 1);
+                //cylinder.Checked =( i % 2 )== 0;
                 this.Controls.Add(cylinder);
             }
             for (int i = 0; i < 2; i++)
@@ -76,5 +81,34 @@ namespace AdvaMACSystem
         private int ButtonHeight = 50;
         private int BUttonSpacingX = 15;
         #endregion
+
+        #region 属性
+        private CDataPool _candatapool = null;
+        public CDataPool CanDatapool
+        {
+            get { return _candatapool; }
+            set
+            {
+                if (_candatapool != value)
+                    _candatapool = value;
+            }
+        }
+        #endregion
+
+        #region 方法
+        public void DoRefresh()
+        {
+            if (_candatapool != null)
+            {
+                //取数据
+                //赋值ImageLabel
+            }
+        }
+        #endregion
+
+        private void timer_Refresh_Tick(object sender, EventArgs e)
+        {
+            DoRefresh();
+        }
     }
 }
