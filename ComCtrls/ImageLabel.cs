@@ -9,92 +9,92 @@ using System.Drawing.Imaging;
 
 namespace ComCtrls
 {
-    public partial class ImageLabel : UserControl
+    public class SimpleImagesContaner : Component
     {
-        public class SimpleImagesContaner : Component
+
+        public SimpleImagesContaner()
         {
+            ownerlst = new List<Control>();
+        }
 
-            public SimpleImagesContaner()
+        private List<Control> ownerlst = null;
+
+        public void AddOwner(Control Owner)
+        {
+            ownerlst.Add(Owner);
+        }
+
+        public void RemoveOwner(Control Owner)
+        {
+            ownerlst.Remove(Owner);
+        }
+
+        public void DoRefresh()
+        {
+            foreach (Control c in ownerlst)
             {
-                ownerlst = new List<Control>();
-            }
-
-            private List<Control> ownerlst = null;
-
-            public void AddOwner(Control Owner)
-            {
-                ownerlst.Add(Owner);
-            }
-
-            public void RemoveOwner(Control Owner)
-            {
-                ownerlst.Remove(Owner);
-            }
-
-            public void DoRefresh()
-            {
-                foreach (Control c in ownerlst)
-                {
-                    c.Invalidate();
-                }
-            }
-
-            private Image backimg = null;
-            public Image BackImg
-            {
-                get
-                {
-                    return backimg;
-                }
-                set
-                {
-                    backimg = value;
-                    this.DoRefresh();
-                }
-            }
-
-            private Image checkedBackimg = null;
-            public Image CheckedBackImg
-            {
-                get
-                {
-                    return checkedBackimg;
-                }
-                set
-                {
-                    checkedBackimg = value;
-                    this.DoRefresh();
-                }
-            }
-
-            private Image imgdisable = null;
-            public Image ImgDisable
-            {
-                get
-                {
-                    return imgdisable;
-                }
-                set
-                {
-                    imgdisable = value;
-                    this.DoRefresh();
-                }
-            }
-
-            private Image icon = null;
-            public Image Icon
-            {
-                get
-                {
-                    return icon;
-                }
-                set
-                {
-                    icon = value;
-                    this.DoRefresh();
-                }
+                c.Invalidate();
             }
         }
+
+        private Image backimg = null;
+        public Image BackImg
+        {
+            get
+            {
+                return backimg;
+            }
+            set
+            {
+                backimg = value;
+                this.DoRefresh();
+            }
+        }
+
+        private Image checkedBackimg = null;
+        public Image CheckedBackImg
+        {
+            get
+            {
+                return checkedBackimg;
+            }
+            set
+            {
+                checkedBackimg = value;
+                this.DoRefresh();
+            }
+        }
+
+        private Image imgdisable = null;
+        public Image ImgDisable
+        {
+            get
+            {
+                return imgdisable;
+            }
+            set
+            {
+                imgdisable = value;
+                this.DoRefresh();
+            }
+        }
+
+        private Image icon = null;
+        public Image Icon
+        {
+            get
+            {
+                return icon;
+            }
+            set
+            {
+                icon = value;
+                this.DoRefresh();
+            }
+        }
+    }
+    public partial class ImageLabel : UserControl
+    {
 
 
 
@@ -183,6 +183,30 @@ namespace ComCtrls
 
                 }
             }
+            else if (BackImg != null)
+            {
+                Image bgimage = BackImg;
+
+                int imageLeft = (this.Width - bgimage.Width) / 2;
+                int imageTop = (this.Height - bgimage.Height) / 2;
+
+                imgRect = new Rectangle(imageLeft, imageTop, bgimage.Width, bgimage.Height);
+
+                if (this.TransParent)
+                {
+                    //Set transparent key
+                    ImageAttributes imageAttr = new ImageAttributes();
+                    imageAttr.SetColorKey(BackgroundImageColor(bgimage), BackgroundImageColor(bgimage));
+
+                    //Draw image
+                    gxOff.DrawImage(bgimage, imgRect, 0, 0, bgimage.Width, bgimage.Height, GraphicsUnit.Pixel, imageAttr);
+                }
+                else
+                {
+                    gxOff.DrawImage(bgimage, imgRect, new Rectangle(0, 0, bgimage.Width, bgimage.Height), GraphicsUnit.Pixel);
+
+                }
+            }
             else //draw frame
             {
                 {
@@ -248,7 +272,7 @@ namespace ComCtrls
                         backBrush = new SolidBrush(Color.Gray);
                     }
 
-                    if (textX <0 || textY < 0)
+                    if (textX < 0 || textY < 0)
                         gxOff.DrawString(this.Text, this.Font, backBrush,
                             (this.ClientSize.Width - gxOff.MeasureString(this.Text, this.Font).Width) / 2,
                             (this.ClientSize.Height - gxOff.MeasureString(this.Text, this.Font).Height) / 2);
@@ -373,7 +397,12 @@ namespace ComCtrls
 
         private KTLayout layout;
         [DefaultValue(KTLayout.GlyphTop)]
+
+#if _WIN32
+        public new KTLayout Layout
+#else
         public KTLayout Layout
+#endif
         {
             get
             {
@@ -388,9 +417,6 @@ namespace ComCtrls
                 }
             }
         }
-
-
-
         #endregion
 
         private Color BackgroundImageColor(Image image)
@@ -398,6 +424,22 @@ namespace ComCtrls
             Bitmap bmp = new Bitmap(image);
             return bmp.GetPixel(0, 0);
         }
+
+
+        private Image backimg = null;
+        public Image BackImg
+        {
+            get
+            {
+                return backimg;
+            }
+            set
+            {
+                backimg = value;
+                this.Invalidate();
+            }
+        }
+
 
 
     }

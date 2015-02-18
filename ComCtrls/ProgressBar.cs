@@ -50,7 +50,7 @@ namespace ComCtrls
             int imageLeft;
             int imageTop;
             Brush backBrush; //brush for filling a backcolor
-            Pen framepen;//pen for draw frame
+            //Pen framepen;//pen for draw frame
             TextureBrush backImageBrush = new TextureBrush(this.bgImage);
             TextureBrush frontImageBrush = null;
             if (valuePercentage >= warningPercentage)
