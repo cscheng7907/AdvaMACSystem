@@ -62,6 +62,7 @@
             this.panel1.Location = new System.Drawing.Point(5, 5);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(300, 135);
+            this.panel1.Click += new System.EventHandler(this.CylinderCellBlock_Click);
             // 
             // progressBar
             // 
@@ -174,6 +175,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "CylinderCellBlock";
             this.Size = new System.Drawing.Size(310, 145);
+            this.Click += new System.EventHandler(this.CylinderCellBlock_Click);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
