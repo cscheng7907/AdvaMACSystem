@@ -16,6 +16,7 @@ namespace AdvaMACSystem
         public CylinderCellBlock()
         {
             InitializeComponent();
+            pictureBox1.Image = AdvaMACSystemRes.border;
             foreach (Control c in panel1.Controls)
             {
                 c.Click += new EventHandler(CylinderCellBlock_Click);
@@ -87,7 +88,7 @@ namespace AdvaMACSystem
             {
                 currentPressureValue = value;
                 this.progressBar.ValuePercentage = (currentPressureValue - minPressureValue) / (maxPressureValue - minPressureValue);
-                this.lbValuePre.Text = currentPressureValue.ToString(numberFormat);
+                this.lbValuePre.Text = currentPressureValue.ToString(numberFormat) + PressureUnit;
             }
         }
 
@@ -138,7 +139,7 @@ namespace AdvaMACSystem
             set
             {
                 currentDistanceValue = value;
-                this.lbValueDis.Text = currentDistanceValue.ToString(numberFormat);
+                this.lbValueDis.Text = currentDistanceValue.ToString(numberFormat) + DistanceUnit;
             }
         }
 
@@ -166,11 +167,18 @@ namespace AdvaMACSystem
         {
             set
             {
-                selected = value;
-                if (selected)
-                    this.panel1.BackColor = Color.Orange;
-                else
-                    this.panel1.BackColor = Color.Silver;
+                if (selected != value)
+                {
+                    selected = value;
+                    if (selected)
+                        this.panel1.BackColor = Color.Orange;
+                    else
+                        this.panel1.BackColor = Color.Silver;
+                }
+            }
+            get
+            {
+                return selected;
             }
         }
 
@@ -181,9 +189,25 @@ namespace AdvaMACSystem
             {
                 inUse = value;
                 if (inUse)
-                    this.BackColor = Color.DarkOrange;
+                {
+                    pictureBox1.Image = AdvaMACSystemRes.border;
+                    foreach (Control l in panel1.Controls)
+                    {
+                        if (l is Label)
+                            l.ForeColor = Color.Brown;
+                    }
+                    lbWarningDis.ForeColor = lbWarningPre.ForeColor = Color.Red;
+                    lbSettingDis.ForeColor = lbSettingPre.ForeColor = Color.Blue;
+                }
                 else
-                    this.BackColor = Color.LightGray;
+                {
+                    pictureBox1.Image = AdvaMACSystemRes.border_Disable;
+                    foreach (Control l in panel1.Controls)
+                    {
+                        if (l is Label)
+                            l.ForeColor = Color.Wheat;
+                    }
+                }
             }
             get
             {
@@ -191,10 +215,14 @@ namespace AdvaMACSystem
             }
         }
 
+        public event OnCylinderClickHandler OnCylinderClicked;
         private void CylinderCellBlock_Click(object sender, EventArgs e)
         {
             Selected = !selected;
+            if (OnCylinderClicked != null)
+                OnCylinderClicked(cylinderIndex);
         }
 
     }
+    public delegate void OnCylinderClickHandler(int cylinderIndex);
 }

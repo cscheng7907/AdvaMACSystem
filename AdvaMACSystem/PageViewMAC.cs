@@ -16,6 +16,8 @@ namespace AdvaMACSystem
         {
             InitializeComponent();
 
+            _candatapool = CDataPool.GetDataPoolObject();
+
             cylinderList = new List<CylinderCellBlock>();
             //new cylinders
             for (int i = 0; i < 8; i++)
@@ -29,10 +31,10 @@ namespace AdvaMACSystem
                 CylinderCellBlock cylinder = cylinderList[i];
                 cylinder.Size = new Size(CBWidth, CBHeight);
                 cylinder.Location = new Point(CBMarginLeft + (i % 2) * (CBWidth + CBSpacingX), CBMarginTop + (i / 2) * (CBHeight + CBSpacingY));
+                cylinder.OnCylinderClicked += new OnCylinderClickHandler(cylinder_OnCylinderClicked);
                 //cylinder.Font = currentFont;
                 this.Controls.Add(cylinder);
             }
-
             progressBarImages = new CProgressBarImagesContainer();
             progressBarImages.BgImage = AdvaMACSystemRes.graybar;
             progressBarImages.FrontImage = AdvaMACSystemRes.greenbar;
@@ -44,6 +46,17 @@ namespace AdvaMACSystem
             {
                 ccb.IMGContainer = progressBarImages;
             }
+        }
+
+        private void cylinder_OnCylinderClicked(int cylinderIndex)
+        {
+            if (selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
+                cylinderList[selectedCylinderIndex].Selected = false;
+            if (cylinderList[cylinderIndex].Selected)
+                selectedCylinderIndex = cylinderIndex;
+            else
+                selectedCylinderIndex = -1;
+            
         }
 
         #region 布局
@@ -61,19 +74,30 @@ namespace AdvaMACSystem
         #endregion
 
         private List<CylinderCellBlock> cylinderList = null;
-        private double x = 0;
 
         private CProgressBarImagesContainer progressBarImages = null;
+        double x = 0;
         private void timer_RefreshMac_Tick(object sender, EventArgs e)
         {
-            x += 0.1;
-            foreach (CylinderCellBlock ccb in cylinderList)
+            //x += 0.1;
+            for (int i = 0; i < cylinderList.Count; i++)
             {
-                ccb.CurrentPressureValue = 30 + 20 * Math.Sin(x);
+                if (cylinderList[i].InUse)
+                {
+                    //cylinderList[i].CurrentPressureValue = 20 * Math.Sin(x) + 30;
+                    cylinderList[i].CurrentPressureValue = _candatapool.GetRealValue(pumpIndex, i, CmdDataType.cdtPressure_Real);
+                    cylinderList[i].CurrentDistanceValue = _candatapool.GetRealValue(pumpIndex, i, CmdDataType.cdtPosition_Real);
+                }
+                else
+                {
+                    cylinderList[i].CurrentPressureValue = 0;
+                    cylinderList[i].CurrentDistanceValue = 0;
+                }
             }
         }
 
         private int pumpIndex = 0;//泵的编号
+        private int selectedCylinderIndex = -1;
 
         private CDataPool _candatapool = null;
         public CDataPool CanDatapool
@@ -103,8 +127,8 @@ namespace AdvaMACSystem
                 cylinderList[i].InitialInstance(pumpIndex, i);
             }
 
-            //if (_candatapool == null)
-            //    return;
+            if (_candatapool == null)
+                return;
 
             for (int i = 0; i < cylinderList.Count; i++)
             {
@@ -129,7 +153,12 @@ namespace AdvaMACSystem
                 cylinderList[i].WarningDistanceValue = 300;
                 //设定长度条设定值
                 cylinderList[i].SettingDistanceValue = 500;
+
+                //检测油缸运行状态
+                cylinderList[i].InUse = true;
+                //cylinderList[i].InUse = _candatapool.GetintValue(pumpIndex, i, CmdDataType.cdtcylinderState_Real) != 0;
             }
+            cylinderList[1].InUse = false;
         }
 
     }

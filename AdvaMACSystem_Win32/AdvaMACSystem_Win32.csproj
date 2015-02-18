@@ -51,6 +51,9 @@
     <Compile Include="..\AdvaMACSystem\AdvaCanBus.cs">
       <Link>AdvaCanBus.cs</Link>
     </Compile>
+    <Compile Include="..\AdvaMACSystem\AdvaMACSystemRes.Designer.cs">
+      <Link>AdvaMACSystemRes.Designer.cs</Link>
+    </Compile>
     <Compile Include="..\AdvaMACSystem\AdvCan.cs">
       <Link>AdvCan.cs</Link>
     </Compile>
@@ -83,6 +86,7 @@
     </Compile>
     <Compile Include="..\AdvaMACSystem\PageViewHistory.cs">
       <Link>PageViewHistory.cs</Link>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="..\AdvaMACSystem\PageViewHistory.designer.cs">
       <Link>PageViewHistory.designer.cs</Link>
@@ -90,6 +94,7 @@
     </Compile>
     <Compile Include="..\AdvaMACSystem\PageViewMAC.cs">
       <Link>PageViewMAC.cs</Link>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="..\AdvaMACSystem\PageViewMAC.designer.cs">
       <Link>PageViewMAC.designer.cs</Link>
@@ -97,6 +102,7 @@
     </Compile>
     <Compile Include="..\AdvaMACSystem\PageViewParameter.cs">
       <Link>PageViewParameter.cs</Link>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="..\AdvaMACSystem\PageViewParameter.designer.cs">
       <Link>PageViewParameter.designer.cs</Link>
@@ -104,6 +110,7 @@
     </Compile>
     <Compile Include="..\AdvaMACSystem\PageViewWarn.cs">
       <Link>PageViewWarn.cs</Link>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="..\AdvaMACSystem\PageViewWarn.designer.cs">
       <Link>PageViewWarn.designer.cs</Link>
@@ -119,6 +126,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="..\AdvaMACSystem\AdvaMACSystemRes.resx">
+      <Link>AdvaMACSystemRes.resx</Link>
+    </EmbeddedResource>
     <EmbeddedResource Include="..\AdvaMACSystem\CylinderCellBlock.resx">
       <Link>CylinderCellBlock.resx</Link>
       <DependentUpon>CylinderCellBlock.cs</DependentUpon>

@@ -56,12 +56,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="KeypadForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="KeypadForm.Designer.cs">
-      <DependentUpon>KeypadForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="ProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -89,15 +83,14 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="KeypadForm.resx">
-      <DependentUpon>KeypadForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ProgressBar.resx">
       <DependentUpon>ProgressBar.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resource1.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -120,99 +113,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Warning.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\0down.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\0up.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\1down.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\1up.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\2down.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\2up.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\3down.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\3up.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\4down.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\4up.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\5down.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\5up.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\6down.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\6up.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\7down.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\7up.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\8down.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\8up.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\9down.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\9up.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\crdown.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\crup.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\dotdown.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\dotup.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\entdown.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\entup.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\esdown.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\esup.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\minusdown.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\minusup.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keypad\inputbox.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

@@ -41,6 +41,7 @@
             this.lbValuePre = new System.Windows.Forms.Label();
             this.lbValueDis = new System.Windows.Forms.Label();
             this.lbIndex = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,7 +80,6 @@
             this.lbMaxDis.Location = new System.Drawing.Point(220, 33);
             this.lbMaxDis.Name = "lbMaxDis";
             this.lbMaxDis.Size = new System.Drawing.Size(80, 15);
-            this.lbMaxDis.Text = "8888.8bar";
             this.lbMaxDis.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // lbMinDis
@@ -87,14 +87,12 @@
             this.lbMinDis.Location = new System.Drawing.Point(0, 33);
             this.lbMinDis.Name = "lbMinDis";
             this.lbMinDis.Size = new System.Drawing.Size(60, 15);
-            this.lbMinDis.Text = "8888.8";
             // 
             // lbMaxPre
             // 
             this.lbMaxPre.Location = new System.Drawing.Point(220, 82);
             this.lbMaxPre.Name = "lbMaxPre";
             this.lbMaxPre.Size = new System.Drawing.Size(80, 15);
-            this.lbMaxPre.Text = "8888.8bar";
             this.lbMaxPre.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // lbMinPre
@@ -102,7 +100,6 @@
             this.lbMinPre.Location = new System.Drawing.Point(0, 82);
             this.lbMinPre.Name = "lbMinPre";
             this.lbMinPre.Size = new System.Drawing.Size(60, 15);
-            this.lbMinPre.Text = "8888.8";
             // 
             // lbSettingPre
             // 
@@ -110,7 +107,6 @@
             this.lbSettingPre.Location = new System.Drawing.Point(150, 85);
             this.lbSettingPre.Name = "lbSettingPre";
             this.lbSettingPre.Size = new System.Drawing.Size(60, 15);
-            this.lbSettingPre.Text = "8888.8";
             this.lbSettingPre.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lbWarningPre
@@ -119,7 +115,6 @@
             this.lbWarningPre.Location = new System.Drawing.Point(75, 85);
             this.lbWarningPre.Name = "lbWarningPre";
             this.lbWarningPre.Size = new System.Drawing.Size(60, 15);
-            this.lbWarningPre.Text = "8888.8";
             this.lbWarningPre.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lbSettingDis
@@ -128,8 +123,8 @@
             this.lbSettingDis.Location = new System.Drawing.Point(150, 28);
             this.lbSettingDis.Name = "lbSettingDis";
             this.lbSettingDis.Size = new System.Drawing.Size(60, 15);
-            this.lbSettingDis.Text = "8888.8";
             this.lbSettingDis.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lbSettingDis.Visible = false;
             // 
             // lbWarningDis
             // 
@@ -137,8 +132,8 @@
             this.lbWarningDis.Location = new System.Drawing.Point(75, 28);
             this.lbWarningDis.Name = "lbWarningDis";
             this.lbWarningDis.Size = new System.Drawing.Size(60, 15);
-            this.lbWarningDis.Text = "8888.8";
             this.lbWarningDis.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lbWarningDis.Visible = false;
             // 
             // lbValuePre
             // 
@@ -146,7 +141,6 @@
             this.lbValuePre.Location = new System.Drawing.Point(80, 113);
             this.lbValuePre.Name = "lbValuePre";
             this.lbValuePre.Size = new System.Drawing.Size(160, 20);
-            this.lbValuePre.Text = "当前值:5000kkk";
             this.lbValuePre.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lbValueDis
@@ -155,7 +149,6 @@
             this.lbValueDis.Location = new System.Drawing.Point(80, 1);
             this.lbValueDis.Name = "lbValueDis";
             this.lbValueDis.Size = new System.Drawing.Size(160, 20);
-            this.lbValueDis.Text = "当前值:5000kkk";
             this.lbValueDis.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lbIndex
@@ -164,15 +157,21 @@
             this.lbIndex.Location = new System.Drawing.Point(1, 1);
             this.lbIndex.Name = "lbIndex";
             this.lbIndex.Size = new System.Drawing.Size(40, 30);
-            this.lbIndex.Text = "1#";
             this.lbIndex.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(310, 145);
             // 
             // CylinderCellBlock
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.DarkOrange;
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pictureBox1);
             this.Name = "CylinderCellBlock";
             this.Size = new System.Drawing.Size(310, 145);
             this.Click += new System.EventHandler(this.CylinderCellBlock_Click);
@@ -196,6 +195,7 @@
         private System.Windows.Forms.Label lbValuePre;
         private System.Windows.Forms.Label lbSettingPre;
         private System.Windows.Forms.Label lbWarningPre;
+        private System.Windows.Forms.PictureBox pictureBox1;
 
     }
 }
