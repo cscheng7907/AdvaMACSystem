@@ -139,4 +139,97 @@
   <data name="Warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Warning.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="crdown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\crdown.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="crup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\crup.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dotdown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\dotdown.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dotup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\dotup.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="entdown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\entdown.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="entup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\entup.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="esdown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\esdown.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="esup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\esup.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="inputbox" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\inputbox.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="minusdown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\minusdown.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="minusup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\minusup.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_0down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\0down.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_0up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\0up.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_1down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\1down.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_1up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\1up.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_2down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\2down.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_2up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\2up.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_3down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\3down.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_3up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\3up.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_4down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\4down.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_4up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\4up.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_5down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\5down.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_5up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\5up.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_6down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\6down.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_6up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\6up.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_7down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\7down.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_7up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\7up.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_8down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\8down.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_8up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\8up.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_9down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\9down.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_9up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\keypad\9up.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

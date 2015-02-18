@@ -380,6 +380,98 @@ namespace ComCtrls
 
                 }
             }
+            else if ((DNImg != null) &&
+                (DNImgDisable != null) &&
+                (UPImgDisable != null) &&
+                (UPImg != null)
+                )
+            {
+                Image bgimage;
+
+                if (!Enabled)
+                    if (!Checked)
+                        bgimage = UPImgDisable;
+                    else
+                        bgimage = DNImgDisable;
+                else
+                    if (!Checked)
+                        bgimage = UPImg;
+                    else
+                        bgimage = DNImg;
+
+                //Center the image relativelly to the control
+                int imageLeft = (this.Width - bgimage.Width) / 2;
+                int imageTop = (this.Height - bgimage.Height) / 2;
+
+                imgRect = new Rectangle(imageLeft, imageTop, bgimage.Width, bgimage.Height);
+
+                //if (!Checked)
+                //    imgRect = new Rectangle(imageLeft, imageTop, bgimage.Width, bgimage.Height);
+                //else //The button was pressed
+                //    //Shift the image by one pixel
+                //    imgRect = new Rectangle(imageLeft + 1, imageTop + 1, bgimage.Width, bgimage.Height);
+
+                if (this.TransParent)
+                {
+                    //Set transparent key
+                    ImageAttributes imageAttr = new ImageAttributes();
+                    imageAttr.SetColorKey(BackgroundImageColor(bgimage), BackgroundImageColor(bgimage));
+
+                    //Draw image
+                    gxOff.DrawImage(bgimage, imgRect, 0, 0, bgimage.Width, bgimage.Height, GraphicsUnit.Pixel, imageAttr);
+                }
+                else
+                {
+                    gxOff.DrawImage(bgimage, imgRect, new Rectangle(0, 0, bgimage.Width, bgimage.Height), GraphicsUnit.Pixel);
+
+                }
+            }
+            else if ((DNImg != null) &&
+                //(DNImgDisable != null) &&
+                //(UPImgDisable != null) &&
+                (UPImg != null)
+                )
+            {
+                Image bgimage;
+
+                //if (!Enabled)
+                //    if (!Checked)
+                //        bgimage = UPImgDisable;
+                //    else
+                //        bgimage = DNImgDisable;
+                //else
+                if (!Checked)
+                    bgimage = UPImg;
+                else
+                    bgimage = DNImg;
+
+                //Center the image relativelly to the control
+                int imageLeft = (this.Width - bgimage.Width) / 2;
+                int imageTop = (this.Height - bgimage.Height) / 2;
+
+                imgRect = new Rectangle(imageLeft, imageTop, bgimage.Width, bgimage.Height);
+
+                //if (!Checked)
+                //    imgRect = new Rectangle(imageLeft, imageTop, bgimage.Width, bgimage.Height);
+                //else //The button was pressed
+                //    //Shift the image by one pixel
+                //    imgRect = new Rectangle(imageLeft + 1, imageTop + 1, bgimage.Width, bgimage.Height);
+
+                if (this.TransParent)
+                {
+                    //Set transparent key
+                    ImageAttributes imageAttr = new ImageAttributes();
+                    imageAttr.SetColorKey(BackgroundImageColor(bgimage), BackgroundImageColor(bgimage));
+
+                    //Draw image
+                    gxOff.DrawImage(bgimage, imgRect, 0, 0, bgimage.Width, bgimage.Height, GraphicsUnit.Pixel, imageAttr);
+                }
+                else
+                {
+                    gxOff.DrawImage(bgimage, imgRect, new Rectangle(0, 0, bgimage.Width, bgimage.Height), GraphicsUnit.Pixel);
+
+                }
+            }
             else //draw frame
             {
                 if (!Checked) //up
@@ -692,7 +784,11 @@ namespace ComCtrls
 
         private KTLayout layout;
         [DefaultValue(KTLayout.GlyphTop)]
-        public KTLayout Layout
+#if _WIN32
+        public new KTLayout Layout
+#else
+        public  KTLayout Layout
+#endif
         {
             get
             {
@@ -717,5 +813,62 @@ namespace ComCtrls
             Bitmap bmp = new Bitmap(image);
             return bmp.GetPixel(0, 0);
         }
+
+        private Image upimg = null;
+        public Image UPImg
+        {
+            get
+            {
+                return upimg;
+            }
+            set
+            {
+                upimg = value;
+                this.Invalidate();
+            }
+        }
+
+        private Image upimgdisable = null;
+        public Image UPImgDisable
+        {
+            get
+            {
+                return upimgdisable;
+            }
+            set
+            {
+                upimgdisable = value;
+                this.Invalidate();
+            }
+        }
+
+        private Image dnimg = null;
+        public Image DNImg
+        {
+            get
+            {
+                return dnimg;
+            }
+            set
+            {
+                dnimg = value;
+                this.Invalidate();
+            }
+        }
+
+        private Image dnimgdisable = null;
+        public Image DNImgDisable
+        {
+            get
+            {
+                return dnimgdisable;
+            }
+            set
+            {
+                dnimgdisable = value;
+                this.Invalidate();
+            }
+        }
+
     }
 }

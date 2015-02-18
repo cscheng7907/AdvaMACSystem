@@ -22,7 +22,6 @@ namespace AdvaMACSystem
         {
             DateTime dt = DateTime.Now;
             lb_Now.Text = string.Format("{0:00}-{1:00}-{2:00} {3:00}:{4:00}:{5:00}", dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
-
         }
 
 #region 加载字体
