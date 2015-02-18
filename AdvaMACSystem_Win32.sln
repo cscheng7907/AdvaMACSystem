@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvaMACSystem_Win32", "AdvaMACSystem_Win32\AdvaMACSystem_Win32.csproj", "{7122CC06-1754-4B27-A7A0-D1D29633730A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComCtrls", "ComCtrls_Win32\ComCtrls.csproj", "{C4925C4D-75BF-4A56-950A-12CB6F369C39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataPool", "DataPool_WIN32\DataPool.csproj", "{1A77B1C8-15C0-4F52-94B2-E1F0B97E684D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyPadDemo_Win32", "KeyPadDemo_Win32\KeyPadDemo_Win32.csproj", "{16B5ADEE-C4FD-4ECE-A99D-B45087C6919C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7122CC06-1754-4B27-A7A0-D1D29633730A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7122CC06-1754-4B27-A7A0-D1D29633730A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7122CC06-1754-4B27-A7A0-D1D29633730A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7122CC06-1754-4B27-A7A0-D1D29633730A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4925C4D-75BF-4A56-950A-12CB6F369C39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4925C4D-75BF-4A56-950A-12CB6F369C39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4925C4D-75BF-4A56-950A-12CB6F369C39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4925C4D-75BF-4A56-950A-12CB6F369C39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A77B1C8-15C0-4F52-94B2-E1F0B97E684D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A77B1C8-15C0-4F52-94B2-E1F0B97E684D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A77B1C8-15C0-4F52-94B2-E1F0B97E684D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A77B1C8-15C0-4F52-94B2-E1F0B97E684D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16B5ADEE-C4FD-4ECE-A99D-B45087C6919C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16B5ADEE-C4FD-4ECE-A99D-B45087C6919C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16B5ADEE-C4FD-4ECE-A99D-B45087C6919C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16B5ADEE-C4FD-4ECE-A99D-B45087C6919C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
