@@ -14,7 +14,7 @@ namespace AdvaMACSystem
         private Thread Thread1;
         private int ThreadInterval = 500;
 
-        private const uint M_SENDCOUNT = 1;
+        private const uint M_SENDCOUNT = 132;
         private AdvCan.canmsg_t[] msgSend = new AdvCan.canmsg_t[M_SENDCOUNT];                 //Package for write 
 
         private const uint M_RECIEVECOUNT = 40;
@@ -79,7 +79,7 @@ namespace AdvaMACSystem
             get { return canErrcode; }
         }
 
-        private bool Open()
+        public bool Open()
         {
             int nRet = 0;
             bool flag = false;
@@ -194,6 +194,13 @@ namespace AdvaMACSystem
             //Device.acCanClose();
         }
 
+        public void Close()
+        {
+            m_bRun1 = false;
+            Thread.Sleep(ThreadInterval);
+            Device.acCanClose();
+
+        }
 
         private void ThreadMethod()
         {
@@ -209,14 +216,14 @@ namespace AdvaMACSystem
 
                 //if rtr
                 //if (bLeftRtrFlag)
-                {
-                    msgSend[j].flags += AdvCan.MSG_RTR;
-                    msgSend[j].length = 0;
-                }
+                //{
+                //    msgSend[j].flags += AdvCan.MSG_RTR;
+                //    msgSend[j].length = 0;
+                //}
 
                 for (int i = 0; i < msgSend[j].length; i++)
                 {
-                    msgSend[j].data[i] = (byte)i;
+                    msgSend[j].data[i] = 0;// (byte)i;
                 }
             }
 
@@ -267,7 +274,197 @@ namespace AdvaMACSystem
                 }
             }
 
-            nRet = Device.acCanWrite(msgSend, nWriteCount, ref pulNumberofWritten);
+            if (CanDatapool == null)
+                return;
+
+            bool Csign_View_Setup = CanDatapool.sign_View_Setup;
+            bool Csign_View_Setup_Confirm = CanDatapool.sign_View_Setup_Confirm;
+            bool Csign_View_Parameter = CanDatapool.sign_View_Parameter;
+            bool Csign_View_Parameter_Confirm = CanDatapool.sign_View_Parameter_Confirm;
+            bool Csign_View_SenserCalibration = CanDatapool.sign_View_SenserCalibration;
+
+
+            uint canmsgIndex = 0;
+            {
+                //2000
+                //进入“安装设定”界面标志位		        0		1	1：表示进入界面；0：表示未进入界面	"安装设定界面（设定内容显示器需具备记忆保存功能，需要密码才能进入安装设定界面）"
+                //安装泵站选择		                                1		1	"1：表示1#泵站；2：表示2#泵站 3：表示3#泵站；4：表示4#泵站，以此类推"	
+                //油缸安装选择（选定某一泵站后）		    2	0	1	1：表示1#油缸安装；0表示没有安装	
+                //                                                             1	1	1：表示2#油缸安装；0表示没有安装	
+                //                                                             2	1	1：表示3#油缸安装；0表示没有安装	
+                //                                                             3	1	1：表示4#油缸安装；0表示没有安装	
+                //                                                             4	1	1：表示5#油缸安装；0表示没有安装	
+                //                                                             5	1	1：表示6#油缸安装；0表示没有安装	
+                //                                                             6	1	1：表示7#油缸安装；0表示没有安装	
+                //                                                             7	1	1：表示8#油缸安装；0表示没有安装	
+                //安装确定标志		                                3		1	1：确定按键按下；0：按键未按下	
+                for (int i = 0; i < CanDatapool.PumpCount; i++)
+                {
+                    msgSend[canmsgIndex].id = 0x2000;
+                    msgSend[canmsgIndex].length = 4;//(short)AdvCan.DATALENGTH;
+
+                    msgSend[canmsgIndex].data[0] = (Csign_View_Setup) ? (byte)1 : (byte)0;
+                    msgSend[canmsgIndex].data[1] = (byte)(i + 1);
+
+                    for (int j = 0; j < 8; j++)
+                    {
+                        if (CanDatapool.out_Installed[(int)(i * CanDatapool.CylinderCount + j)])
+                            msgSend[canmsgIndex].data[2] |= (byte)(1 << i);
+                        else
+                            msgSend[canmsgIndex].data[2] &= (byte)~(1 << i);
+                    }
+
+                    msgSend[canmsgIndex].data[3] = (Csign_View_Setup_Confirm) ? (byte)1 : (byte)0;
+                    canmsgIndex++;
+                }
+
+
+                //2001
+                //进入“参数设定”界面标志位		0		1	1：表示进入界面；0：表示未进入界面	"参数设定界面（设定内容显示器需具备记忆保存功能，需要密码才能进入参数设定界面）"
+                //泵站选择		                                1		1	"1：表示1#泵站；2：表示2#泵站3：表示3#泵站；4：表示4#泵站，以此类推"	
+                //油缸选择（选定某一泵站后）		2		1	1：表示1#油缸...8:表示8#油缸	
+                //泵站压力报警值		                    2，3		1		
+                //油缸压力上限报警功能开启		    4		1	1：开启；0：未开启	
+                //油缸长度上限报警功能开启		    5		1	1：开启；0：未开启	
+                //油缸长度下限报警功能开启		    6		1	1：开启；0：未开启	
+                //油缸长度控制功能开启		            7		1	1：开启；0：未开启	
+                //2002
+                //油缸压力上限报警值设定		        0,1		0.1		
+                //油缸压力下限报警值设定		        2,3		0.1		
+                //油缸长度上限报警值设定		        4,5		0.1		
+                //油缸长度下限报警值设定		        6,7		0.1		
+                //2003
+                //油缸压力设定值		                    0,1		0.1		
+                //油缸长度设定值		                    2,3		0.1		
+                //参数设定确认标志		                4		1	1：确定按键按下；0：按键未按下	
+
+                for (int i = 0; i < CanDatapool.PumpCount; i++)
+                {
+                    for (int j = 0; j < CanDatapool.CylinderCount; j++)
+                    {
+                        //2001
+                        msgSend[canmsgIndex].id = 0x2001;
+                        msgSend[canmsgIndex].length = (short)AdvCan.DATALENGTH;
+
+                        msgSend[canmsgIndex].data[0] = (Csign_View_Parameter) ? (byte)1 : (byte)0;
+                        msgSend[canmsgIndex].data[1] = (byte)(i + 1);
+                        msgSend[canmsgIndex].data[2] = (byte)(j + 1);
+                        msgSend[canmsgIndex].data[3] = CanDatapool.out_PressureAlarm_Pump[i];
+                        msgSend[canmsgIndex].data[4] = (CanDatapool.out_PressureUpperLimitAlarm_Enable[(int)(i * CanDatapool.CylinderCount + j)]) ? (byte)1 : (byte)0;
+                        msgSend[canmsgIndex].data[5] = (CanDatapool.out_PositionUpperLimitAlarm_Enable[(int)(i * CanDatapool.CylinderCount + j)]) ? (byte)1 : (byte)0;
+                        msgSend[canmsgIndex].data[6] = (CanDatapool.out_PositionLowerLimitAlarm_Enable[(int)(i * CanDatapool.CylinderCount + j)]) ? (byte)1 : (byte)0;
+                        msgSend[canmsgIndex].data[7] = (CanDatapool.out_PositionControl_Enable[(int)(i * CanDatapool.CylinderCount + j)]) ? (byte)1 : (byte)0;
+
+                        canmsgIndex++;
+
+                        //2002
+                        msgSend[canmsgIndex].id = 0x2002;
+                        msgSend[canmsgIndex].length = (short)AdvCan.DATALENGTH;
+
+                        msgSend[canmsgIndex].data[0] = (byte)(CanDatapool.out_PressureUpperLimitAlarm_Value[(int)(i * CanDatapool.CylinderCount + j)] & 0xFF);
+                        msgSend[canmsgIndex].data[1] = (byte)(CanDatapool.out_PressureUpperLimitAlarm_Value[(int)(i * CanDatapool.CylinderCount + j)] >> 8);
+                        msgSend[canmsgIndex].data[2] = (byte)(CanDatapool.out_PressureLowerLimitAlarm_Value[(int)(i * CanDatapool.CylinderCount + j)] & 0xFF);
+                        msgSend[canmsgIndex].data[3] = (byte)(CanDatapool.out_PressureLowerLimitAlarm_Value[(int)(i * CanDatapool.CylinderCount + j)] >> 8);
+                        msgSend[canmsgIndex].data[4] = (byte)(CanDatapool.out_PositionUpperLimitAlarm_Value[(int)(i * CanDatapool.CylinderCount + j)] & 0xFF);
+                        msgSend[canmsgIndex].data[5] = (byte)(CanDatapool.out_PositionUpperLimitAlarm_Value[(int)(i * CanDatapool.CylinderCount + j)] >> 8);
+                        msgSend[canmsgIndex].data[6] = (byte)(CanDatapool.out_PositionLowerLimitAlarm_Value[(int)(i * CanDatapool.CylinderCount + j)] & 0xFF);
+                        msgSend[canmsgIndex].data[7] = (byte)(CanDatapool.out_PositionLowerLimitAlarm_Value[(int)(i * CanDatapool.CylinderCount + j)] >> 8);
+
+                        canmsgIndex++;
+
+                        //2003
+                        msgSend[canmsgIndex].id = 0x2003;
+                        msgSend[canmsgIndex].length = 5;//(short)AdvCan.DATALENGTH;
+
+                        msgSend[canmsgIndex].data[0] = (byte)(CanDatapool.out_Pressure_Value[(int)(i * CanDatapool.CylinderCount + j)] & 0xFF);
+                        msgSend[canmsgIndex].data[1] = (byte)(CanDatapool.out_Pressure_Value[(int)(i * CanDatapool.CylinderCount + j)] >> 8);
+                        msgSend[canmsgIndex].data[2] = (byte)(CanDatapool.out_Position_Value[(int)(i * CanDatapool.CylinderCount + j)] & 0xFF);
+                        msgSend[canmsgIndex].data[3] = (byte)(CanDatapool.out_Position_Value[(int)(i * CanDatapool.CylinderCount + j)] >> 8);
+                        msgSend[canmsgIndex].data[4] = (byte)((Csign_View_Parameter_Confirm) ? 1 : 0);
+
+                        canmsgIndex++;
+
+                    }
+                }
+
+                //2004
+                //进入“传感器标定”界面标志位		0		1	1：表示进入界面；0：表示未进入界面	"传感器标定界面（设定内容显示器需具备记忆保存功能，需要密码才能进入参数设定界面）"
+                //泵站选择		                                1		1	"1：表示1#泵站；2：表示2#泵站3：表示3#泵站；4：表示4#泵站，以此类推"	
+                //油缸选择（选定某一泵站后）		2		1	1：表示1#油缸...8:表示8#油缸	
+                //油缸长度传感器低位值		            3		0.1		
+                //油缸长度传感器高位值		            4		0.1		
+                //单独/统一标定标志位		            5		1	0：每个油缸单独标定；1：所有油缸按同一值标定	
+                //油缸长度传感器低位值确认		    6		1	1：确定按键按下；0：按键未按下	
+                //油缸长度传感器高位值确认		    7		1	1：确定按键按下；0：按键未按下
+                if (CanDatapool.sign_isSame)
+                {
+                    msgSend[canmsgIndex].id = 0x2004;
+                    msgSend[canmsgIndex].length = (short)AdvCan.DATALENGTH;
+                    msgSend[canmsgIndex].data[0] = (byte)((Csign_View_SenserCalibration) ? 1 : 0);
+                    msgSend[canmsgIndex].data[1] = 1;
+                    msgSend[canmsgIndex].data[2] = 1;
+                    msgSend[canmsgIndex].data[3] = CanDatapool.out_PositionSenserLow_Value[0];
+                    msgSend[canmsgIndex].data[4] = CanDatapool.out_PositionSenserHigh_Value[0];
+                    msgSend[canmsgIndex].data[5] = 0;
+                    msgSend[canmsgIndex].data[6] = (byte)((CanDatapool.sign_View_PositionSenserLow_Confirm) ? 1 : 0);
+                    msgSend[canmsgIndex].data[7] = (byte)((CanDatapool.sign_View_PositionSenserHigh_Confirm) ? 1 : 0);
+
+                    canmsgIndex++;
+
+                }
+                else
+                {
+                    for (int i = 0; i < CanDatapool.PumpCount; i++)
+                    {
+                        for (int j = 0; j < CanDatapool.CylinderCount; j++)
+                        {
+                            msgSend[canmsgIndex].id = 0x2004;
+                            msgSend[canmsgIndex].length = (short)AdvCan.DATALENGTH;
+
+                            msgSend[canmsgIndex].data[0] = (byte)((Csign_View_SenserCalibration) ? 1 : 0);
+                            msgSend[canmsgIndex].data[1] = (byte)(i + 1);
+                            msgSend[canmsgIndex].data[2] = (byte)(j + 1);
+                            msgSend[canmsgIndex].data[3] = CanDatapool.out_PositionSenserLow_Value[(int)(i * CanDatapool.CylinderCount + j)];
+                            msgSend[canmsgIndex].data[4] = CanDatapool.out_PositionSenserHigh_Value[(int)(i * CanDatapool.CylinderCount + j)];
+                            msgSend[canmsgIndex].data[5] = 0;
+                            msgSend[canmsgIndex].data[6] = (byte)((CanDatapool.sign_View_PositionSenserLow_Confirm) ? 1 : 0);
+                            msgSend[canmsgIndex].data[7] = (byte)((CanDatapool.sign_View_PositionSenserHigh_Confirm) ? 1 : 0);
+
+                            canmsgIndex++;
+
+                        }
+                    }
+                }
+                //2005
+                //油缸控制方式		                            0		1	"0：表示自动控制方式
+                //                                                                1：表示油缸伸缩手动控制
+                //                                                                2：表示机械锁手动控制"	手动控制
+                //手动控制泵站		                            1		1	"1：表示1#泵站；2：表示2#泵站3：表示3#泵站；4：表示4#泵站，以此类推"	
+                //手动控制油缸		                            2		1	1：表示1#油缸...8:表示8#油缸	
+                //油缸伸缩控制		                            3		1	"0：表示停止
+                //                                                                 1：表示伸出控制
+                //                                                                 2：表示缩回控制"	
+                //控显通讯正常标志位		                    4		1	固定值19	
+                for (int i = 0; i < CanDatapool.PumpCount; i++)
+                {
+                    for (int j = 0; j < CanDatapool.CylinderCount; j++)
+                    {
+                        msgSend[canmsgIndex].id = 0x2005;
+                        msgSend[canmsgIndex].length = 5;// (short)AdvCan.DATALENGTH;
+
+                        //todo 手动控制 通过单独发送还是遍历设备？
+                        //msgSend[canmsgIndex].data[0] = //(Csign_View_SenserCalibration) ? 1 : 0;
+                        //msgSend[canmsgIndex].data[1] = i + 1;
+                        //msgSend[canmsgIndex].data[2] = j + 1;
+                        //msgSend[canmsgIndex].data[3] = //CanDatapool.out_PositionSenserLow_Value[i * CanDatapool.CylinderCount + j];
+                        //msgSend[canmsgIndex].data[4] = //CanDatapool.out_PositionSenserHigh_Value[i * CanDatapool.CylinderCount + j];
+
+                        canmsgIndex++;
+                    }
+                }
+            }
+
+            nRet = Device.acCanWrite(msgSend, canmsgIndex, ref pulNumberofWritten);
             if (nRet == AdvCANIO.TIME_OUT)
             {
                 //"Package  sending timeout!";               
@@ -296,6 +493,9 @@ namespace AdvaMACSystem
 
             byte[] idArray = null;
             byte idArray0 = 0;
+
+            if (CanDatapool == null)
+                return;
 
             //nRet = Device.acWaitEvent(msgRecieve, nReadCount, ref pulNumberofRead, ref ErrorCode);
             nRet = Device.acCanRead(msgRecieve, nReadCount, ref pulNumberofRead);
@@ -392,14 +592,14 @@ namespace AdvaMACSystem
                                     //46#油缸压力当前值		2,3		0.1
                                     //47#油缸压力当前值		4,5		0.1
                                     //48#油缸压力当前值		6,7		0.1
-                                    case 0x00300001:
-                                    case 0x00300002:
-                                    case 0x00300003:
-                                    case 0x00300004:
-                                    case 0x00300005:
-                                    case 0x00300006:
-                                    case 0x00300007:
-                                    case 0x00300008:
+                                    case 0x3001:
+                                    case 0x3002:
+                                    case 0x3003:
+                                    case 0x3004:
+                                    case 0x3005:
+                                    case 0x3006:
+                                    case 0x3007:
+                                    case 0x3008:
                                         idArray = BitConverter.GetBytes(msgRecieve[j].id);
                                         idArray0 = idArray[0];
 
@@ -463,14 +663,14 @@ namespace AdvaMACSystem
                                     //46#油缸当前长度值		2,3		0.1
                                     //47#油缸当前长度值		4,5		0.1
                                     //48#油缸当前长度值		6,7		0.1
-                                    case 0x00310001:
-                                    case 0x00310002:
-                                    case 0x00310003:
-                                    case 0x00310004:
-                                    case 0x00310005:
-                                    case 0x00310006:
-                                    case 0x00310007:
-                                    case 0x00310008:
+                                    case 0x3101:
+                                    case 0x3102:
+                                    case 0x3103:
+                                    case 0x3104:
+                                    case 0x3105:
+                                    case 0x3106:
+                                    case 0x3107:
+                                    case 0x3108:
                                         idArray = BitConverter.GetBytes(msgRecieve[j].id);
                                         idArray0 = idArray[0];
 
@@ -566,14 +766,14 @@ namespace AdvaMACSystem
                                     //46#油缸机械锁运行状态		5		1
                                     //47#油缸机械锁运行状态		6		1
                                     //48#油缸机械锁运行状态		7		1
-                                    case 0x00320001:
-                                    case 0x00320002:
-                                    case 0x00320003:
-                                    case 0x00320004:
-                                    case 0x00320005:
-                                    case 0x00320006:
-                                    case 0x00320007:
-                                    case 0x00320008:
+                                    case 0x3201:
+                                    case 0x3202:
+                                    case 0x3203:
+                                    case 0x3204:
+                                    case 0x3205:
+                                    case 0x3206:
+                                    case 0x3207:
+                                    case 0x3208:
                                         idArray = BitConverter.GetBytes(msgRecieve[j].id);
                                         idArray0 = idArray[0];
 
@@ -675,10 +875,10 @@ namespace AdvaMACSystem
                                     //46#油缸10mm接近开关限位		5		0:限位 1：未限位	
                                     //47#油缸10mm接近开关限位		6		0:限位 1：未限位	
                                     //48#油缸10mm接近开关限位		7		0:限位 1：未限位	
-                                    case 0x00330001:
-                                    case 0x00330002:
-                                    case 0x00330003:
-                                    case 0x00330004:
+                                    case 0x3301:
+                                    case 0x3302:
+                                    case 0x3303:
+                                    case 0x3304:
                                         idArray = BitConverter.GetBytes(msgRecieve[j].id);
                                         idArray0 = idArray[0];
 
@@ -834,10 +1034,10 @@ namespace AdvaMACSystem
                                     //47#油缸长度过高			6	
                                     //48#油缸长度过高			7	
 
-                                    case 0x00340001:
-                                    case 0x00340002:
-                                    case 0x00340003:
-                                    case 0x00340004:
+                                    case 0x3401:
+                                    case 0x3402:
+                                    case 0x3403:
+                                    case 0x3404:
                                         idArray = BitConverter.GetBytes(msgRecieve[j].id);
                                         idArray0 = idArray[0];
 
@@ -966,10 +1166,10 @@ namespace AdvaMACSystem
                                     //47#油缸长度传感器故障							6	
                                     //48#油缸长度传感器故障							7	
 
-                                    case 0x00350001:
-                                    case 0x00350002:
-                                    case 0x00350003:
-                                    case 0x00350004:
+                                    case 0x3501:
+                                    case 0x3502:
+                                    case 0x3503:
+                                    case 0x3504:
                                         idArray = BitConverter.GetBytes(msgRecieve[j].id);
                                         idArray0 = idArray[0];
 
@@ -1251,10 +1451,10 @@ namespace AdvaMACSystem
                                     //4#泵站8#油缸机械锁伸出电磁阀线路断路			6	
                                     //4#泵站8#油缸机械锁缩回电磁阀线路断路			7	
 
-                                    case 0x00350011:
-                                    case 0x00350012:
-                                    case 0x00350013:
-                                    case 0x00350014:
+                                    case 0x3511:
+                                    case 0x3512:
+                                    case 0x3513:
+                                    case 0x3514:
                                         idArray = BitConverter.GetBytes(msgRecieve[j].id);
                                         idArray0 = Convert.ToByte(idArray[0] - 10);
 

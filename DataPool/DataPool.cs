@@ -101,7 +101,19 @@ namespace DataPool
         }
 
         private uint Number_Pump = 4;
+        public uint PumpCount
+        {
+            get { return Number_Pump; }
+        }
+
+
         private uint Number_Cylinder = 8;
+        public uint CylinderCount
+        {
+            get { return Number_Cylinder; }
+        }
+
+
 
         //in values
         #region CAN 读取的数据
@@ -298,7 +310,7 @@ namespace DataPool
         #region CAN 发送的数据
         public List<bool> out_Installed = new List<bool>();//油缸是否安装 4*8
 
-        public List<int> out_PressureAlarm_Pump = new List<int>();//泵站压力报警值 4
+        public List<byte> out_PressureAlarm_Pump = new List<byte>();//泵站压力报警值 4
 
 
         public List<bool> out_PressureUpperLimitAlarm_Enable = new List<bool>();//油缸压力上限报警功能开启 4*8
@@ -307,13 +319,13 @@ namespace DataPool
         public List<bool> out_PositionLowerLimitAlarm_Enable = new List<bool>();//油缸长度下限报警功能开启 4*8
         public List<bool> out_PositionControl_Enable = new List<bool>();//油缸长度控制功能开启 4*8
 
-        public List<int> out_PressureUpperLimitAlarm_Value = new List<int>();//油缸压力上限报警值设定 4*8
-        public List<int> out_PressureLowerLimitAlarm_Value = new List<int>();//油缸压力下限报警值设定 4*8
-        public List<int> out_PositionUpperLimitAlarm_Value = new List<int>(); //油缸长度上限报警值设定 4*8
-        public List<int> out_PositionLowerLimitAlarm_Value = new List<int>(); //油缸长度下限报警值设定 4*8
+        public List<short> out_PressureUpperLimitAlarm_Value = new List<short>();//油缸压力上限报警值设定 4*8
+        public List<short> out_PressureLowerLimitAlarm_Value = new List<short>();//油缸压力下限报警值设定 4*8
+        public List<short> out_PositionUpperLimitAlarm_Value = new List<short>(); //油缸长度上限报警值设定 4*8
+        public List<short> out_PositionLowerLimitAlarm_Value = new List<short>(); //油缸长度下限报警值设定 4*8
 
-        public List<int> out_Pressure_Value = new List<int>();//油缸压力设定值 4*8
-        public List<int> out_Position_Value = new List<int>(); //油缸长度设定值 4*8
+        public List<short> out_Pressure_Value = new List<short>();//油缸压力设定值 4*8
+        public List<short> out_Position_Value = new List<short>(); //油缸长度设定值 4*8
 
         public List<byte> out_PositionSenserLow_Value = new List<byte>();//油缸长度传感器低位值 4*8
         public List<byte> out_PositionSenserHigh_Value = new List<byte>();//油缸长度传感器高位值 4*8
@@ -322,17 +334,32 @@ namespace DataPool
         public bool sign_View_Setup = false;//进入“安装设定”界面标志位
         public bool sign_View_Setup_Confirm = false;//安装确定标志
         public bool sign_View_Parameter = false; //进入“参数设定”界面标志位
+        public bool sign_View_Parameter_Confirm = false; //参数设定确认标志位
         public bool sign_View_SenserCalibration = false;  //进入“传感器标定”界面标志位
 
-        public bool sign_View_PositionSenserLow__Confirm = false;//油缸长度传感器低位值确认
-        public bool sign_View_PositionSenserHigh__Confirm = false;//油缸长度传感器高位值确认
+        public bool sign_View_PositionSenserLow_Confirm = false;//油缸长度传感器低位值确认
+        public bool sign_View_PositionSenserHigh_Confirm = false;//油缸长度传感器高位值确认
+        public bool sign_isSame = false;    //单独/统一标定标志位		            5		1	0：每个油缸单独标定；1：所有油缸按同一值标定	
+
+
 
         #endregion
 
         //Init XML 导入结构
 
+        //线程锁
+        #region 线程锁
+        private bool _locked = false;
+        public void Lock()
+        { _locked = true; }
+
+        public void UnLock()
+        { _locked = false; }
+
+        public bool IsLocked { get { return _locked; } }
 
 
+        #endregion
     }
 
     //0:停，1：伸 2：缩
