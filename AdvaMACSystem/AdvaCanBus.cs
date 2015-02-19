@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Xml;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using DataPool;
+using System.IO;
 
 namespace AdvaMACSystem
 {
     public class AdvaCanBus
     {
+        private const string ConfigFile = @"\HardDisk\CanConfig.xml";
+
         private AdvCANIO Device = new AdvCANIO();
         private bool m_bRun1 = false;
 
@@ -78,6 +82,49 @@ namespace AdvaMACSystem
         {
             get { return canErrcode; }
         }
+
+        private void LoadConfig()
+        {
+            try
+            {
+                if (ConfigFile != string.Empty && File.Exists(ConfigFile))
+                {
+                    //修正了密码没有保存到配置文件的错误 by cs at 2009-3-26 13:04:54 {B2565183-D787-4b58-829E-D913AB845FA7}
+                    XmlDocument doc = new XmlDocument();
+
+                    doc.Load(ConfigFile);
+
+                    if (doc.DocumentElement != null)
+                    {
+                        XmlNode rootnode = doc.DocumentElement;
+
+                        XmlElement rxe = (XmlElement)rootnode;
+
+                        CanPortName = rxe.GetAttribute("CanPortName").Trim();// "can1";
+                        BaudRateValue = Convert.ToUInt32(rxe.GetAttribute("BaudRate").Trim());//AdvCan.CAN_TIMING_125K;
+                        nWriteCount = Convert.ToUInt32(rxe.GetAttribute("WriteCount").Trim());//M_SENDCOUNT;
+                        nReadCount = Convert.ToUInt32(rxe.GetAttribute("ReadCount").Trim());//M_RECIEVECOUNT;
+
+                        ReadTimeOutValue = Convert.ToUInt32(rxe.GetAttribute("ReadTimeOut").Trim());//3000;
+                        WriteTimeOutValue = Convert.ToUInt32(rxe.GetAttribute("WriteTimeOut").Trim());//3000;
+                        dwMaskCode = Convert.ToUInt32(rxe.GetAttribute("MaskCode").Trim());//0;
+                        dwAccCode = Convert.ToUInt32(rxe.GetAttribute("AccCode").Trim());//0;
+                        AcceptanceFilterMode = (rxe.GetAttribute("AcceptanceFilterMode").Trim().ToLower() == "true");//false single true dual
+                        EventMask = Convert.ToUInt32(rxe.GetAttribute("EventMask").Trim());//0;
+
+                        return;
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                
+            }
+        }
+
+
+
 
         public bool Open()
         {
