@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="gb2312"?>
+<Config CanPortName="can1" BaudRate="125" WriteCount="132" ReadCount="40" ReadTimeOut="3000" WriteTimeOut="3000" MaskCode="0" AccCode="0" AcceptanceFilterMode="false" EventMask="0" ThreadInterval="500">
+</Config>
