@@ -119,7 +119,7 @@ namespace AdvaMACSystem
             }
             catch (Exception)
             {
-                
+
             }
         }
 
@@ -592,6 +592,7 @@ namespace AdvaMACSystem
 
                                 switch (msgRecieve[j].id)
                                 {
+                                    #region 3001-3008
                                     //3001
                                     //11#油缸压力当前值	    	0,1		0.1	
                                     //12#油缸压力当前值	    	2,3		0.1	
@@ -639,6 +640,8 @@ namespace AdvaMACSystem
                                     //46#油缸压力当前值		2,3		0.1
                                     //47#油缸压力当前值		4,5		0.1
                                     //48#油缸压力当前值		6,7		0.1
+
+                                    #endregion
                                     case 0x3001:
                                     case 0x3002:
                                     case 0x3003:
@@ -653,23 +656,24 @@ namespace AdvaMACSystem
                                         Idx_Pump = (idArray0 - 1) / 2 + 1;
 
                                         Idx_Cylinder = 1 + (((idArray0 % 2) == 0) ? 4 : 0);
-                                        CanDatapool.in_Pressure_Real[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
+                                        CanDatapool.in_Pressure_Real_3001_3008[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
                                             msgRecieve[j].data[0] + (msgRecieve[j].data[1] << 8);
 
                                         Idx_Cylinder = 2 + (((idArray0 % 2) == 0) ? 4 : 0);
-                                        CanDatapool.in_Pressure_Real[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
+                                        CanDatapool.in_Pressure_Real_3001_3008[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
                                             msgRecieve[j].data[2] + (msgRecieve[j].data[3] << 8);
 
                                         Idx_Cylinder = 3 + (((idArray0 % 2) == 0) ? 4 : 0);
-                                        CanDatapool.in_Pressure_Real[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
+                                        CanDatapool.in_Pressure_Real_3001_3008[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
                                             msgRecieve[j].data[4] + (msgRecieve[j].data[5] << 8);
 
                                         Idx_Cylinder = 4 + (((idArray0 % 2) == 0) ? 4 : 0);
-                                        CanDatapool.in_Pressure_Real[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
+                                        CanDatapool.in_Pressure_Real_3001_3008[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
                                             msgRecieve[j].data[6] + (msgRecieve[j].data[7] << 8);
 
                                         break;
 
+                                    #region 3101-3108
                                     //3101
                                     //11#油缸当前长度值		0,1		0.1
                                     //12#油缸当前长度值		2,3		0.1
@@ -710,6 +714,8 @@ namespace AdvaMACSystem
                                     //46#油缸当前长度值		2,3		0.1
                                     //47#油缸当前长度值		4,5		0.1
                                     //48#油缸当前长度值		6,7		0.1
+
+                                    #endregion
                                     case 0x3101:
                                     case 0x3102:
                                     case 0x3103:
@@ -724,22 +730,23 @@ namespace AdvaMACSystem
                                         Idx_Pump = (idArray0 - 1) / 2 + 1;
 
                                         Idx_Cylinder = 1 + (((idArray0 % 2) == 0) ? 4 : 0);
-                                        CanDatapool.in_Position_Real[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
+                                        CanDatapool.in_Position_Real_3101_3108[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
                                             msgRecieve[j].data[0] + (msgRecieve[j].data[1] << 8);
 
                                         Idx_Cylinder = 2 + (((idArray0 % 2) == 0) ? 4 : 0);
-                                        CanDatapool.in_Position_Real[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
+                                        CanDatapool.in_Position_Real_3101_3108[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
                                             msgRecieve[j].data[2] + (msgRecieve[j].data[3] << 8);
 
                                         Idx_Cylinder = 3 + (((idArray0 % 2) == 0) ? 4 : 0);
-                                        CanDatapool.in_Position_Real[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
+                                        CanDatapool.in_Position_Real_3101_3108[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
                                             msgRecieve[j].data[4] + (msgRecieve[j].data[5] << 8);
 
                                         Idx_Cylinder = 4 + (((idArray0 % 2) == 0) ? 4 : 0);
-                                        CanDatapool.in_Position_Real[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
+                                        CanDatapool.in_Position_Real_3101_3108[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
                                             msgRecieve[j].data[6] + (msgRecieve[j].data[7] << 8);
 
                                         break;
+                                    #region 3201-3208
                                     //0:停，1：伸 2：缩
                                     //3201
                                     //11#油缸运行状态		0		1
@@ -813,6 +820,8 @@ namespace AdvaMACSystem
                                     //46#油缸机械锁运行状态		5		1
                                     //47#油缸机械锁运行状态		6		1
                                     //48#油缸机械锁运行状态		7		1
+
+                                    #endregion
                                     case 0x3201:
                                     case 0x3202:
                                     case 0x3203:
@@ -828,19 +837,20 @@ namespace AdvaMACSystem
                                         {
                                             for (int k = 0; k < msgRecieve[j].data.Length; k++)
                                             {
-                                                CanDatapool.in_MachLockState_Real[(idArray0 - 1) * 4 + k] = (StateType)msgRecieve[j].data[k];
+                                                CanDatapool.in_MachLockState_Real_3201_3208[(idArray0 - 1) * 4 + k] = (StateType)msgRecieve[j].data[k];
                                             }
                                         }
                                         else //奇数 油缸运行状态
                                         {
                                             for (int k = 0; k < msgRecieve[j].data.Length; k++)
                                             {
-                                                CanDatapool.in_cylinderState_Real[(idArray0 - 1) * 4 + k] = (StateType)msgRecieve[j].data[k];
+                                                CanDatapool.in_cylinderState_Real_3201_3208[(idArray0 - 1) * 4 + k] = (StateType)msgRecieve[j].data[k];
                                             }
                                         }
 
                                         break;
 
+                                    #region 3301-3304
                                     //泵站压力及接近开关状态
                                     //3301
                                     //1#泵站压力		                    0,1		0.1		
@@ -922,6 +932,8 @@ namespace AdvaMACSystem
                                     //46#油缸10mm接近开关限位		5		0:限位 1：未限位	
                                     //47#油缸10mm接近开关限位		6		0:限位 1：未限位	
                                     //48#油缸10mm接近开关限位		7		0:限位 1：未限位	
+
+                                    #endregion
                                     case 0x3301:
                                     case 0x3302:
                                     case 0x3303:
@@ -929,22 +941,23 @@ namespace AdvaMACSystem
                                         idArray = BitConverter.GetBytes(msgRecieve[j].id);
                                         idArray0 = idArray[0];
 
-                                        CanDatapool.in_Pressure_Pump_Real[idArray0] =
+                                        CanDatapool.in_Pressure_Pump_Real_3301_3304[idArray0] =
                                              msgRecieve[j].data[0] + (msgRecieve[j].data[1] << 8);
-                                        CanDatapool.in_Voltage_Real[idArray0] =
+                                        CanDatapool.in_Voltage_Real_3301_3304[idArray0] =
                                              msgRecieve[j].data[2] + (msgRecieve[j].data[3] << 8);
 
-                                        CanDatapool.in_PowerSupply[idArray0] = (msgRecieve[j].data[4] != 0);
+                                        CanDatapool.in_PowerSupply_3301_3304[idArray0] = (msgRecieve[j].data[4] != 0);
 
                                         for (int k = 0; k < 8; k++)
                                         {
-                                            CanDatapool.in_Limit_5[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[5] & (1 << k)) != 0);
+                                            CanDatapool.in_Limit_5_3301_3304[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[5] & (1 << k)) != 0);
 
-                                            CanDatapool.in_Limit_10[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[6] & (1 << k)) != 0);
+                                            CanDatapool.in_Limit_10_3301_3304[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[6] & (1 << k)) != 0);
                                         }
 
                                         break;
 
+                                    #region 3401-3404
                                     //报警信息
 
                                     //0:无报警 1：报警
@@ -1081,6 +1094,7 @@ namespace AdvaMACSystem
                                     //47#油缸长度过高			6	
                                     //48#油缸长度过高			7	
 
+                                    #endregion
                                     case 0x3401:
                                     case 0x3402:
                                     case 0x3403:
@@ -1090,18 +1104,15 @@ namespace AdvaMACSystem
 
                                         for (int k = 0; k < 8; k++)
                                         {
-                                            CanDatapool.in_Warn_LowPressure[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[0] & (1 << k)) != 0);
-                                            CanDatapool.in_Warn_HighPressure[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[1] & (1 << k)) != 0);
-                                            CanDatapool.in_Warn_LowPosition[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[2] & (1 << k)) != 0);
-                                            CanDatapool.in_Warn_HighPosition[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[3] & (1 << k)) != 0);
+                                            CanDatapool.in_Warn_LowPressure_3401_3404[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[0] & (1 << k)) != 0);
+                                            CanDatapool.in_Warn_HighPressure_3401_3404[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[1] & (1 << k)) != 0);
+                                            CanDatapool.in_Warn_LowPosition_3401_3404[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[2] & (1 << k)) != 0);
+                                            CanDatapool.in_Warn_HighPosition_3401_3404[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[3] & (1 << k)) != 0);
 
                                         }
 
                                         break;
-
-
-
-
+                                    #region 3501-3504
                                     //故障信息
                                     //0：无故障 1：故障
                                     //3501
@@ -1213,6 +1224,7 @@ namespace AdvaMACSystem
                                     //47#油缸长度传感器故障							6	
                                     //48#油缸长度传感器故障							7	
 
+                                    #endregion
                                     case 0x3501:
                                     case 0x3502:
                                     case 0x3503:
@@ -1222,21 +1234,16 @@ namespace AdvaMACSystem
 
                                         for (int k = 0; k < 8; k++)
                                         {
-                                            CanDatapool.in_Error_Pump[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[0] & (1 << k)) != 0);
-                                            CanDatapool.in_Error_Pump[(idArray0) * 8 + k] = ((msgRecieve[j].data[1] & (1 << k)) != 0);
+                                            CanDatapool.in_Error_Pump_3501_3504[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[0] & (1 << k)) != 0);
+                                            CanDatapool.in_Error_Pump_3501_3504[(idArray0) * 8 + k] = ((msgRecieve[j].data[1] & (1 << k)) != 0);
 
-                                            CanDatapool.in_Error_PressureSenser[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[2] & (1 << k)) != 0);
-                                            CanDatapool.in_Error_PositionSenser[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[3] & (1 << k)) != 0);
+                                            CanDatapool.in_Error_PressureSenser_3501_3504[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[2] & (1 << k)) != 0);
+                                            CanDatapool.in_Error_PositionSenser_3501_3504[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[3] & (1 << k)) != 0);
 
                                         }
 
                                         break;
-
-
-
-
-
-
+                                    #region 3511-3514
                                     //3511
                                     //1#泵站1#油缸伸出电磁阀线路短路        		0	0	
                                     //1#泵站1#油缸缩回电磁阀线路短路        			1	
@@ -1498,6 +1505,7 @@ namespace AdvaMACSystem
                                     //4#泵站8#油缸机械锁伸出电磁阀线路断路			6	
                                     //4#泵站8#油缸机械锁缩回电磁阀线路断路			7	
 
+                                    #endregion
                                     case 0x3511:
                                     case 0x3512:
                                     case 0x3513:
@@ -1512,9 +1520,9 @@ namespace AdvaMACSystem
                                                 for (int l = 0; l < 8; l++)
                                                 {
                                                     if (l % 2 == 0)
-                                                        CanDatapool.in_Error_cylinder_extend[(8 * k + l) / 2] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
+                                                        CanDatapool.in_Error_cylinder_extend_3511_3514[(8 * k + l) / 2] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
                                                     else
-                                                        CanDatapool.in_Error_cylinder_retract[(8 * k + l) / 2] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
+                                                        CanDatapool.in_Error_cylinder_retract_3511_3514[(8 * k + l) / 2] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
                                                 }
                                             }
                                             else //油缸机械锁伸出/缩回电磁阀线路断路
@@ -1523,9 +1531,9 @@ namespace AdvaMACSystem
                                                 for (int l = 0; l < 8; l++)
                                                 {
                                                     if (l % 2 == 0)
-                                                        CanDatapool.in_Error_MachLock_extend[(8 * (k - 4) + l) / 2] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
+                                                        CanDatapool.in_Error_MachLock_extend_3511_3514[(8 * (k - 4) + l) / 2] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
                                                     else
-                                                        CanDatapool.in_Error_MachLock_retract[(8 * (k - 4) + l) / 2] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
+                                                        CanDatapool.in_Error_MachLock_retract_3511_3514[(8 * (k - 4) + l) / 2] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
                                                 }
                                             }
                                         }
