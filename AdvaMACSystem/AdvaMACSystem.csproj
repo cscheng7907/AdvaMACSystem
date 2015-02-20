@@ -82,6 +82,12 @@
     <Compile Include="PageViewDiagnose.Designer.cs">
       <DependentUpon>PageViewDiagnose.cs</DependentUpon>
     </Compile>
+    <Compile Include="PageViewError.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PageViewError.Designer.cs">
+      <DependentUpon>PageViewError.cs</DependentUpon>
+    </Compile>
     <Compile Include="PageViewHistory.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -139,6 +145,7 @@
     <Compile Include="UIControlbase.Designer.cs">
       <DependentUpon>UIControlbase.cs</DependentUpon>
     </Compile>
+    <Compile Include="WarnErrOperator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ComCtrls\ComCtrls.csproj">
