@@ -50,23 +50,23 @@ namespace DataPool
             {
                 for (int j = 0; j < Number_Cylinder; j++)
                 {
-                    in_Pressure_Real.Add(0);// 油缸压力当前值 4*8
-                    in_Position_Real.Add(0);// 油缸当前长度值 4*8
+                    in_Pressure_Real_3001_3008.Add(0);// 油缸压力当前值 4*8
+                    in_Position_Real_3101_3108.Add(0);// 油缸当前长度值 4*8
 
-                    in_Limit_5.Add(false);   // 油缸5mm接近开关限位 4*8
-                    in_Limit_10.Add(false); // 油缸10mm接近开关限位 4*8
+                    in_Limit_5_3301_3304.Add(false);   // 油缸5mm接近开关限位 4*8
+                    in_Limit_10_3301_3304.Add(false); // 油缸10mm接近开关限位 4*8
 
-                    in_Warn_HighPressure.Add(false);// 油缸压力过高 4*8
-                    in_Warn_LowPressure.Add(false); // 油缸压力过低 4*8
-                    in_Warn_HighPosition.Add(false);// 油缸长度过高 4*8
-                    in_Warn_LowPosition.Add(false); // 油缸长度过低 4*8
+                    in_Warn_HighPressure_3401_3404.Add(false);// 油缸压力过高 4*8
+                    in_Warn_LowPressure_3401_3404.Add(false); // 油缸压力过低 4*8
+                    in_Warn_HighPosition_3401_3404.Add(false);// 油缸长度过高 4*8
+                    in_Warn_LowPosition_3401_3404.Add(false); // 油缸长度过低 4*8
 
-                    in_Error_PressureSenser.Add(false); //油缸压力传感器故障 4*8                          
-                    in_Error_PositionSenser.Add(false); //油缸长度传感器故障 4*8                     
-                    in_Error_cylinder_extend.Add(false); //油缸伸出电磁阀线路短路 4*8                    
-                    in_Error_cylinder_retract.Add(false); //油缸缩回电磁阀线路短路 4*8                     
-                    in_Error_MachLock_extend.Add(false); //油缸机械锁伸出电磁阀线路短路 4*8                    
-                    in_Error_MachLock_retract.Add(false); //油缸机械锁缩回电磁阀线路短路 4*8                     
+                    in_Error_PressureSenser_3501_3504.Add(false); //油缸压力传感器故障 4*8                          
+                    in_Error_PositionSenser_3501_3504.Add(false); //油缸长度传感器故障 4*8                     
+                    in_Error_cylinder_extend_3511_3514.Add(false); //油缸伸出电磁阀线路短路 4*8                    
+                    in_Error_cylinder_retract_3511_3514.Add(false); //油缸缩回电磁阀线路短路 4*8                     
+                    in_Error_MachLock_extend_3511_3514.Add(false); //油缸机械锁伸出电磁阀线路短路 4*8                    
+                    in_Error_MachLock_retract_3511_3514.Add(false); //油缸机械锁缩回电磁阀线路短路 4*8                     
 
 
                     out_Installed.Add(false); //油缸是否安装 4*8
@@ -88,14 +88,14 @@ namespace DataPool
                     out_PositionSenserHigh_Value.Add(0);//油缸长度传感器高位值 4*8
                 }
 
-                in_Pressure_Pump_Real.Add(0);// 泵站压力 4
-                in_Voltage_Real.Add(0);// 控制器电压 4
-                in_PowerSupply.Add(false);// 控制器检测当前供电 0：市电 1：发电机 4
+                in_Pressure_Pump_Real_3301_3304.Add(0);// 泵站压力 4
+                in_Voltage_Real_3301_3304.Add(0);// 控制器电压 4
+                in_PowerSupply_3301_3304.Add(false);// 控制器检测当前供电 0：市电 1：发电机 4
                 out_PressureAlarm_Pump.Add(0);//泵站压力报警值 4
 
                 for (int j = 0; j < 16; j++)
                 {
-                    in_Error_Pump.Add(false); //泵站及控制器 故障 4*16
+                    in_Error_Pump_3501_3504.Add(false); //泵站及控制器 故障 4*16
                 }
             }
         }
@@ -117,32 +117,33 @@ namespace DataPool
 
         //in values
         #region CAN 读取的数据
-        public List<int> in_Pressure_Real = new List<int>();// 油缸压力当前值 4*8
-        public List<int> in_Position_Real = new List<int>();// 油缸当前长度值 4*8
+        public List<int> in_Pressure_Real_3001_3008 = new List<int>();// 油缸压力当前值 4*8
+        public List<int> in_Position_Real_3101_3108 = new List<int>();// 油缸当前长度值 4*8
 
-        public List<StateType> in_cylinderState_Real = new List<StateType>();// 油缸运行状态 4*8
-        public List<StateType> in_MachLockState_Real = new List<StateType>();// 油缸机械锁运行状态 4*8
+        public List<StateType> in_cylinderState_Real_3201_3208 = new List<StateType>();// 油缸运行状态 4*8
+        public List<StateType> in_MachLockState_Real_3201_3208 = new List<StateType>();// 油缸机械锁运行状态 4*8
 
-        public List<int> in_Pressure_Pump_Real = new List<int>();// 泵站压力 4
-        public List<int> in_Voltage_Real = new List<int>();// 控制器电压 4
-        public List<bool> in_PowerSupply = new List<bool>();// 控制器检测当前供电 0：市电 1：发电机 4
+        public List<int> in_Pressure_Pump_Real_3301_3304 = new List<int>();// 泵站压力 4
+        public List<int> in_Voltage_Real_3301_3304 = new List<int>();// 控制器电压 4
+        public List<bool> in_PowerSupply_3301_3304 = new List<bool>();// 控制器检测当前供电 0：市电 1：发电机 4
 
-        public List<bool> in_Limit_5 = new List<bool>();// 油缸5mm接近开关限位 4*8
-        public List<bool> in_Limit_10 = new List<bool>();// 油缸10mm接近开关限位 4*8
+        public List<bool> in_Limit_5_3301_3304 = new List<bool>();// 油缸5mm接近开关限位 4*8
+        public List<bool> in_Limit_10_3301_3304 = new List<bool>();// 油缸10mm接近开关限位 4*8
 
-        public List<bool> in_Warn_HighPressure = new List<bool>();// 油缸压力过高 4*8
-        public List<bool> in_Warn_LowPressure = new List<bool>();// 油缸压力过低 4*8
-        public List<bool> in_Warn_HighPosition = new List<bool>();// 油缸长度过高 4*8
-        public List<bool> in_Warn_LowPosition = new List<bool>();// 油缸长度过低 4*8
+        public List<bool> in_Warn_HighPressure_3401_3404 = new List<bool>();// 油缸压力过高 4*8
+        public List<bool> in_Warn_LowPressure_3401_3404 = new List<bool>();// 油缸压力过低 4*8
+        public List<bool> in_Warn_HighPosition_3401_3404 = new List<bool>();// 油缸长度过高 4*8
+        public List<bool> in_Warn_LowPosition_3401_3404 = new List<bool>();// 油缸长度过低 4*8
 
 
-        public List<bool> in_Error_Pump = new List<bool>();//泵站及控制器 故障 4*16
-        public List<bool> in_Error_PressureSenser = null;//油缸压力传感器故障 4*8
-        public List<bool> in_Error_PositionSenser = null;//油缸长度传感器故障 4*8
-        public List<bool> in_Error_cylinder_extend = new List<bool>();//油缸伸出电磁阀线路短路 4*8
-        public List<bool> in_Error_cylinder_retract = new List<bool>();//油缸缩回电磁阀线路短路 4*8
-        public List<bool> in_Error_MachLock_extend = new List<bool>();//油缸机械锁伸出电磁阀线路短路 4*8
-        public List<bool> in_Error_MachLock_retract = new List<bool>();//油缸机械锁缩回电磁阀线路短路 4*8
+        public List<bool> in_Error_Pump_3501_3504 = new List<bool>();//泵站及控制器 故障 4*16
+        public List<bool> in_Error_PressureSenser_3501_3504 =  new List<bool>();//油缸压力传感器故障 4*8
+        public List<bool> in_Error_PositionSenser_3501_3504 =  new List<bool>();//油缸长度传感器故障 4*8
+
+        public List<bool> in_Error_cylinder_extend_3511_3514 = new List<bool>();//油缸伸出电磁阀线路短路 4*8
+        public List<bool> in_Error_cylinder_retract_3511_3514 = new List<bool>();//油缸缩回电磁阀线路短路 4*8
+        public List<bool> in_Error_MachLock_extend_3511_3514 = new List<bool>();//油缸机械锁伸出电磁阀线路短路 4*8
+        public List<bool> in_Error_MachLock_retract_3511_3514 = new List<bool>();//油缸机械锁缩回电磁阀线路短路 4*8
 
         #endregion
 
@@ -154,20 +155,20 @@ namespace DataPool
 
             switch (type)
             {
-                case CmdDataType.cdtPressure_Real:// 油缸压力当前值 4*8
-                    rtv = in_Pressure_Real[id * 8 + subid] * 0.1;
+                case CmdDataType.cdtPressure_Real_3001_3008:// 油缸压力当前值 4*8
+                    rtv = in_Pressure_Real_3001_3008[id * 8 + subid] * 0.1;
 
                     break;
-                case CmdDataType.cdtPosition_Real:// 油缸当前长度值 4*8
-                    rtv = in_Position_Real[id * 8 + subid] * 0.1;
+                case CmdDataType.cdtPosition_Real_3101_3108:// 油缸当前长度值 4*8
+                    rtv = in_Position_Real_3101_3108[id * 8 + subid] * 0.1;
 
                     break;
-                case CmdDataType.cdtPressure_Pump_Real:// 泵站压力 4
-                    rtv = in_Pressure_Pump_Real[id] * 0.1;
+                case CmdDataType.cdtPressure_Pump_Real_3301_3304:// 泵站压力 4
+                    rtv = in_Pressure_Pump_Real_3301_3304[id] * 0.1;
 
                     break;
-                case CmdDataType.cdtVoltage_Real:// 控制器电压 4
-                    rtv = in_Voltage_Real[id] * 0.1;
+                case CmdDataType.cdtVoltage_Real_3301_3304:// 控制器电压 4
+                    rtv = in_Voltage_Real_3301_3304[id] * 0.1;
 
                     break;
 
@@ -208,11 +209,11 @@ namespace DataPool
 
             switch (type)
             {
-                case CmdDataType.cdtcylinderState_Real:// 油缸运行状态 4*8
-                    rtv = (int)in_cylinderState_Real[id * 8 + subid];
+                case CmdDataType.cdtcylinderState_Real_3201_3208:// 油缸运行状态 4*8
+                    rtv = (int)in_cylinderState_Real_3201_3208[id * 8 + subid];
                     break;
-                case CmdDataType.cdtMachLockState_Real:// 油缸机械锁运行状态 4*8
-                    rtv = (int)in_MachLockState_Real[id * 8 + subid];
+                case CmdDataType.cdtMachLockState_Real_3201_3208:// 油缸机械锁运行状态 4*8
+                    rtv = (int)in_MachLockState_Real_3201_3208[id * 8 + subid];
                     break;
                 case CmdDataType.cdtPressureAlarm_Pump://泵站压力报警值 4
                     rtv = (int)out_PressureAlarm_Pump[id];
@@ -230,56 +231,56 @@ namespace DataPool
 
             switch (type)
             {
-                case CmdDataType.cdtPowerSupply:// 控制器检测当前供电 0：市电 1：发电机 4
-                    rtv = in_PowerSupply[id];
+                case CmdDataType.cdtPowerSupply_3301_3304:// 控制器检测当前供电 0：市电 1：发电机 4
+                    rtv = in_PowerSupply_3301_3304[id];
                     break;
-                case CmdDataType.cdtLimit_5:// 油缸5mm接近开关限位 4*8
-                    rtv = in_Limit_5[id * 8 + subid];
-                    break;
-
-                case CmdDataType.cdtLimit_10:// 油缸10mm接近开关限位 4*8
-                    rtv = in_Limit_10[id * 8 + subid];
+                case CmdDataType.cdtLimit_5_3301_3304:// 油缸5mm接近开关限位 4*8
+                    rtv = in_Limit_5_3301_3304[id * 8 + subid];
                     break;
 
-                case CmdDataType.cdtWarn_HighPressure:// 油缸压力过高 4*8
-                    rtv = in_Warn_HighPressure[id * 8 + subid];
-                    break;
-                case CmdDataType.cdtWarn_LowPressure:// 油缸压力过低 4*8
-                    rtv = in_Warn_LowPressure[id * 8 + subid];
-                    break;
-                case CmdDataType.cdtWarn_HighPosition:// 油缸长度过高 4*8
-                    rtv = in_Warn_HighPosition[id * 8 + subid];
-                    break;
-                case CmdDataType.cdtWarn_LowPosition:// 油缸长度过低 4*8
-                    rtv = in_Warn_LowPosition[id * 8 + subid];
+                case CmdDataType.cdtLimit_10_3301_3304:// 油缸10mm接近开关限位 4*8
+                    rtv = in_Limit_10_3301_3304[id * 8 + subid];
                     break;
 
-                case CmdDataType.cdtError_Pump://泵站及控制器 故障 4*16
-                    rtv = in_Error_Pump[id * 8 + subid];
+                case CmdDataType.cdtWarn_HighPressure_3401_3404:// 油缸压力过高 4*8
+                    rtv = in_Warn_HighPressure_3401_3404[id * 8 + subid];
+                    break;
+                case CmdDataType.cdtWarn_LowPressure_3401_3404:// 油缸压力过低 4*8
+                    rtv = in_Warn_LowPressure_3401_3404[id * 8 + subid];
+                    break;
+                case CmdDataType.cdtWarn_HighPosition_3401_3404:// 油缸长度过高 4*8
+                    rtv = in_Warn_HighPosition_3401_3404[id * 8 + subid];
+                    break;
+                case CmdDataType.cdtWarn_LowPosition_3401_3404:// 油缸长度过低 4*8
+                    rtv = in_Warn_LowPosition_3401_3404[id * 8 + subid];
                     break;
 
-                case CmdDataType.cdtError_PressureSenser://油缸压力传感器故障 4*8
-                    rtv = in_Error_PressureSenser[id * 8 + subid];
+                case CmdDataType.cdtError_Pump_3501_3504://泵站及控制器 故障 4*16
+                    rtv = in_Error_Pump_3501_3504[id * 8 + subid];
                     break;
 
-                case CmdDataType.cdtError_PositionSenser://油缸长度传感器故障 4*8
-                    rtv = in_Error_PositionSenser[id * 8 + subid];
+                case CmdDataType.cdtError_PressureSenser_3501_3504://油缸压力传感器故障 4*8
+                    rtv = in_Error_PressureSenser_3501_3504[id * 8 + subid];
                     break;
 
-                case CmdDataType.cdtError_cylinder_extend://油缸伸出电磁阀线路短路 4*8
-                    rtv = in_Error_cylinder_extend[id * 8 + subid];
+                case CmdDataType.cdtError_PositionSenser_3501_3504://油缸长度传感器故障 4*8
+                    rtv = in_Error_PositionSenser_3501_3504[id * 8 + subid];
                     break;
 
-                case CmdDataType.cdtError_cylinder_retract://油缸缩回电磁阀线路短路 4*8
-                    rtv = in_Error_cylinder_retract[id * 8 + subid];
+                case CmdDataType.cdtError_cylinder_extend_3511_3514://油缸伸出电磁阀线路短路 4*8
+                    rtv = in_Error_cylinder_extend_3511_3514[id * 8 + subid];
+                    break;
+
+                case CmdDataType.cdtError_cylinder_retract_3511_3514://油缸缩回电磁阀线路短路 4*8
+                    rtv = in_Error_cylinder_retract_3511_3514[id * 8 + subid];
 
                     break;
-                case CmdDataType.cdtError_MachLock_extend://油缸机械锁伸出电磁阀线路短路 4*8
-                    rtv = in_Error_MachLock_extend[id * 8 + subid];
+                case CmdDataType.cdtError_MachLock_extend_3511_3514://油缸机械锁伸出电磁阀线路短路 4*8
+                    rtv = in_Error_MachLock_extend_3511_3514[id * 8 + subid];
 
                     break;
-                case CmdDataType.cdtError_MachLock_retract://油缸机械锁缩回电磁阀线路短路 4*8
-                    rtv = in_Error_MachLock_retract[id * 8 + subid];
+                case CmdDataType.cdtError_MachLock_retract_3511_3514://油缸机械锁缩回电磁阀线路短路 4*8
+                    rtv = in_Error_MachLock_retract_3511_3514[id * 8 + subid];
 
                     break;
                 case CmdDataType.cdtInstalled://油缸是否安装 4*8
@@ -305,6 +306,22 @@ namespace DataPool
         }
 
         #endregion
+
+        #region data 发送接口
+        public void SetRealValue(int id, int subid, CmdDataType type, double value)
+        { }
+
+        public void SetintValue(int id, int subid, CmdDataType type, int value)
+        { }
+
+        public void SetboolValue(int id, int subid, CmdDataType type, bool value)
+        { }
+
+
+
+        #endregion
+
+
 
         //out values
         #region CAN 发送的数据
@@ -341,8 +358,11 @@ namespace DataPool
         public bool sign_View_PositionSenserHigh_Confirm = false;//油缸长度传感器高位值确认
         public bool sign_isSame = false;    //单独/统一标定标志位		            5		1	0：每个油缸单独标定；1：所有油缸按同一值标定	
 
-
-
+        public Queue<CmdDataSetType> cansendFiFO = new Queue<CmdDataSetType>();
+        public void UpdateDevice(int id, int subid, CmdDataType cmd)
+        {
+            //添加到 队列
+        }
         #endregion
 
         //Init XML 导入结构
@@ -373,36 +393,37 @@ namespace DataPool
 
     public enum CmdDataType
     {
-        cdtPressure_Real,// 油缸压力当前值 4*8
-        cdtPosition_Real,// 油缸当前长度值 4*8
+        cdtNone,
 
-        cdtcylinderState_Real,// 油缸运行状态 4*8
-        cdtMachLockState_Real,// 油缸机械锁运行状态 4*8
+        cdtPressure_Real_3001_3008,// 油缸压力当前值 4*8
+        cdtPosition_Real_3101_3108,// 油缸当前长度值 4*8
 
-        cdtPressure_Pump_Real,// 泵站压力 4
-        cdtVoltage_Real,// 控制器电压 4
-        cdtPowerSupply,// 控制器检测当前供电 0：市电 1：发电机 4
+        cdtcylinderState_Real_3201_3208,// 油缸运行状态 4*8
+        cdtMachLockState_Real_3201_3208,// 油缸机械锁运行状态 4*8
 
-        cdtLimit_5,// 油缸5mm接近开关限位 4*8
-        cdtLimit_10,// 油缸10mm接近开关限位 4*8
+        cdtPressure_Pump_Real_3301_3304,// 泵站压力 4
+        cdtVoltage_Real_3301_3304,// 控制器电压 4
+        cdtPowerSupply_3301_3304,// 控制器检测当前供电 0：市电 1：发电机 4
 
-        cdtWarn_HighPressure,// 油缸压力过高 4*8
-        cdtWarn_LowPressure,// 油缸压力过低 4*8
-        cdtWarn_HighPosition,// 油缸长度过高 4*8
-        cdtWarn_LowPosition,// 油缸长度过低 4*8
+        cdtLimit_5_3301_3304,// 油缸5mm接近开关限位 4*8
+        cdtLimit_10_3301_3304,// 油缸10mm接近开关限位 4*8
 
-        cdtError_Pump,//泵站及控制器 故障 4*16
-
-        cdtError_PressureSenser,//油缸压力传感器故障 4*8
-        cdtError_PositionSenser,//油缸长度传感器故障 4*8
-
-        cdtError_cylinder_extend,//油缸伸出电磁阀线路短路 4*8
-        cdtError_cylinder_retract,//油缸缩回电磁阀线路短路 4*8
-
-        cdtError_MachLock_extend,//油缸机械锁伸出电磁阀线路短路 4*8
-        cdtError_MachLock_retract,//油缸机械锁缩回电磁阀线路短路 4*8
+        cdtWarn_HighPressure_3401_3404,// 油缸压力过高 4*8
+        cdtWarn_LowPressure_3401_3404,// 油缸压力过低 4*8
+        cdtWarn_HighPosition_3401_3404,// 油缸长度过高 4*8
+        cdtWarn_LowPosition_3401_3404,// 油缸长度过低 4*8
 
 
+        cdtError_Pump_3501_3504,//泵站及控制器 故障 4*16
+        cdtError_PressureSenser_3501_3504,//油缸压力传感器故障 4*8
+        cdtError_PositionSenser_3501_3504,//油缸长度传感器故障 4*8
+
+        cdtError_cylinder_extend_3511_3514,//油缸伸出电磁阀线路短路 4*8
+        cdtError_cylinder_retract_3511_3514,//油缸缩回电磁阀线路短路 4*8
+        cdtError_MachLock_extend_3511_3514,//油缸机械锁伸出电磁阀线路短路 4*8
+        cdtError_MachLock_retract_3511_3514,//油缸机械锁缩回电磁阀线路短路 4*8
+
+    
         cdtInstalled,//油缸是否安装 4*8
 
         cdtPressureAlarm_Pump,//泵站压力报警值 4
@@ -424,6 +445,13 @@ namespace DataPool
 
         cdtPositionSenserLow_Value,//油缸长度传感器低位值 4*8
         cdtPositionSenserHigh_Value//油缸长度传感器高位值 4*8
+    }
+
+    public struct CmdDataSetType
+    {
+        CmdDataType command;
+        int id;
+        int subid;
     }
 
 }
