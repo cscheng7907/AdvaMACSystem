@@ -113,9 +113,51 @@ namespace AdvaMACSystem {
             }
         }
         
+        internal static System.Drawing.Bitmap MAC_disable {
+            get {
+                object obj = ResourceManager.GetObject("MAC_disable", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap MAC_down {
+            get {
+                object obj = ResourceManager.GetObject("MAC_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap MAC_up {
+            get {
+                object obj = ResourceManager.GetObject("MAC_up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap pump {
             get {
                 object obj = ResourceManager.GetObject("pump", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap pumpborder {
+            get {
+                object obj = ResourceManager.GetObject("pumpborder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap pumpborder_checked {
+            get {
+                object obj = ResourceManager.GetObject("pumpborder_checked", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap pumpborder_disable {
+            get {
+                object obj = ResourceManager.GetObject("pumpborder_disable", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

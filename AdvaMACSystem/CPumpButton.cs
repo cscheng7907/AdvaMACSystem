@@ -38,7 +38,7 @@ namespace AdvaMACSystem
                     e.Graphics.DrawString(c.Text, c.Font, new SolidBrush(c.ForeColor), c.Left +c.Width / 2, c.Top + c.Height / 2, sf);
             }
             if (icon != null)
-                e.Graphics.DrawImage(icon, new Rectangle(33 - icon.Width /2, 33 - icon.Height /2, icon.Width, icon.Height), new Rectangle(0, 0, icon.Width, icon.Height), GraphicsUnit.Pixel);
+                e.Graphics.DrawImage(icon, new Rectangle(40 - icon.Width /2, 40 - icon.Height /2, icon.Width, icon.Height), new Rectangle(0, 0, icon.Width, icon.Height), GraphicsUnit.Pixel);
         }
 
         private int pumpIndex;

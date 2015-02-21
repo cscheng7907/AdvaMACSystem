@@ -197,6 +197,24 @@
   <ItemGroup>
     <None Include="Resources\pump.bmp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MAC_disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MAC_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MAC_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pumpborder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pumpborder_checked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pumpborder_disable.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

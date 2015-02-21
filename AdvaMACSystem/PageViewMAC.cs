@@ -22,6 +22,18 @@ namespace AdvaMACSystem
 
             pumpIcon = AdvaMACSystemRes.pump;
 
+            buttonImages = new ImagesContaner();
+            buttonImages.DNImg = AdvaMACSystemRes.MAC_down;
+            buttonImages.UPImg = AdvaMACSystemRes.MAC_up;
+            buttonImages.DNImgDisable = AdvaMACSystemRes.MAC_disable;
+            buttonImages.UPImgDisable = AdvaMACSystemRes.MAC_disable;
+
+            pumpImages = new ImagesContaner();
+            pumpImages.DNImg = AdvaMACSystemRes.pumpborder_checked;
+            pumpImages.UPImg = AdvaMACSystemRes.pumpborder;
+            pumpImages.DNImgDisable = AdvaMACSystemRes.pumpborder_disable;
+            pumpImages.UPImgDisable = AdvaMACSystemRes.pumpborder_disable;
+
             progressBarImages = new CProgressBarImagesContainer();
             progressBarImages.BgImage = AdvaMACSystemRes.graybar;
             progressBarImages.FrontImage = AdvaMACSystemRes.greenbar;
@@ -64,6 +76,7 @@ namespace AdvaMACSystem
                 pumpBlock.Location = new Point(PumpMarginLeft, PumpMarginTop + j * (PumpHeight + PumpSpacingY));
                 pumpBlock.Toggle = true;
                 pumpBlock.PumpIndex = j;
+                pumpBlock.IMGContainer = pumpImages;
                 pumpBlock.Icon = pumpIcon;
                 pumpBlock.CheckedChanged += new EventHandler(pumpBlock_CheckedChanged);
                 this.Controls.Add(pumpBlock);
@@ -84,6 +97,7 @@ namespace AdvaMACSystem
                 button.Size = new Size(ButtonWidth, ButtonHeight);
                 button.Location = new Point(ButtonMarginLeft, ButtonMarginTop + k * (ButtonHeight + ButtonSpacingY));
                 button.Font = currentFont;
+                button.IMGContainer = buttonImages;
                 this.Controls.Add(button);
             }
             autoModeButton.Toggle = true;
@@ -111,7 +125,7 @@ namespace AdvaMACSystem
         private int CBSpacingY = 5;//CylinderBlock之间Y方向间距
 
         private int PumpMarginTop = 3;//第一行Pump按钮与顶端方向间距
-        private int PumpMarginLeft = 3;//第一列Pump按钮与左端方向间距
+        private int PumpMarginLeft = 6;//第一列Pump按钮与左端方向间距
         private int PumpWidth = 170;//Pump按钮宽度
         private int PumpHeight = 145;//Pump按钮高度
         private int PumpSpacingY = 5;//Pump按钮之间Y方向间距
@@ -175,6 +189,7 @@ namespace AdvaMACSystem
             }
         }
 
+        private ImagesContaner pumpImages = null;
         private Bitmap pumpIcon = null;
         private List<CPumpButton> pumpList = null;
         private void pumpBlock_CheckedChanged(object sender, EventArgs e)
@@ -200,6 +215,8 @@ namespace AdvaMACSystem
         #region 控制按钮
         private int controlMode = 0; //0:Auto 1:Manual
         private int cylinderControlStatus = 0;
+
+        private ImagesContaner buttonImages = null;
         private List<ImageButton> buttonList = null;
         private ImageButton autoModeButton = null;
         private ImageButton manualModeButton = null;
