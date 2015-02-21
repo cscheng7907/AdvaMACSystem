@@ -365,7 +365,7 @@ namespace AdvaMACSystem
             for (int j = 0; j < pumpList.Count; j++)
             {
                 pumpList[j].CurrentStatus = "运行";
-                pumpList[j].CurrentPara = _candatapool.GetRealValue(j, 0, CmdDataType.cdtPressure_Pump_Real);
+                pumpList[j].CurrentPara = _candatapool.GetRealValue(j, 0, CmdDataType.cdtPressure_Pump_Real_3301_3304);
             }
 
             //cylinders
@@ -373,8 +373,8 @@ namespace AdvaMACSystem
             {
                 if (cylinderList[i].InUse)
                 {
-                    cylinderList[i].CurrentPressureValue = _candatapool.GetRealValue(selectedPumpIndex, i, CmdDataType.cdtPressure_Real);
-                    cylinderList[i].CurrentPositionValue = _candatapool.GetRealValue(selectedPumpIndex, i, CmdDataType.cdtPosition_Real);
+                    cylinderList[i].CurrentPressureValue = _candatapool.GetRealValue(selectedPumpIndex, i, CmdDataType.cdtPressure_Real_3001_3008);
+                    cylinderList[i].CurrentPositionValue = _candatapool.GetRealValue(selectedPumpIndex, i, CmdDataType.cdtPosition_Real_3101_3108);
                 }
                 else
                 {
