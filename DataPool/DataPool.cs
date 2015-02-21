@@ -137,8 +137,8 @@ namespace DataPool
 
 
         public List<bool> in_Error_Pump = new List<bool>();//泵站及控制器 故障 4*16
-        public List<bool> in_Error_PressureSenser = null;//油缸压力传感器故障 4*8
-        public List<bool> in_Error_PositionSenser = null;//油缸长度传感器故障 4*8
+        public List<bool> in_Error_PressureSenser = new List<bool>();//油缸压力传感器故障 4*8
+        public List<bool> in_Error_PositionSenser = new List<bool>();//油缸长度传感器故障 4*8
         public List<bool> in_Error_cylinder_extend = new List<bool>();//油缸伸出电磁阀线路短路 4*8
         public List<bool> in_Error_cylinder_retract = new List<bool>();//油缸缩回电磁阀线路短路 4*8
         public List<bool> in_Error_MachLock_extend = new List<bool>();//油缸机械锁伸出电磁阀线路短路 4*8
