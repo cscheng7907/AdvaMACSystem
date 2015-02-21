@@ -64,6 +64,12 @@
     </Compile>
     <Compile Include="AdvCan.cs" />
     <Compile Include="AdvCANIO.cs" />
+    <Compile Include="CParaLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CParaLabel.Designer.cs">
+      <DependentUpon>CParaLabel.cs</DependentUpon>
+    </Compile>
     <Compile Include="CPumpButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -197,6 +203,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\yellowbar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IOblack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IOlabel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IOred.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

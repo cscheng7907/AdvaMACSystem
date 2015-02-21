@@ -113,6 +113,27 @@ namespace AdvaMACSystem {
             }
         }
         
+        internal static System.Drawing.Bitmap IOblack {
+            get {
+                object obj = ResourceManager.GetObject("IOblack", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap IOlabel {
+            get {
+                object obj = ResourceManager.GetObject("IOlabel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap IOred {
+            get {
+                object obj = ResourceManager.GetObject("IOred", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap MAC_disable {
             get {
                 object obj = ResourceManager.GetObject("MAC_disable", resourceCulture);

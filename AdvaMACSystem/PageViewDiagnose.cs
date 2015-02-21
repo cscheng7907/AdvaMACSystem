@@ -16,15 +16,29 @@ namespace AdvaMACSystem
         {
             InitializeComponent();
 
+            _candatapool = DataPool.CDataPool.GetDataPoolObject();
+
+            pumpImgLabelList = new List<CParaLabel>();
             cylinderList = new List<ImageLabel>();
             buttonList = new List<ImageButton>();
+            pumpParaImage = new SimpleImagesContaner();
+            pumpParaImage.BackImg = pumpParaImage.CheckedBackImg
+                = pumpParaImage.ImgDisable = AdvaMACSystemRes.IOlabel;
+
             buttonImage = new ImagesContaner();
-            cylinderImage = new ComCtrls.SimpleImagesContaner();
-            cylinderImage.BackImg = AdvaMACSystemRes.gray_off;
-            cylinderImage.ImgDisable = AdvaMACSystemRes.gray_off;
-            cylinderImage.CheckedBackImg = AdvaMACSystemRes.green_on;
+            cylinderImage = new SimpleImagesContaner();
+            cylinderImage.BackImg = AdvaMACSystemRes.IOred;
+            cylinderImage.ImgDisable = AdvaMACSystemRes.IOred;
+            cylinderImage.CheckedBackImg = AdvaMACSystemRes.IOblack;
 
             currentFont = new Font("微软雅黑", 14F, FontStyle.Regular);
+            //new pump paras
+            for (int i = 0; i < 12; i++)
+            {
+                CParaLabel pumpPara = new CParaLabel();
+                pumpImgLabelList.Add(pumpPara);
+            }
+
             //new cylinders
             for (int i = 0; i < 32; i++)
             {
@@ -37,6 +51,17 @@ namespace AdvaMACSystem
                 buttonList.Add(button);
             }
             this.SuspendLayout();
+            for (int i = 0; i < 12; i++)
+            {
+                CParaLabel pumpPara = pumpImgLabelList[i];
+                pumpPara.Size = new Size(IOWidth, IOHeight);
+                pumpPara.Location = new Point(IOMarginLeft + (i / 3) * (IOWidth + IOSpacingX), IOMarginTop + (i % 3) * (IOHeight + IOSpacingY));
+                pumpPara.Font = currentFont;
+                pumpPara.TextX = TextMarginLeft;
+                pumpPara.TextY = TextMarginTop;
+                pumpPara.IMGContainer = pumpParaImage;
+                this.Controls.Add(pumpPara);
+            }
             for (int i = 0; i < 32; i++)
             {
                 ImageLabel cylinder = cylinderList[i];
@@ -44,10 +69,8 @@ namespace AdvaMACSystem
                 cylinder.Location = new Point(IOMarginLeft + (i / 8) * (IOWidth + IOSpacingX), IOMarginTop + (i % 8 +3) * (IOHeight + IOSpacingY));
                 cylinder.IMGContainer = cylinderImage;
                 cylinder.Font = currentFont;
-                cylinder.TextX = 50;
-                cylinder.TextY = 5;
-                cylinder.Text = String.Format("{0}#油缸", i % 8 + 1);
-                //cylinder.Checked =( i % 2 )== 0;
+                cylinder.TextX = TextMarginLeft;
+                cylinder.TextY = TextMarginTop;
                 this.Controls.Add(cylinder);
             }
             for (int i = 0; i < 2; i++)
@@ -58,11 +81,22 @@ namespace AdvaMACSystem
                 button.IMGContainer = buttonImage;
                 this.Controls.Add(button);
             }
+            buttonList[0].Text = "5mm接近开关限位";
+            buttonList[0].Toggle = true;
+            buttonList[1].Text = "10mm接近开关限位";
+            buttonList[1].Toggle = true;
             this.ResumeLayout(false);
         }
 
+        private const string numberFormat = "F1";
+        private const string PressureUnit = "kN";
+        private const string VoltageUnit = "V";
+
+        private int diagnoseItem = 0;//0: 5mm接近开关限位; 1: 10mm接近开关限位  
         private int pumpNumber = 4;
         private int cylinderNumber = 8;
+        private List<CParaLabel> pumpImgLabelList = null;//四泵参数列表
+        private ComCtrls.SimpleImagesContaner pumpParaImage = null;//四泵参数背景图
         private List<ImageLabel> cylinderList = null;//四泵三十二缸列表
         private List<ImageButton> buttonList = null;//切换按钮列表
         private ImagesContaner buttonImage = null;//按钮背景图
@@ -76,6 +110,9 @@ namespace AdvaMACSystem
         private int IOHeight = 35;//IO标签高度
         private int IOSpacingX = 15;//IO标签之间X方向间距
         private int IOSpacingY = 5;//IO标签之间Y方向间距
+
+        private int TextMarginLeft = 20;
+        private int TextMarginTop = 5;
 
         private int ButtonWidth = 235;
         private int ButtonHeight = 50;
@@ -100,12 +137,73 @@ namespace AdvaMACSystem
         {
             if (_candatapool != null)
             {
-                //取数据
-                //赋值ImageLabel
+                this.SuspendLayout();
+                int startPumpIndex = 0;
+                for (int i = 0; i < 4; i++)
+                {
+                    pumpImgLabelList[i * 3 + 0].Para
+                        = _candatapool.GetRealValue(startPumpIndex + i, 0, CmdDataType.cdtPressure_Pump_Real_3301_3304).ToString(numberFormat) + PressureUnit;
+                    pumpImgLabelList[i * 3 + 1].Para
+                        = _candatapool.GetRealValue(startPumpIndex + i, 0, CmdDataType.cdtVoltage_Real_3301_3304).ToString(numberFormat) + VoltageUnit;
+                    pumpImgLabelList[i * 3 + 2].Para = _candatapool.GetBoolValue(startPumpIndex + i, 0, CmdDataType.cdtPowerSupply_3301_3304) ? "发电机" : "市电";
+                    for (int j = 0; j < 8; j++)
+                    {
+                        cylinderList[i * 8 + j].Checked = _candatapool.GetBoolValue(startPumpIndex + i, j, CmdDataType.cdtLimit_5_3301_3304);
+                    }
+                }
+                if (diagnoseItem == 0)
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        for (int j = 0; j < 8; j++)
+                        {
+                            cylinderList[i * 8 + j].Checked = _candatapool.GetBoolValue(startPumpIndex + i, j, CmdDataType.cdtLimit_5_3301_3304);
+                        }
+                    }
+                }
+                else if (diagnoseItem == 1)
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        for (int j = 0; j < 8; j++)
+                        {
+                            cylinderList[i * 8 + j].Checked = _candatapool.GetBoolValue(startPumpIndex + i, j, CmdDataType.cdtLimit_10_3301_3304);
+                        }
+                    }
+                }
+                this.ResumeLayout(false);
             }
+        }
+
+        public override void DoEnter()
+        {
+            RefreshList();
+            timer_Refresh.Enabled = true;
+            base.DoEnter();
         }
         #endregion
 
+        protected override void DoExit()
+        {
+            timer_Refresh.Enabled = false;
+            base.DoExit();
+        }
+
+        private void RefreshList()
+        {
+            int startPumpIndex = 0;
+            for (int i = 0; i < 4; i++)
+            {
+                pumpImgLabelList[i * 3 + 0].Text = (startPumpIndex + i + 1).ToString() + "#泵站压力";
+                pumpImgLabelList[i * 3 + 1].Text = (startPumpIndex + i + 1).ToString() + "#控制电压";
+                pumpImgLabelList[i * 3 + 2].Text = (startPumpIndex + i + 1).ToString() + "#供电方式";
+                for (int j = 0; j < 8; j++)
+                {
+                    cylinderList[i * 8 + j].Text = String.Format("{0}#油缸限位", j + 1);
+                }
+            }
+        }
+        
         private void timer_Refresh_Tick(object sender, EventArgs e)
         {
             DoRefresh();

@@ -17,6 +17,8 @@ namespace AdvaMACSystem
         public CPumpButton()
         {
             InitializeComponent();
+            this.lbPara.Text = currentPara.ToString(numberFormat) + unit;
+            this.lbName.Text = (pumpIndex + 1).ToString() + "#";
         }
 
         public CPumpButton(IContainer container)
@@ -24,6 +26,8 @@ namespace AdvaMACSystem
             container.Add(this);
 
             InitializeComponent();
+            this.lbPara.Text = currentPara.ToString(numberFormat) + unit;
+            this.lbName.Text = (pumpIndex + 1).ToString() + "#";
         }
 
         protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
@@ -53,9 +57,12 @@ namespace AdvaMACSystem
             get { return pumpIndex; }
             set
             {
-                pumpIndex = value;
-                this.lbName.Text = (pumpIndex + 1).ToString() + "#";
-                this.Invalidate();
+                if (pumpIndex != value)
+                {
+                    pumpIndex = value;
+                    this.lbName.Text = (pumpIndex + 1).ToString() + "#";
+                    this.Invalidate();
+                }
             }
         }
 
@@ -78,9 +85,12 @@ namespace AdvaMACSystem
         {
             set 
             {
-                unit = value;
-                this.lbPara.Text = currentPara.ToString(numberFormat) + unit;
-                this.Invalidate();
+                if (unit != value)
+                {
+                    unit = value;
+                    this.lbPara.Text = currentPara.ToString(numberFormat) + unit;
+                    this.Invalidate();
+                }
             }
         }
 
@@ -89,7 +99,7 @@ namespace AdvaMACSystem
         {
             set
             {
-                //if (currentPara != value)
+                if (currentPara != value)
                 {
                     currentPara = value;
                     this.lbPara.Text = currentPara.ToString(numberFormat) + unit;

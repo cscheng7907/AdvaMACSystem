@@ -317,6 +317,12 @@ namespace AdvaMACSystem
             base.DoEnter();
         }
 
+        protected override void DoExit()
+        {
+            timer_RefreshMac.Enabled = false;
+            base.DoExit();
+        }
+
         private void RefreshCylinderList()
         {
             if (cylinderList == null)
