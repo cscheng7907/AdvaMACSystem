@@ -93,7 +93,7 @@ namespace ComCtrls
             }
         }
     }
-    public partial class ImageLabel : UserControl
+    public partial class ImageLabel : Control
     {
 
 
@@ -320,6 +320,20 @@ namespace ComCtrls
             }
         }
 
+        public override string Text
+        {
+            get
+            {
+                return base.Text;
+            }
+            set
+            {
+                base.Text = value;
+
+                this.Invalidate();
+            }
+        }
+
         private float textX = -1;//绘制文字的起始X坐标
         public float TextX
         {
@@ -381,19 +395,7 @@ namespace ComCtrls
             }
         }
 
-        public override string Text
-        {
-            get
-            {
-                return base.Text;
-            }
-            set
-            {
-                base.Text = value;
 
-                this.Invalidate();
-            }
-        }
 
         private KTLayout layout;
         [DefaultValue(KTLayout.GlyphTop)]
