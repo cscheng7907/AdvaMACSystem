@@ -47,8 +47,11 @@ namespace ComCtrls
             }
             set
             {
-                upimg = value;
-                this.DoRefresh();
+                if (upimg != value)
+                {
+                    upimg = value;
+                    this.DoRefresh();
+                }
             }
         }
 
@@ -61,8 +64,11 @@ namespace ComCtrls
             }
             set
             {
-                upimgdisable = value;
-                this.DoRefresh();
+                if (upimgdisable != value)
+                {
+                    upimgdisable = value;
+                    this.DoRefresh();
+                }
             }
         }
 
@@ -75,8 +81,11 @@ namespace ComCtrls
             }
             set
             {
-                dnimg = value;
-                this.DoRefresh();
+                if (dnimg != value)
+                {
+                    dnimg = value;
+                    this.DoRefresh();
+                }
             }
         }
         private Image dnimgdisable = null;
@@ -88,8 +97,11 @@ namespace ComCtrls
             }
             set
             {
-                dnimgdisable = value;
-                this.DoRefresh();
+                if (dnimgdisable != value)
+                {
+                    dnimgdisable = value;
+                    this.DoRefresh();
+                }
             }
         }
 
@@ -102,8 +114,11 @@ namespace ComCtrls
             }
             set
             {
-                icon = value;
-                this.DoRefresh();
+                if (icon != value)
+                {
+                    icon = value;
+                    this.DoRefresh();
+                }
             }
         }
     }
@@ -636,9 +651,12 @@ namespace ComCtrls
             }
             set
             {
-                base.Enabled = value;
-                this.Refresh();
-                //this.Invalidate();
+                if (base.Enabled != value)
+                {
+                    base.Enabled = value;
+                    this.Refresh();
+                    //this.Invalidate();
+                }
             }
         }
 
@@ -654,8 +672,11 @@ namespace ComCtrls
             }
             set
             {
-                transparent = value;
-                this.Invalidate();
+                if (transparent != value)
+                {
+                    transparent = value;
+                    this.Invalidate();
+                }
             }
         }
 
@@ -734,7 +755,8 @@ namespace ComCtrls
             }
             set
             {
-                toggle = value;
+                if (toggle != value)
+                    toggle = value;
 
             }
         }
@@ -781,9 +803,12 @@ namespace ComCtrls
             }
             set
             {
-                base.Text = value;
+                if (base.Text != value)
+                {
+                    base.Text = value;
 
-                this.Invalidate();
+                    this.Invalidate();
+                }
             }
         }
 
@@ -792,7 +817,7 @@ namespace ComCtrls
 #if _WIN32
         public new KTLayout Layout
 #else
-        public  KTLayout Layout
+        public KTLayout Layout
 #endif
         {
             get
@@ -828,8 +853,11 @@ namespace ComCtrls
             }
             set
             {
-                upimg = value;
-                this.Invalidate();
+                if (upimg != value)
+                {
+                    upimg = value;
+                    this.Invalidate();
+                }
             }
         }
 
@@ -842,8 +870,11 @@ namespace ComCtrls
             }
             set
             {
-                upimgdisable = value;
-                this.Invalidate();
+                if (upimgdisable != value)
+                {
+                    upimgdisable = value;
+                    this.Invalidate();
+                }
             }
         }
 
@@ -856,8 +887,11 @@ namespace ComCtrls
             }
             set
             {
-                dnimg = value;
-                this.Invalidate();
+                if (dnimg != value)
+                {
+                    dnimg = value;
+                    this.Invalidate();
+                }
             }
         }
 
@@ -870,8 +904,11 @@ namespace ComCtrls
             }
             set
             {
-                dnimgdisable = value;
-                this.Invalidate();
+                if (dnimgdisable != value)
+                {
+                    dnimgdisable = value;
+                    this.Invalidate();
+                }
             }
         }
 
