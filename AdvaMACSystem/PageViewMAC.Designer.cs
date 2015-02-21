@@ -33,6 +33,7 @@
             // 
             // timer_RefreshMac
             // 
+            this.timer_RefreshMac.Interval = 500;
             this.timer_RefreshMac.Tick += new System.EventHandler(this.timer_RefreshMac_Tick);
             // 
             // PageViewMAC

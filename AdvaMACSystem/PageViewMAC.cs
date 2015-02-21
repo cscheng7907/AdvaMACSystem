@@ -20,13 +20,8 @@ namespace AdvaMACSystem
 
             _candatapool = CDataPool.GetDataPoolObject();
 
+            //pump美化
             pumpIcon = AdvaMACSystemRes.pump;
-
-            buttonImages = new ImagesContaner();
-            buttonImages.DNImg = AdvaMACSystemRes.MAC_down;
-            buttonImages.UPImg = AdvaMACSystemRes.MAC_up;
-            buttonImages.DNImgDisable = AdvaMACSystemRes.MAC_disable;
-            buttonImages.UPImgDisable = AdvaMACSystemRes.MAC_disable;
 
             pumpImages = new ImagesContaner();
             pumpImages.DNImg = AdvaMACSystemRes.pumpborder_checked;
@@ -34,6 +29,14 @@ namespace AdvaMACSystem
             pumpImages.DNImgDisable = AdvaMACSystemRes.pumpborder_disable;
             pumpImages.UPImgDisable = AdvaMACSystemRes.pumpborder_disable;
 
+            //button美化
+            buttonImages = new ImagesContaner();
+            buttonImages.DNImg = AdvaMACSystemRes.MAC_down;
+            buttonImages.UPImg = AdvaMACSystemRes.MAC_up;
+            buttonImages.DNImgDisable = AdvaMACSystemRes.MAC_disable;
+            buttonImages.UPImgDisable = AdvaMACSystemRes.MAC_disable;
+
+            //cylinder美化
             progressBarImages = new CProgressBarImagesContainer();
             progressBarImages.BgImage = AdvaMACSystemRes.graybar;
             progressBarImages.FrontImage = AdvaMACSystemRes.greenbar;
@@ -41,6 +44,7 @@ namespace AdvaMACSystem
             progressBarImages.WarningImage = AdvaMACSystemRes.yellowbar;
             progressBarImages.SettingImage = AdvaMACSystemRes.bluebar;
 
+            //new pumps
             pumpList = new List<CPumpButton>();
             for (int j = 0; j < pumpNumber; j++)
             {
@@ -48,14 +52,15 @@ namespace AdvaMACSystem
                 pumpList.Add(pumpBlock);
             }
 
-            cylinderList = new List<CylinderCellBlock>();
             //new cylinders
+            cylinderList = new List<CylinderCellBlock>();
             for (int i = 0; i < cylinderNumber; i++)
             {
                 CylinderCellBlock cylinder = new CylinderCellBlock();
                 cylinderList.Add(cylinder);
             }
 
+            //new buttons
             buttonList = new List<ImageButton>();
             autoModeButton = new ImageButton();
             buttonList.Add(autoModeButton);
@@ -69,6 +74,8 @@ namespace AdvaMACSystem
             buttonList.Add(cylinderRetractButton);
 
             this.SuspendLayout();
+
+            //pumps
             for (int j = 0; j < pumpNumber; j++)
             {
                 CPumpButton pumpBlock = pumpList[j];
@@ -81,6 +88,8 @@ namespace AdvaMACSystem
                 pumpBlock.CheckedChanged += new EventHandler(pumpBlock_CheckedChanged);
                 this.Controls.Add(pumpBlock);
             }
+
+            //cylinders
             for (int i = 0; i < cylinderNumber; i++)
             {
                 CylinderCellBlock cylinder = cylinderList[i];
@@ -91,6 +100,8 @@ namespace AdvaMACSystem
                 //cylinder.Font = currentFont;
                 this.Controls.Add(cylinder);
             }
+
+            //buttons
             for (int k = 0; k < buttonList.Count; k++)
             {
                 ImageButton button = buttonList[k];
@@ -109,11 +120,22 @@ namespace AdvaMACSystem
             autoModeButton.Text = "自动模式";
             manualModeButton.Text = "手动模式";
             cylinderExtendButton.Text = "油缸伸出";
+            cylinderExtendButton.Click += new EventHandler(cylinderExtendButton_Click);
             cylinderStopButton.Text = "油缸停止";
+            cylinderStopButton.Click += new EventHandler(cylinderStopButton_Click);
             cylinderRetractButton.Text = "油缸缩回";
+            cylinderRetractButton.Click += new EventHandler(cylinderRetractButton_Click);
 
             this.ResumeLayout(false);
         }
+
+        private const string PumpUnit = "bar";
+        private const string PressureUnit = "kN";
+        private const string PositionUnit = "mm";
+        private const double MinPressureValue = 0;
+        private const double MaxPressureValue = 60;
+        private const double MinPositionValue = 0;
+        private const double MaxPositionValue = 60;
 
         #region 布局
         private Font currentFont = null;//字体
@@ -153,26 +175,6 @@ namespace AdvaMACSystem
 
         private CProgressBarImagesContainer progressBarImages = null;
         #endregion
-
-        double x = 0;
-        private void timer_RefreshMac_Tick(object sender, EventArgs e)
-        {
-            //x += 0.1;
-            for (int i = 0; i < cylinderList.Count; i++)
-            {
-                if (cylinderList[i].InUse)
-                {
-                    //cylinderList[i].CurrentPressureValue = 20 * Math.Sin(x) + 30;
-                    cylinderList[i].CurrentPressureValue = _candatapool.GetRealValue(selectedPumpIndex, i, CmdDataType.cdtPressure_Real);
-                    cylinderList[i].CurrentDistanceValue = _candatapool.GetRealValue(selectedPumpIndex, i, CmdDataType.cdtPosition_Real);
-                }
-                else
-                {
-                    cylinderList[i].CurrentPressureValue = 0;
-                    cylinderList[i].CurrentDistanceValue = 0;
-                }
-            }
-        }
 
         #region 泵
         private int pumpNumber = 4;
@@ -259,7 +261,30 @@ namespace AdvaMACSystem
             }
         }
 
+        private void cylinderRetractButton_Click(object sender, EventArgs e)
+        {
+            if (controlMode == 1 && selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
+            {
+            }
+        }
+
+        private void cylinderStopButton_Click(object sender, EventArgs e)
+        {
+            if (controlMode == 1 && selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
+            {
+            }
+        }
+
+        private void cylinderExtendButton_Click(object sender, EventArgs e)
+        {
+            if (controlMode == 1 && selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
+            {
+            }
+        }
+
+
         #endregion
+
         private CDataPool _candatapool = null;
         public CDataPool CanDatapool
         {
@@ -279,6 +304,7 @@ namespace AdvaMACSystem
             for (int j = 0; j < pumpList.Count; j++)
             {
                 pumpList[j].Checked = false;
+                pumpList[j].Unit = PumpUnit;
             }
             pumpList[0].Checked = true;
             selectedPumpIndex = 0;
@@ -307,32 +333,55 @@ namespace AdvaMACSystem
             for (int i = 0; i < cylinderList.Count; i++)
             {
                 //设定压力条单位
-                cylinderList[i].PressureUnit = "kN";
+                cylinderList[i].PressureUnit = PressureUnit;
                 //设定压力条下限值
-                cylinderList[i].MinPressureValue = 0;
+                cylinderList[i].MinPressureValue = MinPressureValue;
                 //设定压力条上限值
-                cylinderList[i].MaxPressureValue = 60;
+                cylinderList[i].MaxPressureValue = MaxPressureValue;
                 //设定压力条下限报警值
-                cylinderList[i].WarningPressureValue = 30;
+                cylinderList[i].WarningPressureValue = _candatapool.GetRealValue(selectedPumpIndex, i, CmdDataType.cdtPressureLowerLimitAlarm_Value);
                 //设定压力条设定值
-                cylinderList[i].SettingPressureValue = 50;
+                cylinderList[i].SettingPressureValue = _candatapool.GetRealValue(selectedPumpIndex, i, CmdDataType.cdtPressure_Value);
 
                 //设定长度条单位
-                cylinderList[i].DistanceUnit = "mm";
+                cylinderList[i].PositionUnit = PositionUnit;
                 //设定长度条下限值
-                cylinderList[i].MinDistanceValue = 0;
+                cylinderList[i].MinPositionValue = MinPositionValue;
                 //设定长度条上限值
-                cylinderList[i].MaxDistanceValue = 600;
+                cylinderList[i].MaxPositionValue = MaxPositionValue;
                 //设定长度条下限报警值
-                cylinderList[i].WarningDistanceValue = 300;
+                cylinderList[i].WarningPositionValue = _candatapool.GetRealValue(selectedPumpIndex, i, CmdDataType.cdtPositionLowerLimitAlarm_Value);
                 //设定长度条设定值
-                cylinderList[i].SettingDistanceValue = 500;
+                cylinderList[i].SettingPositionValue = _candatapool.GetRealValue(selectedPumpIndex, i, CmdDataType.cdtPosition_Value);
 
                 //检测油缸运行状态
-                cylinderList[i].InUse = true;
-                //cylinderList[i].InUse = _candatapool.GetintValue(pumpIndex, i, CmdDataType.cdtcylinderState_Real) != 0;
+                cylinderList[i].InUse = _candatapool.GetBoolValue(selectedPumpIndex, i, CmdDataType.cdtInstalled);
             }
-            cylinderList[1].InUse = false;
+        }
+
+        private void timer_RefreshMac_Tick(object sender, EventArgs e)
+        {
+            //pumps
+            for (int j = 0; j < pumpList.Count; j++)
+            {
+                pumpList[j].CurrentStatus = "运行";
+                pumpList[j].CurrentPara = _candatapool.GetRealValue(j, 0, CmdDataType.cdtPressure_Pump_Real);
+            }
+
+            //cylinders
+            for (int i = 0; i < cylinderList.Count; i++)
+            {
+                if (cylinderList[i].InUse)
+                {
+                    cylinderList[i].CurrentPressureValue = _candatapool.GetRealValue(selectedPumpIndex, i, CmdDataType.cdtPressure_Real);
+                    cylinderList[i].CurrentPositionValue = _candatapool.GetRealValue(selectedPumpIndex, i, CmdDataType.cdtPosition_Real);
+                }
+                else
+                {
+                    cylinderList[i].CurrentPressureValue = 0;
+                    cylinderList[i].CurrentPositionValue = 0;
+                }
+            }
         }
 
     }

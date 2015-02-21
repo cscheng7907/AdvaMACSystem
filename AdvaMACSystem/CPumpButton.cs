@@ -28,17 +28,23 @@ namespace AdvaMACSystem
 
         protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
         {
-            base.OnPaint(e);
+            Graphics gxOff; //Offscreen graphics
+            base.OnPaintBasicImage(e);
+            gxOff = Graphics.FromImage(m_bmpOffscreen);
+
             StringFormat sf = new StringFormat();
             sf.Alignment = StringAlignment.Center;
             sf.LineAlignment = StringAlignment.Center;
             foreach (Control c in this.Controls)
             {
                 if (c is Label)
-                    e.Graphics.DrawString(c.Text, c.Font, new SolidBrush(c.ForeColor), c.Left +c.Width / 2, c.Top + c.Height / 2, sf);
+                    gxOff.DrawString(c.Text, c.Font, new SolidBrush(c.ForeColor), c.Left + c.Width / 2, c.Top + c.Height / 2, sf);
             }
             if (icon != null)
-                e.Graphics.DrawImage(icon, new Rectangle(40 - icon.Width /2, 40 - icon.Height /2, icon.Width, icon.Height), new Rectangle(0, 0, icon.Width, icon.Height), GraphicsUnit.Pixel);
+                gxOff.DrawImage(icon, new Rectangle(40 - icon.Width / 2, 40 - icon.Height / 2, icon.Width, icon.Height), new Rectangle(0, 0, icon.Width, icon.Height), GraphicsUnit.Pixel);
+
+            e.Graphics.DrawImage(m_bmpOffscreen, 0, 0);
+
         }
 
         private int pumpIndex;
@@ -49,6 +55,7 @@ namespace AdvaMACSystem
             {
                 pumpIndex = value;
                 this.lbName.Text = (pumpIndex + 1).ToString() + "#";
+                this.Invalidate();
             }
         }
 
@@ -57,8 +64,12 @@ namespace AdvaMACSystem
         {
             set
             {
-                currentStatus = value;
-                this.lbStatus.Text = currentStatus;
+                if (currentStatus != value)
+                {
+                    currentStatus = value;
+                    this.lbStatus.Text = currentStatus;
+                    this.Invalidate();
+                }
             }
         }
 
@@ -69,6 +80,7 @@ namespace AdvaMACSystem
             {
                 unit = value;
                 this.lbPara.Text = currentPara.ToString(numberFormat) + unit;
+                this.Invalidate();
             }
         }
 
@@ -77,10 +89,11 @@ namespace AdvaMACSystem
         {
             set
             {
-                if (currentPara != value)
+                //if (currentPara != value)
                 {
                     currentPara = value;
                     this.lbPara.Text = currentPara.ToString(numberFormat) + unit;
+                    this.Invalidate();
                 }
             }
         }
