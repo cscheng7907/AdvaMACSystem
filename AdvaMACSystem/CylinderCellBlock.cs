@@ -16,6 +16,7 @@ namespace AdvaMACSystem
         public CylinderCellBlock()
         {
             InitializeComponent();
+            pictureBox1.Image = AdvaMACSystemRes.border;
             foreach (Control c in panel1.Controls)
             {
                 c.Click += new EventHandler(CylinderCellBlock_Click);
@@ -66,7 +67,8 @@ namespace AdvaMACSystem
             { 
                 warningPressureValue = value;
                 this.lbWarningPre.Text = warningPressureValue.ToString(numberFormat);
-                this.progressBar.WarningPercentage = (warningPressureValue - minPressureValue) / (maxPressureValue - minPressureValue);
+                if (maxPressureValue - minPressureValue != 0)
+                    this.progressBar.WarningPercentage = (warningPressureValue - minPressureValue) / (maxPressureValue - minPressureValue);
             }
         }
 
@@ -77,7 +79,8 @@ namespace AdvaMACSystem
             { 
                 settingPressureValue = value;
                 this.lbSettingPre.Text = settingPressureValue.ToString(numberFormat);
-                this.progressBar.SettingPercentage = (settingPressureValue - minPressureValue) / (maxPressureValue - minPressureValue);
+                if (maxPressureValue - minPressureValue != 0)
+                    this.progressBar.SettingPercentage = (settingPressureValue - minPressureValue) / (maxPressureValue - minPressureValue);
             }
         }
         private double currentPressureValue;
@@ -86,63 +89,64 @@ namespace AdvaMACSystem
             set
             {
                 currentPressureValue = value;
-                this.progressBar.ValuePercentage = (currentPressureValue - minPressureValue) / (maxPressureValue - minPressureValue);
-                this.lbValuePre.Text = currentPressureValue.ToString(numberFormat);
+                if (maxPressureValue - minPressureValue != 0)
+                    this.progressBar.ValuePercentage = (currentPressureValue - minPressureValue) / (maxPressureValue - minPressureValue);
+                this.lbValuePre.Text = currentPressureValue.ToString(numberFormat) + PressureUnit;
             }
         }
 
         public string PressureUnit = string.Empty;
 
-        private double minDistanceValue;
-        public double MinDistanceValue
+        private double minPositionValue;
+        public double MinPositionValue
         {
             set
             {
-                minDistanceValue = value;
-                this.lbMinDis.Text = minDistanceValue.ToString(numberFormat);
+                minPositionValue = value;
+                this.lbMinPos.Text = minPositionValue.ToString(numberFormat);
             }
         }
 
-        private double maxDistanceValue;
-        public double MaxDistanceValue
+        private double maxPositionValue;
+        public double MaxPositionValue
         {
             set
             {
-                maxDistanceValue = value;
-                this.lbMaxDis.Text = maxDistanceValue.ToString(numberFormat) + DistanceUnit;
+                maxPositionValue = value;
+                this.lbMaxPos.Text = maxPositionValue.ToString(numberFormat) + PositionUnit;
             }
         }
 
-        private double warningDistanceValue;
-        public double WarningDistanceValue
+        private double warningPositionValue;
+        public double WarningPositionValue
         {
             set
             {
-                warningDistanceValue = value;
-                this.lbWarningDis.Text = warningDistanceValue.ToString(numberFormat);
+                warningPositionValue = value;
+                this.lbWarningPos.Text = warningPositionValue.ToString(numberFormat);
             }
         }
 
-        private double settingDistanceValue;
-        public double SettingDistanceValue
+        private double settingPositionValue;
+        public double SettingPositionValue
         {
             set
             {
-                settingDistanceValue = value;
-                this.lbSettingDis.Text = settingDistanceValue.ToString(numberFormat);
+                settingPositionValue = value;
+                this.lbSettingPos.Text = settingPositionValue.ToString(numberFormat);
             }
         }
-        private double currentDistanceValue;
-        public double CurrentDistanceValue
+        private double currentPositionValue;
+        public double CurrentPositionValue
         {
             set
             {
-                currentDistanceValue = value;
-                this.lbValueDis.Text = currentDistanceValue.ToString(numberFormat);
+                currentPositionValue = value;
+                this.lbValuePos.Text = currentPositionValue.ToString(numberFormat) + PositionUnit;
             }
         }
 
-        public string DistanceUnit = string.Empty;
+        public string PositionUnit = string.Empty;
 
         private int pumpIndex;//泵的编号
         private int cylinderIndex;
@@ -166,11 +170,18 @@ namespace AdvaMACSystem
         {
             set
             {
-                selected = value;
-                if (selected)
-                    this.panel1.BackColor = Color.Orange;
-                else
-                    this.panel1.BackColor = Color.Silver;
+                if (selected != value)
+                {
+                    selected = value;
+                    if (selected)
+                        this.panel1.BackColor = Color.Orange;
+                    else
+                        this.panel1.BackColor = Color.Silver;
+                }
+            }
+            get
+            {
+                return selected;
             }
         }
 
@@ -181,9 +192,25 @@ namespace AdvaMACSystem
             {
                 inUse = value;
                 if (inUse)
-                    this.BackColor = Color.DarkOrange;
+                {
+                    pictureBox1.Image = AdvaMACSystemRes.border;
+                    foreach (Control l in panel1.Controls)
+                    {
+                        if (l is Label)
+                            l.ForeColor = Color.Brown;
+                    }
+                    lbWarningPos.ForeColor = lbWarningPre.ForeColor = Color.Red;
+                    lbSettingPos.ForeColor = lbSettingPre.ForeColor = Color.Blue;
+                }
                 else
-                    this.BackColor = Color.LightGray;
+                {
+                    pictureBox1.Image = AdvaMACSystemRes.border_Disable;
+                    foreach (Control l in panel1.Controls)
+                    {
+                        if (l is Label)
+                            l.ForeColor = Color.Wheat;
+                    }
+                }
             }
             get
             {
@@ -191,10 +218,14 @@ namespace AdvaMACSystem
             }
         }
 
+        public event OnCylinderClickHandler OnCylinderClicked;
         private void CylinderCellBlock_Click(object sender, EventArgs e)
         {
             Selected = !selected;
+            if (OnCylinderClicked != null)
+                OnCylinderClicked(cylinderIndex);
         }
 
     }
+    public delegate void OnCylinderClickHandler(int cylinderIndex);
 }

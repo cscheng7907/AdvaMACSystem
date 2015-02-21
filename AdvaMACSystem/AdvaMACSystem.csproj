@@ -64,6 +64,12 @@
     </Compile>
     <Compile Include="AdvCan.cs" />
     <Compile Include="AdvCANIO.cs" />
+    <Compile Include="CPumpButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CPumpButton.Designer.cs">
+      <DependentUpon>CPumpButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="CylinderCellBlock.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -117,6 +123,9 @@
     <EmbeddedResource Include="AdvaMACSystemRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AdvaMACSystemRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CPumpButton.resx">
+      <DependentUpon>CPumpButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CylinderCellBlock.resx">
       <DependentUpon>CylinderCellBlock.cs</DependentUpon>
@@ -188,6 +197,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\yellowbar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\border.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\border_Disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pump.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MAC_disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MAC_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MAC_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pumpborder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pumpborder_checked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pumpborder_disable.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

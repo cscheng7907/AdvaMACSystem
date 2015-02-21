@@ -64,6 +64,20 @@ namespace AdvaMACSystem {
             }
         }
         
+        internal static System.Drawing.Bitmap border {
+            get {
+                object obj = ResourceManager.GetObject("border", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap border_Disable {
+            get {
+                object obj = ResourceManager.GetObject("border_Disable", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap gray_off {
             get {
                 object obj = ResourceManager.GetObject("gray_off", resourceCulture);
@@ -95,6 +109,55 @@ namespace AdvaMACSystem {
         internal static System.Drawing.Bitmap greenbar {
             get {
                 object obj = ResourceManager.GetObject("greenbar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap MAC_disable {
+            get {
+                object obj = ResourceManager.GetObject("MAC_disable", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap MAC_down {
+            get {
+                object obj = ResourceManager.GetObject("MAC_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap MAC_up {
+            get {
+                object obj = ResourceManager.GetObject("MAC_up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap pump {
+            get {
+                object obj = ResourceManager.GetObject("pump", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap pumpborder {
+            get {
+                object obj = ResourceManager.GetObject("pumpborder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap pumpborder_checked {
+            get {
+                object obj = ResourceManager.GetObject("pumpborder_checked", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap pumpborder_disable {
+            get {
+                object obj = ResourceManager.GetObject("pumpborder_disable", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
