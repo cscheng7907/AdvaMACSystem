@@ -154,7 +154,7 @@ namespace ComCtrls
             this.Invalidate();
         }
 
-        private Bitmap m_bmpOffscreen;
+        protected Bitmap m_bmpOffscreen;
 
 
         #region key mouse
@@ -299,6 +299,16 @@ namespace ComCtrls
         }
 
         protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
+        {
+            OnPaintBasicImage(e);
+
+            //Draw from the memory bitmap
+            e.Graphics.DrawImage(m_bmpOffscreen, 0, 0);
+
+            //base.OnPaint(e);
+        }
+
+        protected void OnPaintBasicImage(System.Windows.Forms.PaintEventArgs e)
         {
             Graphics gxOff; //Offscreen graphics
             Rectangle imgRect; //image rectangle
@@ -571,11 +581,6 @@ namespace ComCtrls
                         (this.ClientSize.Width - gxOff.MeasureString(this.Text, this.Font).Width) / 2,
                         (this.ClientSize.Height - gxOff.MeasureString(this.Text, this.Font).Height) / 2);
                 }
-
-            //Draw from the memory bitmap
-            e.Graphics.DrawImage(m_bmpOffscreen, 0, 0);
-
-            //base.OnPaint(e);
         }
 
         #region Property
