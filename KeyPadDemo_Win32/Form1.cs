@@ -41,5 +41,10 @@ namespace KeyPadDemo_Win32
                 textBox1.Text = f.KeyText;
 
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            imageButton1.Text = "123";
+        }
     }
 }
