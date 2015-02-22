@@ -53,10 +53,10 @@
             // lb_date
             // 
             this.lb_date.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
+            this.lb_date.ForeColor = System.Drawing.Color.Black;
             this.lb_date.Location = new System.Drawing.Point(834, 15);
             this.lb_date.Name = "lb_date";
             this.lb_date.Size = new System.Drawing.Size(187, 27);
-            this.lb_date.ForeColor = System.Drawing.Color.Black; 
             this.lb_date.Text = "日期：2015-02-12";
             // 
             // panel1
@@ -72,13 +72,14 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1024, 84);
+            this.panel1.Size = new System.Drawing.Size(1024, 94);
             // 
             // LabelCurError
             // 
             this.LabelCurError.BackImg = ((System.Drawing.Image)(resources.GetObject("LabelCurError.BackImg")));
             this.LabelCurError.Checked = false;
             this.LabelCurError.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
+            this.LabelCurError.IMGContainer = null;
             this.LabelCurError.Layout = ComCtrls.KTLayout.GlyphTop;
             this.LabelCurError.Location = new System.Drawing.Point(734, 3);
             this.LabelCurError.Name = "LabelCurError";
@@ -94,6 +95,7 @@
             this.label_CurWarning.BackImg = ((System.Drawing.Image)(resources.GetObject("label_CurWarning.BackImg")));
             this.label_CurWarning.Checked = false;
             this.label_CurWarning.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
+            this.label_CurWarning.IMGContainer = null;
             this.label_CurWarning.Layout = ComCtrls.KTLayout.GlyphTop;
             this.label_CurWarning.Location = new System.Drawing.Point(635, 3);
             this.label_CurWarning.Name = "label_CurWarning";
@@ -106,17 +108,17 @@
             // 
             // label4
             // 
+            this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(268, 54);
             this.label4.Name = "label4";
-            this.label4.ForeColor = System.Drawing.Color.Black; 
             this.label4.Size = new System.Drawing.Size(100, 20);
             this.label4.Text = "工程编号：XXXX";
             // 
             // label3
             // 
+            this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(268, 34);
             this.label3.Name = "label3";
-            this.label3.ForeColor = System.Drawing.Color.Black; 
             this.label3.Size = new System.Drawing.Size(228, 20);
             this.label3.Text = "工程名称：XXXXXXXX";
             // 
@@ -126,40 +128,40 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 84);
+            this.pictureBox1.Size = new System.Drawing.Size(100, 94);
             // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
+            this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(112, 6);
             this.label2.Name = "label2";
-            this.label2.ForeColor = System.Drawing.Color.Black; 
             this.label2.Size = new System.Drawing.Size(337, 28);
             this.label2.Text = "HIS0350A钢支撑轴力补偿系统";
             // 
             // lb_time
             // 
             this.lb_time.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
+            this.lb_time.ForeColor = System.Drawing.Color.Black;
             this.lb_time.Location = new System.Drawing.Point(834, 54);
             this.lb_time.Name = "lb_time";
-            this.lb_time.ForeColor = System.Drawing.Color.Black; 
             this.lb_time.Size = new System.Drawing.Size(187, 30);
             this.lb_time.Text = "时间：12 : 11 : 18";
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.Control;
             this.panel2.Controls.Add(this.imageLabel1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 84);
+            this.panel2.Location = new System.Drawing.Point(0, 94);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1024, 39);
+            this.panel2.Size = new System.Drawing.Size(1024, 74);
             // 
             // imageLabel1
             // 
             this.imageLabel1.BackImg = ((System.Drawing.Image)(resources.GetObject("imageLabel1.BackImg")));
             this.imageLabel1.Checked = false;
             this.imageLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.imageLabel1.IMGContainer = null;
             this.imageLabel1.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageLabel1.Location = new System.Drawing.Point(3, 0);
             this.imageLabel1.Name = "imageLabel1";

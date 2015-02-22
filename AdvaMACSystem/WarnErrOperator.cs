@@ -10,8 +10,8 @@ namespace AdvaMACSystem
 {
     public class WarnErrOperator
     {
-        private const string WarningRecFileName = @"\HardDisk\Record\Warning.Rec";
-        private const string ErrorRecFileName = @"\HardDisk\Record\Error.Rec";
+        public const string WarningRecFileName = @"\HardDisk\Record\Warning.Rec";
+        public const string ErrorRecFileName = @"\HardDisk\Record\Error.Rec";
 
         public WarnErrOperator()
         {
@@ -228,9 +228,9 @@ namespace AdvaMACSystem
 
             try
             {
-                bw.Write((int)type);
-                bw.Write((val) ? 1 : 0);
-                bw.Write(DateTime.Now.Ticks);
+                bw.Write((int)listkey);//4
+                bw.Write((val) ? 1 : 0);//4
+                bw.Write(DateTime.Now.Ticks);//8
             }
             finally
             {
