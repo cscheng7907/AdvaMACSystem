@@ -303,11 +303,10 @@ namespace AdvaMACSystem
 
             for (int j = 0; j < pumpList.Count; j++)
             {
-                pumpList[j].Checked = false;
                 pumpList[j].Unit = PumpUnit;
             }
             pumpList[0].Checked = true;
-            selectedPumpIndex = 0;
+
             RefreshCylinderList();
 
             autoModeButton.Checked = true;

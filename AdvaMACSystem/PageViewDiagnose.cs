@@ -26,6 +26,9 @@ namespace AdvaMACSystem
                 = pumpParaImage.ImgDisable = AdvaMACSystemRes.IOlabel;
 
             buttonImage = new ImagesContaner();
+            buttonImage.DNImg = AdvaMACSystemRes.Dgn_down;
+            buttonImage.UPImg = AdvaMACSystemRes.Dgn_up;
+            buttonImage.UPImgDisable = buttonImage.DNImgDisable = AdvaMACSystemRes.Dgn_disable;
             cylinderImage = new SimpleImagesContaner();
             cylinderImage.BackImg = AdvaMACSystemRes.IOred;
             cylinderImage.ImgDisable = AdvaMACSystemRes.IOred;
@@ -45,12 +48,16 @@ namespace AdvaMACSystem
                 ImageLabel cylinder = new ImageLabel();
                 cylinderList.Add(cylinder);
             }
+
             for (int i = 0; i < 2; i++)
             {
                 ImageButton button = new ImageButton();
                 buttonList.Add(button);
             }
+            exitButton = new ImageButton();
+
             this.SuspendLayout();
+
             for (int i = 0; i < 12; i++)
             {
                 CParaLabel pumpPara = pumpImgLabelList[i];
@@ -77,15 +84,49 @@ namespace AdvaMACSystem
             {
                 ImageButton button = buttonList[i];
                 button.Size = new Size(ButtonWidth, ButtonHeight);
-                button.Location = new Point(IOMarginLeft + i * (ButtonWidth + BUttonSpacingX), this.Height - 60);
+                button.Location = new Point(IOMarginLeft + i * (ButtonWidth + ButtonSpacingX), this.Height - 60);
                 button.IMGContainer = buttonImage;
+                button.CheckedChanged += new EventHandler(diagnoseItemButton_CheckedChanged);
+                button.Toggle = true;
+                button.Font = currentFont;
+                button.Tag = i;//diagnoseItem_Tag
                 this.Controls.Add(button);
             }
             buttonList[0].Text = "5mm接近开关限位";
-            buttonList[0].Toggle = true;
             buttonList[1].Text = "10mm接近开关限位";
-            buttonList[1].Toggle = true;
+
+            exitButton.Size = new Size(ButtonWidth, ButtonHeight);
+            exitButton.Location = new Point(IOMarginLeft + 3 * (ButtonWidth + ButtonSpacingX), this.Height - 60);
+            exitButton.IMGContainer = buttonImage;
+            exitButton.Font = currentFont;
+            exitButton.Text = "返回";
+            exitButton.CheckedChanged += new EventHandler(exitButton_CheckedChanged);
+            this.Controls.Add(exitButton);
             this.ResumeLayout(false);
+        }
+
+        private void exitButton_CheckedChanged(object sender, EventArgs e)
+        {
+            this.DoExit();
+        }
+
+        private void diagnoseItemButton_CheckedChanged(object sender, EventArgs e)
+        {
+            ImageButton button = (ImageButton)sender;
+            if (button.Checked == true)
+            {
+                if ((int)button.Tag != diagnoseItem)
+                {
+                    int temp = diagnoseItem;
+                    DiagnoseItem = (int)button.Tag;
+                    buttonList[temp].Checked = false;
+                }
+            }
+            else
+            {
+                if ((int)button.Tag == diagnoseItem)
+                    button.Checked = true;
+            }
         }
 
         private const string numberFormat = "F1";
@@ -93,6 +134,18 @@ namespace AdvaMACSystem
         private const string VoltageUnit = "V";
 
         private int diagnoseItem = 0;//0: 5mm接近开关限位; 1: 10mm接近开关限位  
+        private int DiagnoseItem
+        {
+            set
+            {
+                if (diagnoseItem != value)
+                {
+                    diagnoseItem = value;
+                    RefreshList();
+                }
+            }
+        }
+
         private int pumpNumber = 4;
         private int cylinderNumber = 8;
         private List<CParaLabel> pumpImgLabelList = null;//四泵参数列表
@@ -101,22 +154,23 @@ namespace AdvaMACSystem
         private List<ImageButton> buttonList = null;//切换按钮列表
         private ImagesContaner buttonImage = null;//按钮背景图
         private ComCtrls.SimpleImagesContaner cylinderImage = null;//IO标签背景图
+        private ImageButton exitButton = null;
 
         #region 布局
-        private Font currentFont = null;//字体
-        private int IOMarginTop = 80;//第一行IO标签与顶端方向间距
+        private Font currentFont = null;//IO标签字体
+        private int IOMarginTop = 40;//第一行IO标签与顶端方向间距
         private int IOMarginLeft = 20;//第一列IO标签与左端方向间距
-        private int IOWidth = 235;//IO标签宽度
+        private int IOWidth = 210;//IO标签宽度
         private int IOHeight = 35;//IO标签高度
-        private int IOSpacingX = 15;//IO标签之间X方向间距
+        private int IOSpacingX = 40;//IO标签之间X方向间距
         private int IOSpacingY = 5;//IO标签之间Y方向间距
 
-        private int TextMarginLeft = 20;
+        private int TextMarginLeft = 15;
         private int TextMarginTop = 5;
 
-        private int ButtonWidth = 235;
-        private int ButtonHeight = 50;
-        private int BUttonSpacingX = 15;
+        private int ButtonWidth = 210;
+        private int ButtonHeight = 40;
+        private int ButtonSpacingX = 15;
         #endregion
 
         #region 属性
@@ -177,7 +231,10 @@ namespace AdvaMACSystem
 
         public override void DoEnter()
         {
+            buttonList[0].Checked = true;
+
             RefreshList();
+
             timer_Refresh.Enabled = true;
             base.DoEnter();
         }

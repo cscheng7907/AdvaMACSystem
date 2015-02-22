@@ -78,6 +78,27 @@ namespace AdvaMACSystem {
             }
         }
         
+        internal static System.Drawing.Bitmap Dgn_disable {
+            get {
+                object obj = ResourceManager.GetObject("Dgn_disable", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Dgn_down {
+            get {
+                object obj = ResourceManager.GetObject("Dgn_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Dgn_up {
+            get {
+                object obj = ResourceManager.GetObject("Dgn_up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap gray_off {
             get {
                 object obj = ResourceManager.GetObject("gray_off", resourceCulture);

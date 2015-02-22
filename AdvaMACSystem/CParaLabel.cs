@@ -24,7 +24,7 @@ namespace AdvaMACSystem
             initialize();
         }
 
-        private int paraOffsetX = 210;
+        private int paraOffsetX = 199;
         private int paraOffsetY = 5;
 
         private void initialize()
