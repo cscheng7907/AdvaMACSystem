@@ -43,6 +43,7 @@ namespace AdvaMACSystem
 #endif
 
             Create_WarnErrOper();
+            Create_historyOper();
 
             bigviewLocation = new System.Drawing.Point(0, panel_Head.Height);
             smallviewLocation = new System.Drawing.Point(0, panel_Head.Height + panel_Tabs.Height);
@@ -51,6 +52,7 @@ namespace AdvaMACSystem
 
             timer1.Enabled = true;
             WarnErrThreadStart();
+            historyRecordThreadStart();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -165,6 +167,53 @@ namespace AdvaMACSystem
 
             Label_CurError.Visible = errcount > 0;
             Label_CurError.Text = errcount.ToString();
+        }
+
+        #endregion
+
+        #region 历史数据的记录
+        private HistoryOperator historyOper = null;
+
+        private void Create_historyOper()
+        {
+
+            if (historyOper == null)
+            {
+                historyOper = new HistoryOperator();
+
+                historyOper.CanDatapool = CDataPool.GetDataPoolObject();
+            }
+        }
+
+        private Thread historyRecordThread;
+        private int historyRecordThreadInterval = 500;
+        private bool historyRecordThreadrunning = false;
+        private void historyRecordThreadStart()
+        {
+            if (historyRecordThreadrunning)
+                return;
+
+            historyRecordThread = new Thread(new ThreadStart(historyRecordThreadMethod));
+            historyRecordThread.Start();
+
+        }
+
+        private void historyRecordThreadStop()
+        {
+            historyRecordThreadrunning = false;
+
+        }
+
+        private void historyRecordThreadMethod()
+        {
+            historyRecordThreadrunning = true;
+            while (historyRecordThreadrunning)
+            {
+                Thread.Sleep(historyRecordThreadInterval);
+
+                if (historyOper != null)
+                    historyOper.Update();
+            }
         }
 
         #endregion

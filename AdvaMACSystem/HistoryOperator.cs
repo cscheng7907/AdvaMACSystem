@@ -11,7 +11,6 @@ namespace AdvaMACSystem
     {
         public HistoryOperator()
         {
-            _candatapool = DataPool.CDataPool.GetDataPoolObject();
         }
 #if WindowsCE
         public const string PressureRecFileName = @"\HardDisk\History\{0}\{1}\Pre-{2}.Rec";
