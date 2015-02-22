@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="AdvCan.cs" />
     <Compile Include="AdvCANIO.cs" />
+    <Compile Include="HistoryOperator.cs" />
     <Compile Include="CParaLabel.cs">
       <SubType>Component</SubType>
     </Compile>

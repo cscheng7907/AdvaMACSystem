@@ -84,6 +84,9 @@
       <Link>CylinderCellBlock.designer.cs</Link>
       <DependentUpon>CylinderCellBlock.cs</DependentUpon>
     </Compile>
+    <Compile Include="..\AdvaMACSystem\HistoryOperator.cs">
+      <Link>HistoryOperator.cs</Link>
+    </Compile>
     <Compile Include="..\AdvaMACSystem\mainForm.cs">
       <Link>mainForm.cs</Link>
       <SubType>Form</SubType>
