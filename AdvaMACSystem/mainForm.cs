@@ -10,16 +10,17 @@ using System.Runtime.InteropServices;
 using System.IO;
 using System.Threading;
 using DataPool;
+using ComCtrls;
 
 namespace AdvaMACSystem
 {
     public partial class mainForm : Form
     {
-      private   System.Drawing.Point bigviewLocation;
-    private     System.Drawing.Point smallviewLocation;
-    private     System.Drawing.Size bigviewsize;
-      private   System.Drawing.Size smallviewsize;
-      private AdvaCanBus AdvaCanBusObj = null;
+        private System.Drawing.Point bigviewLocation;
+        private System.Drawing.Point smallviewLocation;
+        private System.Drawing.Size bigviewsize;
+        private System.Drawing.Size smallviewsize;
+        private AdvaCanBus AdvaCanBusObj = null;
 
         public mainForm()
         {
@@ -251,9 +252,25 @@ namespace AdvaMACSystem
 
         private void panel_Head_Click(object sender, EventArgs e)
         {
-            //退出程序，进入wince
+            KeypadForm f = KeypadForm.GetKeypadForm("0");
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                //退出程序，进入wince 
+                if (f.KeyText == "111111")
+                {
+                    System.Diagnostics.Process.Start("explorer.exe", "");
+                    //System.Diagnostics.Process.Start("\\NORFlash\\001\\COPY.bat", "");
+                    Application.DoEvents();
+                    Application.Exit();
+                }
+                else if (f.KeyText == "222222") //软件升级
+                {
+                    System.Diagnostics.Process.Start("\\HardDisk\\AdvaMACSysUpdater.exe", "");
 
-            //软件升级
+                    Application.DoEvents();
+                    Application.Exit();
+                }
+            }
         }
 
         #region Tab 事件
