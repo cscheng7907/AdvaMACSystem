@@ -78,6 +78,27 @@ namespace AdvaMACSystem {
             }
         }
         
+        internal static System.Drawing.Bitmap Dgn_disable {
+            get {
+                object obj = ResourceManager.GetObject("Dgn_disable", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Dgn_down {
+            get {
+                object obj = ResourceManager.GetObject("Dgn_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Dgn_up {
+            get {
+                object obj = ResourceManager.GetObject("Dgn_up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap gray_off {
             get {
                 object obj = ResourceManager.GetObject("gray_off", resourceCulture);
@@ -109,6 +130,27 @@ namespace AdvaMACSystem {
         internal static System.Drawing.Bitmap greenbar {
             get {
                 object obj = ResourceManager.GetObject("greenbar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap IOblack {
+            get {
+                object obj = ResourceManager.GetObject("IOblack", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap IOlabel {
+            get {
+                object obj = ResourceManager.GetObject("IOlabel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap IOred {
+            get {
+                object obj = ResourceManager.GetObject("IOred", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
