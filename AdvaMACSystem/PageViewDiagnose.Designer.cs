@@ -41,7 +41,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Name = "PageViewDiagnose";
-            this.Size = new System.Drawing.Size(1024, 600);
+            this.Size = new System.Drawing.Size(1024, 674);
             this.ResumeLayout(false);
 
         }

@@ -19,8 +19,13 @@ namespace AdvaMACSystem
             _candatapool = DataPool.CDataPool.GetDataPoolObject();
 
             pumpImgLabelList = new List<CParaLabel>();
+            pumpTitleList = new List<ImageLabel>();
             cylinderList = new List<ImageLabel>();
             buttonList = new List<ImageButton>();
+            pumpNameImage = new SimpleImagesContaner();
+            pumpNameImage.BackImg = pumpNameImage.CheckedBackImg
+                = pumpNameImage.ImgDisable = AdvaMACSystemRes.IO;
+            
             pumpParaImage = new SimpleImagesContaner();
             pumpParaImage.BackImg = pumpParaImage.CheckedBackImg
                 = pumpParaImage.ImgDisable = AdvaMACSystemRes.IOlabel;
@@ -35,6 +40,13 @@ namespace AdvaMACSystem
             cylinderImage.CheckedBackImg = AdvaMACSystemRes.IOblack;
 
             currentFont = new Font("微软雅黑", 14F, FontStyle.Regular);
+            //new pump names
+            for (int i = 0; i < 4; i++)
+            {
+                ImageLabel pumpName = new ImageLabel();
+                pumpTitleList.Add(pumpName);
+            }
+
             //new pump paras
             for (int i = 0; i < 12; i++)
             {
@@ -58,12 +70,24 @@ namespace AdvaMACSystem
 
             this.SuspendLayout();
 
+            for (int i = 0; i < 4; i++)
+            {
+                ImageLabel pumpName = pumpTitleList[i];
+                pumpName.Size = new Size(IOWidth, IOHeight);
+                pumpName.Location = new Point(IOMarginLeft + i * (IOWidth + IOSpacingX), IOMarginTop);
+                pumpName.Font = currentFont;
+                pumpName.ForeColor = textColor;
+                pumpName.IMGContainer = pumpNameImage;
+                this.Controls.Add(pumpName);
+            }
+
             for (int i = 0; i < 12; i++)
             {
                 CParaLabel pumpPara = pumpImgLabelList[i];
                 pumpPara.Size = new Size(IOWidth, IOHeight);
-                pumpPara.Location = new Point(IOMarginLeft + (i / 3) * (IOWidth + IOSpacingX), IOMarginTop + (i % 3) * (IOHeight + IOSpacingY));
+                pumpPara.Location = new Point(IOMarginLeft + (i / 3) * (IOWidth + IOSpacingX), IOMarginTop + (i % 3 + 1) * (IOHeight + IOSpacingY));
                 pumpPara.Font = currentFont;
+                pumpPara.ForeColor = textColor;
                 pumpPara.TextX = TextMarginLeft;
                 pumpPara.TextY = TextMarginTop;
                 pumpPara.IMGContainer = pumpParaImage;
@@ -73,9 +97,10 @@ namespace AdvaMACSystem
             {
                 ImageLabel cylinder = cylinderList[i];
                 cylinder.Size = new Size(IOWidth, IOHeight);
-                cylinder.Location = new Point(IOMarginLeft + (i / 8) * (IOWidth + IOSpacingX), IOMarginTop + (i % 8 +3) * (IOHeight + IOSpacingY));
+                cylinder.Location = new Point(IOMarginLeft + (i / 8) * (IOWidth + IOSpacingX), IOMarginTop + (i % 8 +4) * (IOHeight + IOSpacingY));
                 cylinder.IMGContainer = cylinderImage;
                 cylinder.Font = currentFont;
+                cylinder.ForeColor = textColor;
                 cylinder.TextX = TextMarginLeft;
                 cylinder.TextY = TextMarginTop;
                 this.Controls.Add(cylinder);
@@ -84,11 +109,12 @@ namespace AdvaMACSystem
             {
                 ImageButton button = buttonList[i];
                 button.Size = new Size(ButtonWidth, ButtonHeight);
-                button.Location = new Point(IOMarginLeft + i * (ButtonWidth + ButtonSpacingX), this.Height - 60);
+                button.Location = new Point(IOMarginLeft + i * (ButtonWidth + ButtonSpacingX), ButtonMarginTop);
                 button.IMGContainer = buttonImage;
                 button.CheckedChanged += new EventHandler(diagnoseItemButton_CheckedChanged);
                 button.Toggle = true;
                 button.Font = currentFont;
+                button.ForeColor = textColor;
                 button.Tag = i;//diagnoseItem_Tag
                 this.Controls.Add(button);
             }
@@ -96,7 +122,7 @@ namespace AdvaMACSystem
             buttonList[1].Text = "10mm接近开关限位";
 
             exitButton.Size = new Size(ButtonWidth, ButtonHeight);
-            exitButton.Location = new Point(IOMarginLeft + 3 * (ButtonWidth + ButtonSpacingX), this.Height - 60);
+            exitButton.Location = new Point(IOMarginLeft + 3 * (ButtonWidth + ButtonSpacingX), ButtonMarginTop);
             exitButton.IMGContainer = buttonImage;
             exitButton.Font = currentFont;
             exitButton.Text = "返回";
@@ -148,6 +174,8 @@ namespace AdvaMACSystem
 
         private int pumpNumber = 4;
         private int cylinderNumber = 8;
+        private List<ImageLabel> pumpTitleList = null;//四泵名称列表
+        private ComCtrls.SimpleImagesContaner pumpNameImage = null;//四泵名称背景图
         private List<CParaLabel> pumpImgLabelList = null;//四泵参数列表
         private ComCtrls.SimpleImagesContaner pumpParaImage = null;//四泵参数背景图
         private List<ImageLabel> cylinderList = null;//四泵三十二缸列表
@@ -157,8 +185,9 @@ namespace AdvaMACSystem
         private ImageButton exitButton = null;
 
         #region 布局
+        private Color textColor = Color.Black;//字体颜色
         private Font currentFont = null;//IO标签字体
-        private int IOMarginTop = 40;//第一行IO标签与顶端方向间距
+        private int IOMarginTop = 80;//第一行IO标签与顶端方向间距
         private int IOMarginLeft = 20;//第一列IO标签与左端方向间距
         private int IOWidth = 210;//IO标签宽度
         private int IOHeight = 35;//IO标签高度
@@ -170,7 +199,8 @@ namespace AdvaMACSystem
 
         private int ButtonWidth = 210;
         private int ButtonHeight = 40;
-        private int ButtonSpacingX = 15;
+        private int ButtonMarginTop = 600;
+        private int ButtonSpacingX = 40;
         #endregion
 
         #region 属性
@@ -251,9 +281,10 @@ namespace AdvaMACSystem
             int startPumpIndex = 0;
             for (int i = 0; i < 4; i++)
             {
-                pumpImgLabelList[i * 3 + 0].Text = (startPumpIndex + i + 1).ToString() + "#泵站压力";
-                pumpImgLabelList[i * 3 + 1].Text = (startPumpIndex + i + 1).ToString() + "#控制电压";
-                pumpImgLabelList[i * 3 + 2].Text = (startPumpIndex + i + 1).ToString() + "#供电方式";
+                pumpTitleList[i].Text = (startPumpIndex + i + 1).ToString() + "#泵站";
+                pumpImgLabelList[i * 3 + 0].Text = "泵站压力";
+                pumpImgLabelList[i * 3 + 1].Text = "控制器电压";
+                pumpImgLabelList[i * 3 + 2].Text = "供电方式";
                 for (int j = 0; j < 8; j++)
                 {
                     cylinderList[i * 8 + j].Text = String.Format("{0}#油缸限位", j + 1);
