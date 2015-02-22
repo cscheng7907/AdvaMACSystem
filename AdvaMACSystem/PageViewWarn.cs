@@ -14,5 +14,20 @@ namespace AdvaMACSystem
         {
             InitializeComponent();
         }
+
+        private bool _isreal = false;
+        public bool IsReal
+        {
+            get { return _isreal; }
+            set
+            {
+                if (_isreal != value)
+                {
+                    _isreal = value;
+                    label1.Text = "系统报警信息-" +
+                       ((_isreal) ? "实时数据" : "历史数据");
+                }
+            }
+        }
     }
 }
