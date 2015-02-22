@@ -101,7 +101,11 @@ namespace AdvaMACSystem
             set
             {
                 if (_isreal != value)
+                {
                     _isreal = value;
+                    label1.Text = "系统故障信息-" +
+                       ((_isreal) ? "实时数据" : "历史数据");
+                }
             }
         }
 
@@ -109,18 +113,16 @@ namespace AdvaMACSystem
         public WarnErrOperator Optor { set { if (optor != value)optor = value; } }
 
         private string[] strlst = new string[]{
-        /*cdtError_Pump_3501_3504,//*/"泵站及控制器 故障",// 4*16
-        /*cdtError_PressureSenser_3501_3504,//*/"油缸压力传感器故障",// 4*8
-        /*cdtError_PositionSenser_3501_3504,//*/"油缸长度传感器故障",// 4*8
+            /*cdtError_Pump_3501_3504,//*/"泵站及控制器 故障",// 4*16
+            /*cdtError_PressureSenser_3501_3504,//*/"油缸压力传感器故障",// 4*8
+            /*cdtError_PositionSenser_3501_3504,//*/"油缸长度传感器故障",// 4*8
 
-        /*cdtError_cylinder_extend_3511_3514,//*/"油缸伸出电磁阀线路短路",// 4*8
-        /*cdtError_cylinder_retract_3511_3514,//*/"油缸缩回电磁阀线路短路",// 4*8
-        /*cdtError_MachLock_extend_3511_3514,//*/"油缸机械锁伸出电磁阀线路短路",// 4*8
-        /*cdtError_MachLock_retract_3511_3514,//*/"油缸机械锁缩回电磁阀线路短路"// 4*8      
-        
+            /*cdtError_cylinder_extend_3511_3514,//*/"油缸伸出电磁阀线路短路",// 4*8
+            /*cdtError_cylinder_retract_3511_3514,//*/"油缸缩回电磁阀线路短路",// 4*8
+            /*cdtError_MachLock_extend_3511_3514,//*/"油缸机械锁伸出电磁阀线路短路",// 4*8
+            /*cdtError_MachLock_retract_3511_3514,//*/"油缸机械锁缩回电磁阀线路短路"// 4*8           
         };
         private int firstcmdtype = (int)CmdDataType.cdtError_Pump_3501_3504;
-
 
 
     }

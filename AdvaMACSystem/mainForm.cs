@@ -10,11 +10,18 @@ using System.Runtime.InteropServices;
 using System.IO;
 using System.Threading;
 using DataPool;
+using ComCtrls;
 
 namespace AdvaMACSystem
 {
     public partial class mainForm : Form
     {
+        private System.Drawing.Point bigviewLocation;
+        private System.Drawing.Point smallviewLocation;
+        private System.Drawing.Size bigviewsize;
+        private System.Drawing.Size smallviewsize;
+        private AdvaCanBus AdvaCanBusObj = null;
+
         public mainForm()
         {
             InitializeComponent();
@@ -25,13 +32,25 @@ namespace AdvaMACSystem
             if (isFontExists())
                 LoadFont();
 
-            WarnErrOper = new WarnErrOperator();
+#if WindowsCE
+            AdvaCanBusObj = AdvaCanBus.GetAdvaCanBus();
+            AdvaCanBusObj.CanDatapool = CDataPool.GetDataPoolObject();
+            if (!AdvaCanBusObj.Open())
+            {
+                MessageBox.Show(AdvaCanBusObj.canErrStrArray[AdvaCanBusObj.CanErrCode]);
+                return;
+            }
+#endif
 
-            WarnErrOper.CanDatapool = CDataPool.GetDataPoolObject();
+            Create_WarnErrOper();
 
-            WarnErrOper.OnWarnErrChanged += new EventHandler(DoWarn);
+            bigviewLocation = new System.Drawing.Point(0, panel_Head.Height);
+            smallviewLocation = new System.Drawing.Point(0, panel_Head.Height + panel_Tabs.Height);
+            smallviewsize = new System.Drawing.Size(this.Width, this.Height - panel_Head.Height - panel_Tabs.Height);
+            bigviewsize = new System.Drawing.Size(this.Width, this.Height - panel_Head.Height);
 
             timer1.Enabled = true;
+            WarnErrThreadStart();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -82,21 +101,34 @@ namespace AdvaMACSystem
         #region 报警和故障的扫描
         private WarnErrOperator WarnErrOper = null;
 
+        private void Create_WarnErrOper()
+        {
+
+            if (WarnErrOper == null)
+            {
+                WarnErrOper = new WarnErrOperator();
+
+                WarnErrOper.CanDatapool = CDataPool.GetDataPoolObject();
+
+                WarnErrOper.OnWarnErrChanged += new EventHandler(DoWarn);
+            }
+        }
 
         private Thread WarnErrThread;
         private int WarnErrThreadInterval = 500;
         private bool WarnErrThreadrunning = false;
-        private void Start()
+        private void WarnErrThreadStart()
         {
             if (WarnErrThreadrunning)
                 return;
 
+            SetList = new UpdateWarnErrorDelegate(UpdateWarnErrorLabel);
             WarnErrThread = new Thread(new ThreadStart(WarnErrThreadMethod));
             WarnErrThread.Start();
 
         }
 
-        private void Stop()
+        private void WarnErrThreadStop()
         {
             WarnErrThreadrunning = false;
 
@@ -116,12 +148,209 @@ namespace AdvaMACSystem
 
         private void DoWarn(object sender, EventArgs e)
         {
+            if (WarnErrOper != null)
+            {
+                label_CurWarning.Invoke(SetList, WarnErrOper.CurWarningList.Count, WarnErrOper.CurErrorList.Count);
 
+            }
+        }
+        public delegate void UpdateWarnErrorDelegate(int warncount, int errcount);
+        //Controls can be used in thread by delegate
+        private UpdateWarnErrorDelegate SetList;
 
+        public void UpdateWarnErrorLabel(int warncount, int errcount)
+        {
+            label_CurWarning.Visible = warncount > 0;
+            label_CurWarning.Text = warncount.ToString();
 
+            Label_CurError.Visible = errcount > 0;
+            Label_CurError.Text = errcount.ToString();
         }
 
         #endregion
+
+        #region PageView vars
+        private PageViewMAC pvMAC = null;
+        private PageViewDiagnose pvDiagnose = null;
+        private PageViewError pvError = null;
+        private PageViewHistory pvHistory = null;
+        private PageViewParameter pvPara = null;
+        private PageViewWarn pvWarn = null;
+
+        private void Create_pvWarn()
+        {
+            if (pvWarn == null)
+            {
+                pvWarn = new PageViewWarn();
+                pvWarn.Location = bigviewLocation;
+                pvWarn.Size = bigviewsize;
+                pvWarn.Enabled = false;
+                this.Controls.Add(this.pvWarn);
+            }
+        }
+        private void Create_pvPara()
+        {
+            if (pvPara == null)
+            {
+                pvPara = new PageViewParameter();
+                pvPara.Location = bigviewLocation;
+                pvPara.Size = bigviewsize;
+                pvPara.Enabled = false;
+                this.Controls.Add(this.pvPara);
+            }
+        }
+
+        private void Create_pvHistory()
+        {
+            if (pvHistory == null)
+            {
+                pvHistory = new PageViewHistory();
+                pvHistory.Location = bigviewLocation;
+                pvHistory.Size = bigviewsize;
+                pvHistory.Enabled = false;
+                this.Controls.Add(this.pvHistory);
+            }
+        }
+
+        private void Create_pvError()
+        {
+            if (pvError == null)
+            {
+                pvError = new PageViewError();
+                pvError.Location = bigviewLocation;
+                pvError.Size = bigviewsize;
+                pvError.Enabled = false;
+                this.Controls.Add(this.pvError);
+            }
+        }
+
+        private void Create_pvDiagnose()
+        {
+            if (pvDiagnose == null)
+            {
+                pvDiagnose = new PageViewDiagnose();
+                pvDiagnose.Location = bigviewLocation;
+                pvDiagnose.Size = bigviewsize;
+                pvDiagnose.Enabled = false;
+                this.Controls.Add(this.pvDiagnose);
+            }
+        }
+
+        private void Create_pvMAC()
+        {
+            if (pvMAC == null)
+            {
+                pvMAC = new PageViewMAC();
+                pvMAC.Location = smallviewLocation;
+                pvMAC.Size = smallviewsize;
+                pvMAC.Enabled = false;
+                this.Controls.Add(this.pvMAC);
+            }
+        }
+
+        #endregion
+
+        private void panel_Head_Click(object sender, EventArgs e)
+        {
+            KeypadForm f = KeypadForm.GetKeypadForm("0");
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                //退出程序，进入wince 
+                if (f.KeyText == "111111")
+                {
+                    System.Diagnostics.Process.Start("explorer.exe", "");
+                    //System.Diagnostics.Process.Start("\\NORFlash\\001\\COPY.bat", "");
+                    Application.DoEvents();
+                    Application.Exit();
+                }
+                else if (f.KeyText == "222222") //软件升级
+                {
+                    System.Diagnostics.Process.Start("\\HardDisk\\AdvaMACSysUpdater.exe", "");
+
+                    Application.DoEvents();
+                    Application.Exit();
+                }
+            }
+        }
+
+        #region Tab 事件
+        private void imageLabel_MAC_Click(object sender, EventArgs e)
+        {
+            Create_pvMAC();
+            pvMAC.DoEnter();
+        }
+
+        private void imageLabel_RealWarn_Click(object sender, EventArgs e)
+        {
+            Create_pvWarn();
+            pvWarn.IsReal = true;
+            pvWarn.DoEnter();
+        }
+
+        private void imageLabel_RealError_Click(object sender, EventArgs e)
+        {
+            Create_pvError();
+            pvError.IsReal = true;
+            pvError.DoEnter();
+        }
+
+        private void imageLabel_History_Click(object sender, EventArgs e)
+        {
+            Create_pvHistory();
+            pvHistory.DoEnter();
+        }
+
+        private void imageLabel_HisWarn_Click(object sender, EventArgs e)
+        {
+            Create_pvWarn();
+            pvWarn.IsReal = false;
+            pvWarn.DoEnter();
+
+        }
+
+        private void imageLabel_HisError_Click(object sender, EventArgs e)
+        {
+            Create_pvError();
+            pvError.IsReal = false;
+            pvError.DoEnter();
+
+        }
+
+        private void imageLabel_Setup_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void imageLabel_Para_Click(object sender, EventArgs e)
+        {
+            Create_pvPara();
+            pvPara.DoEnter();
+        }
+
+        private void imageLabel_Senser_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void imageLabel_Diagnose_Click(object sender, EventArgs e)
+        {
+            Create_pvDiagnose();
+            pvDiagnose.DoEnter();
+        }
+        private void label_CurWarning_Click(object sender, EventArgs e)
+        {
+            imageLabel_RealWarn_Click(sender, e);
+        }
+
+        private void Label_CurError_Click(object sender, EventArgs e)
+        {
+            imageLabel_RealError_Click(sender, e);
+        }
+        #endregion
+
+
+
+
+
 
 
     }

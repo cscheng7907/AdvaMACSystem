@@ -28,79 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem33 = new System.Windows.Forms.ListViewItem();
-            System.Windows.Forms.ListViewItem listViewItem34 = new System.Windows.Forms.ListViewItem();
-            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
-            this.imageButton1 = new ComCtrls.ImageButton(this.components);
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem();
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem();
             this.label1 = new System.Windows.Forms.Label();
-            listView1 = new System.Windows.Forms.ListView();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
-            // 
-            // listView1
-            // 
-            listView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            listView1.Columns.Add(this.columnHeader1);
-            listView1.Columns.Add(this.columnHeader2);
-            listView1.Columns.Add(this.columnHeader4);
-            listView1.Columns.Add(this.columnHeader3);
-            listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            listViewItem33.Text = "1";
-            listViewItem33.SubItems.Add("2015");
-            listViewItem33.SubItems.Add("发生");
-            listViewItem33.SubItems.Add("err");
-            listViewItem34.Text = "2";
-            listViewItem34.SubItems.Add("2014");
-            listViewItem34.SubItems.Add("消失");
-            listViewItem34.SubItems.Add("ERR2");
-            listView1.Items.Add(listViewItem33);
-            listView1.Items.Add(listViewItem34);
-            listView1.Location = new System.Drawing.Point(16, 52);
-            listView1.Name = "listView1";
-            listView1.Size = new System.Drawing.Size(1067, 394);
-            listView1.TabIndex = 0;
-            listView1.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "序号";
-            this.columnHeader1.Width = 100;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "时间";
-            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader2.Width = 200;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "事件";
-            this.columnHeader4.Width = 80;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "内容";
-            this.columnHeader3.Width = 680;
-            // 
-            // imageButton1
-            // 
-            this.imageButton1.Checked = false;
-            this.imageButton1.DownColor = System.Drawing.SystemColors.Control;
-            this.imageButton1.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageButton1.Location = new System.Drawing.Point(883, 452);
-            this.imageButton1.Name = "imageButton1";
-            this.imageButton1.ShortcutKeys = System.Windows.Forms.Keys.None;
-            this.imageButton1.Size = new System.Drawing.Size(200, 52);
-            this.imageButton1.TabIndex = 1;
-            this.imageButton1.TabStop = false;
-            this.imageButton1.Text = "返回";
-            this.imageButton1.Toggle = false;
-            this.imageButton1.TransParent = false;
-            this.imageButton1.UpColor = System.Drawing.SystemColors.Control;
             // 
             // label1
             // 
@@ -111,27 +47,73 @@
             this.label1.Text = "系统故障信息-实时数据";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // listView1
+            // 
+            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView1.Columns.Add(this.columnHeader5);
+            this.listView1.Columns.Add(this.columnHeader6);
+            this.listView1.Columns.Add(this.columnHeader7);
+            this.listView1.Columns.Add(this.columnHeader8);
+            this.listView1.FullRowSelect = true;
+            this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            listViewItem1.Text = "1";
+            listViewItem1.SubItems.Add("2014");
+            listViewItem1.SubItems.Add("发生");
+            listViewItem1.SubItems.Add("err1");
+            listViewItem2.Text = "2";
+            listViewItem2.SubItems.Add("2015");
+            listViewItem2.SubItems.Add("消失");
+            listViewItem2.SubItems.Add("err2");
+            this.listView1.Items.Add(listViewItem1);
+            this.listView1.Items.Add(listViewItem2);
+            this.listView1.Location = new System.Drawing.Point(5, 57);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(1014, 519);
+            this.listView1.TabIndex = 1;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "序号";
+            this.columnHeader5.Width = 80;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "时间";
+            this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader6.Width = 200;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "事件";
+            this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader7.Width = 80;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "内容";
+            this.columnHeader8.Width = 620;
+            // 
             // PageViewError
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.imageButton1);
-            this.Controls.Add(listView1);
             this.Name = "PageViewError";
-            this.Size = new System.Drawing.Size(1099, 514);
+            this.Size = new System.Drawing.Size(1024, 670);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private ComCtrls.ImageButton imageButton1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
     }
 }

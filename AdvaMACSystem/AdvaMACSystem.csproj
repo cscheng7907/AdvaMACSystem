@@ -149,6 +149,9 @@
     <EmbeddedResource Include="PageViewMAC.resx">
       <DependentUpon>PageViewMAC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PageViewWarn.resx">
+      <DependentUpon>PageViewWarn.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
