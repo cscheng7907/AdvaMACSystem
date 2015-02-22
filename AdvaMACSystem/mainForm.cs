@@ -22,17 +22,25 @@ namespace AdvaMACSystem
 
         private void mainForm_Load(object sender, EventArgs e)
         {
+            if (isFontExists())
+                LoadFont();
+
             WarnErrOper = new WarnErrOperator();
 
             WarnErrOper.CanDatapool = CDataPool.GetDataPoolObject();
 
             WarnErrOper.OnWarnErrChanged += new EventHandler(DoWarn);
+
+            timer1.Enabled = true;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             DateTime dt = DateTime.Now;
-            lb_date.Text = string.Format("{0:00}-{1:00}-{2:00} {3:00}:{4:00}:{5:00}", dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
+            // lb_date.Text = string.Format("{0:00}-{1:00}-{2:00} {3:00}:{4:00}:{5:00}", dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
+            lb_date.Text = string.Format("日期：{0:0000}-{1:00}-{2:00}", dt.Year, dt.Month, dt.Day);//"日期：2015-02-12";
+
+            lb_time.Text = string.Format("时间：{0:00} : {1:00} : {2:00}", dt.Hour, dt.Minute, dt.Second);//"时间：12 : 11 : 18";
         }
 
         #region 加载字体

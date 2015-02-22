@@ -46,8 +46,11 @@ namespace ComCtrls
             }
             set
             {
-                backimg = value;
-                this.DoRefresh();
+                if (backimg != value)
+                {
+                    backimg = value;
+                    this.DoRefresh();
+                }
             }
         }
 
@@ -60,8 +63,11 @@ namespace ComCtrls
             }
             set
             {
-                checkedBackimg = value;
-                this.DoRefresh();
+                if (checkedBackimg != value)
+                {
+                    checkedBackimg = value;
+                    this.DoRefresh();
+                }
             }
         }
 
@@ -74,8 +80,11 @@ namespace ComCtrls
             }
             set
             {
-                imgdisable = value;
-                this.DoRefresh();
+                if (imgdisable != value)
+                {
+                    imgdisable = value;
+                    this.DoRefresh();
+                }
             }
         }
 
@@ -88,8 +97,11 @@ namespace ComCtrls
             }
             set
             {
-                icon = value;
-                this.DoRefresh();
+                if (icon != value)
+                {
+                    icon = value;
+                    this.DoRefresh();
+                }
             }
         }
     }
@@ -296,8 +308,11 @@ namespace ComCtrls
             }
             set
             {
-                base.Enabled = value;
-                this.Refresh();
+                if (base.Enabled != value)
+                {
+                    base.Enabled = value;
+                    this.Refresh();
+                }
             }
         }
 
@@ -328,9 +343,12 @@ namespace ComCtrls
             }
             set
             {
-                base.Text = value;
+                if (base.Text != value)
+                {
+                    base.Text = value;
 
-                this.Invalidate();
+                    this.Invalidate();
+                }
             }
         }
 
@@ -340,8 +358,11 @@ namespace ComCtrls
             get { return textX; }
             set
             {
-                textX = value;
-                this.Invalidate();
+                if (textX != value)
+                {
+                    textX = value;
+                    this.Invalidate();
+                }
             }
         }
 
@@ -351,8 +372,11 @@ namespace ComCtrls
             get { return textY; }
             set
             {
-                textY = value;
-                this.Invalidate();
+                if (textY != value)
+                {
+                    textY = value;
+                    this.Invalidate();
+                }
             }
         }
 
@@ -366,8 +390,11 @@ namespace ComCtrls
             }
             set
             {
-                transparent = value;
-                this.Invalidate();
+                if (transparent != value)
+                {
+                    transparent = value;
+                    this.Invalidate();
+                }
             }
         }
 
@@ -437,8 +464,11 @@ namespace ComCtrls
             }
             set
             {
-                backimg = value;
-                this.Invalidate();
+                if (backimg != value)
+                {
+                    backimg = value;
+                    this.Invalidate();
+                }
             }
         }
 

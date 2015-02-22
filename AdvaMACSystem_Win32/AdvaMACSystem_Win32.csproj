@@ -60,6 +60,14 @@
     <Compile Include="..\AdvaMACSystem\AdvCANIO.cs">
       <Link>AdvCANIO.cs</Link>
     </Compile>
+    <Compile Include="..\AdvaMACSystem\CPumpButton.cs">
+      <Link>CPumpButton.cs</Link>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="..\AdvaMACSystem\CPumpButton.designer.cs">
+      <Link>CPumpButton.designer.cs</Link>
+      <DependentUpon>CPumpButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="..\AdvaMACSystem\CylinderCellBlock.cs">
       <Link>CylinderCellBlock.cs</Link>
       <SubType>UserControl</SubType>
@@ -139,6 +147,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="..\AdvaMACSystem\AdvaMACSystemRes.resx">
       <Link>AdvaMACSystemRes.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\AdvaMACSystem\CPumpButton.resx">
+      <Link>CPumpButton.resx</Link>
+      <DependentUpon>CPumpButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="..\AdvaMACSystem\CylinderCellBlock.resx">
       <Link>CylinderCellBlock.resx</Link>

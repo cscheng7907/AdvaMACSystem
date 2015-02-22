@@ -32,13 +32,13 @@
             this.timer1 = new System.Windows.Forms.Timer();
             this.lb_date = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.LabelCurError = new ComCtrls.ImageLabel();
+            this.label_CurWarning = new ComCtrls.ImageLabel();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lb_time = new System.Windows.Forms.Label();
-            this.LabelCurError = new ComCtrls.ImageLabel();
-            this.label_CurWarning = new ComCtrls.ImageLabel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.imageLabel1 = new ComCtrls.ImageLabel();
             this.panel1.SuspendLayout();
@@ -56,6 +56,7 @@
             this.lb_date.Location = new System.Drawing.Point(834, 15);
             this.lb_date.Name = "lb_date";
             this.lb_date.Size = new System.Drawing.Size(187, 27);
+            this.lb_date.ForeColor = System.Drawing.Color.Black; 
             this.lb_date.Text = "日期：2015-02-12";
             // 
             // panel1
@@ -73,10 +74,41 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1024, 84);
             // 
+            // LabelCurError
+            // 
+            this.LabelCurError.BackImg = ((System.Drawing.Image)(resources.GetObject("LabelCurError.BackImg")));
+            this.LabelCurError.Checked = false;
+            this.LabelCurError.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
+            this.LabelCurError.Layout = ComCtrls.KTLayout.GlyphTop;
+            this.LabelCurError.Location = new System.Drawing.Point(734, 3);
+            this.LabelCurError.Name = "LabelCurError";
+            this.LabelCurError.Size = new System.Drawing.Size(93, 78);
+            this.LabelCurError.TabIndex = 14;
+            this.LabelCurError.Text = "33";
+            this.LabelCurError.TextX = 65F;
+            this.LabelCurError.TextY = 58F;
+            this.LabelCurError.TransParent = false;
+            // 
+            // label_CurWarning
+            // 
+            this.label_CurWarning.BackImg = ((System.Drawing.Image)(resources.GetObject("label_CurWarning.BackImg")));
+            this.label_CurWarning.Checked = false;
+            this.label_CurWarning.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
+            this.label_CurWarning.Layout = ComCtrls.KTLayout.GlyphTop;
+            this.label_CurWarning.Location = new System.Drawing.Point(635, 3);
+            this.label_CurWarning.Name = "label_CurWarning";
+            this.label_CurWarning.Size = new System.Drawing.Size(93, 78);
+            this.label_CurWarning.TabIndex = 7;
+            this.label_CurWarning.Text = "60";
+            this.label_CurWarning.TextX = 65F;
+            this.label_CurWarning.TextY = 58F;
+            this.label_CurWarning.TransParent = false;
+            // 
             // label4
             // 
             this.label4.Location = new System.Drawing.Point(268, 54);
             this.label4.Name = "label4";
+            this.label4.ForeColor = System.Drawing.Color.Black; 
             this.label4.Size = new System.Drawing.Size(100, 20);
             this.label4.Text = "工程编号：XXXX";
             // 
@@ -84,6 +116,7 @@
             // 
             this.label3.Location = new System.Drawing.Point(268, 34);
             this.label3.Name = "label3";
+            this.label3.ForeColor = System.Drawing.Color.Black; 
             this.label3.Size = new System.Drawing.Size(228, 20);
             this.label3.Text = "工程名称：XXXXXXXX";
             // 
@@ -100,6 +133,7 @@
             this.label2.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
             this.label2.Location = new System.Drawing.Point(112, 6);
             this.label2.Name = "label2";
+            this.label2.ForeColor = System.Drawing.Color.Black; 
             this.label2.Size = new System.Drawing.Size(337, 28);
             this.label2.Text = "HIS0350A钢支撑轴力补偿系统";
             // 
@@ -108,44 +142,13 @@
             this.lb_time.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
             this.lb_time.Location = new System.Drawing.Point(834, 54);
             this.lb_time.Name = "lb_time";
+            this.lb_time.ForeColor = System.Drawing.Color.Black; 
             this.lb_time.Size = new System.Drawing.Size(187, 30);
             this.lb_time.Text = "时间：12 : 11 : 18";
             // 
-            // LabelCurError
-            // 
-            this.LabelCurError.BackImg = ((System.Drawing.Image)(resources.GetObject("LabelCurError.BackImg")));
-            this.LabelCurError.Checked = false;
-            this.LabelCurError.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
-            this.LabelCurError.IMGContainer = null;
-            this.LabelCurError.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.LabelCurError.Location = new System.Drawing.Point(734, 3);
-            this.LabelCurError.Name = "LabelCurError";
-            this.LabelCurError.Size = new System.Drawing.Size(93, 78);
-            this.LabelCurError.TabIndex = 14;
-            this.LabelCurError.Text = "33";
-            this.LabelCurError.TextX = 65F;
-            this.LabelCurError.TextY = 58F;
-            this.LabelCurError.TransParent = false;
-            // 
-            // label_CurWarning
-            // 
-            this.label_CurWarning.BackImg = ((System.Drawing.Image)(resources.GetObject("label_CurWarning.BackImg")));
-            this.label_CurWarning.Checked = false;
-            this.label_CurWarning.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
-            this.label_CurWarning.IMGContainer = null;
-            this.label_CurWarning.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.label_CurWarning.Location = new System.Drawing.Point(635, 3);
-            this.label_CurWarning.Name = "label_CurWarning";
-            this.label_CurWarning.Size = new System.Drawing.Size(93, 78);
-            this.label_CurWarning.TabIndex = 7;
-            this.label_CurWarning.Text = "60";
-            this.label_CurWarning.TextX = 65F;
-            this.label_CurWarning.TextY = 58F;
-            this.label_CurWarning.TransParent = false;
-            // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel2.BackColor = System.Drawing.SystemColors.Control;
             this.panel2.Controls.Add(this.imageLabel1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 84);
@@ -157,7 +160,6 @@
             this.imageLabel1.BackImg = ((System.Drawing.Image)(resources.GetObject("imageLabel1.BackImg")));
             this.imageLabel1.Checked = false;
             this.imageLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.imageLabel1.IMGContainer = null;
             this.imageLabel1.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageLabel1.Location = new System.Drawing.Point(3, 0);
             this.imageLabel1.Name = "imageLabel1";
