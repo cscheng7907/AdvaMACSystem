@@ -146,6 +146,9 @@
     <EmbeddedResource Include="PageViewError.resx">
       <DependentUpon>PageViewError.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PageViewHistory.resx">
+      <DependentUpon>PageViewHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PageViewMAC.resx">
       <DependentUpon>PageViewMAC.cs</DependentUpon>
     </EmbeddedResource>

@@ -257,6 +257,8 @@ namespace AdvaMACSystem
                 pvHistory.Location = bigviewLocation;
                 pvHistory.Size = bigviewsize;
                 pvHistory.Enabled = false;
+                pvHistory.CanDatapool = CDataPool.GetDataPoolObject();
+                pvHistory.HistoryOper = this.historyOper;
                 this.Controls.Add(this.pvHistory);
             }
         }

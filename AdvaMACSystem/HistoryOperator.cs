@@ -13,18 +13,23 @@ namespace AdvaMACSystem
         {
         }
 #if WindowsCE
-        public const string PressureRecFileName = @"\HardDisk\History\{0}\{1}\Pre-{2}.Rec";
-        public const string PositionRecFileName = @"\HardDisk\History\{0}\{1}\Pos-{2}.Rec";
+        public string PressureRecFileName = @"\HardDisk\History\Pressure\{0}\{1}\{2}.Rec";
+        public string PositionRecFileName = @"\HardDisk\History\Position\{0}\{1}\{2}.Rec";
 #else
-        public string PressureRecFileName = Application.StartupPath + @"\History\{0}\{1}\Pre-{2}.Rec";
-        public string PositionRecFileName = Application.StartupPath + @"\History\{0}\{1}\Pos-{2}.Rec";
+        public string PressureRecFileName = Application.StartupPath + @"\History\Pressure\{0}\{1}\{2}.Rec";
+        public string PositionRecFileName = Application.StartupPath + @"\History\Position\{0}\{1}\{2}.Rec";
 #endif
 
         private string pressureRecFile = string.Empty;
         private string positionRecFile = string.Empty;
-        private string recDirectory = string.Empty;
+        private string recPressureDirectory = string.Empty;
+        private string recPositionDirectory = string.Empty;
         private const int MultiplyingFactor = 10;
         private const int FILE_HEAD_SIZE = 100;
+        public int CONST_FILE_HEAD_SIZE
+        {
+            get { return FILE_HEAD_SIZE; }
+        }
         private byte[] headData = new byte[FILE_HEAD_SIZE];
 
         private List<FileStream> fsPressureList = null;
@@ -101,15 +106,16 @@ namespace AdvaMACSystem
                     Array.Copy(BitConverter.GetBytes(t.Ticks), 0, headData, 0, 8);
                     Array.Copy(BitConverter.GetBytes(i), 0, headData, 8, 4);
                     Array.Copy(BitConverter.GetBytes(j), 0, headData, 12, 4);
-                    Array.Copy(BitConverter.GetBytes(MultiplyingFactor), 0, headData, 16, 4);
-
-                    pressureRecFile = string.Format(PressureRecFileName, i, j, t.ToString("yyyy-MM-dd-HH-mm-ss"));
-                    recDirectory = Path.GetDirectoryName(pressureRecFile);
-
-                    if (!Directory.Exists(recDirectory))
-                        Directory.CreateDirectory(recDirectory);
+                    Array.Copy(BitConverter.GetBytes(timerInterval), 0, headData, 16, 4);
+                    Array.Copy(BitConverter.GetBytes(MultiplyingFactor), 0, headData, 20, 4);
 
                     #region 压力记录
+                    pressureRecFile = string.Format(PressureRecFileName, i, j, t.ToString("yyyy-MM-dd HH-mm-ss"));
+                    recPressureDirectory = Path.GetDirectoryName(pressureRecFile);
+                    
+                    if (!Directory.Exists(recPressureDirectory))
+                        Directory.CreateDirectory(recPressureDirectory);
+                    
                     if (File.Exists(pressureRecFile))
                         File.Delete(pressureRecFile);
                     FileStream fspressure = new FileStream(pressureRecFile, FileMode.OpenOrCreate);
@@ -131,7 +137,11 @@ namespace AdvaMACSystem
                     #endregion
 
                     #region 位置记录
-                    positionRecFile = string.Format(PositionRecFileName, i, j, t.ToString("yyyy-MM-dd-HH-mm-ss"));
+                    positionRecFile = string.Format(PositionRecFileName, i, j, t.ToString("yyyy-MM-dd HH-mm-ss"));
+                    recPositionDirectory = Path.GetDirectoryName(positionRecFile);
+                    if (!Directory.Exists(recPositionDirectory))
+                        Directory.CreateDirectory(recPositionDirectory);
+                    
                     if (File.Exists(positionRecFile))
                         File.Delete(positionRecFile);
                     FileStream fsposition = new FileStream(positionRecFile, FileMode.OpenOrCreate);
