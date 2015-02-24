@@ -62,6 +62,7 @@
     </Compile>
     <Compile Include="..\AdvaMACSystem\CParaLabel.cs">
       <Link>CParaLabel.cs</Link>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="..\AdvaMACSystem\CParaLabel.designer.cs">
       <Link>CParaLabel.designer.cs</Link>
@@ -126,13 +127,29 @@
       <Link>PageViewMAC.designer.cs</Link>
       <DependentUpon>PageViewMAC.cs</DependentUpon>
     </Compile>
-    <Compile Include="..\AdvaMACSystem\PageViewParameter.cs">
-      <Link>PageViewParameter.cs</Link>
+    <Compile Include="..\AdvaMACSystem\PageViewPara.cs">
+      <Link>PageViewPara.cs</Link>
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="..\AdvaMACSystem\PageViewParameter.designer.cs">
-      <Link>PageViewParameter.designer.cs</Link>
-      <DependentUpon>PageViewParameter.cs</DependentUpon>
+    <Compile Include="..\AdvaMACSystem\PageViewPara.designer.cs">
+      <Link>PageViewPara.designer.cs</Link>
+      <DependentUpon>PageViewPara.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\AdvaMACSystem\PageViewPara_Sensor.cs">
+      <Link>PageViewPara_Sensor.cs</Link>
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="..\AdvaMACSystem\PageViewPara_Sensor.designer.cs">
+      <Link>PageViewPara_Sensor.designer.cs</Link>
+      <DependentUpon>PageViewPara_Sensor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\AdvaMACSystem\PageViewPara_Setup.cs">
+      <Link>PageViewPara_Setup.cs</Link>
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="..\AdvaMACSystem\PageViewPara_Setup.designer.cs">
+      <Link>PageViewPara_Setup.designer.cs</Link>
+      <DependentUpon>PageViewPara_Setup.cs</DependentUpon>
     </Compile>
     <Compile Include="..\AdvaMACSystem\PageViewWarn.cs">
       <Link>PageViewWarn.cs</Link>
@@ -177,6 +194,18 @@
     <EmbeddedResource Include="..\AdvaMACSystem\PageViewError.resx">
       <Link>PageViewError.resx</Link>
       <DependentUpon>PageViewError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\AdvaMACSystem\PageViewHistory.resx">
+      <Link>PageViewHistory.resx</Link>
+      <DependentUpon>PageViewHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\AdvaMACSystem\PageViewMAC.resx">
+      <Link>PageViewMAC.resx</Link>
+      <DependentUpon>PageViewMAC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\AdvaMACSystem\PageViewPara.resx">
+      <Link>PageViewPara.resx</Link>
+      <DependentUpon>PageViewPara.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
