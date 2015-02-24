@@ -141,6 +141,13 @@ namespace AdvaMACSystem {
             }
         }
         
+        internal static System.Drawing.Bitmap IO {
+            get {
+                object obj = ResourceManager.GetObject("IO", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap IOblack {
             get {
                 object obj = ResourceManager.GetObject("IOblack", resourceCulture);

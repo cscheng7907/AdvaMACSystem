@@ -65,6 +65,7 @@
     </Compile>
     <Compile Include="AdvCan.cs" />
     <Compile Include="AdvCANIO.cs" />
+    <Compile Include="HistoryOperator.cs" />
     <Compile Include="CParaLabel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -158,6 +159,9 @@
     <EmbeddedResource Include="PageViewError.resx">
       <DependentUpon>PageViewError.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PageViewHistory.resx">
+      <DependentUpon>PageViewHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PageViewMAC.resx">
       <DependentUpon>PageViewMAC.cs</DependentUpon>
     </EmbeddedResource>
@@ -243,6 +247,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\bk22-95.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IO.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>
