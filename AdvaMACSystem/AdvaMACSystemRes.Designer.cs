@@ -57,13 +57,6 @@ namespace AdvaMACSystem {
             }
         }
         
-        internal static System.Drawing.Bitmap bk22_95 {
-            get {
-                object obj = ResourceManager.GetObject("bk22_95", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap bluebar {
             get {
                 object obj = ResourceManager.GetObject("bluebar", resourceCulture);
