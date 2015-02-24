@@ -13,7 +13,8 @@
     <PlatformFamilyName>WindowsCE</PlatformFamilyName>
     <PlatformID>E2BECB1F-8C8C-41ba-B736-9BE7D946A398</PlatformID>
     <OSVersion>5.0</OSVersion>
-    <DeployDirSuffix>AdvaMACSystem</DeployDirSuffix>
+    <DeployDirSuffix>
+    </DeployDirSuffix>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <NativePlatformName>Windows CE</NativePlatformName>
     <FormFactorID>
@@ -112,11 +113,23 @@
     <Compile Include="PageViewMAC.Designer.cs">
       <DependentUpon>PageViewMAC.cs</DependentUpon>
     </Compile>
-    <Compile Include="PageViewParameter.cs">
+    <Compile Include="PageViewPara.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PageViewParameter.Designer.cs">
-      <DependentUpon>PageViewParameter.cs</DependentUpon>
+    <Compile Include="PageViewPara.Designer.cs">
+      <DependentUpon>PageViewPara.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PageViewPara_Sensor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PageViewPara_Sensor.Designer.cs">
+      <DependentUpon>PageViewPara_Sensor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PageViewPara_Setup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PageViewPara_Setup.Designer.cs">
+      <DependentUpon>PageViewPara_Setup.cs</DependentUpon>
     </Compile>
     <Compile Include="PageViewWarn.cs">
       <SubType>UserControl</SubType>
@@ -147,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PageViewMAC.resx">
       <DependentUpon>PageViewMAC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PageViewPara.resx">
+      <DependentUpon>PageViewPara.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PageViewWarn.resx">
       <DependentUpon>PageViewWarn.cs</DependentUpon>
@@ -224,6 +240,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Dgn_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bk22-95.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

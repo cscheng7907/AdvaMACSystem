@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -8,9 +9,9 @@ using System.Windows.Forms;
 
 namespace AdvaMACSystem
 {
-    public partial class PageViewParameter : UIControlbase
+    public partial class PageViewPara_Setup : UIControlbase
     {
-        public PageViewParameter()
+        public PageViewPara_Setup()
         {
             InitializeComponent();
         }

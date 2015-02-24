@@ -174,8 +174,10 @@ namespace AdvaMACSystem
         private PageViewDiagnose pvDiagnose = null;
         private PageViewError pvError = null;
         private PageViewHistory pvHistory = null;
-        private PageViewParameter pvPara = null;
+        private PageViewPara pvPara = null;
         private PageViewWarn pvWarn = null;
+        private PageViewPara_Sensor pvPara_Sensor = null;
+        private PageViewPara_Setup pvPara_Setup = null;
 
         private void Create_pvWarn()
         {
@@ -192,11 +194,33 @@ namespace AdvaMACSystem
         {
             if (pvPara == null)
             {
-                pvPara = new PageViewParameter();
+                pvPara = new PageViewPara();
                 pvPara.Location = bigviewLocation;
                 pvPara.Size = bigviewsize;
                 pvPara.Enabled = false;
                 this.Controls.Add(this.pvPara);
+            }
+        }
+        private void Create_pvPara_Sensor()
+        {
+            if (pvPara_Sensor == null)
+            {
+                pvPara_Sensor = new PageViewPara_Sensor();
+                pvPara_Sensor.Location = bigviewLocation;
+                pvPara_Sensor.Size = bigviewsize;
+                pvPara_Sensor.Enabled = false;
+                this.Controls.Add(this.pvPara_Sensor);
+            }
+        }
+        private void Create_pvPara_Setup()
+        {
+            if (pvPara_Setup == null)
+            {
+                pvPara_Setup = new PageViewPara_Setup();
+                pvPara_Setup.Location = bigviewLocation;
+                pvPara_Setup.Size = bigviewsize;
+                pvPara_Setup.Enabled = false;
+                this.Controls.Add(this.pvPara_Setup);
             }
         }
 
@@ -252,6 +276,8 @@ namespace AdvaMACSystem
 
         private void panel_Head_Click(object sender, EventArgs e)
         {
+
+
             KeypadForm f = KeypadForm.GetKeypadForm("0");
             if (f.ShowDialog() == DialogResult.OK)
             {
@@ -318,7 +344,9 @@ namespace AdvaMACSystem
 
         private void imageLabel_Setup_Click(object sender, EventArgs e)
         {
+            Create_pvPara_Setup();
 
+            pvPara_Setup.DoEnter();
         }
 
         private void imageLabel_Para_Click(object sender, EventArgs e)
@@ -329,7 +357,8 @@ namespace AdvaMACSystem
 
         private void imageLabel_Senser_Click(object sender, EventArgs e)
         {
-
+            Create_pvPara_Sensor();
+            pvPara_Sensor.DoEnter();
         }
         private void imageLabel_Diagnose_Click(object sender, EventArgs e)
         {
@@ -346,6 +375,11 @@ namespace AdvaMACSystem
             imageLabel_RealError_Click(sender, e);
         }
         #endregion
+
+        private void panel_Head_MouseDown(object sender, MouseEventArgs e)
+        {
+            //e.Button == MouseButtons .Right 
+        }
 
 
 

@@ -1,6 +1,6 @@
 ﻿namespace AdvaMACSystem
 {
-    partial class PageViewParameter
+    partial class PageViewPara
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,8 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // PageViewPara
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Name = "PageViewPara";
+            this.Size = new System.Drawing.Size(934, 378);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

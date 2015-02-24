@@ -32,8 +32,11 @@
             this.timer1 = new System.Windows.Forms.Timer();
             this.lb_date = new System.Windows.Forms.Label();
             this.panel_Head = new System.Windows.Forms.Panel();
+            this.Label_CurError = new ComCtrls.ImageLabel();
+            this.label_CurWarning = new ComCtrls.ImageLabel();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lb_time = new System.Windows.Forms.Label();
             this.panel_Tabs = new System.Windows.Forms.Panel();
@@ -47,9 +50,6 @@
             this.imageLabel_RealError = new ComCtrls.ImageLabel();
             this.imageLabel_RealWarn = new ComCtrls.ImageLabel();
             this.imageLabel_MAC = new ComCtrls.ImageLabel();
-            this.Label_CurError = new ComCtrls.ImageLabel();
-            this.label_CurWarning = new ComCtrls.ImageLabel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel_Head.SuspendLayout();
             this.panel_Tabs.SuspendLayout();
             this.SuspendLayout();
@@ -70,6 +70,7 @@
             // 
             // panel_Head
             // 
+            this.panel_Head.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.panel_Head.Controls.Add(this.Label_CurError);
             this.panel_Head.Controls.Add(this.label_CurWarning);
             this.panel_Head.Controls.Add(this.label4);
@@ -83,11 +84,50 @@
             this.panel_Head.Name = "panel_Head";
             this.panel_Head.Size = new System.Drawing.Size(1024, 94);
             this.panel_Head.Click += new System.EventHandler(this.panel_Head_Click);
+            this.panel_Head.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_Head_MouseDown);
+            // 
+            // Label_CurError
+            // 
+            this.Label_CurError.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.Label_CurError.BackImg = ((System.Drawing.Image)(resources.GetObject("Label_CurError.BackImg")));
+            this.Label_CurError.Checked = false;
+            this.Label_CurError.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular);
+            this.Label_CurError.ForeColor = System.Drawing.Color.Red;
+            this.Label_CurError.IMGContainer = null;
+            this.Label_CurError.Layout = ComCtrls.KTLayout.GlyphTop;
+            this.Label_CurError.Location = new System.Drawing.Point(734, 10);
+            this.Label_CurError.Name = "Label_CurError";
+            this.Label_CurError.Size = new System.Drawing.Size(93, 78);
+            this.Label_CurError.TabIndex = 14;
+            this.Label_CurError.Text = "33";
+            this.Label_CurError.TextX = 60F;
+            this.Label_CurError.TextY = 0F;
+            this.Label_CurError.TransParent = true;
+            this.Label_CurError.Click += new System.EventHandler(this.Label_CurError_Click);
+            // 
+            // label_CurWarning
+            // 
+            this.label_CurWarning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.label_CurWarning.BackImg = ((System.Drawing.Image)(resources.GetObject("label_CurWarning.BackImg")));
+            this.label_CurWarning.Checked = false;
+            this.label_CurWarning.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular);
+            this.label_CurWarning.ForeColor = System.Drawing.Color.Red;
+            this.label_CurWarning.IMGContainer = null;
+            this.label_CurWarning.Layout = ComCtrls.KTLayout.GlyphTop;
+            this.label_CurWarning.Location = new System.Drawing.Point(635, 10);
+            this.label_CurWarning.Name = "label_CurWarning";
+            this.label_CurWarning.Size = new System.Drawing.Size(93, 78);
+            this.label_CurWarning.TabIndex = 7;
+            this.label_CurWarning.Text = "60";
+            this.label_CurWarning.TextX = 60F;
+            this.label_CurWarning.TextY = 0F;
+            this.label_CurWarning.TransParent = true;
+            this.label_CurWarning.Click += new System.EventHandler(this.label_CurWarning_Click);
             // 
             // label4
             // 
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(268, 54);
+            this.label4.Location = new System.Drawing.Point(268, 70);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 20);
             this.label4.Text = "工程编号：XXXX";
@@ -95,18 +135,26 @@
             // label3
             // 
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(268, 34);
+            this.label3.Location = new System.Drawing.Point(268, 46);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(228, 20);
             this.label3.Text = "工程名称：XXXXXXXX";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 94);
+            // 
             // label2
             // 
-            this.label2.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
+            this.label2.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(112, 6);
+            this.label2.Location = new System.Drawing.Point(112, 8);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(337, 28);
+            this.label2.Size = new System.Drawing.Size(399, 31);
             this.label2.Text = "HIS0350A钢支撑轴力补偿系统";
             // 
             // lb_time
@@ -120,6 +168,7 @@
             // 
             // panel_Tabs
             // 
+            this.panel_Tabs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.panel_Tabs.Controls.Add(this.imageLabel_Diagnose);
             this.panel_Tabs.Controls.Add(this.imageLabel_Senser);
             this.panel_Tabs.Controls.Add(this.imageLabel_Para);
@@ -133,18 +182,18 @@
             this.panel_Tabs.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_Tabs.Location = new System.Drawing.Point(0, 94);
             this.panel_Tabs.Name = "panel_Tabs";
-            this.panel_Tabs.Size = new System.Drawing.Size(1024, 74);
+            this.panel_Tabs.Size = new System.Drawing.Size(1024, 49);
             // 
             // imageLabel_Diagnose
             // 
             this.imageLabel_Diagnose.BackImg = ((System.Drawing.Image)(resources.GetObject("imageLabel_Diagnose.BackImg")));
             this.imageLabel_Diagnose.Checked = false;
-            this.imageLabel_Diagnose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.imageLabel_Diagnose.ForeColor = System.Drawing.Color.White;
             this.imageLabel_Diagnose.IMGContainer = null;
             this.imageLabel_Diagnose.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageLabel_Diagnose.Location = new System.Drawing.Point(549, 17);
+            this.imageLabel_Diagnose.Location = new System.Drawing.Point(619, 10);
             this.imageLabel_Diagnose.Name = "imageLabel_Diagnose";
-            this.imageLabel_Diagnose.Size = new System.Drawing.Size(85, 38);
+            this.imageLabel_Diagnose.Size = new System.Drawing.Size(95, 28);
             this.imageLabel_Diagnose.TabIndex = 9;
             this.imageLabel_Diagnose.Text = "I/O诊断";
             this.imageLabel_Diagnose.TextX = -1F;
@@ -156,12 +205,13 @@
             // 
             this.imageLabel_Senser.BackImg = ((System.Drawing.Image)(resources.GetObject("imageLabel_Senser.BackImg")));
             this.imageLabel_Senser.Checked = false;
-            this.imageLabel_Senser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.imageLabel_Senser.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular);
+            this.imageLabel_Senser.ForeColor = System.Drawing.Color.White;
             this.imageLabel_Senser.IMGContainer = null;
             this.imageLabel_Senser.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageLabel_Senser.Location = new System.Drawing.Point(828, 17);
+            this.imageLabel_Senser.Location = new System.Drawing.Point(925, 10);
             this.imageLabel_Senser.Name = "imageLabel_Senser";
-            this.imageLabel_Senser.Size = new System.Drawing.Size(85, 38);
+            this.imageLabel_Senser.Size = new System.Drawing.Size(95, 28);
             this.imageLabel_Senser.TabIndex = 8;
             this.imageLabel_Senser.Text = "传感器标定";
             this.imageLabel_Senser.TextX = -1F;
@@ -173,12 +223,12 @@
             // 
             this.imageLabel_Para.BackImg = ((System.Drawing.Image)(resources.GetObject("imageLabel_Para.BackImg")));
             this.imageLabel_Para.Checked = false;
-            this.imageLabel_Para.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.imageLabel_Para.ForeColor = System.Drawing.Color.White;
             this.imageLabel_Para.IMGContainer = null;
             this.imageLabel_Para.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageLabel_Para.Location = new System.Drawing.Point(737, 17);
+            this.imageLabel_Para.Location = new System.Drawing.Point(823, 10);
             this.imageLabel_Para.Name = "imageLabel_Para";
-            this.imageLabel_Para.Size = new System.Drawing.Size(85, 38);
+            this.imageLabel_Para.Size = new System.Drawing.Size(95, 28);
             this.imageLabel_Para.TabIndex = 7;
             this.imageLabel_Para.Text = "参数设定";
             this.imageLabel_Para.TextX = -1F;
@@ -190,12 +240,12 @@
             // 
             this.imageLabel_Setup.BackImg = ((System.Drawing.Image)(resources.GetObject("imageLabel_Setup.BackImg")));
             this.imageLabel_Setup.Checked = false;
-            this.imageLabel_Setup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.imageLabel_Setup.ForeColor = System.Drawing.Color.White;
             this.imageLabel_Setup.IMGContainer = null;
             this.imageLabel_Setup.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageLabel_Setup.Location = new System.Drawing.Point(643, 17);
+            this.imageLabel_Setup.Location = new System.Drawing.Point(721, 10);
             this.imageLabel_Setup.Name = "imageLabel_Setup";
-            this.imageLabel_Setup.Size = new System.Drawing.Size(85, 38);
+            this.imageLabel_Setup.Size = new System.Drawing.Size(95, 28);
             this.imageLabel_Setup.TabIndex = 6;
             this.imageLabel_Setup.Text = "安装设定";
             this.imageLabel_Setup.TextX = -1F;
@@ -207,12 +257,12 @@
             // 
             this.imageLabel_HisError.BackImg = ((System.Drawing.Image)(resources.GetObject("imageLabel_HisError.BackImg")));
             this.imageLabel_HisError.Checked = false;
-            this.imageLabel_HisError.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.imageLabel_HisError.ForeColor = System.Drawing.Color.White;
             this.imageLabel_HisError.IMGContainer = null;
             this.imageLabel_HisError.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageLabel_HisError.Location = new System.Drawing.Point(458, 17);
+            this.imageLabel_HisError.Location = new System.Drawing.Point(517, 10);
             this.imageLabel_HisError.Name = "imageLabel_HisError";
-            this.imageLabel_HisError.Size = new System.Drawing.Size(85, 38);
+            this.imageLabel_HisError.Size = new System.Drawing.Size(95, 28);
             this.imageLabel_HisError.TabIndex = 5;
             this.imageLabel_HisError.Text = "历史故障";
             this.imageLabel_HisError.TextX = -1F;
@@ -224,12 +274,12 @@
             // 
             this.imageLabel_HisWarn.BackImg = ((System.Drawing.Image)(resources.GetObject("imageLabel_HisWarn.BackImg")));
             this.imageLabel_HisWarn.Checked = false;
-            this.imageLabel_HisWarn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.imageLabel_HisWarn.ForeColor = System.Drawing.Color.White;
             this.imageLabel_HisWarn.IMGContainer = null;
             this.imageLabel_HisWarn.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageLabel_HisWarn.Location = new System.Drawing.Point(367, 17);
+            this.imageLabel_HisWarn.Location = new System.Drawing.Point(415, 10);
             this.imageLabel_HisWarn.Name = "imageLabel_HisWarn";
-            this.imageLabel_HisWarn.Size = new System.Drawing.Size(85, 38);
+            this.imageLabel_HisWarn.Size = new System.Drawing.Size(95, 28);
             this.imageLabel_HisWarn.TabIndex = 4;
             this.imageLabel_HisWarn.Text = "历史报警";
             this.imageLabel_HisWarn.TextX = -1F;
@@ -241,12 +291,12 @@
             // 
             this.imageLabel_History.BackImg = ((System.Drawing.Image)(resources.GetObject("imageLabel_History.BackImg")));
             this.imageLabel_History.Checked = false;
-            this.imageLabel_History.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.imageLabel_History.ForeColor = System.Drawing.Color.White;
             this.imageLabel_History.IMGContainer = null;
             this.imageLabel_History.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageLabel_History.Location = new System.Drawing.Point(276, 17);
+            this.imageLabel_History.Location = new System.Drawing.Point(313, 10);
             this.imageLabel_History.Name = "imageLabel_History";
-            this.imageLabel_History.Size = new System.Drawing.Size(85, 38);
+            this.imageLabel_History.Size = new System.Drawing.Size(95, 28);
             this.imageLabel_History.TabIndex = 3;
             this.imageLabel_History.Text = "历史监控";
             this.imageLabel_History.TextX = -1F;
@@ -258,12 +308,12 @@
             // 
             this.imageLabel_RealError.BackImg = ((System.Drawing.Image)(resources.GetObject("imageLabel_RealError.BackImg")));
             this.imageLabel_RealError.Checked = false;
-            this.imageLabel_RealError.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.imageLabel_RealError.ForeColor = System.Drawing.Color.White;
             this.imageLabel_RealError.IMGContainer = null;
             this.imageLabel_RealError.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageLabel_RealError.Location = new System.Drawing.Point(185, 17);
+            this.imageLabel_RealError.Location = new System.Drawing.Point(211, 10);
             this.imageLabel_RealError.Name = "imageLabel_RealError";
-            this.imageLabel_RealError.Size = new System.Drawing.Size(85, 38);
+            this.imageLabel_RealError.Size = new System.Drawing.Size(95, 28);
             this.imageLabel_RealError.TabIndex = 2;
             this.imageLabel_RealError.Text = "实时故障";
             this.imageLabel_RealError.TextX = -1F;
@@ -275,12 +325,12 @@
             // 
             this.imageLabel_RealWarn.BackImg = ((System.Drawing.Image)(resources.GetObject("imageLabel_RealWarn.BackImg")));
             this.imageLabel_RealWarn.Checked = false;
-            this.imageLabel_RealWarn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.imageLabel_RealWarn.ForeColor = System.Drawing.Color.White;
             this.imageLabel_RealWarn.IMGContainer = null;
             this.imageLabel_RealWarn.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageLabel_RealWarn.Location = new System.Drawing.Point(94, 17);
+            this.imageLabel_RealWarn.Location = new System.Drawing.Point(109, 10);
             this.imageLabel_RealWarn.Name = "imageLabel_RealWarn";
-            this.imageLabel_RealWarn.Size = new System.Drawing.Size(85, 38);
+            this.imageLabel_RealWarn.Size = new System.Drawing.Size(95, 28);
             this.imageLabel_RealWarn.TabIndex = 1;
             this.imageLabel_RealWarn.Text = "实时报警";
             this.imageLabel_RealWarn.TextX = -1F;
@@ -292,60 +342,19 @@
             // 
             this.imageLabel_MAC.BackImg = ((System.Drawing.Image)(resources.GetObject("imageLabel_MAC.BackImg")));
             this.imageLabel_MAC.Checked = false;
-            this.imageLabel_MAC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.imageLabel_MAC.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular);
+            this.imageLabel_MAC.ForeColor = System.Drawing.Color.White;
             this.imageLabel_MAC.IMGContainer = null;
             this.imageLabel_MAC.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageLabel_MAC.Location = new System.Drawing.Point(3, 17);
+            this.imageLabel_MAC.Location = new System.Drawing.Point(7, 10);
             this.imageLabel_MAC.Name = "imageLabel_MAC";
-            this.imageLabel_MAC.Size = new System.Drawing.Size(85, 38);
+            this.imageLabel_MAC.Size = new System.Drawing.Size(95, 28);
             this.imageLabel_MAC.TabIndex = 0;
             this.imageLabel_MAC.Text = "实时监控";
             this.imageLabel_MAC.TextX = -1F;
             this.imageLabel_MAC.TextY = -1F;
             this.imageLabel_MAC.TransParent = false;
             this.imageLabel_MAC.Click += new System.EventHandler(this.imageLabel_MAC_Click);
-            // 
-            // Label_CurError
-            // 
-            this.Label_CurError.BackImg = ((System.Drawing.Image)(resources.GetObject("Label_CurError.BackImg")));
-            this.Label_CurError.Checked = false;
-            this.Label_CurError.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
-            this.Label_CurError.IMGContainer = null;
-            this.Label_CurError.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.Label_CurError.Location = new System.Drawing.Point(734, 3);
-            this.Label_CurError.Name = "Label_CurError";
-            this.Label_CurError.Size = new System.Drawing.Size(93, 78);
-            this.Label_CurError.TabIndex = 14;
-            this.Label_CurError.Text = "33";
-            this.Label_CurError.TextX = 65F;
-            this.Label_CurError.TextY = 58F;
-            this.Label_CurError.TransParent = false;
-            this.Label_CurError.Click += new System.EventHandler(this.Label_CurError_Click);
-            // 
-            // label_CurWarning
-            // 
-            this.label_CurWarning.BackImg = ((System.Drawing.Image)(resources.GetObject("label_CurWarning.BackImg")));
-            this.label_CurWarning.Checked = false;
-            this.label_CurWarning.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
-            this.label_CurWarning.IMGContainer = null;
-            this.label_CurWarning.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.label_CurWarning.Location = new System.Drawing.Point(635, 3);
-            this.label_CurWarning.Name = "label_CurWarning";
-            this.label_CurWarning.Size = new System.Drawing.Size(93, 78);
-            this.label_CurWarning.TabIndex = 7;
-            this.label_CurWarning.Text = "60";
-            this.label_CurWarning.TextX = 65F;
-            this.label_CurWarning.TextY = 58F;
-            this.label_CurWarning.TransParent = false;
-            this.label_CurWarning.Click += new System.EventHandler(this.label_CurWarning_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 94);
             // 
             // mainForm
             // 
@@ -356,7 +365,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.panel_Tabs);
             this.Controls.Add(this.panel_Head);
-            this.ForeColor = System.Drawing.Color.LightSalmon;
+            this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "mainForm";
             this.Text = "Form1";

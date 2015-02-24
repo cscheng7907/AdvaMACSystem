@@ -18,7 +18,7 @@ namespace AdvaMACSystem
         private Thread Thread1;
         private int ThreadInterval = 500;
 
-        private const uint M_SENDCOUNT = 132;
+        private const uint M_SENDCOUNT = 164;
         private AdvCan.canmsg_t[] msgSend = new AdvCan.canmsg_t[M_SENDCOUNT];                 //Package for write 
 
         private const uint M_RECIEVECOUNT = 40;
@@ -54,7 +54,7 @@ namespace AdvaMACSystem
         private UInt32 WriteTimeOutValue = 3000;
         private uint dwMaskCode = 0;
         private uint dwAccCode = 0;
-        private bool AcceptanceFilterMode = false;//false single true dual
+        private bool AcceptanceFilterMode = true;//false single true dual
         private uint EventMask = 0;
         //-通讯配置参数
 
@@ -275,7 +275,7 @@ namespace AdvaMACSystem
             }
 
             //Initialize msg
-            for (int j = 0; j < M_SENDCOUNT; j++)
+            for (int j = 0; j < M_RECIEVECOUNT; j++)
             {
                 msgRecieve[j].data = new byte[AdvCan.DATALENGTH];
             }
