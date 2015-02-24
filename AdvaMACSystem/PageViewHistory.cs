@@ -16,7 +16,7 @@ namespace AdvaMACSystem
         public PageViewHistory()
         {
             InitializeComponent();
-
+            this.ForeColor = Color.Black;
             sf = new StringFormat();
             sf.Alignment = StringAlignment.Center;
             sf.LineAlignment = StringAlignment.Center;
@@ -75,9 +75,17 @@ namespace AdvaMACSystem
         private StringFormat sf = null;
         private const string numberFormat = "F1";
 
+        //表格
+        private int dataPerPage = 10;
+        private int pageIndex = 0;
+        private int totalDatas = 0;
+        private int totalPages = 0;
+
+
         //数据
         private int reserveDays = 60;
         private DateTime startTime;
+        private DateTime endTime;
         private TimeSpan ts;
 
         private int pumpIndex;
@@ -180,11 +188,14 @@ namespace AdvaMACSystem
                 //开始时间
                 ts = new TimeSpan((long)(36000000000 * Convert.ToDouble(textBox2.Text)));
                 //ts = new TimeSpan(Convert.ToInt32(textBox2.Text), 0, 0);
+                //结束时间
+                endTime = startTime.Add(ts);
             }
             catch
             {
                 startTime = DateTime.Now.Date;
                 ts = new TimeSpan(24, 0, 0);
+                endTime = startTime.Add(ts);
                 MessageBox.Show("日期格式不正确！");
                 return 2;
             }
@@ -226,7 +237,7 @@ namespace AdvaMACSystem
                         continue;
 
                     DateTime recTime = Convert.ToDateTime(nameToParse);
-                    if (recTime.Date == startTime.Date)
+                    if (recTime.Ticks >= startTime.Date.Ticks && recTime.Ticks < endTime.Ticks)
                     {
                         filesToDraw.Add(s);
                     }
@@ -264,6 +275,8 @@ namespace AdvaMACSystem
             Pen backPen = new Pen(Color.White);
             Pen realValuePen = new Pen(Color.Yellow);
             Pen settingValuePen = new Pen(Color.Blue);
+
+            #region 画背景
             //draw background
             g.FillRectangle(backBrush, new Rectangle(0, 0, BmpWidth, BmpHeight));
             //draw coordinate system
@@ -303,6 +316,7 @@ namespace AdvaMACSystem
             //draw setting line
             int ysetting = (int)(270 - (settingValue - minValue) / (maxValue - minValue) * 2409);
             g.DrawLine(settingValuePen, 40, ysetting, 40 + 720, ysetting);
+            #endregion
 
             startTimeInFileList = new List<long>();
             intervalTimeInFileList = new List<int>();
@@ -316,6 +330,7 @@ namespace AdvaMACSystem
                 int interval = 1000;
                 currentSegment = new List<int>();
 
+                #region 获取数据
                 //try
                 //{
                     File.Copy(filesToDraw[key], tempFolder + Path.GetFileName(filesToDraw[key]), true);
@@ -329,13 +344,60 @@ namespace AdvaMACSystem
                         int cylinderInFile = br.ReadInt32();
                         interval = br.ReadInt32();
                         multiplyingFactor = br.ReadInt32();
+
+                        //验证数据
                         if (pumpInFile != pumpIndex || cylinderInFile != cylinderIndex || multiplyingFactor <= 0)
                             continue;
+
+                        int firstValidDataIndex = 0;
+                        //调整记录起始点
+                        if (startTimeInRec < startTime.Ticks)
+                        {
+                            //需要调整记录起始点
+                            int dataCountInRec = (int)((fs.Length - historyOper.CONST_FILE_HEAD_SIZE) / sizeof(int));
+                            
+                            if (dataCountInRec <= 0)
+                                continue;
+
+                            long endTimeInRec = startTimeInRec + (dataCountInRec - 1) * 10000 * interval;
+                            if (endTimeInRec < startTime.Ticks)
+                                continue;
+                            else//记录中包含查询数据
+                            {
+                                firstValidDataIndex = (int)Math.Ceiling((startTime.Ticks - startTimeInRec) / 10000.0 / interval);
+                                startTimeInRec = startTimeInRec + firstValidDataIndex * 10000 * interval;//调整记录起始点
+                            }
+                        }
+
+                        //计算有效数据总数
+                        int maxValidDataCount = (int)Math.Ceiling((endTime.Ticks - startTimeInRec) / 10000.0 / interval);
+
+                        int pos = 0;
+                        for (; pos < startTimeInFileList.Count; pos++)
+                        {
+                            if (startTimeInRec <= startTimeInFileList[pos])
+                            {
+                                startTimeInFileList.Insert(pos, startTimeInRec);
+                                intervalTimeInFileList.Insert(pos, interval);
+                                dataList.Insert(pos, currentSegment);
+                                break;
+                            }
+                        }
+                        if (pos == startTimeInFileList.Count)
+                        {
+                            startTimeInFileList.Add(startTimeInRec);
+                            intervalTimeInFileList.Add(interval);
+                            dataList.Add(currentSegment);
+                        }
+
+                        br.BaseStream.Seek(historyOper.CONST_FILE_HEAD_SIZE + sizeof(int) * firstValidDataIndex, SeekOrigin.Begin);
+
+                        //读文件体
                         MinValueInImg = (int)(minValue * multiplyingFactor);
                         ValueRangeInImg = (int)((maxValue - minValue) * multiplyingFactor);
-                        br.BaseStream.Seek(historyOper.CONST_FILE_HEAD_SIZE, SeekOrigin.Begin);
                         int value;
-                        while (br.BaseStream.Position < br.BaseStream.Length) // 当未到达文件结尾时
+                        int count = 0;
+                        for (count = 0; count < maxValidDataCount && br.BaseStream.Position < br.BaseStream.Length; count++) // 当未到达文件结尾时
                         {
                             value = br.ReadInt32();
                             currentSegment.Add(value);
@@ -350,6 +412,7 @@ namespace AdvaMACSystem
                 //}
                 //catch
                 //{ }
+                #endregion
 
                 int pointX = 0, pointY = 0, followX = 0, followY = 0;
                 double k = (double)(interval * 10000.0 / ts.Ticks * 720);//系数
@@ -406,9 +469,67 @@ namespace AdvaMACSystem
             pBox.Image = chart;
         }
 
+        private void DrawTable()
+        {
+            totalDatas = 0;
+            for (int i = 0; i < dataList.Count; i++)
+            {
+                totalDatas += dataList[i].Count;
+            }
+            totalPages = totalDatas / dataPerPage + (totalDatas % dataPerPage != 0 ? 1 : 0);
+            label1.Text = totalPages.ToString();
+
+        }
+
+        private List<DataPair> GetData(int startID)
+        {
+            List<DataPair> result = new List<DataPair>();
+            int sum = 0;
+            int i = 0;
+            for (; i < dataList.Count; i++)
+            {
+                if (sum + dataList[i].Count > startID)
+                    break;
+
+                sum = sum + dataList[i].Count;
+            }
+            int count = 0;
+            for (int k = startID - sum; k < dataList[i].Count; k++)
+            {
+                DataPair dp;
+                dp.id = startID;
+                startID++;
+                dp.data = dataList[i][k];
+                dp.recTime = startTimeInFileList[i] + k * intervalTimeInFileList[i];
+                result.Add(dp);
+                count++;
+                if (count > dataPerPage)
+                    return result;
+            }
+            i++;
+            for (; i < dataList.Count; i++)
+            {
+                for (int j = 0; j < dataList[i].Count; j++)
+                {
+                    DataPair dp;
+                    dp.id = startID;
+                    startID++;
+                    dp.data = dataList[i][j];
+                    dp.recTime = startTimeInFileList[i] + j * intervalTimeInFileList[i];
+                    result.Add(dp);
+                    count++;
+                    if (count > dataPerPage)
+                        return result;
+                }         
+            }
+
+            return result;
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
-            this.monthCalendar1.Visible = true;
+            this.monthCalendar1.Visible = !this.monthCalendar1.Visible;
+            button2.Text = this.monthCalendar1.SelectionStart.ToString("yyyy-MM-dd");
         }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
@@ -420,8 +541,33 @@ namespace AdvaMACSystem
         private void button1_Click(object sender, EventArgs e)
         {
             if (ReadyToDrawChart() == 0)
+            {
                 DrawChart();
+                DrawTable();
+            }
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+
+            List<DataPair> lvl = GetData(Convert.ToInt32(textBox3.Text) * dataPerPage);
+            for (int i = 0; i < lvl.Count; i++)
+            {
+                ListViewItem lvi = new ListViewItem();
+                lvi.Text = lvl[i].id.ToString();
+                lvi.SubItems.Add((new DateTime(lvl[i].recTime)).ToString("yyyy-MM-dd HH:mm"));
+                lvi.SubItems.Add(((double)lvl[i].data / multiplyingFactor).ToString(numberFormat));
+                listView1.Items.Add(lvi);
+            }
+        }
+
+    }
+
+    public struct DataPair
+    {
+        public int id;
+        public int data;
+        public long recTime;
     }
 }
