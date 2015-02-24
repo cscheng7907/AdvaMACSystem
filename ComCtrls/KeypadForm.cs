@@ -19,6 +19,10 @@ namespace ComCtrls
                 KeypadFormObject = new KeypadForm();
 
             KeypadFormObject.KeyText = text;
+            KeypadFormObject.Location = new Point((Screen.PrimaryScreen.WorkingArea.Width - KeypadFormObject.Width) / 2,
+               (Screen.PrimaryScreen.WorkingArea.Height - KeypadFormObject.Height) / 2
+                );
+
             return KeypadFormObject;
         }
 
@@ -39,7 +43,11 @@ namespace ComCtrls
                     if (value.Length <= 12)
                     {
                         keytext = value;
-                        label_input.Text = value;
+
+                        if (keytext.Length > 1 && keytext[0] == '0' && keytext[1] != '0' && keytext[1] != '.')
+                            keytext = keytext.Substring(1);
+
+                        label_input.Text = keytext;
                     }
                 }
             }

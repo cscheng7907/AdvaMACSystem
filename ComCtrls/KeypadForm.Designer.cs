@@ -410,9 +410,9 @@
             // 
             // imageLabel_Back
             // 
+            this.imageLabel_Back.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.imageLabel_Back.BackImg = ((System.Drawing.Image)(resources.GetObject("imageLabel_Back.BackImg")));
             this.imageLabel_Back.Checked = false;
-            this.imageLabel_Back.Dock = System.Windows.Forms.DockStyle.Fill;
             this.imageLabel_Back.IMGContainer = null;
             this.imageLabel_Back.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageLabel_Back.Location = new System.Drawing.Point(0, 0);
@@ -460,6 +460,8 @@
             this.Controls.Add(this.imageLabel_input);
             this.Controls.Add(this.imageLabel_Back);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "KeypadForm";
             this.Text = "KeypadForm";
             this.ResumeLayout(false);
