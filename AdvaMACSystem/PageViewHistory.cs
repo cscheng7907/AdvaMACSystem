@@ -16,6 +16,9 @@ namespace AdvaMACSystem
         public PageViewHistory()
         {
             InitializeComponent();
+
+            timeSetting = new FormTimeSetting();
+
             this.ForeColor = Color.Black;
             sf = new StringFormat();
             sf.Alignment = StringAlignment.Center;
@@ -39,17 +42,107 @@ namespace AdvaMACSystem
                 cylinder.Font = currentFont;
                 cylinder.ForeColor = textColor;
                 cylinder.Tag = i;
-                cylinder.Text = (i +1).ToString() + "#油缸";
+                cylinder.Text = (i + 1).ToString() + "#油缸";
                 cylinder.Toggle = true;
                 cylinder.Click += new EventHandler(cylinder_Click);
                 this.Controls.Add(cylinder);
             }
 
+            dateImage = new SimpleImagesContaner();
+            dateImage.BackImg = dateImage.CheckedBackImg
+                = dateImage.ImgDisable = AdvaMACSystemRes.Dgn_disable;
+
+            inputImage = new SimpleImagesContaner();
+            inputImage.BackImg = inputImage.CheckedBackImg
+                = inputImage.ImgDisable = AdvaMACSystemRes.Input40x40;
+
             pBox = new PictureBox();
+            lbPumpName = new Label();
+            lbTimeSetting = new Label();
+            ilDate = new ImageLabel();
+            inputLabelList = new List<ImageLabel>();
+            ilPumpIndex = new ImageLabel();
+            inputLabelList.Add(ilPumpIndex);
+            ilStartHour = new ImageLabel();
+            inputLabelList.Add(ilStartHour);
+            ilStartMinute = new ImageLabel();
+            inputLabelList.Add(ilStartMinute);
+            ilHourSpan = new ImageLabel();
+            inputLabelList.Add(ilHourSpan);
+            ilMinuteSpan = new ImageLabel();
+            inputLabelList.Add(ilMinuteSpan);
+            ilCurrentPage = new ImageLabel();
+            inputLabelList.Add(ilCurrentPage);
+            pType = new Panel();
+            rbPressure = new RadioButton();
+            rbPosition = new RadioButton();
+
+            lbPage = new Label();
+
             pBox.Size = new Size(BmpWidth, BmpHeight);
             pBox.Location = new Point(BmpLeft, BmpTop);
             pBox.Visible = true;
             this.Controls.Add(pBox);
+
+            lbPumpName.Size = new Size(100, 40);
+            lbPumpName.Location = new Point(CylinderMarginLeft + 100, CylinderMarginTop - CylinderHeight - CylinderSpacingY + 10);
+            lbPumpName.Font = currentFont;
+            lbPumpName.Text = "号泵站";
+            this.Controls.Add(lbPumpName);
+
+            ilDate.Size = new Size(CylinderWidth, CylinderHeight);
+            ilDate.Location = new Point(CylinderMarginLeft, CylinderMarginTop + 8 * (CylinderHeight + CylinderSpacingY));
+            ilDate.Font = currentFont;
+            ilDate.IMGContainer = dateImage;
+            ilDate.Click += new EventHandler(button2_Click);
+            this.Controls.Add(ilDate);
+
+            for (int i = 0; i < inputLabelList.Count; i++)
+            {
+                inputLabelList[i].Size = new Size(40, 40);
+                inputLabelList[i].Font = currentFont;
+                inputLabelList[i].IMGContainer = inputImage;
+                this.Controls.Add(inputLabelList[i]);
+            }
+
+            ilPumpIndex.Location = new Point(CylinderMarginLeft + 50, CylinderMarginTop - CylinderHeight - CylinderSpacingY);
+            ilStartHour.Location = new Point(CylinderMarginLeft, TimeSettingMarginTop);//起始小时
+            ilStartMinute.Location = new Point(CylinderMarginLeft + 90, TimeSettingMarginTop);//起始分钟
+            ilHourSpan.Location = new Point(CylinderMarginLeft, TimeSettingMarginTop + 52);//小时跨度
+            ilMinuteSpan.Location = new Point(CylinderMarginLeft + 90, TimeSettingMarginTop + 52);//分钟跨度
+            pType.Size = new Size(70, 50);//历史记录数据类型选择
+            pType.Location = new Point(CylinderMarginLeft, 580);
+            this.Controls.Add(pType);
+            rbPressure.Size = new Size(70, 25);//压力类型
+            rbPressure.Location = new Point(0, 0);
+            rbPressure.Font = currentFont;
+            rbPressure.Text = "压力";
+            this.pType.Controls.Add(rbPressure);
+            rbPosition.Size = new Size(70, 25);//压力类型
+            rbPosition.Location = new Point(0, 25);
+            rbPosition.Font = currentFont;
+            rbPosition.Text = "位置";
+            this.pType.Controls.Add(rbPosition);
+
+            lbPage.Size = new Size(200, 40);
+            lbPage.Location = new Point(250, 600);
+            lbPage.BackColor = Color.DarkRed;
+            lbPage.Font = currentFont;
+            this.Controls.Add(lbPage);
+
+            ilCurrentPage.Location = new Point(300, 600);
+
+
+            lbTimeSetting.Size = new Size(CylinderWidth, 150);
+            lbTimeSetting.Location = new Point(CylinderMarginLeft, TimeSettingMarginTop + 10);
+            lbTimeSetting.Font = currentFont;
+            lbTimeSetting.Text = "      时            分起\n\n      小时         分钟\n\n            历史记录";
+            lbTimeSetting.Visible = true;
+            lbTimeSetting.SendToBack();
+            this.Controls.Add(lbTimeSetting);
+
+            //pbDataTable;//数据表格
+
         }
 
         private void cylinder_Click(object sender, EventArgs e)
@@ -67,6 +160,27 @@ namespace AdvaMACSystem
         private ImagesContaner buttonImage = null;//按钮背景图
         private List<ImageButton> cylinderList = null;
         private PictureBox pBox = null;
+        
+        private List<ImageLabel> inputLabelList = null;
+        private Label lbPumpName;
+        private Label lbTimeSetting;
+        private SimpleImagesContaner inputImage = null;
+        private SimpleImagesContaner dateImage = null;
+        private ImageLabel ilPumpIndex;//泵站选择
+        private ImageLabel ilDate;//起始日期
+        private ImageLabel ilStartHour;//起始小时
+        private ImageLabel ilStartMinute;//起始分钟
+        private ImageLabel ilHourSpan;//小时跨度
+        private ImageLabel ilMinuteSpan;//分钟跨度
+        private Panel pType;//历史记录数据类型选择
+        private RadioButton rbPressure;//压力类型
+        private RadioButton rbPosition;//位置类型
+        private FormTimeSetting timeSetting = null;
+
+        private Label lbPage;
+        private ImageLabel ilCurrentPage;//当前页编号
+        private PictureBox pbDataTable;//数据表格
+
        
         //绘图
         private Image chart = null;
@@ -88,7 +202,7 @@ namespace AdvaMACSystem
         private DateTime endTime;
         private TimeSpan ts;
 
-        private int pumpIndex;
+        private int pumpIndex = 0;
         private int cylinderIndex = -1;
 
         private double minValue;
@@ -123,6 +237,8 @@ namespace AdvaMACSystem
 
         private int TextMarginLeft = 15;
         private int TextMarginTop = 5;
+
+        private int TimeSettingMarginTop = 490;
 
         private int ButtonWidth = 210;
         private int ButtonHeight = 40;
@@ -164,9 +280,16 @@ namespace AdvaMACSystem
             this.monthCalendar1.MaxDate = new DateTime(dt.Ticks);
             TimeSpan cts = new TimeSpan(reserveDays, 0, 0, 0);//可查询历史记录的日期跨度
             this.monthCalendar1.MinDate = new DateTime(dt.Ticks - cts.Ticks);
-            button2.Text = this.monthCalendar1.SelectionStart.ToString("yyyy-MM-dd");
-            textBox1.Text = "0:00";
-            textBox2.Text = "24";
+            ilPumpIndex.Text = "1";
+            pumpIndex = 0;
+            ilDate.Text = this.monthCalendar1.SelectionStart.ToString("yyyy-MM-dd");
+            ilStartHour.Text = "0";
+            ilStartMinute.Text = "00";
+            ilHourSpan.Text = "1";
+            ilMinuteSpan.Text = "0";
+            rbPressure.Checked = true;
+            cylinderList[0].Checked = true;
+            cylinderIndex = 0;
             DrawDefaultChart();
             base.DoEnter();
         }
@@ -183,11 +306,6 @@ namespace AdvaMACSystem
             }
             try
             {
-                //开始时间
-                startTime = Convert.ToDateTime(button2.Text + " " + textBox1.Text);
-                //开始时间
-                ts = new TimeSpan((long)(36000000000 * Convert.ToDouble(textBox2.Text)));
-                //ts = new TimeSpan(Convert.ToInt32(textBox2.Text), 0, 0);
                 //结束时间
                 endTime = startTime.Add(ts);
             }
@@ -207,7 +325,7 @@ namespace AdvaMACSystem
 
             //load files
             string tempFile;
-            bool drawPressure = !checkBox1.Checked;
+            bool drawPressure = rbPressure.Checked;
             if (drawPressure)
             {
                 tempFile = string.Format(historyOper.PressureRecFileName, pumpIndex, cylinderIndex, startTime.ToString("yyyy-MM-dd HH-mm-ss"));
@@ -476,7 +594,7 @@ namespace AdvaMACSystem
                 totalDatas += dataList[i].Count;
             }
             totalPages = totalDatas / dataPerPage + (totalDatas % dataPerPage != 0 ? 1 : 0);
-            label1.Text = totalPages.ToString();
+            lbPage.Text = string.Format("第        页，共{0}页", totalPages);
 
         }
 
@@ -527,14 +645,26 @@ namespace AdvaMACSystem
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.monthCalendar1.Visible = !this.monthCalendar1.Visible;
-            button2.Text = this.monthCalendar1.SelectionStart.ToString("yyyy-MM-dd");
+            timeSetting.ReserveDays = this.reserveDays;
+            timeSetting.Initialize();
+            if (timeSetting.ShowDialog() == DialogResult.OK)
+            {
+                startTime = timeSetting.GetStartTime();
+                ts = timeSetting.GetTimeSpan();
+                if (ReadyToDrawChart() == 0)
+                {
+                    DrawChart();
+                    DrawTable();
+                }
+            }
+            //this.monthCalendar1.Visible = !this.monthCalendar1.Visible;
+            //ilDate.Text = this.monthCalendar1.SelectionStart.ToString("yyyy-MM-dd");
         }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
             this.monthCalendar1.Visible = false;
-            button2.Text = this.monthCalendar1.SelectionStart.ToString("yyyy-MM-dd");
+            ilDate.Text = this.monthCalendar1.SelectionStart.ToString("yyyy-MM-dd");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -550,7 +680,19 @@ namespace AdvaMACSystem
         {
             listView1.Items.Clear();
 
-            List<DataPair> lvl = GetData(Convert.ToInt32(textBox3.Text) * dataPerPage);
+            int pageIndex = 0;
+            try
+            {
+                pageIndex = Convert.ToInt32(ilCurrentPage.Text) - 1;
+            }
+            catch
+            { }
+            if (pageIndex < 0 || pageIndex >= totalPages)
+            {
+                pageIndex = 0;
+                ilCurrentPage.Text = "1";
+            }
+            List<DataPair> lvl = GetData(pageIndex * dataPerPage);
             for (int i = 0; i < lvl.Count; i++)
             {
                 ListViewItem lvi = new ListViewItem();
