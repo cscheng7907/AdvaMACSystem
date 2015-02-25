@@ -29,7 +29,7 @@ namespace AdvaMACSystem
             buttonImage = new ImagesContaner();
             buttonImage.DNImg = AdvaMACSystemRes.Dgn_down;
             buttonImage.UPImg = AdvaMACSystemRes.Dgn_up;
-            buttonImage.UPImgDisable = buttonImage.DNImgDisable = AdvaMACSystemRes.Dgn_disable;
+            buttonImage.UPImgDisaable = buttonImage.DNImgDisable = AdvaMACSystemRes.Dgn_disable;
 
             cylinderList = new List<ImageButton>();
             for (int i = 0; i < 8; i++)

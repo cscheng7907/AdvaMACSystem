@@ -33,6 +33,7 @@
             this.mainMenu1 = new System.Windows.Forms.MainMenu();
             this.inputPanel1 = new Microsoft.WindowsCE.Forms.InputPanel(this.components);
             this.imageLabel1 = new ComCtrls.ImageLabel();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // imageLabel1
@@ -43,7 +44,7 @@
             this.imageLabel1.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
             this.imageLabel1.IMGContainer = null;
             this.imageLabel1.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageLabel1.Location = new System.Drawing.Point(180, 146);
+            this.imageLabel1.Location = new System.Drawing.Point(172, 185);
             this.imageLabel1.Name = "imageLabel1";
             this.imageLabel1.Size = new System.Drawing.Size(139, 27);
             this.imageLabel1.TabIndex = 3;
@@ -53,12 +54,20 @@
             this.imageLabel1.TransParent = false;
             this.imageLabel1.Click += new System.EventHandler(this.imageLabel1_Click);
             // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(253, 185);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 20);
+            this.label1.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(638, 455);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.imageLabel1);
             this.Menu = this.mainMenu1;
             this.Name = "Form1";
@@ -72,6 +81,7 @@
 
         private Microsoft.WindowsCE.Forms.InputPanel inputPanel1;
         private ComCtrls.ImageLabel imageLabel1;
+        private System.Windows.Forms.Label label1;
     }
 }
 

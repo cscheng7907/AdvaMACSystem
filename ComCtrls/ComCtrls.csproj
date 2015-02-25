@@ -56,6 +56,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImagesContaner.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ImagesContaner.Designer.cs">
+      <DependentUpon>ImagesContaner.cs</DependentUpon>
+    </Compile>
     <Compile Include="KeypadForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SimpleImagesContaner.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SimpleImagesContaner.Designer.cs">
+      <DependentUpon>SimpleImagesContaner.cs</DependentUpon>
     </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>

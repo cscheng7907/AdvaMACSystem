@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem();
             System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem();
+            this.imageButton_back = new ComCtrls.ImageButton(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
@@ -46,6 +48,7 @@
             this.label1.Size = new System.Drawing.Size(407, 38);
             this.label1.Text = "系统故障信息-实时数据";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label1.ForeColor = System.Drawing.Color.Black;
             // 
             // listView1
             // 
@@ -95,12 +98,34 @@
             this.columnHeader8.Text = "内容";
             this.columnHeader8.Width = 620;
             // 
+            // imageButton_back
+            // 
+            this.imageButton_back.Checked = false;
+            this.imageButton_back.DownColor = System.Drawing.SystemColors.Control;
+            this.imageButton_back.Layout = ComCtrls.KTLayout.GlyphTop;
+            this.imageButton_back.Location = new System.Drawing.Point(780, 621);
+            this.imageButton_back.Name = "imageButton_back";
+            this.imageButton_back.ShortcutKeys = System.Windows.Forms.Keys.None;
+            this.imageButton_back.ForeColor = System.Drawing.Color.Black;
+            this.imageButton_back.Size = new System.Drawing.Size(210, 40);
+            this.imageButton_back.TabIndex = 0;
+            this.imageButton_back.TabStop = false;
+            this.imageButton_back.Text = "返回";
+            this.imageButton_back.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
+            this.imageButton_back.Toggle = false;
+            this.imageButton_back.TransParent = false;
+            this.imageButton_back.UPImg = AdvaMACSystemRes.Dgn_up;
+            this.imageButton_back.DNImg = AdvaMACSystemRes.Dgn_down;
+            this.imageButton_back.UpColor = System.Drawing.SystemColors.Control;
+            this.imageButton_back.Click += new System.EventHandler(this.imageButton_back_Click);
+            // 
             // PageViewError
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.imageButton_back);
             this.Name = "PageViewError";
             this.Size = new System.Drawing.Size(1024, 670);
             this.ResumeLayout(false);
@@ -115,5 +140,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
+        private ComCtrls.ImageButton imageButton_back;
     }
 }

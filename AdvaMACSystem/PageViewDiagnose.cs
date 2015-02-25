@@ -33,7 +33,7 @@ namespace AdvaMACSystem
             buttonImage = new ImagesContaner();
             buttonImage.DNImg = AdvaMACSystemRes.Dgn_down;
             buttonImage.UPImg = AdvaMACSystemRes.Dgn_up;
-            buttonImage.UPImgDisable = buttonImage.DNImgDisable = AdvaMACSystemRes.Dgn_disable;
+            buttonImage.UPImgDisaable = buttonImage.DNImgDisable = AdvaMACSystemRes.Dgn_disable;
             cylinderImage = new SimpleImagesContaner();
             cylinderImage.BackImg = AdvaMACSystemRes.IOred;
             cylinderImage.ImgDisable = AdvaMACSystemRes.IOred;
@@ -125,6 +125,7 @@ namespace AdvaMACSystem
             exitButton.Location = new Point(IOMarginLeft + 3 * (ButtonWidth + ButtonSpacingX), ButtonMarginTop);
             exitButton.IMGContainer = buttonImage;
             exitButton.Font = currentFont;
+            exitButton.ForeColor = System.Drawing.Color.Black;
             exitButton.Text = "返回";
             exitButton.CheckedChanged += new EventHandler(exitButton_CheckedChanged);
             this.Controls.Add(exitButton);

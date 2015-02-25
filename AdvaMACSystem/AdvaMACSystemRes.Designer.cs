@@ -141,6 +141,13 @@ namespace AdvaMACSystem {
             }
         }
         
+        internal static System.Drawing.Bitmap input {
+            get {
+                object obj = ResourceManager.GetObject("input", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap IO {
             get {
                 object obj = ResourceManager.GetObject("IO", resourceCulture);
@@ -165,6 +172,20 @@ namespace AdvaMACSystem {
         internal static System.Drawing.Bitmap IOred {
             get {
                 object obj = ResourceManager.GetObject("IOred", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap LightOff100 {
+            get {
+                object obj = ResourceManager.GetObject("LightOff100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap LightOn100 {
+            get {
+                object obj = ResourceManager.GetObject("LightOn100", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

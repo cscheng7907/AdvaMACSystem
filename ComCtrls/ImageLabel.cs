@@ -9,102 +9,7 @@ using System.Drawing.Imaging;
 
 namespace ComCtrls
 {
-    public class SimpleImagesContaner : Component
-    {
-
-        public SimpleImagesContaner()
-        {
-            ownerlst = new List<Control>();
-        }
-
-        private List<Control> ownerlst = null;
-
-        public void AddOwner(Control Owner)
-        {
-            ownerlst.Add(Owner);
-        }
-
-        public void RemoveOwner(Control Owner)
-        {
-            ownerlst.Remove(Owner);
-        }
-
-        public void DoRefresh()
-        {
-            foreach (Control c in ownerlst)
-            {
-                c.Invalidate();
-            }
-        }
-
-        private Image backimg = null;
-        public Image BackImg
-        {
-            get
-            {
-                return backimg;
-            }
-            set
-            {
-                if (backimg != value)
-                {
-                    backimg = value;
-                    this.DoRefresh();
-                }
-            }
-        }
-
-        private Image checkedBackimg = null;
-        public Image CheckedBackImg
-        {
-            get
-            {
-                return checkedBackimg;
-            }
-            set
-            {
-                if (checkedBackimg != value)
-                {
-                    checkedBackimg = value;
-                    this.DoRefresh();
-                }
-            }
-        }
-
-        private Image imgdisable = null;
-        public Image ImgDisable
-        {
-            get
-            {
-                return imgdisable;
-            }
-            set
-            {
-                if (imgdisable != value)
-                {
-                    imgdisable = value;
-                    this.DoRefresh();
-                }
-            }
-        }
-
-        private Image icon = null;
-        public Image Icon
-        {
-            get
-            {
-                return icon;
-            }
-            set
-            {
-                if (icon != value)
-                {
-                    icon = value;
-                    this.DoRefresh();
-                }
-            }
-        }
-    }
+    [Serializable]
     public partial class ImageLabel : Control
     {
 
@@ -155,6 +60,7 @@ namespace ComCtrls
 
             gxOff.Clear(this.BackColor);
 
+
             //添加了ImageButton 的自绘背景及图标的功能，并通过聚合SimpleImagesContaner以优化资源分配 by cs at 2009-1-20  {295CEBAC-5099-403c-90BF-DD86BC58264D} 
             //if (bgimage != null)
             if ((IMGContainer != null) &&
@@ -195,51 +101,51 @@ namespace ComCtrls
 
                 }
             }
-            else if (BackImg != null)
-            {
-                Image bgimage = BackImg;
-
-                int imageLeft = (this.Width - bgimage.Width) / 2;
-                int imageTop = (this.Height - bgimage.Height) / 2;
-
-                imgRect = new Rectangle(imageLeft, imageTop, bgimage.Width, bgimage.Height);
-
-                if (this.TransParent)
+            else
+                if (BackImg != null)
                 {
-                    //Set transparent key
-                    ImageAttributes imageAttr = new ImageAttributes();
-                    imageAttr.SetColorKey(BackgroundImageColor(bgimage), BackgroundImageColor(bgimage));
+                    Image bgimage = BackImg;
 
-                    //Draw image
-                    gxOff.DrawImage(bgimage, imgRect, 0, 0, bgimage.Width, bgimage.Height, GraphicsUnit.Pixel, imageAttr);
+                    int imageLeft = (this.Width - bgimage.Width) / 2;
+                    int imageTop = (this.Height - bgimage.Height) / 2;
+
+                    imgRect = new Rectangle(imageLeft, imageTop, bgimage.Width, bgimage.Height);
+
+                    if (this.TransParent)
+                    {
+                        //Set transparent key
+                        ImageAttributes imageAttr = new ImageAttributes();
+                        imageAttr.SetColorKey(BackgroundImageColor(bgimage), BackgroundImageColor(bgimage));
+
+                        //Draw image
+                        gxOff.DrawImage(bgimage, imgRect, 0, 0, bgimage.Width, bgimage.Height, GraphicsUnit.Pixel, imageAttr);
+                    }
+                    else
+                    {
+                        gxOff.DrawImage(bgimage, imgRect, new Rectangle(0, 0, bgimage.Width, bgimage.Height), GraphicsUnit.Pixel);
+
+                    }
                 }
-                else
+                else //draw frame
                 {
-                    gxOff.DrawImage(bgimage, imgRect, new Rectangle(0, 0, bgimage.Width, bgimage.Height), GraphicsUnit.Pixel);
+                    {
+                        //gray
+                        framepen = new Pen(Color.Gray, 1);
+                        gxOff.DrawRectangle(framepen, 0, 0, ClientSize.Width - 2, ClientSize.Height - 2);
 
+
+                        //white
+                        framepen = new Pen(System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(127)))), ((int)(((byte)(181))))), 1);
+                        gxOff.DrawLine(framepen, 1, 1, ClientSize.Width - 3, 1);
+                        gxOff.DrawLine(framepen, 1, 1, 1, ClientSize.Height - 3);
+
+                        //black
+                        framepen = new Pen(Color.Black, 1);
+                        gxOff.DrawLine(framepen, ClientSize.Width - 1, ClientSize.Height - 1, 0, ClientSize.Height - 1);
+                        gxOff.DrawLine(framepen, ClientSize.Width - 1, ClientSize.Height - 1, ClientSize.Width - 1, 0);
+
+                    }
                 }
-            }
-            else //draw frame
-            {
-                {
-                    //gray
-                    framepen = new Pen(Color.Gray, 1);
-                    gxOff.DrawRectangle(framepen, 0, 0, ClientSize.Width - 2, ClientSize.Height - 2);
-
-
-                    //white
-                    framepen = new Pen(System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(127)))), ((int)(((byte)(181))))), 1);
-                    gxOff.DrawLine(framepen, 1, 1, ClientSize.Width - 3, 1);
-                    gxOff.DrawLine(framepen, 1, 1, 1, ClientSize.Height - 3);
-
-                    //black
-                    framepen = new Pen(Color.Black, 1);
-                    gxOff.DrawLine(framepen, ClientSize.Width - 1, ClientSize.Height - 1, 0, ClientSize.Height - 1);
-                    gxOff.DrawLine(framepen, ClientSize.Width - 1, ClientSize.Height - 1, ClientSize.Width - 1, 0);
-
-                }
-            }
-
 
             //todo: icon
             //添加了ImageButton 的自绘背景及图标的功能，并通过聚合SimpleImagesContaner以优化资源分配 by cs at 2009-1-20  {295CEBAC-5099-403c-90BF-DD86BC58264D} 
@@ -421,7 +327,6 @@ namespace ComCtrls
                 }
             }
         }
-
 
 
         private KTLayout layout;

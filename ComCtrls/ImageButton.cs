@@ -9,119 +9,6 @@ using System.Drawing.Imaging;
 
 namespace ComCtrls
 {
-    //添加了ImageButton 的自绘背景及图标的功能，并通过聚合ImagesContaner以优化资源分配 by cs at 2009-1-20  {295CEBAC-5099-403c-90BF-DD86BC58264D} 
-    public class ImagesContaner : Component
-    {
-
-        public ImagesContaner()
-        {
-            ownerlst = new List<Control>();
-        }
-
-        private List<Control> ownerlst = null;
-
-        public void AddOwner(Control Owner)
-        {
-            ownerlst.Add(Owner);
-        }
-
-        public void RemoveOwner(Control Owner)
-        {
-            ownerlst.Remove(Owner);
-        }
-
-        public void DoRefresh()
-        {
-            foreach (Control c in ownerlst)
-            {
-                c.Invalidate();
-            }
-        }
-
-        private Image upimg = null;
-        public Image UPImg
-        {
-            get
-            {
-                return upimg;
-            }
-            set
-            {
-                if (upimg != value)
-                {
-                    upimg = value;
-                    this.DoRefresh();
-                }
-            }
-        }
-
-        private Image upimgdisable = null;
-        public Image UPImgDisable
-        {
-            get
-            {
-                return upimgdisable;
-            }
-            set
-            {
-                if (upimgdisable != value)
-                {
-                    upimgdisable = value;
-                    this.DoRefresh();
-                }
-            }
-        }
-
-        private Image dnimg = null;
-        public Image DNImg
-        {
-            get
-            {
-                return dnimg;
-            }
-            set
-            {
-                if (dnimg != value)
-                {
-                    dnimg = value;
-                    this.DoRefresh();
-                }
-            }
-        }
-        private Image dnimgdisable = null;
-        public Image DNImgDisable
-        {
-            get
-            {
-                return dnimgdisable;
-            }
-            set
-            {
-                if (dnimgdisable != value)
-                {
-                    dnimgdisable = value;
-                    this.DoRefresh();
-                }
-            }
-        }
-
-        private Image icon = null;
-        public Image Icon
-        {
-            get
-            {
-                return icon;
-            }
-            set
-            {
-                if (icon != value)
-                {
-                    icon = value;
-                    this.DoRefresh();
-                }
-            }
-        }
-    }
 
 
     public enum KTLayout
@@ -133,6 +20,7 @@ namespace ComCtrls
 
     }
 
+    [Serializable]
     public partial class ImageButton : Control
     {
         public ImageButton()
@@ -155,8 +43,8 @@ namespace ComCtrls
 
             this.TabStop = false;
 
-            this.GotFocus += new EventHandler(BtnGotFocus);
-            this.LostFocus += new EventHandler(BtnLostFocus);
+            //this.GotFocus += new EventHandler(BtnGotFocus);
+            //this.LostFocus += new EventHandler(BtnLostFocus);
         }
 
         private void BtnGotFocus(object sender, EventArgs e)
@@ -361,7 +249,7 @@ namespace ComCtrls
             if ((IMGContainer != null) &&
                 (IMGContainer.DNImg != null) &&
                 (IMGContainer.DNImgDisable != null) &&
-                (IMGContainer.UPImgDisable != null) &&
+                (IMGContainer.UPImgDisaable != null) &&
                 (IMGContainer.UPImg != null)
                 )
             {
@@ -369,7 +257,7 @@ namespace ComCtrls
 
                 if (!Enabled)
                     if (!Checked)
-                        bgimage = IMGContainer.UPImgDisable;
+                        bgimage = IMGContainer.UPImgDisaable;
                     else
                         bgimage = IMGContainer.DNImgDisable;
                 else
@@ -405,7 +293,8 @@ namespace ComCtrls
 
                 }
             }
-            else if ((DNImg != null) &&
+            else 
+                if ((DNImg != null) &&
                 (DNImgDisable != null) &&
                 (UPImgDisable != null) &&
                 (UPImg != null)
@@ -544,7 +433,6 @@ namespace ComCtrls
                 //}
             }
 
-
             //todo: icon
             //添加了ImageButton 的自绘背景及图标的功能，并通过聚合ImagesContaner以优化资源分配 by cs at 2009-1-20  {295CEBAC-5099-403c-90BF-DD86BC58264D} 
             //if (Icon != null)
@@ -680,36 +568,8 @@ namespace ComCtrls
             }
         }
 
-        //private Image bgimage = null;
-        //public Image BgImage
-        //{
-        //    get
-        //    {
-        //        return bgimage;
-        //    }
-        //    set
-        //    {
-        //        bgimage = value;
-        //        this.Invalidate();
-        //    }
-        //}
-
-        //private Image icon = null;
-        //public Image Icon
-        //{
-        //    get
-        //    {
-        //        return icon;
-        //    }
-        //    set
-        //    {
-        //        icon = value;
-        //        this.Invalidate();
-        //    }
-        //}
-
-        //添加了ImageButton 的自绘背景及图标的功能，并通过聚合ImagesContaner以优化资源分配 by cs at 2009-1-20  {295CEBAC-5099-403c-90BF-DD86BC58264D} 
         private ImagesContaner imglst = null;
+        [DefaultValue(null)]
         public ImagesContaner IMGContainer
         {
             get
@@ -845,6 +705,7 @@ namespace ComCtrls
         }
 
         private Image upimg = null;
+        [DefaultValue(null)]
         public Image UPImg
         {
             get
@@ -862,6 +723,7 @@ namespace ComCtrls
         }
 
         private Image upimgdisable = null;
+        [DefaultValue(null)]
         public Image UPImgDisable
         {
             get
@@ -879,6 +741,7 @@ namespace ComCtrls
         }
 
         private Image dnimg = null;
+        [DefaultValue(null)]
         public Image DNImg
         {
             get
@@ -896,6 +759,7 @@ namespace ComCtrls
         }
 
         private Image dnimgdisable = null;
+        [DefaultValue(null)]
         public Image DNImgDisable
         {
             get
