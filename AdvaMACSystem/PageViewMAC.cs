@@ -27,14 +27,14 @@ namespace AdvaMACSystem
             pumpImages.DNImg = AdvaMACSystemRes.pumpborder_checked;
             pumpImages.UPImg = AdvaMACSystemRes.pumpborder;
             pumpImages.DNImgDisable = AdvaMACSystemRes.pumpborder_disable;
-            pumpImages.UPImgDisable = AdvaMACSystemRes.pumpborder_disable;
+            pumpImages.UPImgDisaable = AdvaMACSystemRes.pumpborder_disable;
 
             //button美化
             buttonImages = new ImagesContaner();
             buttonImages.DNImg = AdvaMACSystemRes.MAC_down;
             buttonImages.UPImg = AdvaMACSystemRes.MAC_up;
             buttonImages.DNImgDisable = AdvaMACSystemRes.MAC_disable;
-            buttonImages.UPImgDisable = AdvaMACSystemRes.MAC_disable;
+            buttonImages.UPImgDisaable = AdvaMACSystemRes.MAC_disable;
 
             //cylinder美化
             progressBarImages = new CProgressBarImagesContainer();

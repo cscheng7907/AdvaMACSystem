@@ -168,6 +168,12 @@
     <EmbeddedResource Include="PageViewPara.resx">
       <DependentUpon>PageViewPara.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PageViewPara_Sensor.resx">
+      <DependentUpon>PageViewPara_Sensor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PageViewPara_Setup.resx">
+      <DependentUpon>PageViewPara_Setup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PageViewWarn.resx">
       <DependentUpon>PageViewWarn.cs</DependentUpon>
     </EmbeddedResource>
@@ -250,6 +256,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\IO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LightOff.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LightOn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LightOff75.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LightOn75.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LightOff100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LightOn100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\input.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

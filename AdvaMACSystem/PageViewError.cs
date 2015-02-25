@@ -124,6 +124,10 @@ namespace AdvaMACSystem
         };
         private int firstcmdtype = (int)CmdDataType.cdtError_Pump_3501_3504;
 
+        private void imageButton_back_Click(object sender, EventArgs e)
+        {
+            this.DoExit();
+        }
 
     }
 }
