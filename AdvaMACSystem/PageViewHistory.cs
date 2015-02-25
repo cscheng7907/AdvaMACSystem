@@ -221,8 +221,7 @@ namespace AdvaMACSystem
             string recDirectory = Path.GetDirectoryName(tempFile);
             if (!Directory.Exists(recDirectory))
             {
-                MessageBox.Show("无相应记录！");
-                return 4;
+                Directory.CreateDirectory(recDirectory);
             }
             filesToDraw = new List<string>();
             string[] filesArray = Directory.GetFiles(recDirectory);
@@ -349,12 +348,12 @@ namespace AdvaMACSystem
                         if (pumpInFile != pumpIndex || cylinderInFile != cylinderIndex || multiplyingFactor <= 0)
                             continue;
 
-                        int firstValidDataIndex = 0;
+                        long firstValidDataIndex = 0;
                         //调整记录起始点
                         if (startTimeInRec < startTime.Ticks)
                         {
                             //需要调整记录起始点
-                            int dataCountInRec = (int)((fs.Length - historyOper.CONST_FILE_HEAD_SIZE) / sizeof(int));
+                            long dataCountInRec = (fs.Length - historyOper.CONST_FILE_HEAD_SIZE) / sizeof(int);
                             
                             if (dataCountInRec <= 0)
                                 continue;
@@ -364,7 +363,7 @@ namespace AdvaMACSystem
                                 continue;
                             else//记录中包含查询数据
                             {
-                                firstValidDataIndex = (int)Math.Ceiling((startTime.Ticks - startTimeInRec) / 10000.0 / interval);
+                                firstValidDataIndex = (long)Math.Ceiling((startTime.Ticks - startTimeInRec) / 10000.0 / interval);
                                 startTimeInRec = startTimeInRec + firstValidDataIndex * 10000 * interval;//调整记录起始点
                             }
                         }
@@ -407,8 +406,8 @@ namespace AdvaMACSystem
                     {
                         br.Close();
                         fs.Close();
+                        File.Delete(tempFolder + Path.GetFileName(filesToDraw[key]));
                     }
-                    File.Delete(tempFolder + Path.GetFileName(filesToDraw[key]));
                 //}
                 //catch
                 //{ }
