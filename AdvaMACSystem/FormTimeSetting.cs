@@ -26,7 +26,7 @@ namespace AdvaMACSystem
             buttonImage = new ImagesContaner();
             buttonImage.DNImg = AdvaMACSystemRes.Dgn_down;
             buttonImage.UPImg = AdvaMACSystemRes.Dgn_up;
-            buttonImage.UPImgDisable = buttonImage.DNImgDisable = AdvaMACSystemRes.Dgn_disable;
+            buttonImage.UPImgDisaable = buttonImage.DNImgDisable = AdvaMACSystemRes.Dgn_disable;
 
             buttonList = new List<ImageButton>();
             ibPressure = new ImageButton();
@@ -41,13 +41,17 @@ namespace AdvaMACSystem
             lbTimeSetting = new Label();
             inputLabelList = new List<ImageLabel>();
             ilStartHour = new ImageLabel();
+            ilStartHour.Click += new EventHandler(ilStartHour_Click);
             inputLabelList.Add(ilStartHour);
             ilStartMinute = new ImageLabel();
+            ilStartMinute.Click += new EventHandler(ilStartMinute_Click);
             inputLabelList.Add(ilStartMinute);
             ilHourSpan = new ImageLabel();
             inputLabelList.Add(ilHourSpan);
+            ilHourSpan.Click += new EventHandler(ilHourSpan_Click);
             ilMinuteSpan = new ImageLabel();
             inputLabelList.Add(ilMinuteSpan);
+            ilMinuteSpan.Click += new EventHandler(ilMinuteSpan_Click);
 
             for (int i = 0; i < inputLabelList.Count; i++)
             {
@@ -95,6 +99,86 @@ namespace AdvaMACSystem
             //        c.Font = currentFont;
             //}
             //monthCalendar1.Location = new Point((this.Width - monthCalendar1.Width) / 2, monthCalendar1.Top);
+        }
+
+        private void ilMinuteSpan_Click(object sender, EventArgs e)
+        {
+            KeypadForm f = KeypadForm.GetKeypadForm(ilMinuteSpan.Text);
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                int minute = 0;
+                try
+                {
+                    minute = Convert.ToInt32(f.KeyText);
+                    if (minute < 0 || minute >= 60)
+                        minute = 0;
+                }
+                catch
+                {
+                    minute = 0;
+                }
+                ilMinuteSpan.Text = minute.ToString();
+            }
+        }
+
+        private void ilHourSpan_Click(object sender, EventArgs e)
+        {
+            KeypadForm f = KeypadForm.GetKeypadForm(ilHourSpan.Text);
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                int hour = 0;
+                try
+                {
+                    hour = Convert.ToInt32(f.KeyText);
+                    if (hour < 0 || hour > 99)
+                        hour = 0;
+                }
+                catch
+                {
+                    hour = 0;
+                }
+                ilHourSpan.Text = hour.ToString();
+            }
+        }
+
+        private void ilStartMinute_Click(object sender, EventArgs e)
+        {
+            KeypadForm f = KeypadForm.GetKeypadForm(ilStartMinute.Text);
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                int minute = 0;
+                try
+                {
+                    minute = Convert.ToInt32(f.KeyText);
+                    if (minute < 0 || minute >= 60)
+                        minute = 0;
+                }
+                catch
+                {
+                    minute = 0;
+                }
+                ilStartMinute.Text = minute.ToString();
+            }
+        }
+
+        private void ilStartHour_Click(object sender, EventArgs e)
+        {
+            KeypadForm f = KeypadForm.GetKeypadForm(ilStartHour.Text);
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                int hour = 0;
+                try
+                {
+                    hour = Convert.ToInt32(f.KeyText);
+                    if (hour < 0 || hour >= 24)
+                        hour = 0;
+                }
+                catch
+                {
+                    hour = 0;
+                }
+                ilStartHour.Text = hour.ToString();
+            }
         }
 
         private void dataTypeChanged(object sender, EventArgs e)
@@ -153,7 +237,7 @@ namespace AdvaMACSystem
             DateTime dt = this.monthCalendar1.SelectionStart;
             try
             {
-                TimeSpan ts = new TimeSpan(Convert.ToInt32(ilStartHour.Text), Convert.ToInt32(ilStartMinute), 0);
+                TimeSpan ts = new TimeSpan(Convert.ToInt32(ilStartHour.Text), Convert.ToInt32(ilStartMinute.Text), 0);
                 dt = dt.Add(ts);
             }
             catch

@@ -270,18 +270,6 @@
     <None Include="Resources\Input40x40.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\LightOff.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\LightOn.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\LightOff75.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\LightOn75.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\LightOff100.png" />
   </ItemGroup>
   <ItemGroup>

@@ -106,6 +106,7 @@ namespace AdvaMACSystem
             }
 
             ilPumpIndex.Location = new Point(CylinderMarginLeft + 50, CylinderMarginTop - CylinderHeight - CylinderSpacingY);
+            ilPumpIndex.Click += new EventHandler(ilPumpIndex_Click);
             ilStartHour.Location = new Point(CylinderMarginLeft, TimeSettingMarginTop);//起始小时
             ilStartMinute.Location = new Point(CylinderMarginLeft + 90, TimeSettingMarginTop);//起始分钟
             ilHourSpan.Location = new Point(CylinderMarginLeft, TimeSettingMarginTop + 52);//小时跨度
@@ -143,6 +144,27 @@ namespace AdvaMACSystem
 
             //pbDataTable;//数据表格
 
+        }
+
+        private void ilPumpIndex_Click(object sender, EventArgs e)
+        {
+            KeypadForm f = KeypadForm.GetKeypadForm(ilPumpIndex.Text);
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                int index = 1;
+                try
+                {
+                    index = Convert.ToInt32(f.KeyText);
+                    if (index <= 0 || index > pumpNumber)
+                        index = 1;
+                }
+                catch
+                {
+                    index = 1;
+                }
+                pumpIndex = index - 1;
+                ilPumpIndex.Text = index.ToString();
+            }
         }
 
         private void cylinder_Click(object sender, EventArgs e)
@@ -202,6 +224,7 @@ namespace AdvaMACSystem
         private DateTime endTime;
         private TimeSpan ts;
 
+        private int pumpNumber = 4;
         private int pumpIndex = 0;
         private int cylinderIndex = -1;
 
@@ -282,6 +305,7 @@ namespace AdvaMACSystem
             this.monthCalendar1.MinDate = new DateTime(dt.Ticks - cts.Ticks);
             ilPumpIndex.Text = "1";
             pumpIndex = 0;
+            pumpNumber = (int)_candatapool.PumpCount;
             ilDate.Text = this.monthCalendar1.SelectionStart.ToString("yyyy-MM-dd");
             ilStartHour.Text = "0";
             ilStartMinute.Text = "00";
