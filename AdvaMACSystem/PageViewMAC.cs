@@ -166,15 +166,18 @@ namespace AdvaMACSystem
         #region 油缸
         private int cylinderNumber = 8;
         private List<CylinderCellBlock> cylinderList = null;
-        private int selectedCylinderIndex = -1;
+        private int selectedCylinderIndex = 0;
         private void cylinder_OnCylinderClicked(int cylinderIndex)
         {
-            if (selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
+            if (selectedCylinderIndex != cylinderIndex)
+            {
                 cylinderList[selectedCylinderIndex].Selected = false;
-            if (cylinderList[cylinderIndex].Selected)
+                cylinderList[cylinderIndex].Selected = true;
                 selectedCylinderIndex = cylinderIndex;
+                _candatapool.CurId = cylinderIndex;
+            }
             else
-                selectedCylinderIndex = -1;
+                cylinderList[selectedCylinderIndex].Selected = true;
         }
 
         private CProgressBarImagesContainer progressBarImages = null;
@@ -191,6 +194,7 @@ namespace AdvaMACSystem
                 {
                     selectedPumpIndex = value;
                     RefreshCylinderList();
+                    _candatapool.CurID = selectedPumpIndex;
                 }
             }
         }
@@ -310,8 +314,13 @@ namespace AdvaMACSystem
                 pumpList[j].Unit = PumpUnit;
             }
             pumpList[0].Checked = true;
+            selectedPumpIndex = 0;
+            _candatapool.CurId = selectedPumpIndex;
 
             RefreshCylinderList();
+            cylinderList[0].Selected = true;
+            selectedCylinderIndex = 0;
+            _candatapool.CurSubId = selectedCylinderIndex;
 
             autoModeButton.Checked = true;
             controlMode = 0;
