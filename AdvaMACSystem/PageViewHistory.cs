@@ -65,6 +65,7 @@ namespace AdvaMACSystem
             inputImage.BackImg = inputImage.CheckedBackImg
                 = inputImage.ImgDisable = AdvaMACSystemRes.Input40x40;
 
+            imageLabel_title = new ComCtrls.ImageLabel();
             pBox = new PictureBox();
             pbDataTable = new PictureBox();
             lbPumpName = new Label();
@@ -77,6 +78,18 @@ namespace AdvaMACSystem
             inputLabelList.Add(ilCurrentPage);
 
             lbPage = new Label();
+
+            this.imageLabel_title.BackColor = System.Drawing.Color.Silver;
+            this.imageLabel_title.Checked = false;
+            this.imageLabel_title.Dock = System.Windows.Forms.DockStyle.Top;
+            this.imageLabel_title.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
+            this.imageLabel_title.Location = new System.Drawing.Point(0, 0);
+            this.imageLabel_title.Name = "imageLabel_title";
+            this.imageLabel_title.Size = new System.Drawing.Size(1024, 85);
+            this.imageLabel_title.TabIndex = 0;
+            this.imageLabel_title.Text = "历史记录";
+            this.imageLabel_title.TransParent = false;
+            this.Controls.Add(this.imageLabel_title);
 
             pBox.Size = new Size(BmpWidth, BmpHeight);
             pBox.Location = new Point(BmpLeft, BmpTop);
@@ -180,6 +193,8 @@ namespace AdvaMACSystem
         }
 
         //界面
+        private ComCtrls.ImageLabel imageLabel_title;//标题
+
         private ImagesContaner buttonImage = null;//按钮背景图
         private List<ImageButton> cylinderList = null;
         private PictureBox pBox = null;
@@ -222,9 +237,9 @@ namespace AdvaMACSystem
 
         //数据
         private int reserveDays = 60;
-        private DateTime startTime;
+        private DateTime startTime = DateTime.Now.Date;
         private DateTime endTime;
-        private TimeSpan ts;
+        private TimeSpan ts= new TimeSpan(24, 0, 0);
 
         private bool drawPressure = true;
         private int pumpNumber = 4;
@@ -446,8 +461,7 @@ namespace AdvaMACSystem
             for (int i = 0; i <= 12; i++)
             {
                 g.DrawLine(backPen, i * 60 + 40, 270, i * 60 + 40, 265);
-                if (xdate.Date == startTime.Date)
-                    g.DrawString(xdate.ToString("HH:mm"), chartFont, whiteBrush, i * 60 + 40, 285, sf);
+                g.DrawString(xdate.ToString("HH:mm"), chartFont, whiteBrush, i * 60 + 40, 285, sf);
                 xdate = xdate.Add(new TimeSpan(ts.Ticks / 12));
             }
 
@@ -664,7 +678,7 @@ namespace AdvaMACSystem
                 sum = sum + dataList[i].Count;
             }
             int count = 0;
-            for (int k = startID - sum; k < dataList[i].Count; k++)
+            for (int k = startID - sum; i < dataList.Count && k < dataList[i].Count; k++)
             {
                 DataPair dp;
                 dp.id = startID;
@@ -700,6 +714,7 @@ namespace AdvaMACSystem
         {
             timeSetting.ReserveDays = this.reserveDays;
             timeSetting.Initialize();
+            timeSetting.SetStartTime(startTime, ts);
             if (timeSetting.ShowDialog() == DialogResult.OK)
             {
                 startTime = timeSetting.GetStartTime();

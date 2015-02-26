@@ -245,6 +245,16 @@ namespace AdvaMACSystem
             return dt;
         }
 
+        public void SetStartTime(DateTime startTime, TimeSpan timeSpan)
+        {
+            this.monthCalendar1.SelectionStart = startTime.Date;
+            ilStartHour.Text = startTime.Hour.ToString();
+            ilStartMinute.Text = startTime.Minute.ToString();
+            ilHourSpan.Text = ((int)timeSpan.TotalHours).ToString();
+            ilMinuteSpan.Text = timeSpan.Minutes.ToString();
+        }
+
+
         public TimeSpan GetTimeSpan()
         {
             TimeSpan ts = new TimeSpan(24, 0, 0);
