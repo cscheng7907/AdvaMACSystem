@@ -11,6 +11,8 @@ namespace ComCtrls
 {
     public partial class KeypadForm : Form
     {
+        private KeypadMode mode = KeypadMode.Normal;
+
         private static KeypadForm KeypadFormObject = null;
 
         public static KeypadForm GetKeypadForm(string text)
@@ -18,8 +20,8 @@ namespace ComCtrls
             if (KeypadFormObject == null)
                 KeypadFormObject = new KeypadForm();
 
-            KeypadFormObject.KeyText = text;
             KeypadFormObject.isFirstenter = true;
+            KeypadFormObject.KeyText = text;
 
             KeypadFormObject.Location = new Point((Screen.PrimaryScreen.WorkingArea.Width - KeypadFormObject.Width) / 2,
                (Screen.PrimaryScreen.WorkingArea.Height - KeypadFormObject.Height) / 2
@@ -28,6 +30,21 @@ namespace ComCtrls
             return KeypadFormObject;
         }
 
+        public static KeypadForm GetKeypadForm(string text, KeypadMode Mode)
+        {
+            if (KeypadFormObject == null)
+                KeypadFormObject = new KeypadForm();
+
+            KeypadFormObject.isFirstenter = true;
+            KeypadFormObject.KeyText = text;
+            KeypadFormObject.mode = Mode;
+
+            KeypadFormObject.Location = new Point((Screen.PrimaryScreen.WorkingArea.Width - KeypadFormObject.Width) / 2,
+               (Screen.PrimaryScreen.WorkingArea.Height - KeypadFormObject.Height) / 2
+                );
+
+            return KeypadFormObject;
+        }
 
         public KeypadForm()
         {
@@ -37,7 +54,14 @@ namespace ComCtrls
         private bool isFirstenter = true;
         public bool IsFirstEnter
         {
-            set { isFirstenter = value; }
+            set
+            {
+                isFirstenter = value;
+                if (isFirstenter)
+                {
+                    keytext = string.Empty;
+                }
+            }
         }
 
 
@@ -56,7 +80,16 @@ namespace ComCtrls
                         if (keytext.Length > 1 && keytext[0] == '0' && keytext[1] != '0' && keytext[1] != '.')
                             keytext = keytext.Substring(1);
 
-                        label_input.Text = keytext;
+                        if (mode == KeypadMode.password)
+                        {
+                            label_input.Text = string.Empty;
+                            for (int i = 0; i < keytext.Length; i++)
+                            {
+                                label_input.Text += '*'.ToString();
+                            }
+                        }
+                        else
+                            label_input.Text = keytext;
                     }
                 }
             }
@@ -134,4 +167,12 @@ namespace ComCtrls
             this.DialogResult = DialogResult.OK;
         }
     }
+
+    public enum KeypadMode
+    {
+        Normal = 0,
+        password = 1
+
+    }
+
 }

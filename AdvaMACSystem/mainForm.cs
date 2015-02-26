@@ -41,7 +41,7 @@ namespace AdvaMACSystem
                 return;
             }
 #else
-            this.FormBorderStyle = FormBorderStyle.Fixed3D;
+            //this.FormBorderStyle = FormBorderStyle.Fixed3D;
             this.ControlBox = true;
             this.MinimizeBox = true;
             this.MaximizeBox = false;
@@ -336,25 +336,6 @@ namespace AdvaMACSystem
         {
 
 
-            KeypadForm f = KeypadForm.GetKeypadForm("0");
-            if (f.ShowDialog() == DialogResult.OK)
-            {
-                //退出程序，进入wince 
-                if (f.KeyText == "111111")
-                {
-                    System.Diagnostics.Process.Start("explorer.exe", "");
-                    //System.Diagnostics.Process.Start("\\NORFlash\\001\\COPY.bat", "");
-                    Application.DoEvents();
-                    Application.Exit();
-                }
-                else if (f.KeyText == "222222") //软件升级
-                {
-                    System.Diagnostics.Process.Start("\\HardDisk\\AdvaMACSysUpdater.exe", "");
-
-                    Application.DoEvents();
-                    Application.Exit();
-                }
-            }
         }
 
         #region Tab 事件
@@ -368,15 +349,21 @@ namespace AdvaMACSystem
         private void imageLabel_RealWarn_Click(object sender, EventArgs e)
         {
             Create_pvWarn();
-            pvWarn.IsReal = true;
-            pvWarn.DoEnter();
+            if (UIControlbase.CurKTUIControl != pvWarn)
+            {
+                pvWarn.IsReal = true;
+                pvWarn.DoEnter();
+            }
         }
 
         private void imageLabel_RealError_Click(object sender, EventArgs e)
         {
             Create_pvError();
-            pvError.IsReal = true;
-            pvError.DoEnter();
+            if (UIControlbase.CurKTUIControl != pvError)
+            {
+                pvError.IsReal = true;
+                pvError.DoEnter();
+            }
         }
 
         private void imageLabel_History_Click(object sender, EventArgs e)
@@ -388,17 +375,21 @@ namespace AdvaMACSystem
         private void imageLabel_HisWarn_Click(object sender, EventArgs e)
         {
             Create_pvWarn();
-            pvWarn.IsReal = false;
-            pvWarn.DoEnter();
-
+            if (UIControlbase.CurKTUIControl != pvWarn)
+            {
+                pvWarn.IsReal = false;
+                pvWarn.DoEnter();
+            }
         }
 
         private void imageLabel_HisError_Click(object sender, EventArgs e)
         {
             Create_pvError();
-            pvError.IsReal = false;
-            pvError.DoEnter();
-
+            if (UIControlbase.CurKTUIControl != pvError)
+            {
+                pvError.IsReal = false;
+                pvError.DoEnter();
+            }
         }
 
         private void imageLabel_Setup_Click(object sender, EventArgs e)
@@ -437,7 +428,31 @@ namespace AdvaMACSystem
 
         private void panel_Head_MouseDown(object sender, MouseEventArgs e)
         {
-            //e.Button == MouseButtons .Right 
+            if (e.Button == MouseButtons.Right)
+            {
+                KeypadForm f = KeypadForm.GetKeypadForm("", KeypadMode.password);
+                if (f.ShowDialog() == DialogResult.OK)
+                {
+                    //退出程序，进入wince 
+                    if (f.KeyText == "111111")
+                    {
+                        System.Diagnostics.Process.Start("explorer.exe", "");
+                        //System.Diagnostics.Process.Start("\\NORFlash\\001\\COPY.bat", "");
+                        Application.DoEvents();
+                        Application.Exit();
+                    }
+                    else if (f.KeyText == "222222") //软件升级
+                    {
+                        System.Diagnostics.Process.Start("\\HardDisk\\AdvaMACSysUpdater.exe", "");
+
+                        Application.DoEvents();
+                        Application.Exit();
+                    }
+                }
+
+
+
+            }
         }
 
 

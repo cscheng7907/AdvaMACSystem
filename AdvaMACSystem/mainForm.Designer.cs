@@ -103,6 +103,7 @@
             this.Label_CurError.TextX = 60F;
             this.Label_CurError.TextY = 0F;
             this.Label_CurError.TransParent = true;
+            this.Label_CurError.Visible = false;
             this.Label_CurError.Click += new System.EventHandler(this.Label_CurError_Click);
             // 
             // label_CurWarning
@@ -122,6 +123,7 @@
             this.label_CurWarning.TextX = 60F;
             this.label_CurWarning.TextY = 0F;
             this.label_CurWarning.TransParent = true;
+            this.label_CurWarning.Visible = false;
             this.label_CurWarning.Click += new System.EventHandler(this.label_CurWarning_Click);
             // 
             // label4
