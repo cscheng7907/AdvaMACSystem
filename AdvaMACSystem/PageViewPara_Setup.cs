@@ -131,6 +131,8 @@ namespace AdvaMACSystem
             }
 
             pumpindex = Convert.ToInt32(((ImageButton)sender).Tag);
+            DataPool.CDataPool.GetDataPoolObject().CurId = pumpindex;
+            DataPool.CDataPool.GetDataPoolObject().CurSubId = 0;
             UpdateViewData();
         }
 
