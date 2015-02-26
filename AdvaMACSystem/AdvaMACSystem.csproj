@@ -65,6 +65,12 @@
     </Compile>
     <Compile Include="AdvCan.cs" />
     <Compile Include="AdvCANIO.cs" />
+    <Compile Include="FormTimeSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTimeSetting.Designer.cs">
+      <DependentUpon>FormTimeSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="HistoryOperator.cs" />
     <Compile Include="CParaLabel.cs">
       <SubType>Component</SubType>
@@ -149,6 +155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CylinderCellBlock.resx">
       <DependentUpon>CylinderCellBlock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTimeSetting.resx">
+      <DependentUpon>FormTimeSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="mainForm.resx">
       <DependentUpon>mainForm.cs</DependentUpon>
@@ -258,16 +267,7 @@
     <None Include="Resources\IO.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\LightOff.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\LightOn.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\LightOff75.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\LightOn75.png" />
+    <None Include="Resources\Input40x40.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\LightOff100.png" />

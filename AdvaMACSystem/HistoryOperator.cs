@@ -26,9 +26,9 @@ namespace AdvaMACSystem
         private string recPositionDirectory = string.Empty;
         private const int MultiplyingFactor = 10;
         private const int FILE_HEAD_SIZE = 100;
-        public int CONST_FILE_HEAD_SIZE
+        public long CONST_FILE_HEAD_SIZE
         {
-            get { return FILE_HEAD_SIZE; }
+            get { return (long)FILE_HEAD_SIZE; }
         }
         private byte[] headData = new byte[FILE_HEAD_SIZE];
 

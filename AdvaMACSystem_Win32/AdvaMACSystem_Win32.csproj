@@ -84,6 +84,14 @@
       <Link>CylinderCellBlock.designer.cs</Link>
       <DependentUpon>CylinderCellBlock.cs</DependentUpon>
     </Compile>
+    <Compile Include="..\AdvaMACSystem\FormTimeSetting.cs">
+      <Link>FormTimeSetting.cs</Link>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\AdvaMACSystem\FormTimeSetting.designer.cs">
+      <Link>FormTimeSetting.designer.cs</Link>
+      <DependentUpon>FormTimeSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="..\AdvaMACSystem\HistoryOperator.cs">
       <Link>HistoryOperator.cs</Link>
     </Compile>
@@ -182,6 +190,10 @@
     <EmbeddedResource Include="..\AdvaMACSystem\CylinderCellBlock.resx">
       <Link>CylinderCellBlock.resx</Link>
       <DependentUpon>CylinderCellBlock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\AdvaMACSystem\FormTimeSetting.resx">
+      <Link>FormTimeSetting.resx</Link>
+      <DependentUpon>FormTimeSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="..\AdvaMACSystem\mainForm.resx">
       <Link>mainForm.resx</Link>
