@@ -120,8 +120,8 @@ namespace DataPool
         public List<int> in_Pressure_Real_3001_3008 = new List<int>();// 油缸压力当前值 4*8
         public List<int> in_Position_Real_3101_3108 = new List<int>();// 油缸当前长度值 4*8
 
-        public List<StateType> in_cylinderState_Real_3201_3208 = new List<StateType>();// 油缸运行状态 4*8
-        public List<StateType> in_MachLockState_Real_3201_3208 = new List<StateType>();// 油缸机械锁运行状态 4*8
+        public List<MotionStateType> in_cylinderState_Real_3201_3208 = new List<MotionStateType>();// 油缸运行状态 4*8
+        public List<MotionStateType> in_MachLockState_Real_3201_3208 = new List<MotionStateType>();// 油缸机械锁运行状态 4*8
 
         public List<int> in_Pressure_Pump_Real_3301_3304 = new List<int>();// 泵站压力 4
         public List<int> in_Voltage_Real_3301_3304 = new List<int>();// 控制器电压 4
@@ -357,6 +357,10 @@ namespace DataPool
         public bool sign_View_PositionSenserLow_Confirm = false;//油缸长度传感器低位值确认
         public bool sign_View_PositionSenserHigh_Confirm = false;//油缸长度传感器高位值确认
         public bool sign_isSame = false;    //单独/统一标定标志位		            5		1	0：每个油缸单独标定；1：所有油缸按同一值标定	
+        public int CurId = 0;
+        public int CurSubId = 0;
+        public ControlModeType ControlMode = ControlModeType.Auto;
+        public MotionStateType out_MotionState = MotionStateType.stsStop;
 
         public Queue<CmdDataSetType> cansendFiFO = new Queue<CmdDataSetType>();
         public void UpdateDevice(int id, int subid, CmdDataType cmd)
@@ -384,11 +388,21 @@ namespace DataPool
 
     //0:停，1：伸 2：缩
 
-    public enum StateType
+    public enum MotionStateType
     {
         stsStop = 0,
         stsextend = 1,
         stsretract = 2
+    }
+
+    //0：表示自动控制方式
+    //1：表示油缸伸缩手动控制
+    //2：表示机械锁手动控制"	手动控制
+    public enum ControlModeType
+    {
+        Auto = 0,
+        CylinderManual = 1,
+        MachLockManual = 2
     }
 
     public enum CmdDataType
@@ -423,7 +437,7 @@ namespace DataPool
         cdtError_MachLock_extend_3511_3514,//油缸机械锁伸出电磁阀线路短路 4*8
         cdtError_MachLock_retract_3511_3514,//油缸机械锁缩回电磁阀线路短路 4*8
 
-    
+
         cdtInstalled,//油缸是否安装 4*8
 
         cdtPressureAlarm_Pump,//泵站压力报警值 4

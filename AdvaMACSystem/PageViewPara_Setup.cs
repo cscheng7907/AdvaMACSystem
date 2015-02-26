@@ -120,6 +120,7 @@ namespace AdvaMACSystem
             if (btnlst_subid != null && btnlst_subid.Count > 0)
                 imageButton_pump_Click(btnlst_id[0], new EventArgs());
 
+            DataPool.CDataPool.GetDataPoolObject().sign_View_Setup = true;
         }
 
         private void imageButton_pump_Click(object sender, EventArgs e)
@@ -135,6 +136,7 @@ namespace AdvaMACSystem
 
         private void imageButton_back_Click(object sender, EventArgs e)
         {
+            DataPool.CDataPool.GetDataPoolObject().sign_View_Setup = false;
             this.DoExit();
         }
 
@@ -142,28 +144,36 @@ namespace AdvaMACSystem
         {
             SaveViewData();
         }
-
+        private void imageButton_OK_MouseUp(object sender, MouseEventArgs e)
+        {
+            DataPool.CDataPool.GetDataPoolObject().sign_View_Setup_Confirm = false;
+        }
+        private void imageButton_OK_MouseDown(object sender, MouseEventArgs e)
+        {
+            DataPool.CDataPool.GetDataPoolObject().sign_View_Setup_Confirm = true;
+        }
         private void SaveViewData()
         {
             for (int i = 0; i < btnlst_subid.Count; i++)
             {
                 DataPool.CDataPool.GetDataPoolObject().SetboolValue(
                     pumpindex,
-                    i, 
-                    CmdDataType.cdtInstalled, 
+                    i,
+                    CmdDataType.cdtInstalled,
                     btnlst_subid[i].Checked);
             }
         }
 
-        private void UpdateViewData() {
+        private void UpdateViewData()
+        {
             for (int i = 0; i < btnlst_subid.Count; i++)
             {
-                btnlst_subid[i].Checked = 
+                btnlst_subid[i].Checked =
                     !DataPool.CDataPool.GetDataPoolObject().GetBoolValue(
                         pumpindex,
-                         i, 
+                         i,
                          CmdDataType.cdtInstalled);
-            }        
+            }
         }
     }
 }

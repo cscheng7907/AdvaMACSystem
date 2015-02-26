@@ -38,6 +38,7 @@ namespace AdvaMACSystem
             comboBox_subid.SelectedIndex = 0;
 
             UpdateViewData();
+            DataPool.CDataPool.GetDataPoolObject().sign_View_SenserCalibration = true;
         }
 
         private void comboBox_id_SelectedIndexChanged(object sender, EventArgs e)
@@ -51,13 +52,39 @@ namespace AdvaMACSystem
         }
         private void imageButton_back_Click(object sender, EventArgs e)
         {
+            DataPool.CDataPool.GetDataPoolObject().sign_View_SenserCalibration = false;
             this.DoExit();
         }
 
-        private void imageButton_OK_Click(object sender, EventArgs e)
+        private void imageButton_OK_Low_Click(object sender, EventArgs e)
         {
             SaveViewData();
         }
+
+        private void imageButton_OK_High_Click(object sender, EventArgs e)
+        {
+            SaveViewData();
+        }
+
+        private void imageButton_OK_Low_MouseUp(object sender, MouseEventArgs e)
+        {
+            DataPool.CDataPool.GetDataPoolObject().sign_View_PositionSenserLow_Confirm = false;
+        }
+        private void imageButton_OK_Low_MouseDown(object sender, MouseEventArgs e)
+        {
+            DataPool.CDataPool.GetDataPoolObject().sign_View_PositionSenserLow_Confirm = true;
+        }
+
+
+        private void imageButton_OK_High_MouseUp(object sender, MouseEventArgs e)
+        {
+            DataPool.CDataPool.GetDataPoolObject().sign_View_PositionSenserHigh_Confirm = false;
+        }
+        private void imageButton_OK_High_MouseDown(object sender, MouseEventArgs e)
+        {
+            DataPool.CDataPool.GetDataPoolObject().sign_View_PositionSenserHigh_Confirm = true;
+        }
+        
 
         private void UpdateViewData() { }
         private void SaveViewData() { }

@@ -414,7 +414,7 @@
             this.label_input.Location = new System.Drawing.Point(11, 12);
             this.label_input.Name = "label_input";
             this.label_input.Size = new System.Drawing.Size(188, 34);
-            this.label_input.Text = "-0123456789.";
+            this.label_input.Text = "";
             this.label_input.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // KeypadForm
