@@ -34,6 +34,8 @@
             this.inputPanel1 = new Microsoft.WindowsCE.Forms.InputPanel(this.components);
             this.imageLabel1 = new ComCtrls.ImageLabel();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.imageButton1 = new ComCtrls.ImageButton(this.components);
             this.SuspendLayout();
             // 
             // imageLabel1
@@ -61,12 +63,41 @@
             this.label1.Size = new System.Drawing.Size(100, 20);
             this.label1.Text = "label1";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(172, 261);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
+            // 
+            // imageButton1
+            // 
+            this.imageButton1.Checked = false;
+            this.imageButton1.DNImg = null;
+            this.imageButton1.DNImgDisable = null;
+            this.imageButton1.DownColor = System.Drawing.SystemColors.Control;
+            this.imageButton1.IMGContainer = null;
+            this.imageButton1.Layout = ComCtrls.KTLayout.GlyphTop;
+            this.imageButton1.Location = new System.Drawing.Point(379, 205);
+            this.imageButton1.Name = "imageButton1";
+            this.imageButton1.ShortcutKeys = System.Windows.Forms.Keys.None;
+            this.imageButton1.Size = new System.Drawing.Size(185, 34);
+            this.imageButton1.TabIndex = 4;
+            this.imageButton1.TabStop = false;
+            this.imageButton1.Text = "imageButton1";
+            this.imageButton1.Toggle = false;
+            this.imageButton1.TransParent = false;
+            this.imageButton1.UpColor = System.Drawing.SystemColors.Control;
+            this.imageButton1.UPImg = null;
+            this.imageButton1.UPImgDisable = null;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(638, 455);
+            this.Controls.Add(this.imageButton1);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.imageLabel1);
             this.Menu = this.mainMenu1;
@@ -82,6 +113,8 @@
         private Microsoft.WindowsCE.Forms.InputPanel inputPanel1;
         private ComCtrls.ImageLabel imageLabel1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private ComCtrls.ImageButton imageButton1;
     }
 }
 

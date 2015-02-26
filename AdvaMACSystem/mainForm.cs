@@ -40,6 +40,11 @@ namespace AdvaMACSystem
                 MessageBox.Show(AdvaCanBusObj.canErrStrArray[AdvaCanBusObj.CanErrCode]);
                 return;
             }
+#else
+            this.FormBorderStyle = FormBorderStyle.Fixed3D;
+            this.ControlBox = true;
+            this.MinimizeBox = true;
+            this.MaximizeBox = false;
 #endif
 
             Create_WarnErrOper();
@@ -53,6 +58,8 @@ namespace AdvaMACSystem
             timer1.Enabled = true;
             WarnErrThreadStart();
             historyRecordThreadStart();
+
+            imageLabel_MAC_Click(null, new EventArgs());
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -354,7 +361,8 @@ namespace AdvaMACSystem
         private void imageLabel_MAC_Click(object sender, EventArgs e)
         {
             Create_pvMAC();
-            pvMAC.DoEnter();
+            if (UIControlbase.CurKTUIControl != pvMAC)
+                pvMAC.DoEnter();
         }
 
         private void imageLabel_RealWarn_Click(object sender, EventArgs e)

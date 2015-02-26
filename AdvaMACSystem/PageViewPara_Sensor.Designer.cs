@@ -100,7 +100,7 @@
             // 
             // imageLabel_idbk
             // 
-            this.imageLabel_idbk.BackImg = ((System.Drawing.Image)(resources.GetObject("imageLabel_idbk.BackImg")));
+            this.imageLabel_idbk.BackImg = AdvaMACSystemRes.input;
             this.imageLabel_idbk.Checked = false;
             this.imageLabel_idbk.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageLabel_idbk.Location = new System.Drawing.Point(215, 25);
@@ -147,7 +147,7 @@
             // 
             // imageLabel_subidbk
             // 
-            this.imageLabel_subidbk.BackImg = ((System.Drawing.Image)(resources.GetObject("imageLabel_subidbk.BackImg")));
+            this.imageLabel_subidbk.BackImg = AdvaMACSystemRes.input;
             this.imageLabel_subidbk.Checked = false;
             this.imageLabel_subidbk.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageLabel_subidbk.Location = new System.Drawing.Point(659, 23);
@@ -304,6 +304,7 @@
             this.imageButton_OK.TabIndex = 4;
             this.imageButton_OK.TabStop = false;
             this.imageButton_OK.Text = "确认";
+            this.imageButton_OK.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
             this.imageButton_OK.Toggle = false;
             this.imageButton_OK.TransParent = false;
             this.imageButton_OK.UpColor = System.Drawing.SystemColors.Control;
@@ -323,6 +324,7 @@
             this.imageButton_back.TabIndex = 0;
             this.imageButton_back.TabStop = false;
             this.imageButton_back.Text = "返回";
+            this.imageButton_back.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
             this.imageButton_back.Toggle = false;
             this.imageButton_back.TransParent = false;
             this.imageButton_back.UpColor = System.Drawing.SystemColors.Control;
@@ -340,6 +342,7 @@
             this.Controls.Add(this.imageLabel_title);
             this.Name = "PageViewPara_Sensor";
             this.Size = new System.Drawing.Size(1024, 674);
+            this.ForeColor = System.Drawing.Color.Black;
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -219,6 +219,18 @@
       <Link>PageViewPara.resx</Link>
       <DependentUpon>PageViewPara.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="..\AdvaMACSystem\PageViewPara_Sensor.resx">
+      <Link>PageViewPara_Sensor.resx</Link>
+      <DependentUpon>PageViewPara_Sensor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\AdvaMACSystem\PageViewPara_Setup.resx">
+      <Link>PageViewPara_Setup.resx</Link>
+      <DependentUpon>PageViewPara_Setup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\AdvaMACSystem\PageViewWarn.resx">
+      <Link>PageViewWarn.resx</Link>
+      <DependentUpon>PageViewWarn.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

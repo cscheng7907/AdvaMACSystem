@@ -19,6 +19,8 @@ namespace ComCtrls
                 KeypadFormObject = new KeypadForm();
 
             KeypadFormObject.KeyText = text;
+            KeypadFormObject.isFirstenter = true;
+
             KeypadFormObject.Location = new Point((Screen.PrimaryScreen.WorkingArea.Width - KeypadFormObject.Width) / 2,
                (Screen.PrimaryScreen.WorkingArea.Height - KeypadFormObject.Height) / 2
                 );
@@ -31,6 +33,13 @@ namespace ComCtrls
         {
             InitializeComponent();
         }
+
+        private bool isFirstenter = true;
+        public bool IsFirstEnter
+        {
+            set { isFirstenter = value; }
+        }
+
 
         private string keytext = string.Empty;
         public string KeyText
@@ -63,33 +72,51 @@ namespace ComCtrls
 
                 char c = Convert.ToChar(btn.Tag);
 
-                KeyText += c;
+                if (isFirstenter)
+                {
+                    KeyText = c.ToString();
+                    isFirstenter = false;
+                }
+                else
+                    KeyText += c;
             }
 
         }
 
         private void imageButton_dot_Click(object sender, EventArgs e)
         {
-            if (KeyText.IndexOf('.') < 0)
+            if (isFirstenter)
             {
-                KeyText += '.';
+                KeyText = '.'.ToString();
+                isFirstenter = false;
             }
             else
-            {
-                //do nothing
-            }
+                if (KeyText.IndexOf('.') < 0)
+                {
+                    KeyText += '.';
+                }
+                else
+                {
+                    //do nothing
+                }
         }
 
         private void imageButton_Minus_Click(object sender, EventArgs e)
         {
-            if (KeyText.IndexOf('-') < 0)
+            if (isFirstenter)
             {
-                KeyText = '-' + KeyText;
+                KeyText = '-'.ToString();
+                isFirstenter = false;
             }
             else
-            {
-                KeyText = KeyText.Substring(1);
-            }
+                if (KeyText.IndexOf('-') < 0)
+                {
+                    KeyText = '-' + KeyText;
+                }
+                else
+                {
+                    KeyText = KeyText.Substring(1);
+                }
         }
 
         private void imageButton_cr_Click(object sender, EventArgs e)
