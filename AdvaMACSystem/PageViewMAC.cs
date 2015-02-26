@@ -125,6 +125,9 @@ namespace AdvaMACSystem
             cylinderStopButton.Click += new EventHandler(cylinderStopButton_Click);
             cylinderRetractButton.Text = "油缸缩回";
             cylinderRetractButton.Click += new EventHandler(cylinderRetractButton_Click);
+            cylinderExtendButton.Enabled = false;
+            cylinderStopButton.Enabled = false;
+            cylinderRetractButton.Enabled = false;
 
             this.ResumeLayout(false);
         }
