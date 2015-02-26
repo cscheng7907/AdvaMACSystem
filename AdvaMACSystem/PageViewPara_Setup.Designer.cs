@@ -71,6 +71,9 @@
             this.imageButton_OK.DNImg = AdvaMACSystemRes.Dgn_down;
             this.imageButton_OK.UpColor = System.Drawing.SystemColors.Control;
             this.imageButton_OK.Click += new System.EventHandler(this.imageButton_OK_Click);
+            this.imageButton_OK.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageButton_OK_MouseUp);
+            this.imageButton_OK.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageButton_OK_MouseDown);
+
             // 
             // imageButton_back
             // 

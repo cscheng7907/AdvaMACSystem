@@ -49,7 +49,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.imageButton_OK = new ComCtrls.ImageButton(this.components);
+            this.imageButton_OK_Low = new ComCtrls.ImageButton(this.components);
+            this.imageButton_OK_High = new ComCtrls.ImageButton(this.components);
             this.imageButton_back = new ComCtrls.ImageButton(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -291,25 +292,49 @@
             this.label2.Size = new System.Drawing.Size(162, 33);
             this.label2.Text = "当前AD值：";
             // 
-            // imageButton_OK
+            // imageButton_OK_Low
             // 
-            this.imageButton_OK.Checked = false;
-            this.imageButton_OK.DNImg = global::AdvaMACSystem.AdvaMACSystemRes.Dgn_down;
-            this.imageButton_OK.DownColor = System.Drawing.SystemColors.Control;
-            this.imageButton_OK.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageButton_OK.Location = new System.Drawing.Point(523, 621);
-            this.imageButton_OK.Name = "imageButton_OK";
-            this.imageButton_OK.ShortcutKeys = System.Windows.Forms.Keys.None;
-            this.imageButton_OK.Size = new System.Drawing.Size(210, 40);
-            this.imageButton_OK.TabIndex = 4;
-            this.imageButton_OK.TabStop = false;
-            this.imageButton_OK.Text = "确认";
-            this.imageButton_OK.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
-            this.imageButton_OK.Toggle = false;
-            this.imageButton_OK.TransParent = false;
-            this.imageButton_OK.UpColor = System.Drawing.SystemColors.Control;
-            this.imageButton_OK.UPImg = global::AdvaMACSystem.AdvaMACSystemRes.Dgn_up;
-            this.imageButton_OK.Click += new System.EventHandler(this.imageButton_OK_Click);
+            this.imageButton_OK_Low.Checked = false;
+            this.imageButton_OK_Low.DNImg = global::AdvaMACSystem.AdvaMACSystemRes.Dgn_down;
+            this.imageButton_OK_Low.DownColor = System.Drawing.SystemColors.Control;
+            this.imageButton_OK_Low.Layout = ComCtrls.KTLayout.GlyphTop;
+            this.imageButton_OK_Low.Location = new System.Drawing.Point(523, 621);
+            this.imageButton_OK_Low.Name = "imageButton_OK";
+            this.imageButton_OK_Low.ShortcutKeys = System.Windows.Forms.Keys.None;
+            this.imageButton_OK_Low.Size = new System.Drawing.Size(210, 40);
+            this.imageButton_OK_Low.TabIndex = 4;
+            this.imageButton_OK_Low.TabStop = false;
+            this.imageButton_OK_Low.Text = "确认";
+            this.imageButton_OK_Low.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
+            this.imageButton_OK_Low.Toggle = false;
+            this.imageButton_OK_Low.TransParent = false;
+            this.imageButton_OK_Low.UpColor = System.Drawing.SystemColors.Control;
+            this.imageButton_OK_Low.UPImg = global::AdvaMACSystem.AdvaMACSystemRes.Dgn_up;
+            this.imageButton_OK_Low.Click += new System.EventHandler(this.imageButton_OK_Low_Click);
+            this.imageButton_OK_Low.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageButton_OK_Low_MouseUp);
+            this.imageButton_OK_Low.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageButton_OK_Low_MouseDown);
+            // 
+            // imageButton_OK_High
+            // 
+            this.imageButton_OK_High.Checked = false;
+            this.imageButton_OK_High.DNImg = global::AdvaMACSystem.AdvaMACSystemRes.Dgn_down;
+            this.imageButton_OK_High.DownColor = System.Drawing.SystemColors.Control;
+            this.imageButton_OK_High.Layout = ComCtrls.KTLayout.GlyphTop;
+            this.imageButton_OK_High.Location = new System.Drawing.Point(323, 621);
+            this.imageButton_OK_High.Name = "imageButton_OK";
+            this.imageButton_OK_High.ShortcutKeys = System.Windows.Forms.Keys.None;
+            this.imageButton_OK_High.Size = new System.Drawing.Size(210, 40);
+            this.imageButton_OK_High.TabIndex = 4;
+            this.imageButton_OK_High.TabStop = false;
+            this.imageButton_OK_High.Text = "确认";
+            this.imageButton_OK_High.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
+            this.imageButton_OK_High.Toggle = false;
+            this.imageButton_OK_High.TransParent = false;
+            this.imageButton_OK_High.UpColor = System.Drawing.SystemColors.Control;
+            this.imageButton_OK_High.UPImg = global::AdvaMACSystem.AdvaMACSystemRes.Dgn_up;
+            this.imageButton_OK_High.Click += new System.EventHandler(this.imageButton_OK_High_Click);
+            this.imageButton_OK_High.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageButton_OK_High_MouseUp);
+            this.imageButton_OK_High.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageButton_OK_High_MouseDown);
             // 
             // imageButton_back
             // 
@@ -335,7 +360,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.Controls.Add(this.imageButton_OK);
+            this.Controls.Add(this.imageButton_OK_Low);
+            this.Controls.Add(this.imageButton_OK_High);
             this.Controls.Add(this.imageButton_back);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -366,7 +392,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private ComCtrls.ImageButton imageButton_back;
-        private ComCtrls.ImageButton imageButton_OK;
+        private ComCtrls.ImageButton imageButton_OK_Low;
+        private ComCtrls.ImageButton imageButton_OK_High;
         private ComCtrls.ImageLabel imageLabel4;
         private ComCtrls.ImageLabel imageLabel5;
         private ComCtrls.ImageLabel imageLabel3;

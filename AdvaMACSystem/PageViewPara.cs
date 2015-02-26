@@ -63,6 +63,7 @@ namespace AdvaMACSystem
             comboBox_id.SelectedIndex = 0;
             comboBox_subid.SelectedIndex = 0;
             UpdateViewData();
+            DataPool.CDataPool.GetDataPoolObject().sign_View_Parameter = true;
 
         }
 
@@ -123,12 +124,21 @@ namespace AdvaMACSystem
 
         private void imageButton_back_Click(object sender, EventArgs e)
         {
+            DataPool.CDataPool.GetDataPoolObject().sign_View_Parameter = false;
             this.DoExit();
         }
 
         private void imageButton_OK_Click(object sender, EventArgs e)
         {
             SaveViewData();
+        }
+        private void imageButton_OK_MouseUp(object sender, MouseEventArgs e)
+        {
+            DataPool.CDataPool.GetDataPoolObject().sign_View_Parameter_Confirm = false;
+        }
+        private void imageButton_OK_MouseDown(object sender, MouseEventArgs e)
+        {
+            DataPool.CDataPool.GetDataPoolObject().sign_View_Parameter_Confirm = true;
         }
 
         private void imageButton_Input_Click(object sender, EventArgs e)

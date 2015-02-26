@@ -329,7 +329,8 @@ namespace AdvaMACSystem
             bool Csign_View_Parameter = CanDatapool.sign_View_Parameter;
             bool Csign_View_Parameter_Confirm = CanDatapool.sign_View_Parameter_Confirm;
             bool Csign_View_SenserCalibration = CanDatapool.sign_View_SenserCalibration;
-
+            int id = CanDatapool.CurId;
+            int subid = CanDatapool.CurSubId;
 
             uint canmsgIndex = 0;
             {
@@ -345,6 +346,7 @@ namespace AdvaMACSystem
                 //                                                             6	1	1：表示7#油缸安装；0表示没有安装	
                 //                                                             7	1	1：表示8#油缸安装；0表示没有安装	
                 //安装确定标志		                                3		1	1：确定按键按下；0：按键未按下	
+                /*
                 for (int i = 0; i < CanDatapool.PumpCount; i++)
                 {
                     msgSend[canmsgIndex].id = 0x2000;
@@ -364,6 +366,40 @@ namespace AdvaMACSystem
                     msgSend[canmsgIndex].data[3] = (Csign_View_Setup_Confirm) ? (byte)1 : (byte)0;
                     canmsgIndex++;
                 }
+                */
+                if (Csign_View_Setup)
+                {
+                    msgSend[canmsgIndex].id = 0x2000;
+                    msgSend[canmsgIndex].length = 4;//(short)AdvCan.DATALENGTH;
+
+                    msgSend[canmsgIndex].data[0] = (Csign_View_Setup) ? (byte)1 : (byte)0;
+                    msgSend[canmsgIndex].data[1] = (byte)(id + 1);
+
+                    for (int j = 0; j < 8; j++)
+                    {
+                        if (CanDatapool.out_Installed[(int)(id * CanDatapool.CylinderCount + j)])
+                            msgSend[canmsgIndex].data[2] |= (byte)(1 << j);
+                        else
+                            msgSend[canmsgIndex].data[2] &= (byte)~(1 << j);
+                    }
+
+                    msgSend[canmsgIndex].data[3] = (Csign_View_Setup_Confirm) ? (byte)1 : (byte)0;
+                    canmsgIndex++;
+                }
+                else
+                {
+                    //只发送2000 空数据
+                    msgSend[canmsgIndex].id = 0x2000;
+                    msgSend[canmsgIndex].length = (short)AdvCan.DATALENGTH;
+
+                    for (int i = 0; i < AdvCan.DATALENGTH; i++)
+                    {
+                        msgSend[canmsgIndex].data[i] = 0;
+                    }
+
+                    canmsgIndex++;
+                }
+
 
 
                 //2001
@@ -385,6 +421,7 @@ namespace AdvaMACSystem
                 //油缸长度设定值		                    2,3		0.1		
                 //参数设定确认标志		                4		1	1：确定按键按下；0：按键未按下	
 
+                /*
                 for (int i = 0; i < CanDatapool.PumpCount; i++)
                 {
                     for (int j = 0; j < CanDatapool.CylinderCount; j++)
@@ -433,6 +470,66 @@ namespace AdvaMACSystem
 
                     }
                 }
+                */
+
+                if (Csign_View_Parameter)
+                {
+                    //2001
+                    msgSend[canmsgIndex].id = 0x2001;
+                    msgSend[canmsgIndex].length = (short)AdvCan.DATALENGTH;
+
+                    msgSend[canmsgIndex].data[0] = (Csign_View_Parameter) ? (byte)1 : (byte)0;
+                    msgSend[canmsgIndex].data[1] = (byte)(id + 1);
+                    msgSend[canmsgIndex].data[2] = (byte)(subid + 1);
+                    msgSend[canmsgIndex].data[3] = CanDatapool.out_PressureAlarm_Pump[id];
+                    msgSend[canmsgIndex].data[4] = (CanDatapool.out_PressureUpperLimitAlarm_Enable[(int)(id * CanDatapool.CylinderCount + subid)]) ? (byte)1 : (byte)0;
+                    msgSend[canmsgIndex].data[5] = (CanDatapool.out_PositionUpperLimitAlarm_Enable[(int)(id * CanDatapool.CylinderCount + subid)]) ? (byte)1 : (byte)0;
+                    msgSend[canmsgIndex].data[6] = (CanDatapool.out_PositionLowerLimitAlarm_Enable[(int)(id * CanDatapool.CylinderCount + subid)]) ? (byte)1 : (byte)0;
+                    msgSend[canmsgIndex].data[7] = (CanDatapool.out_PositionControl_Enable[(int)(id * CanDatapool.CylinderCount + subid)]) ? (byte)1 : (byte)0;
+
+                    canmsgIndex++;
+
+                    //2002
+                    msgSend[canmsgIndex].id = 0x2002;
+                    msgSend[canmsgIndex].length = (short)AdvCan.DATALENGTH;
+
+                    msgSend[canmsgIndex].data[0] = (byte)(CanDatapool.out_PressureUpperLimitAlarm_Value[(int)(id * CanDatapool.CylinderCount + subid)] & 0xFF);
+                    msgSend[canmsgIndex].data[1] = (byte)(CanDatapool.out_PressureUpperLimitAlarm_Value[(int)(id * CanDatapool.CylinderCount + subid)] >> 8);
+                    msgSend[canmsgIndex].data[2] = (byte)(CanDatapool.out_PressureLowerLimitAlarm_Value[(int)(id * CanDatapool.CylinderCount + subid)] & 0xFF);
+                    msgSend[canmsgIndex].data[3] = (byte)(CanDatapool.out_PressureLowerLimitAlarm_Value[(int)(id * CanDatapool.CylinderCount + subid)] >> 8);
+                    msgSend[canmsgIndex].data[4] = (byte)(CanDatapool.out_PositionUpperLimitAlarm_Value[(int)(id * CanDatapool.CylinderCount + subid)] & 0xFF);
+                    msgSend[canmsgIndex].data[5] = (byte)(CanDatapool.out_PositionUpperLimitAlarm_Value[(int)(id * CanDatapool.CylinderCount + subid)] >> 8);
+                    msgSend[canmsgIndex].data[6] = (byte)(CanDatapool.out_PositionLowerLimitAlarm_Value[(int)(id * CanDatapool.CylinderCount + subid)] & 0xFF);
+                    msgSend[canmsgIndex].data[7] = (byte)(CanDatapool.out_PositionLowerLimitAlarm_Value[(int)(id * CanDatapool.CylinderCount + subid)] >> 8);
+
+                    canmsgIndex++;
+
+                    //2003
+                    msgSend[canmsgIndex].id = 0x2003;
+                    msgSend[canmsgIndex].length = 5;//(short)AdvCan.DATALENGTH;
+
+                    msgSend[canmsgIndex].data[0] = (byte)(CanDatapool.out_Pressure_Value[(int)(id * CanDatapool.CylinderCount + subid)] & 0xFF);
+                    msgSend[canmsgIndex].data[1] = (byte)(CanDatapool.out_Pressure_Value[(int)(id * CanDatapool.CylinderCount + subid)] >> 8);
+                    msgSend[canmsgIndex].data[2] = (byte)(CanDatapool.out_Position_Value[(int)(id * CanDatapool.CylinderCount + subid)] & 0xFF);
+                    msgSend[canmsgIndex].data[3] = (byte)(CanDatapool.out_Position_Value[(int)(id * CanDatapool.CylinderCount + subid)] >> 8);
+                    msgSend[canmsgIndex].data[4] = (byte)((Csign_View_Parameter_Confirm) ? 1 : 0);
+
+                    canmsgIndex++;
+                }
+                else
+                {
+                    //只发送2001 空数据
+                    msgSend[canmsgIndex].id = 0x2001;
+                    msgSend[canmsgIndex].length = (short)AdvCan.DATALENGTH;
+
+                    for (int i = 0; i < AdvCan.DATALENGTH; i++)
+                    {
+                        msgSend[canmsgIndex].data[i] = 0;
+                    }
+
+                    canmsgIndex++;
+                }
+
 
                 //2004
                 //进入“传感器标定”界面标志位		0		1	1：表示进入界面；0：表示未进入界面	"传感器标定界面（设定内容显示器需具备记忆保存功能，需要密码才能进入参数设定界面）"
@@ -443,6 +540,8 @@ namespace AdvaMACSystem
                 //单独/统一标定标志位		            5		1	0：每个油缸单独标定；1：所有油缸按同一值标定	
                 //油缸长度传感器低位值确认		    6		1	1：确定按键按下；0：按键未按下	
                 //油缸长度传感器高位值确认		    7		1	1：确定按键按下；0：按键未按下
+
+                /*
                 if (CanDatapool.sign_isSame)
                 {
                     msgSend[canmsgIndex].id = 0x2004;
@@ -482,6 +581,40 @@ namespace AdvaMACSystem
                         }
                     }
                 }
+                 */
+                if (Csign_View_SenserCalibration)
+                {
+                    msgSend[canmsgIndex].id = 0x2004;
+                    msgSend[canmsgIndex].length = (short)AdvCan.DATALENGTH;
+
+                    msgSend[canmsgIndex].data[0] = (byte)((Csign_View_SenserCalibration) ? 1 : 0);
+                    msgSend[canmsgIndex].data[1] = (byte)(id + 1);
+                    msgSend[canmsgIndex].data[2] = (byte)(subid + 1);
+                    msgSend[canmsgIndex].data[3] = CanDatapool.out_PositionSenserLow_Value[(int)(id * CanDatapool.CylinderCount + subid)];
+                    msgSend[canmsgIndex].data[4] = CanDatapool.out_PositionSenserHigh_Value[(int)(id * CanDatapool.CylinderCount + subid)];
+                    msgSend[canmsgIndex].data[5] = (CanDatapool.sign_isSame) ? (byte)1 : (byte)0;
+                    msgSend[canmsgIndex].data[6] = (byte)((CanDatapool.sign_View_PositionSenserLow_Confirm) ? 1 : 0);
+                    msgSend[canmsgIndex].data[7] = (byte)((CanDatapool.sign_View_PositionSenserHigh_Confirm) ? 1 : 0);
+
+                    canmsgIndex++;
+
+                }
+                else
+                {
+                    //只发送2004 空数据
+                    msgSend[canmsgIndex].id = 0x2004;
+                    msgSend[canmsgIndex].length = (short)AdvCan.DATALENGTH;
+
+                    for (int i = 0; i < AdvCan.DATALENGTH; i++)
+                    {
+                        msgSend[canmsgIndex].data[i] = 0;
+                    }
+
+                    canmsgIndex++;
+                }
+
+
+
                 //2005
                 //油缸控制方式		                            0		1	"0：表示自动控制方式
                 //                                                                1：表示油缸伸缩手动控制
@@ -492,6 +625,8 @@ namespace AdvaMACSystem
                 //                                                                 1：表示伸出控制
                 //                                                                 2：表示缩回控制"	
                 //控显通讯正常标志位		                    4		1	固定值19	
+
+                /*
                 for (int i = 0; i < CanDatapool.PumpCount; i++)
                 {
                     for (int j = 0; j < CanDatapool.CylinderCount; j++)
@@ -509,6 +644,22 @@ namespace AdvaMACSystem
                         canmsgIndex++;
                     }
                 }
+                */
+
+                {
+                    msgSend[canmsgIndex].id = 0x2005;
+                    msgSend[canmsgIndex].length = 5;// (short)AdvCan.DATALENGTH;
+
+                    //todo 手动控制 通过单独发送还是遍历设备？
+                    msgSend[canmsgIndex].data[0] = (byte)CanDatapool.ControlMode;
+                    msgSend[canmsgIndex].data[1] = (byte)(id + 1);
+                    msgSend[canmsgIndex].data[2] = (byte)(subid + 1);
+                    msgSend[canmsgIndex].data[3] = (byte)CanDatapool.out_MotionState;
+                    msgSend[canmsgIndex].data[4] = 19;
+
+                    canmsgIndex++;
+                }
+
             }
 
             nRet = Device.acCanWrite(msgSend, canmsgIndex, ref pulNumberofWritten);
@@ -837,14 +988,14 @@ namespace AdvaMACSystem
                                         {
                                             for (int k = 0; k < msgRecieve[j].data.Length; k++)
                                             {
-                                                CanDatapool.in_MachLockState_Real_3201_3208[(idArray0 - 1) * 4 + k] = (StateType)msgRecieve[j].data[k];
+                                                CanDatapool.in_MachLockState_Real_3201_3208[(idArray0 - 1) * 4 + k] = (MotionStateType)msgRecieve[j].data[k];
                                             }
                                         }
                                         else //奇数 油缸运行状态
                                         {
                                             for (int k = 0; k < msgRecieve[j].data.Length; k++)
                                             {
-                                                CanDatapool.in_cylinderState_Real_3201_3208[(idArray0 - 1) * 4 + k] = (StateType)msgRecieve[j].data[k];
+                                                CanDatapool.in_cylinderState_Real_3201_3208[(idArray0 - 1) * 4 + k] = (MotionStateType)msgRecieve[j].data[k];
                                             }
                                         }
 
