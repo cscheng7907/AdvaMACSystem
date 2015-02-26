@@ -452,6 +452,7 @@
             this.imageButton_back.Toggle = false;
             this.imageButton_back.TransParent = false;
             this.imageButton_back.UpColor = System.Drawing.SystemColors.Control;
+            this.imageButton_back.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
             this.imageButton_back.UPImg = AdvaMACSystemRes.Dgn_up;
             this.imageButton_back.DNImg = AdvaMACSystemRes.Dgn_down;
             this.imageButton_back.UPImgDisable = null;
@@ -569,6 +570,7 @@
             this.imageButton_OK.TabStop = false;
             this.imageButton_OK.Text = "确认";
             this.imageButton_OK.Toggle = false;
+            this.imageButton_OK.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
             this.imageButton_OK.TransParent = false;
             this.imageButton_OK.UpColor = System.Drawing.SystemColors.Control;
             this.imageButton_OK.UPImg = AdvaMACSystemRes.Dgn_up;
@@ -604,6 +606,7 @@
             this.Controls.Add(this.imageLabel_title);
             this.Name = "PageViewPara";
             this.Size = new System.Drawing.Size(1024, 674);
+            this.ForeColor = System.Drawing.Color.Black;
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
