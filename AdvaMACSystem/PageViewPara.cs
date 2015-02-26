@@ -62,6 +62,8 @@ namespace AdvaMACSystem
 
             comboBox_id.SelectedIndex = 0;
             comboBox_subid.SelectedIndex = 0;
+            DataPool.CDataPool.GetDataPoolObject().CurId = comboBox_id.SelectedIndex;
+            DataPool.CDataPool.GetDataPoolObject().CurSubId = comboBox_subid.SelectedIndex;
             UpdateViewData();
             DataPool.CDataPool.GetDataPoolObject().sign_View_Parameter = true;
 
@@ -73,11 +75,13 @@ namespace AdvaMACSystem
 
         private void comboBox_id_SelectedIndexChanged(object sender, EventArgs e)
         {
+            DataPool.CDataPool.GetDataPoolObject().CurId = comboBox_id.SelectedIndex;
             UpdateViewData();
         }
 
         private void comboBox_subid_SelectedIndexChanged(object sender, EventArgs e)
         {
+            DataPool.CDataPool.GetDataPoolObject().CurSubId = comboBox_subid.SelectedIndex;
             UpdateViewData();
         }
 
