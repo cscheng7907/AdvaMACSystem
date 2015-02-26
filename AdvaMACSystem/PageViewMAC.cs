@@ -16,6 +16,7 @@ namespace AdvaMACSystem
         {
             InitializeComponent();
 
+            this.ForeColor = Color.Black;
             currentFont = new System.Drawing.Font("微软雅黑", 20F, System.Drawing.FontStyle.Regular);
 
             _candatapool = CDataPool.GetDataPoolObject();

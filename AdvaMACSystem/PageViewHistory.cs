@@ -111,7 +111,7 @@ namespace AdvaMACSystem
             ilDate.Location = new Point(CylinderMarginLeft, CylinderMarginTop + 8 * (CylinderHeight + CylinderSpacingY));
             ilDate.Font = currentFont;
             ilDate.IMGContainer = dateImage;
-            ilDate.Click += new EventHandler(button2_Click);
+            ilDate.Click += new EventHandler(ilDate_Click);
             this.Controls.Add(ilDate);
 
             for (int i = 0; i < inputLabelList.Count; i++)
@@ -142,16 +142,24 @@ namespace AdvaMACSystem
                 {
                     index = Convert.ToInt32(f.KeyText);
                     if (index <= 0 || index > totalPages)
+                    {
                         index = totalPages > 0 ? 1 : 0;
+                        pageIndex = 0;
+                    }
+                    else
+                    {
+                        pageIndex = index - 1;
+                    }
                 }
                 catch
                 {
                     index = totalPages > 0 ? 1 : 0;
+                    pageIndex = 0;
                 }
                 ilCurrentPage.Text = index.ToString();
             }
             DrawDefaultTable();
-            button3_Click(null, null);
+            DrawTableDatas(pageIndex);
             pbDataTable.Image = table;
         }
 
@@ -322,6 +330,7 @@ namespace AdvaMACSystem
             ilDate.Text = DateTime.Now.Date.ToString("yyyy-MM-dd HH:mm");
             cylinderList[0].Checked = true;
             cylinderIndex = 0;
+            pageIndex = 0;
             ilCurrentPage.Text = "0";
             totalPages = 0;
             lbPage.Text = string.Format("第        页，共{0}页", totalPages);
@@ -427,8 +436,9 @@ namespace AdvaMACSystem
             Brush whiteBrush = new SolidBrush(Color.White);
             Pen backPen = new Pen(Color.White);
             Pen realValuePen = new Pen(Color.Yellow);
-            Pen settingValuePen = new Pen(Color.Blue);
-
+            Brush yellowBrush = new SolidBrush(Color.Yellow);
+            Pen settingValuePen = new Pen(Color.FromArgb(0,255,255));
+            Brush blueBrush = new SolidBrush(Color.FromArgb(0, 255, 255));
             #region 画背景
             //draw background
             g.FillRectangle(backBrush, new Rectangle(0, 0, BmpWidth, BmpHeight));
@@ -468,6 +478,15 @@ namespace AdvaMACSystem
             //draw setting line
             int ysetting = (int)(270 - (settingValue - minValue) / (maxValue - minValue) * 2409);
             g.DrawLine(settingValuePen, 40, ysetting, 40 + 720, ysetting);
+            
+            //draw legend
+            g.DrawRectangle(backPen, new Rectangle(320, 300, 150, 20));
+            g.FillRectangle(blueBrush, new Rectangle(325, 305, 10, 10));
+            g.FillRectangle(yellowBrush, new Rectangle(395, 305, 10, 10));
+            sf.Alignment = StringAlignment.Near;
+            sf.LineAlignment = StringAlignment.Center;
+            g.DrawString("设定值", chartFont, blueBrush, 340, 301 + g.MeasureString("设定值", chartFont).Height / 2, sf);
+            g.DrawString("实际值", chartFont, yellowBrush, 410, 301 + g.MeasureString("设定值", chartFont).Height / 2, sf);
             #endregion
 
             startTimeInFileList = new List<long>();
@@ -660,8 +679,9 @@ namespace AdvaMACSystem
             }
             totalPages = totalDatas / dataPerPage + (totalDatas % dataPerPage != 0 ? 1 : 0);
             lbPage.Text = string.Format("第        页，共{0}页", totalPages);
+            pageIndex = 0;
             ilCurrentPage.Text = totalPages > 0 ? "1" : "0";
-            button3_Click(null, null);
+            DrawTableDatas(pageIndex);
             pbDataTable.Image = table;
         }
 
@@ -710,7 +730,7 @@ namespace AdvaMACSystem
             return result;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void ilDate_Click(object sender, EventArgs e)
         {
             timeSetting.ReserveDays = this.reserveDays;
             timeSetting.Initialize();
@@ -730,34 +750,13 @@ namespace AdvaMACSystem
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (ReadyToDrawChart() == 0)
-            {
-                DrawChart();
-                DrawTable();
-            }
-        }
-
-        private void button3_Click(object sender, EventArgs e)
+        private void DrawTableDatas(int pageIndex)
         {
             gt = Graphics.FromImage(table);
             Brush backgroundBrush = new SolidBrush(this.BackColor);
             Brush blackBrush = new SolidBrush(Color.Black);
             Pen blackPen = new Pen(Color.Black);
 
-            int pageIndex = 0;
-            try
-            {
-                pageIndex = Convert.ToInt32(ilCurrentPage.Text) - 1;
-            }
-            catch
-            { }
-            if (pageIndex < 0 || pageIndex >= totalPages)
-            {
-                pageIndex = 0;
-                ilCurrentPage.Text = totalPages > 0 ? "1" : "0";
-            }
             List<DataPair> lvl = GetData(pageIndex * dataPerPage);
             sf.Alignment = StringAlignment.Center;
             sf.LineAlignment = StringAlignment.Center;
