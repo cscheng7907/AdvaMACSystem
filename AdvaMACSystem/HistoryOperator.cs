@@ -15,9 +15,11 @@ namespace AdvaMACSystem
 #if WindowsCE
         public string PressureRecFileName = @"\HardDisk\History\Pressure\{0}\{1}\{2}.Rec";
         public string PositionRecFileName = @"\HardDisk\History\Position\{0}\{1}\{2}.Rec";
+        public string HistoryDirectory = @"\HardDisk\History\";
 #else
         public string PressureRecFileName = Application.StartupPath + @"\History\Pressure\{0}\{1}\{2}.Rec";
         public string PositionRecFileName = Application.StartupPath + @"\History\Position\{0}\{1}\{2}.Rec";
+        public string HistoryDirectory = Application.StartupPath + @"\History\";
 #endif
 
         private string pressureRecFile = string.Empty;
@@ -59,14 +61,29 @@ namespace AdvaMACSystem
             }
         }
 
+        private int reserveDays = 60;
+        public int ReserveDays
+        {
+            get { return reserveDays; }
+            set
+            {
+                if (reserveDays != value && reserveDays > 0)
+                    reserveDays = value;
+            }
+        }
+
         public void Update()
         {
             if (firstRecord)
+            {
+                DeleteExpiredFiles();
                 CreateNewFiles();
+            }
 
             if (DateTime.Now.Date != dateCreateFile.Date)
             {
                 CloseFiles();
+                DeleteExpiredFiles();
                 CreateNewFiles();
             }
 
@@ -74,6 +91,34 @@ namespace AdvaMACSystem
             {
                 RecordData();
                 nextRecordTimeTicks += timerInterval * 10000;
+            }
+        }
+
+        public void DeleteExpiredFiles()
+        {
+            TimeSpan t = new TimeSpan(reserveDays, 0, 0, 0);
+            DateTime oldestTime = DateTime.Now.Date.Subtract(t);
+
+            List<string> recFiles = new List<string>();
+            FindFiles(HistoryDirectory, recFiles);
+            foreach (string s in recFiles)
+            {
+                string nameToParse = Path.GetFileNameWithoutExtension(s);
+                try
+                {
+                    if (nameToParse.IndexOf(' ') >= 0)
+                        nameToParse = nameToParse.Substring(0, nameToParse.IndexOf(' '));
+                    else
+                        continue;
+
+                    DateTime recTime = Convert.ToDateTime(nameToParse);
+                    if (recTime.Ticks < oldestTime.Ticks)
+                    {
+                        File.Delete(s);
+                    }
+                }
+                catch
+                { }
             }
         }
 
@@ -226,5 +271,29 @@ namespace AdvaMACSystem
                 }//end of [for (int j = 0; j < cylinderNumber; j++)]
             }//end of [for (int i = 0; i < pumpNumber; i++)]
         }
+
+        private void FindFiles(string dirPath, List<string> fileList)
+        {
+            DirectoryInfo Dir = new DirectoryInfo(dirPath);
+            try
+            {
+                foreach (DirectoryInfo d in Dir.GetDirectories())//查找子目录
+                {
+                    FindFiles(Dir + d.ToString() + "\\", fileList);
+                }
+                if (fileList != null)
+                {
+                    foreach (FileInfo f in Dir.GetFiles()) //查找文件
+                    {
+                        fileList.Add(Dir + f.ToString());
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
     }
 }
