@@ -397,6 +397,12 @@ namespace AdvaMACSystem
 
         public override void DoEnter()
         {
+            DoReEnter();
+            base.DoEnter();
+        }
+
+        public override void DoReEnter()
+        {
             //更新控制方式
             ControlMode = (int)_candatapool.ControlMode;
             //controlButtonList[controlMode].Checked = true;
@@ -424,8 +430,10 @@ namespace AdvaMACSystem
             UpdateCylinderControlButtonEnabled();
 
             this.timer_RefreshMac.Enabled = true;
-            base.DoEnter();
+            
+            base.DoReEnter();
         }
+
 
         protected override void DoExit()
         {

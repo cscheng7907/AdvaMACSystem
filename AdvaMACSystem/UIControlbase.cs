@@ -40,6 +40,10 @@ namespace AdvaMACSystem
             }
         }
 
+        public virtual void DoReEnter()
+        { }
+
+
         protected virtual void DoExit()
         {
             if (KTUIControlList != null && KTUIControlList.Remove(this))
@@ -57,6 +61,7 @@ namespace AdvaMACSystem
                     if (this._hideonexit)
                         CurKTUIControl.BringToFront();
                     CurKTUIControl.Focus();
+                    CurKTUIControl.DoReEnter();
                 }
 
                 if (OnKTUIControlChanged != null)
