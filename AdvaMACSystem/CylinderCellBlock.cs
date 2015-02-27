@@ -150,13 +150,14 @@ namespace AdvaMACSystem
 
         private int pumpIndex;//泵的编号
         private int cylinderIndex;
-        private int CylinderIndex
+        public int CylinderIndex
         {
             set
             {
                 cylinderIndex = value;
                 this.lbIndex.Text = (cylinderIndex + 1).ToString() + "#";
             }
+            get { return cylinderIndex; }
         }
 
         public void InitialInstance(int PumpIndex, int CylinderIndex)
@@ -221,7 +222,6 @@ namespace AdvaMACSystem
         public event OnCylinderClickHandler OnCylinderClicked;
         private void CylinderCellBlock_Click(object sender, EventArgs e)
         {
-            Selected = !selected;
             if (OnCylinderClicked != null)
                 OnCylinderClicked(cylinderIndex);
         }
