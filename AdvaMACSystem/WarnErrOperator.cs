@@ -4,13 +4,19 @@ using System.Text;
 using DataPool;
 using System.Threading;
 using System.IO;
+using System.Windows.Forms;
 
 namespace AdvaMACSystem
 {
     public class WarnErrOperator
     {
-        public const string WarningRecFileName = @"\HardDisk\Record\Warning.Rec";
-        public const string ErrorRecFileName = @"\HardDisk\Record\Error.Rec";
+#if WindowsCE
+        public  string WarningRecFileName = @"\HardDisk\Record\Warning.Rec";
+        public  string ErrorRecFileName = @"\HardDisk\Record\Error.Rec";
+#else
+        public string WarningRecFileName = Application.StartupPath + @"\Record\Warning.Rec";
+        public string ErrorRecFileName = Application.StartupPath + @"\Record\Error.Rec";
+#endif
 
         public WarnErrOperator()
         {

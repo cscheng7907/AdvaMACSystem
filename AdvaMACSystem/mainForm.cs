@@ -34,6 +34,7 @@ namespace AdvaMACSystem
 
 #if WindowsCE
             AdvaCanBusObj = AdvaCanBus.GetAdvaCanBus();
+            CDataPool.GetDataPoolObject().LoadFromFile();
             AdvaCanBusObj.CanDatapool = CDataPool.GetDataPoolObject();
             if (!AdvaCanBusObj.Open())
             {
@@ -362,7 +363,8 @@ namespace AdvaMACSystem
             if (UIControlbase.CurKTUIControl != pvError)
             {
                 pvError.IsReal = true;
-                pvError.DoEnter();
+                EnterpvError();
+                //pvError.DoEnter();
             }
         }
 
@@ -388,7 +390,8 @@ namespace AdvaMACSystem
             if (UIControlbase.CurKTUIControl != pvError)
             {
                 pvError.IsReal = false;
-                pvError.DoEnter();
+                EnterpvError();
+                //pvError.DoEnter();
             }
         }
 
@@ -455,11 +458,20 @@ namespace AdvaMACSystem
             }
         }
 
-
-
-
-
-
-
+        private void EnterpvError()
+        {
+            if (pvError != null)
+            {
+                KeypadForm f = KeypadForm.GetKeypadForm("", KeypadMode.password);
+                if (f.ShowDialog() == DialogResult.OK)
+                {
+                    // 故障界面
+                    if (f.KeyText == "333333")
+                    {
+                        pvError.DoEnter();
+                    }
+                }
+            }
+        }
     }
 }

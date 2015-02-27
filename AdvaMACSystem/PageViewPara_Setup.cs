@@ -164,6 +164,8 @@ namespace AdvaMACSystem
                     CmdDataType.cdtInstalled,
                     btnlst_subid[i].Checked);
             }
+            DataPool.CDataPool.GetDataPoolObject().SavetoFile();
+            MessageBox.Show(string.Format("#{0:00}泵站，参数已经保存！", pumpindex + 1));
         }
 
         private void UpdateViewData()

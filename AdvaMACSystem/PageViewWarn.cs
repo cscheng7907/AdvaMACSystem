@@ -49,13 +49,13 @@ namespace AdvaMACSystem
             }
             else
             {
-                if (File.Exists(WarnErrOperator.WarningRecFileName))
+                if (File.Exists(optor.WarningRecFileName))
                 {
                     int fixitem = 0;
                     bool val = false;
                     DateTime dt;
 
-                    FileStream fs = new FileStream(WarnErrOperator.WarningRecFileName, FileMode.Open);
+                    FileStream fs = new FileStream(optor.WarningRecFileName, FileMode.Open);
                     long linecount = fs.Length / (sizeof(int) + sizeof(int) + sizeof(long));
                     BinaryReader br = new BinaryReader(fs);
                     br.BaseStream.Seek(0, SeekOrigin.Begin); //将文件指针设置到文件开始

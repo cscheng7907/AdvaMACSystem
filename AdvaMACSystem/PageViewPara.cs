@@ -121,7 +121,7 @@ namespace AdvaMACSystem
                           comboBox_subid.SelectedIndex, (CmdDataType)btnList[i].Tag, btnList[i].Checked);
                 }
             }
-
+            DataPool.CDataPool.GetDataPoolObject().SavetoFile();
             MessageBox.Show(string.Format("#{0:00}泵站-#{1:00}油缸，参数已经保存！", comboBox_id.SelectedIndex + 1, comboBox_subid.SelectedIndex + 1));
         }
 

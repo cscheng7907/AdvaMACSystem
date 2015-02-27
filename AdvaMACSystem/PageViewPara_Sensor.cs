@@ -88,9 +88,14 @@ namespace AdvaMACSystem
         {
             DataPool.CDataPool.GetDataPoolObject().sign_View_PositionSenserHigh_Confirm = true;
         }
-        
+
 
         private void UpdateViewData() { }
-        private void SaveViewData() { }
+        private void SaveViewData()
+        {
+            DataPool.CDataPool.GetDataPoolObject().SavetoFile();
+            MessageBox.Show(string.Format("#{0:00}泵站-#{1:00}油缸，参数已经保存！", comboBox_id.SelectedIndex + 1, comboBox_subid.SelectedIndex + 1));
+
+        }
     }
 }

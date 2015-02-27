@@ -194,7 +194,7 @@ namespace AdvaMACSystem
                 {
                     selectedPumpIndex = value;
                     RefreshCylinderList();
-                    _candatapool.CurID = selectedPumpIndex;
+                    _candatapool.CurId = selectedPumpIndex;
                 }
             }
         }
