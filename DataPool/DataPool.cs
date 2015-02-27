@@ -60,6 +60,9 @@ namespace DataPool
                     in_Pressure_Real_3001_3008.Add(0);// 油缸压力当前值 4*8
                     in_Position_Real_3101_3108.Add(0);// 油缸当前长度值 4*8
 
+                    in_cylinderState_Real_3201_3208.Add(MotionStateType.stsStop);// 油缸运行状态 4*8
+                    in_MachLockState_Real_3201_3208.Add(MotionStateType.stsStop);// 油缸机械锁运行状态 4*8
+
                     in_Limit_5_3301_3304.Add(false);   // 油缸5mm接近开关限位 4*8
                     in_Limit_10_3301_3304.Add(false); // 油缸10mm接近开关限位 4*8
 
@@ -462,7 +465,7 @@ namespace DataPool
 
                 long dataSum =
                     //public List<byte> out_PressureAlarm_Pump  //泵站压力报警值 4
-                            sizeof(byte) * Number_Pump * Number_Cylinder +
+                            sizeof(byte) * Number_Pump+
                     //public List<bool> out_Installed  //油缸是否安装 4*8
                             sizeof(bool) * Number_Pump * Number_Cylinder +
                     //public List<bool> out_PressureUpperLimitAlarm_Enable  //油缸压力上限报警功能开启 4*8

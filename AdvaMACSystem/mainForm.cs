@@ -46,6 +46,7 @@ namespace AdvaMACSystem
             this.ControlBox = true;
             this.MinimizeBox = true;
             this.MaximizeBox = false;
+            CDataPool.GetDataPoolObject().LoadFromFile();
 #endif
 
             Create_WarnErrOper();
