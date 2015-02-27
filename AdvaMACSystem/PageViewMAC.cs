@@ -62,17 +62,19 @@ namespace AdvaMACSystem
             }
 
             //new buttons
-            buttonList = new List<ImageButton>();
+            controlButtonList = new List<ImageButton>();
             autoModeButton = new ImageButton();
-            buttonList.Add(autoModeButton);
+            controlButtonList.Add(autoModeButton);
             manualModeButton = new ImageButton();
-            buttonList.Add(manualModeButton);
+            controlButtonList.Add(manualModeButton);
+
+            stateButtonList = new List<ImageButton>();
             cylinderExtendButton = new ImageButton();
-            buttonList.Add(cylinderExtendButton);
+            stateButtonList.Add(cylinderExtendButton);
             cylinderStopButton = new ImageButton();
-            buttonList.Add(cylinderStopButton);
+            stateButtonList.Add(cylinderStopButton);
             cylinderRetractButton = new ImageButton();
-            buttonList.Add(cylinderRetractButton);
+            stateButtonList.Add(cylinderRetractButton);
 
             this.SuspendLayout();
 
@@ -86,6 +88,7 @@ namespace AdvaMACSystem
                 pumpBlock.PumpIndex = j;
                 pumpBlock.IMGContainer = pumpImages;
                 pumpBlock.Icon = pumpIcon;
+                pumpBlock.Click += new EventHandler(pumpBlock_Click);
                 pumpBlock.CheckedChanged += new EventHandler(pumpBlock_CheckedChanged);
                 this.Controls.Add(pumpBlock);
             }
@@ -103,23 +106,32 @@ namespace AdvaMACSystem
             }
 
             //buttons
-            for (int k = 0; k < buttonList.Count; k++)
+            for (int k = 0; k < controlButtonList.Count; k++)
             {
-                ImageButton button = buttonList[k];
+                ImageButton button = controlButtonList[k];
                 button.Size = new Size(ButtonWidth, ButtonHeight);
                 button.Location = new Point(ButtonMarginLeft, ButtonMarginTop + k * (ButtonHeight + ButtonSpacingY));
                 button.Font = currentFont;
                 button.IMGContainer = buttonImages;
+                button.Toggle = true;
+                button.Click += new EventHandler(controlModeButton_Click);
                 this.Controls.Add(button);
             }
-            autoModeButton.Toggle = true;
-            manualModeButton.Toggle = true;
-            autoModeButton.CheckedChanged += new EventHandler(controlModeButton_CheckedChanged);
-            manualModeButton.CheckedChanged += new EventHandler(controlModeButton_CheckedChanged);
             autoModeButton.Name = "auto";
             manualModeButton.Name = "manual";
             autoModeButton.Text = "自动模式";
             manualModeButton.Text = "手动模式";
+
+            for (int k = 0; k < stateButtonList.Count; k++)
+            {
+                ImageButton button = stateButtonList[k];
+                button.Size = new Size(ButtonWidth, ButtonHeight);
+                button.Location = new Point(ButtonMarginLeft, ButtonMarginTop + (k + 3) * (ButtonHeight + ButtonSpacingY));
+                button.Font = currentFont;
+                button.IMGContainer = buttonImages;
+                button.Toggle = true;
+                this.Controls.Add(button);
+            }
             cylinderExtendButton.Text = "油缸伸出";
             cylinderExtendButton.Click += new EventHandler(cylinderExtendButton_Click);
             cylinderStopButton.Text = "油缸停止";
@@ -169,15 +181,30 @@ namespace AdvaMACSystem
         private int selectedCylinderIndex = 0;
         private void cylinder_OnCylinderClicked(int cylinderIndex)
         {
-            if (selectedCylinderIndex != cylinderIndex)
+            foreach (CylinderCellBlock ccb in cylinderList)
             {
-                cylinderList[selectedCylinderIndex].Selected = false;
-                cylinderList[cylinderIndex].Selected = true;
-                selectedCylinderIndex = cylinderIndex;
-                _candatapool.CurId = cylinderIndex;
+                ccb.Selected = (ccb.CylinderIndex == cylinderIndex);
+            }
+            selectedCylinderIndex = cylinderIndex;
+            _candatapool.CurSubId = selectedCylinderIndex;
+            CylinderControlStatus = _candatapool.GetintValue(selectedPumpIndex, selectedCylinderIndex, CmdDataType.cdtcylinderState_Real_3201_3208);
+
+            UpdateCylinderControlButtonEnabled();
+        }
+        private void UpdateCylinderControlButtonEnabled()
+        {
+            if (controlMode == 1 && cylinderList[selectedCylinderIndex].InUse)
+            {
+                cylinderExtendButton.Enabled = true;
+                cylinderStopButton.Enabled = true;
+                cylinderRetractButton.Enabled = true;
             }
             else
-                cylinderList[selectedCylinderIndex].Selected = true;
+            {
+                cylinderExtendButton.Enabled = false;
+                cylinderStopButton.Enabled = false;
+                cylinderRetractButton.Enabled = false;
+            }
         }
 
         private CProgressBarImagesContainer progressBarImages = null;
@@ -202,6 +229,22 @@ namespace AdvaMACSystem
         private ImagesContaner pumpImages = null;
         private Bitmap pumpIcon = null;
         private List<CPumpButton> pumpList = null;
+
+        private void pumpBlock_Click(object sender, EventArgs e)
+        {
+            CPumpButton pBSender = (CPumpButton)sender;
+            if (pBSender.Enabled)
+            {
+                foreach (CPumpButton pumpBlock in pumpList)
+                {
+                    pumpBlock.Checked = pumpBlock == pBSender;
+                }
+                SelectedPumpIndex = pBSender.PumpIndex;
+                cylinder_OnCylinderClicked(0);
+            }
+
+        }
+
         private void pumpBlock_CheckedChanged(object sender, EventArgs e)
         {
             CPumpButton pumpBlock = (CPumpButton)sender;
@@ -224,55 +267,101 @@ namespace AdvaMACSystem
 
         #region 控制按钮
         private int controlMode = 0; //0:Auto 1:Manual
+        public int ControlMode
+        {
+            get { return controlMode; }
+            set
+            {
+                if (controlMode != value)
+                {
+                    controlMode = value;
+                    DoControlModeChanged();
+                }
+            }
+        }
+
+        private void DoControlModeChanged()
+        {
+            if (controlMode == 0)
+            {
+                autoModeButton.Checked = true;
+                manualModeButton.Checked = false;
+
+                cylinderExtendButton.Enabled = false;
+                cylinderStopButton.Enabled = false;
+                cylinderRetractButton.Enabled = false;
+            }
+            else
+            {
+                autoModeButton.Checked = false;
+                manualModeButton.Checked = true;
+
+                UpdateCylinderControlButtonEnabled();
+            }
+        }
+
+        private void controlModeButton_Click(object sender, EventArgs e)
+        {
+            ImageButton bSender = (ImageButton)sender;
+            foreach (ImageButton button in controlButtonList)
+            {
+                button.Checked = button == bSender;
+            }
+            if (bSender.Name == "auto")
+            {
+                ControlMode = 0;
+                _candatapool.ControlMode = ControlModeType.Auto;
+
+            }
+            else if (bSender.Name == "manual")
+            {
+                ControlMode = 1;
+                _candatapool.ControlMode = ControlModeType.CylinderManual;
+            }
+        }
+
         private int cylinderControlStatus = 0;
+        public int CylinderControlStatus
+        {
+            get { return cylinderControlStatus; }
+            set
+            {
+                if (cylinderControlStatus != value)
+                {
+                    cylinderControlStatus = value;
+                    UpdateCylinderControlStatus();
+                }
+            }
+        }
+
+        private void UpdateCylinderControlStatus()
+        {
+            if (cylinderControlStatus == 0)
+                _candatapool.out_MotionState = MotionStateType.stsStop;
+            else if (cylinderControlStatus == 1)
+                _candatapool.out_MotionState = MotionStateType.stsextend;
+            else
+                _candatapool.out_MotionState = MotionStateType.stsretract;
+
+            cylinderExtendButton.Checked = (cylinderControlStatus == 1);
+            cylinderStopButton.Checked = (cylinderControlStatus == 0);
+            cylinderRetractButton.Checked = (cylinderControlStatus == 2);
+        }
 
         private ImagesContaner buttonImages = null;
-        private List<ImageButton> buttonList = null;
+        private List<ImageButton> controlButtonList = null;
+        private List<ImageButton> stateButtonList = null;
         private ImageButton autoModeButton = null;
         private ImageButton manualModeButton = null;
         private ImageButton cylinderExtendButton = null;
         private ImageButton cylinderStopButton = null;
         private ImageButton cylinderRetractButton = null;
-        private void controlModeButton_CheckedChanged(object sender, EventArgs e)
-        {
-            ImageButton button = (ImageButton)sender;
-            if (button.Checked == true)
-            {
-                if (button.Name == "auto")
-                {
-                    controlMode = 0;
-                    manualModeButton.Checked = false;
-                }
-                else
-                {
-                    controlMode = 1;
-                    autoModeButton.Checked = false;
-                }
-            }
-            else
-            {
-                if ((button.Name == "auto" && controlMode == 0) ||
-                    (button.Name == "manual" && controlMode == 1))
-                    button.Checked = true;
-            }
-            if (manualModeButton.Checked)
-            {
-                cylinderExtendButton.Enabled = true;
-                cylinderStopButton.Enabled = true;
-                cylinderRetractButton.Enabled = true;
-            }
-            else
-            {
-                cylinderExtendButton.Enabled = false;
-                cylinderStopButton.Enabled = false;
-                cylinderRetractButton.Enabled = false;
-            }
-        }
 
         private void cylinderRetractButton_Click(object sender, EventArgs e)
         {
             if (controlMode == 1 && selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
             {
+                CylinderControlStatus = 2;
             }
         }
 
@@ -280,6 +369,7 @@ namespace AdvaMACSystem
         {
             if (controlMode == 1 && selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
             {
+                CylinderControlStatus = 0;
             }
         }
 
@@ -287,6 +377,7 @@ namespace AdvaMACSystem
         {
             if (controlMode == 1 && selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
             {
+                CylinderControlStatus = 1;
             }
         }
 
@@ -306,6 +397,12 @@ namespace AdvaMACSystem
 
         public override void DoEnter()
         {
+            //更新控制方式
+            ControlMode = (int)_candatapool.ControlMode;
+            //controlButtonList[controlMode].Checked = true;
+            DoControlModeChanged();
+            
+            //更新pumpList
             if (pumpList == null)
                 return;
 
@@ -313,17 +410,18 @@ namespace AdvaMACSystem
             {
                 pumpList[j].Unit = PumpUnit;
             }
-            pumpList[0].Checked = true;
-            selectedPumpIndex = 0;
+            pumpList[selectedPumpIndex].Checked = true;
             _candatapool.CurId = selectedPumpIndex;
 
+            //更新cylinderList
             RefreshCylinderList();
-            cylinderList[0].Selected = true;
-            selectedCylinderIndex = 0;
+            cylinderList[selectedCylinderIndex].Selected = true;
             _candatapool.CurSubId = selectedCylinderIndex;
 
-            autoModeButton.Checked = true;
-            controlMode = 0;
+            //更新cylinderControlStatus
+            cylinderControlStatus = _candatapool.GetintValue(selectedPumpIndex, selectedCylinderIndex, CmdDataType.cdtcylinderState_Real_3201_3208);
+            UpdateCylinderControlStatus();
+            UpdateCylinderControlButtonEnabled();
 
             this.timer_RefreshMac.Enabled = true;
             base.DoEnter();
