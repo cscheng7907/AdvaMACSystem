@@ -25,6 +25,13 @@ namespace AdvaMACSystem
         public mainForm()
         {
             InitializeComponent();
+
+#if WindowsCE
+
+#else
+            panel_Head.MouseMove += new MouseEventHandler(panel_Head_MouseMove);
+
+#endif
         }
 
         private void mainForm_Load(object sender, EventArgs e)
@@ -430,6 +437,7 @@ namespace AdvaMACSystem
         }
         #endregion
 
+        private Point _MP;
         private void panel_Head_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -453,12 +461,21 @@ namespace AdvaMACSystem
                         Application.Exit();
                     }
                 }
-
-
-
+            }
+            else if (e.Button == MouseButtons.Left)
+            {
+                _MP.X = e.X;
+                _MP.Y = e.Y;
             }
         }
-
+        private void panel_Head_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Top = MousePosition.Y - _MP.Y;
+                Left = MousePosition.X - _MP.X; 
+            }
+        }
         private void EnterpvError()
         {
             if (pvError != null)

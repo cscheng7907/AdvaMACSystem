@@ -92,8 +92,12 @@ namespace AdvaMACSystem
             {
                 for (int i = 0; i < lbList.Count; i++)
                 {
-                  lbList[i].Text =  DataPool.CDataPool.GetDataPoolObject().GetRealValue(comboBox_id.SelectedIndex,
-                        comboBox_subid.SelectedIndex, (CmdDataType)lbList[i].Tag).ToString ("#.0");
+                    if ((CmdDataType)lbList[i].Tag == CmdDataType.cdtPressureAlarm_Pump)
+                        lbList[i].Text = DataPool.CDataPool.GetDataPoolObject().GetintValue(comboBox_id.SelectedIndex,
+                          comboBox_subid.SelectedIndex, (CmdDataType)lbList[i].Tag).ToString();
+                    else
+                        lbList[i].Text = DataPool.CDataPool.GetDataPoolObject().GetRealValue(comboBox_id.SelectedIndex,
+                          comboBox_subid.SelectedIndex, (CmdDataType)lbList[i].Tag).ToString("0.0");
                 }
 
                 for (int i = 0; i < btnList.Count; i++)
@@ -111,8 +115,12 @@ namespace AdvaMACSystem
             {
                 for (int i = 0; i < lbList.Count; i++)
                 {
-                    DataPool.CDataPool.GetDataPoolObject().SetRealValue(comboBox_id.SelectedIndex,
-                        comboBox_subid.SelectedIndex, (CmdDataType)lbList[i].Tag, Convert.ToDouble(lbList[i].Text));
+                    if ((CmdDataType)lbList[i].Tag == CmdDataType.cdtPressureAlarm_Pump)
+                        DataPool.CDataPool.GetDataPoolObject().SetintValue(comboBox_id.SelectedIndex,
+                        comboBox_subid.SelectedIndex, (CmdDataType)lbList[i].Tag, Convert.ToInt32(lbList[i].Text));
+                    else
+                        DataPool.CDataPool.GetDataPoolObject().SetRealValue(comboBox_id.SelectedIndex,
+                            comboBox_subid.SelectedIndex, (CmdDataType)lbList[i].Tag, Convert.ToDouble(lbList[i].Text));
                 }
 
                 for (int i = 0; i < btnList.Count; i++)
@@ -162,15 +170,35 @@ namespace AdvaMACSystem
                 KeypadForm f = KeypadForm.GetKeypadForm(lb.Text);
                 if (f.ShowDialog() == DialogResult.OK)
                 {
-                    try
+                    if ((CmdDataType)lb.Tag == CmdDataType.cdtPressureAlarm_Pump)
                     {
-                        dv = Convert.ToDouble(f.KeyText);
+                        try
+                        {
+                            dv = Convert.ToByte (f.KeyText);
 
-                        lb.Text = dv.ToString("#.0");
+                            lb.Text = dv.ToString();
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("输入非法！");
+                        }
                     }
-                    catch (Exception)
+                    else
                     {
 
+
+
+                        try
+                        {
+                            dv = Convert.ToDouble(f.KeyText);
+
+                            lb.Text = dv.ToString("0.0");
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("输入非法！");
+
+                        }
                     }
                 }
 
