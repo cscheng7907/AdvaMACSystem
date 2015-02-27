@@ -46,5 +46,12 @@ namespace KeyPadDemo_Win32
         {
             imageButton1.Text = "123";
         }
+
+        private void Form1_Click(object sender, EventArgs e)
+        {
+             List<bool> out_Installed = new List<bool>();
+
+             MessageBox.Show(sizeof(bool).ToString());
+        }
     }
 }

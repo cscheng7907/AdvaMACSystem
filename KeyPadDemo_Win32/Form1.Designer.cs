@@ -57,10 +57,7 @@
             // 
             // imageButton1
             // 
-            this.imageButton1.DNImg = null;
-            this.imageButton1.DNImgDisable = null;
             this.imageButton1.DownColor = System.Drawing.SystemColors.Control;
-            this.imageButton1.IMGContainer = null;
             this.imageButton1.Location = new System.Drawing.Point(147, 202);
             this.imageButton1.Name = "imageButton1";
             this.imageButton1.Size = new System.Drawing.Size(118, 39);
@@ -68,8 +65,6 @@
             this.imageButton1.TabStop = false;
             this.imageButton1.Text = "imageButton1";
             this.imageButton1.UpColor = System.Drawing.SystemColors.Control;
-            this.imageButton1.UPImg = null;
-            this.imageButton1.UPImgDisable = null;
             // 
             // Form1
             // 
@@ -82,6 +77,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Click += new System.EventHandler(this.Form1_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
 
