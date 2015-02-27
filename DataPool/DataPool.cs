@@ -1,11 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
+using System.Windows.Forms;
 
 namespace DataPool
 {
     public class CDataPool
     {
+#if WindowsCE
+        public const string DataPoolRecFileName = @"\HardDisk\Record\DataPool.Rec";
+#else
+        public string DataPoolRecFileName = Application.StartupPath + @"\Record\DataPool.Rec";
+#endif
+
         private static CDataPool DataPoolObject = null;
 
         public static CDataPool GetDataPoolObject()
@@ -15,7 +23,6 @@ namespace DataPool
 
             return DataPoolObject;
         }
-
 
         private CDataPool()
         {
@@ -106,14 +113,11 @@ namespace DataPool
             get { return Number_Pump; }
         }
 
-
         private uint Number_Cylinder = 8;
         public uint CylinderCount
         {
             get { return Number_Cylinder; }
         }
-
-
 
         //in values
         #region CAN 读取的数据
@@ -309,19 +313,77 @@ namespace DataPool
 
         #region data 发送接口
         public void SetRealValue(int id, int subid, CmdDataType type, double value)
-        { }
+        {
+            switch (type)
+            {
+                case CmdDataType.cdtPressureUpperLimitAlarm_Value://油缸压力上限报警值设定 4*8
+                    out_PressureUpperLimitAlarm_Value[id * 8 + subid] = Convert.ToInt16(value * 10);
+                    break;
+                case CmdDataType.cdtPressureLowerLimitAlarm_Value://油缸压力下限报警值设定 4*8
+                    out_PressureLowerLimitAlarm_Value[id * 8 + subid] = Convert.ToInt16(value * 10);
+                    break;
+                case CmdDataType.cdtPositionUpperLimitAlarm_Value: //油缸长度上限报警值设定 4*8
+                    out_PositionUpperLimitAlarm_Value[id * 8 + subid] = Convert.ToInt16(value * 10);
+                    break;
+                case CmdDataType.cdtPositionLowerLimitAlarm_Value: //油缸长度下限报警值设定 4*8
+                    out_PositionLowerLimitAlarm_Value[id * 8 + subid] = Convert.ToInt16(value * 10);
+                    break;
+
+                case CmdDataType.cdtPressure_Value://油缸压力设定值 4*8
+                    out_Pressure_Value[id * 8 + subid] = Convert.ToInt16(value * 10);
+                    break;
+                case CmdDataType.cdtPosition_Value: //油缸长度设定值 4*8
+                    out_Position_Value[id * 8 + subid] = Convert.ToInt16(value * 10);
+                    break;
+
+                case CmdDataType.cdtPositionSenserLow_Value://油缸长度传感器低位值 4*8
+                    out_PositionSenserLow_Value[id * 8 + subid] = Convert.ToByte(value * 10);
+                    break;
+                case CmdDataType.cdtPositionSenserHigh_Value://油缸长度传感器高位值 4*8
+                    out_PositionSenserHigh_Value[id * 8 + subid] = Convert.ToByte(value * 10);
+                    break;
+                default:
+                    break;
+            }
+        }
 
         public void SetintValue(int id, int subid, CmdDataType type, int value)
-        { }
+        {
+            switch (type)
+            {
+                case CmdDataType.cdtPressureAlarm_Pump://泵站压力报警值 4
+                    out_PressureAlarm_Pump[id] = (byte)value;
+                    break;
+                default:
+                    break;
+            }
+        }
 
         public void SetboolValue(int id, int subid, CmdDataType type, bool value)
-        { }
-
-
+        {
+            switch (type)
+            {
+                case CmdDataType.cdtInstalled://油缸是否安装 4*8
+                    out_Installed[id * 8 + subid] = value;
+                    break;
+                case CmdDataType.cdtPressureUpperLimitAlarm_Enable://油缸压力上限报警功能开启 4*8
+                    out_PressureUpperLimitAlarm_Enable[id * 8 + subid] = value;
+                    break;
+                case CmdDataType.cdtPositionUpperLimitAlarm_Enable://油缸长度上限报警功能开启 4*8
+                    out_PositionUpperLimitAlarm_Enable[id * 8 + subid] = value;
+                    break;
+                case CmdDataType.cdtPositionLowerLimitAlarm_Enable://油缸长度下限报警功能开启 4*8
+                    out_PositionLowerLimitAlarm_Enable[id * 8 + subid] = value;
+                    break;
+                case CmdDataType.cdtPositionControl_Enable://油缸长度控制功能开启 4*8
+                    out_PositionControl_Enable[id * 8 + subid] = value;
+                    break;
+                default:
+                    break;
+            }
+        }
 
         #endregion
-
-
 
         //out values
         #region CAN 发送的数据
@@ -362,11 +424,14 @@ namespace DataPool
         public ControlModeType ControlMode = ControlModeType.Auto;
         public MotionStateType out_MotionState = MotionStateType.stsStop;
 
+        /*
         public Queue<CmdDataSetType> cansendFiFO = new Queue<CmdDataSetType>();
         public void UpdateDevice(int id, int subid, CmdDataType cmd)
         {
             //添加到 队列
         }
+         */
+
         #endregion
 
         //Init XML 导入结构
@@ -383,6 +448,165 @@ namespace DataPool
         public bool IsLocked { get { return _locked; } }
 
 
+        #endregion
+
+        #region data 持久化
+        /// <summary>
+        /// 导入
+        /// </summary>
+        public void LoadFromFile()
+        {
+            if (File.Exists(DataPoolRecFileName))
+            {
+                FileStream fs = new FileStream(DataPoolRecFileName, FileMode.Open);
+
+                long dataSum =
+                    //public List<byte> out_PressureAlarm_Pump  //泵站压力报警值 4
+                            sizeof(byte) * Number_Pump * Number_Cylinder +
+                    //public List<bool> out_Installed  //油缸是否安装 4*8
+                            sizeof(bool) * Number_Pump * Number_Cylinder +
+                    //public List<bool> out_PressureUpperLimitAlarm_Enable  //油缸压力上限报警功能开启 4*8
+                            sizeof(bool) * Number_Pump * Number_Cylinder +
+                    //public List<bool> out_PositionUpperLimitAlarm_Enable  //油缸长度上限报警功能开启 4*8
+                            sizeof(bool) * Number_Pump * Number_Cylinder +
+                    //public List<bool> out_PositionLowerLimitAlarm_Enable  //油缸长度下限报警功能开启 4*8
+                            sizeof(bool) * Number_Pump * Number_Cylinder +
+                    //public List<bool> out_PositionControl_Enable  //油缸长度控制功能开启 4*8
+                            sizeof(bool) * Number_Pump * Number_Cylinder +
+                    //public List<short> out_PressureUpperLimitAlarm_Value  //油缸压力上限报警值设定 4*8
+                            sizeof(short) * Number_Pump * Number_Cylinder +
+                    //public List<short> out_PressureLowerLimitAlarm_Value  //油缸压力下限报警值设定 4*8
+                            sizeof(short) * Number_Pump * Number_Cylinder +
+                    //public List<short> out_PositionUpperLimitAlarm_Value   //油缸长度上限报警值设定 4*8
+                            sizeof(short) * Number_Pump * Number_Cylinder +
+                    //public List<short> out_PositionLowerLimitAlarm_Value //油缸长度下限报警值设定 4*8
+                            sizeof(short) * Number_Pump * Number_Cylinder +
+                    //public List<short> out_Pressure_Value  //油缸压力设定值 4*8
+                            sizeof(short) * Number_Pump * Number_Cylinder +
+                    //public List<short> out_Position_Value //油缸长度设定值 4*8
+                            sizeof(short) * Number_Pump * Number_Cylinder +
+                    //public List<byte> out_PositionSenserLow_Value  //油缸长度传感器低位值 4*8
+                            sizeof(byte) * Number_Pump * Number_Cylinder +
+                    //public List<byte> out_PositionSenserHigh_Value  //油缸长度传感器高位值 4*8
+                            sizeof(byte) * Number_Pump * Number_Cylinder;
+
+                try
+                {
+                    if (dataSum == fs.Length)
+                    {
+                        fs.Position = 0;
+
+                        BinaryReader br = new BinaryReader(fs);
+                        try
+                        {
+                            for (int i = 0; i < Number_Pump; i++)
+                            {
+                                /*List<byte>*/
+                                out_PressureAlarm_Pump[i] = br.ReadByte();  //泵站压力报警值 4
+                            }
+
+                            for (int i = 0; i < Number_Pump; i++)
+                            {
+                                for (int j = 0; j < Number_Cylinder; j++)
+                                {
+                                    /*List<bool>*/
+                                    out_Installed[i * 8 + j] = br.ReadBoolean();   //油缸是否安装 4*8
+                                    /*List<bool>*/
+                                    out_PressureUpperLimitAlarm_Enable[i * 8 + j] = br.ReadBoolean();   //油缸压力上限报警功能开启 4*8
+                                    /*List<bool>*/
+                                    out_PositionUpperLimitAlarm_Enable[i * 8 + j] = br.ReadBoolean();   //油缸长度上限报警功能开启 4*8
+                                    /*List<bool>*/
+                                    out_PositionLowerLimitAlarm_Enable[i * 8 + j] = br.ReadBoolean();   //油缸长度下限报警功能开启 4*8
+                                    /*List<bool>*/
+                                    out_PositionControl_Enable[i * 8 + j] = br.ReadBoolean();   //油缸长度控制功能开启 4*8
+                                    /*List<short>*/
+                                    out_PressureUpperLimitAlarm_Value[i * 8 + j] = br.ReadInt16();  //油缸压力上限报警值设定 4*8
+                                    /*List<short>*/
+                                    out_PressureLowerLimitAlarm_Value[i * 8 + j] = br.ReadInt16();   //油缸压力下限报警值设定 4*8
+                                    /*List<short>*/
+                                    out_PositionUpperLimitAlarm_Value[i * 8 + j] = br.ReadInt16();    //油缸长度上限报警值设定 4*8
+                                    /*List<short>*/
+                                    out_PositionLowerLimitAlarm_Value[i * 8 + j] = br.ReadInt16();  //油缸长度下限报警值设定 4*8
+                                    /*List<short>*/
+                                    out_Pressure_Value[i * 8 + j] = br.ReadInt16();   //油缸压力设定值 4*8
+                                    /*List<short>*/
+                                    out_Position_Value[i * 8 + j] = br.ReadInt16();  //油缸长度设定值 4*8
+                                    /*List<byte>*/
+                                    out_PositionSenserLow_Value[i * 8 + j] = br.ReadByte();  //油缸长度传感器低位值 4*8
+                                    /*List<byte>*/
+                                    out_PositionSenserHigh_Value[i * 8 + j] = br.ReadByte();   //油缸长度传感器高位值 4*8
+                                }
+                            }
+                        }
+                        finally
+                        {
+                            br.Close();
+                        }
+                    }
+                }
+                finally
+                {
+                    fs.Close();
+                }
+            }
+        }
+
+        public void SavetoFile()
+        {
+            FileStream fs = new FileStream(DataPoolRecFileName, FileMode.Create);
+
+            BinaryWriter bw = new BinaryWriter(fs);
+
+            try
+            {
+                for (int i = 0; i < Number_Pump; i++)
+                {
+                    /*List<byte>*/
+                    bw.Write(out_PressureAlarm_Pump[i]); //泵站压力报警值 4
+                }
+
+                for (int i = 0; i < Number_Pump; i++)
+                {
+                    for (int j = 0; j < Number_Cylinder; j++)
+                    {
+                        /*List<bool>*/
+                        bw.Write(out_Installed[i * 8 + j]);   //油缸是否安装 4*8
+                        /*List<bool>*/
+                        bw.Write(out_PressureUpperLimitAlarm_Enable[i * 8 + j]);   //油缸压力上限报警功能开启 4*8
+                        /*List<bool>*/
+                        bw.Write(out_PositionUpperLimitAlarm_Enable[i * 8 + j]);   //油缸长度上限报警功能开启 4*8
+                        /*List<bool>*/
+                        bw.Write(out_PositionLowerLimitAlarm_Enable[i * 8 + j]);   //油缸长度下限报警功能开启 4*8
+                        /*List<bool>*/
+                        bw.Write(out_PositionControl_Enable[i * 8 + j]);   //油缸长度控制功能开启 4*8
+                        /*List<short>*/
+                        bw.Write(out_PressureUpperLimitAlarm_Value[i * 8 + j]);  //油缸压力上限报警值设定 4*8
+                        /*List<short>*/
+                        bw.Write(out_PressureLowerLimitAlarm_Value[i * 8 + j]);   //油缸压力下限报警值设定 4*8
+                        /*List<short>*/
+                        bw.Write(out_PositionUpperLimitAlarm_Value[i * 8 + j]);    //油缸长度上限报警值设定 4*8
+                        /*List<short>*/
+                        bw.Write(out_PositionLowerLimitAlarm_Value[i * 8 + j]);  //油缸长度下限报警值设定 4*8
+                        /*List<short>*/
+                        bw.Write(out_Pressure_Value[i * 8 + j]);   //油缸压力设定值 4*8
+                        /*List<short>*/
+                        bw.Write(out_Position_Value[i * 8 + j]);  //油缸长度设定值 4*8
+                        /*List<byte>*/
+                        bw.Write(out_PositionSenserLow_Value[i * 8 + j]);  //油缸长度传感器低位值 4*8
+                        /*List<byte>*/
+                        bw.Write(out_PositionSenserHigh_Value[i * 8 + j]);   //油缸长度传感器高位值 4*8
+                    }
+                }
+
+            }
+            finally
+            {
+                bw.Flush();
+                bw.Close();
+                fs.Close();
+            }
+
+        }
         #endregion
     }
 
@@ -461,11 +685,13 @@ namespace DataPool
         cdtPositionSenserHigh_Value//油缸长度传感器高位值 4*8
     }
 
+    /*
     public struct CmdDataSetType
     {
         CmdDataType command;
         int id;
         int subid;
     }
+    */
 
 }
