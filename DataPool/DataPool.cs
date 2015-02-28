@@ -229,7 +229,7 @@ namespace DataPool
                     break;
             }
 
-            return 0;
+            return rtv;
         }
 
         public bool GetBoolValue(int id, int subid, CmdDataType type)
