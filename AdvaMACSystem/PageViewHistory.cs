@@ -53,7 +53,7 @@ namespace AdvaMACSystem
                 cylinder.Tag = i;
                 cylinder.Text = (i + 1).ToString() + "#油缸";
                 cylinder.Toggle = true;
-                cylinder.CheckedChanged += new EventHandler(cylinder_Click);
+                cylinder.Click += new EventHandler(cylinder_Click);
                 this.Controls.Add(cylinder);
             }
 
@@ -186,18 +186,25 @@ namespace AdvaMACSystem
                 }
                 pumpIndex = index - 1;
                 ilPumpIndex.Text = index.ToString();
+                cylinder_Click(cylinderList[0], null);
             }
         }
 
         private void cylinder_Click(object sender, EventArgs e)
         {
-            ImageButton cylinder = (ImageButton)sender;
-            if (cylinderIndex >= 0 && cylinderIndex < cylinderList.Count)
-                cylinderList[cylinderIndex].Checked = false;
-            if (cylinderList[(int)cylinder.Tag].Checked)
-                cylinderIndex = (int)cylinder.Tag;
-            else
-                cylinderIndex = -1;
+            ImageButton ibSender = (ImageButton)sender;
+            foreach (ImageButton cylinder in cylinderList)
+            {
+                cylinder.Checked = cylinder == ibSender;
+            }
+            cylinderIndex = (int)ibSender.Tag;
+
+            if (ReadyToDrawChart() == 0)
+            {
+                DrawChart();
+                DrawTable();
+            }
+
         }
 
         //界面
@@ -252,7 +259,7 @@ namespace AdvaMACSystem
         private bool drawPressure = true;
         private int pumpNumber = 4;
         private int pumpIndex = 0;
-        private int cylinderIndex = -1;
+        private int cylinderIndex = 0;
 
         private double minValue;
         private double maxValue;
@@ -323,13 +330,10 @@ namespace AdvaMACSystem
 
         public override void DoEnter()
         {
-            DateTime dt = DateTime.Now.Date;
-            ilPumpIndex.Text = "1";
-            pumpIndex = 0;
+            ilPumpIndex.Text = (pumpIndex+1).ToString();
             pumpNumber = (int)_candatapool.PumpCount;
             ilDate.Text = DateTime.Now.Date.ToString("yyyy-MM-dd HH:mm");
-            cylinderList[0].Checked = true;
-            cylinderIndex = 0;
+            cylinderList[cylinderIndex].Checked = true;
             pageIndex = 0;
             ilCurrentPage.Text = "0";
             totalPages = 0;
