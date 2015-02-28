@@ -89,7 +89,6 @@ namespace AdvaMACSystem
                 pumpBlock.IMGContainer = pumpImages;
                 pumpBlock.Icon = pumpIcon;
                 pumpBlock.Click += new EventHandler(pumpBlock_Click);
-                pumpBlock.CheckedChanged += new EventHandler(pumpBlock_CheckedChanged);
                 this.Controls.Add(pumpBlock);
             }
 
@@ -245,24 +244,6 @@ namespace AdvaMACSystem
 
         }
 
-        private void pumpBlock_CheckedChanged(object sender, EventArgs e)
-        {
-            CPumpButton pumpBlock = (CPumpButton)sender;
-            if (pumpBlock.Checked == true)
-            {
-                if (pumpBlock.PumpIndex != selectedPumpIndex)
-                {
-                    int temp = selectedPumpIndex;
-                    SelectedPumpIndex = pumpBlock.PumpIndex;
-                    pumpList[temp].Checked = false;
-                }
-            }
-            else
-            {
-                if (pumpBlock.PumpIndex == selectedPumpIndex)
-                    pumpBlock.Checked = true;
-            }
-        }
         #endregion
 
         #region 控制按钮
