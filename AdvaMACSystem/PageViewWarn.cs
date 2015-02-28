@@ -43,7 +43,7 @@ namespace AdvaMACSystem
                     subid = item.Key % 10000 / 100;
                     cmdtype = item.Key % 10000 % 100;
 
-                    lv.SubItems.Add(string.Format("#{0}-#{1} {2}", id, subid, strlst[cmdtype - firstcmdtype]));
+                    lv.SubItems.Add(string.Format("{0}#-{1}# {2}", id, subid, strlst[cmdtype - firstcmdtype]));
                     listView1.Items.Add(lv);
                 }
             }
@@ -77,7 +77,7 @@ namespace AdvaMACSystem
 
                             lv.SubItems.Add(string.Format("{0:00}-{1:00}-{2:00} {3:00}:{4:00}:{5:00}", dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second));
                             lv.SubItems.Add(string.Format("{0}", (val) ? "发生" : "消失"));
-                            lv.SubItems.Add(string.Format("#{0}-#{1} {2}", id, subid, strlst[cmdtype - firstcmdtype]));
+                            lv.SubItems.Add(string.Format("{0}#-{1}# {2}", id, subid, strlst[cmdtype - firstcmdtype]));
 
                             listView1.Items.Insert(0, lv);
                         }

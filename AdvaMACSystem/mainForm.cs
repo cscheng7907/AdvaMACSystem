@@ -251,6 +251,7 @@ namespace AdvaMACSystem
                 pvWarn = new PageViewWarn();
                 pvWarn.Location = bigviewLocation;
                 pvWarn.Size = bigviewsize;
+                pvWarn.Optor = WarnErrOper;
                 pvWarn.Enabled = false;
                 this.Controls.Add(this.pvWarn);
             }
@@ -310,6 +311,7 @@ namespace AdvaMACSystem
                 pvError = new PageViewError();
                 pvError.Location = bigviewLocation;
                 pvError.Size = bigviewsize;
+                pvError.Optor = WarnErrOper;
                 pvError.Enabled = false;
                 this.Controls.Add(this.pvError);
             }
@@ -473,7 +475,7 @@ namespace AdvaMACSystem
             if (e.Button == MouseButtons.Left)
             {
                 Top = MousePosition.Y - _MP.Y;
-                Left = MousePosition.X - _MP.X; 
+                Left = MousePosition.X - _MP.X;
             }
         }
         private void EnterpvError()

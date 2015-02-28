@@ -54,6 +54,7 @@
             // 
             this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView1.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
             this.listView1.Columns.Add(this.columnHeader5);
             this.listView1.Columns.Add(this.columnHeader6);
             this.listView1.Columns.Add(this.columnHeader7);
