@@ -62,12 +62,19 @@ namespace AdvaMACSystem
 
         private void imageButton_OK_Low_Click(object sender, EventArgs e)
         {
-            SaveViewData();
+
+
+
+            SaveViewData_Low();
         }
 
         private void imageButton_OK_High_Click(object sender, EventArgs e)
         {
-            SaveViewData();
+
+
+
+
+            SaveViewData_High();
         }
 
         private void imageButton_OK_Low_MouseUp(object sender, MouseEventArgs e)
@@ -90,12 +97,21 @@ namespace AdvaMACSystem
         }
 
 
-        private void UpdateViewData() { }
-        private void SaveViewData()
+        private void UpdateViewData()
+        {
+            //todo
+        }
+
+        private void SaveViewData_Low()
         {
             DataPool.CDataPool.GetDataPoolObject().SavetoFile();
-            MessageBox.Show(string.Format("#{0:00}泵站-#{1:00}油缸，参数已经保存！", comboBox_id.SelectedIndex + 1, comboBox_subid.SelectedIndex + 1));
+            MessageBox.Show(string.Format("{0:00}#泵站-{1:00}#油缸，参数已经保存！", comboBox_id.SelectedIndex + 1, comboBox_subid.SelectedIndex + 1));
 
         }
-    }
+        private void SaveViewData_High()
+        {
+            DataPool.CDataPool.GetDataPoolObject().SavetoFile();
+            MessageBox.Show(string.Format("{0:00}#泵站-{1:00}#油缸，参数已经保存！", comboBox_id.SelectedIndex + 1, comboBox_subid.SelectedIndex + 1));
+
+        }    }
 }
