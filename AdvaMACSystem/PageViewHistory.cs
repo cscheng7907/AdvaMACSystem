@@ -70,14 +70,51 @@ namespace AdvaMACSystem
             pbDataTable = new PictureBox();
             lbPumpName = new Label();
             ilDate = new ImageLabel();
-            inputLabelList = new List<ImageLabel>();
+            ibPrevDay = new ImageButton();
+            ibNextDay = new ImageButton();
             ilPumpIndex = new ImageLabel();
-            inputLabelList.Add(ilPumpIndex);
             ilCurrentPage = new ImageLabel();
-            ilCurrentPage.Click += new EventHandler(ilCurrentPage_Click);
-            inputLabelList.Add(ilCurrentPage);
 
             lbPage = new Label();
+            prevPage = new ImageButton();
+            nextPage = new ImageButton();
+
+            this.SuspendLayout();
+
+            prevPage.Size = new Size(40, 40);
+            prevPage.Location = new Point(BmpLeft, 562);
+            prevPage.Font = currentFont;
+            prevPage.UPImg = prevPage.UPImgDisable = AdvaMACSystemRes.leftup;
+            prevPage.DNImg = prevPage.DNImgDisable = AdvaMACSystemRes.leftdown;
+            prevPage.Click += new EventHandler(prevPage_Click);
+            this.Controls.Add(prevPage);
+
+            nextPage.Size = new Size(40, 40);
+            nextPage.Location = new Point(BmpLeft + 350, 562);
+            nextPage.Font = currentFont;
+            nextPage.UPImg = nextPage.UPImgDisable = AdvaMACSystemRes.rightup;
+            nextPage.DNImg = nextPage.DNImgDisable = AdvaMACSystemRes.rightdown;
+            nextPage.Click += new EventHandler(nextPage_Click);
+            this.Controls.Add(nextPage);
+
+
+            ibPrevDay.Size = new Size(100, 40);
+            ibPrevDay.Location = new Point(CylinderMarginLeft, CylinderMarginTop + 9 * (CylinderHeight + CylinderSpacingY));
+            ibPrevDay.Font = currentFont;
+            ibPrevDay.Text = "前一天";
+            ibPrevDay.UPImg = ibPrevDay.UPImgDisable = AdvaMACSystemRes.half_disable;
+            ibPrevDay.DNImg = ibPrevDay.DNImgDisable = AdvaMACSystemRes.half_disable;
+            ibPrevDay.Click += new EventHandler(ibPrevDay_Click);
+            this.Controls.Add(ibPrevDay);
+
+            ibNextDay.Size = new Size(100, 40);
+            ibNextDay.Location = new Point(CylinderMarginLeft + 110, CylinderMarginTop + 9 * (CylinderHeight + CylinderSpacingY));
+            ibNextDay.Font = currentFont;
+            ibNextDay.Text = "后一天";
+            ibNextDay.UPImg = ibNextDay.UPImgDisable = AdvaMACSystemRes.half_disable;
+            ibNextDay.DNImg = ibNextDay.DNImgDisable = AdvaMACSystemRes.half_disable;
+            ibNextDay.Click += new EventHandler(ibNextDay_Click);
+            this.Controls.Add(ibNextDay);
 
             this.imageLabel_title.BackColor = System.Drawing.Color.Silver;
             this.imageLabel_title.Checked = false;
@@ -114,22 +151,78 @@ namespace AdvaMACSystem
             ilDate.Click += new EventHandler(ilDate_Click);
             this.Controls.Add(ilDate);
 
-            for (int i = 0; i < inputLabelList.Count; i++)
-            {
-                inputLabelList[i].Size = new Size(40, 40);
-                inputLabelList[i].Font = currentFont;
-                inputLabelList[i].IMGContainer = inputImage;
-                this.Controls.Add(inputLabelList[i]);
-            }
+            ilCurrentPage.Size = new Size(80, 40);
+            ilCurrentPage.Location = new Point(BmpLeft + 70, 562);
+            ilCurrentPage.Font = currentFont;
+            ilCurrentPage.BackImg = AdvaMACSystemRes.Input80x40;
+            ilCurrentPage.Click += new EventHandler(ilCurrentPage_Click);
+            this.Controls.Add(ilCurrentPage);
 
+            ilPumpIndex.Size = new Size(40, 40);
+            ilPumpIndex.Font = currentFont;
+            ilPumpIndex.IMGContainer = inputImage;
             ilPumpIndex.Location = new Point(CylinderMarginLeft + 50, CylinderMarginTop - CylinderHeight - CylinderSpacingY);
             ilPumpIndex.Click += new EventHandler(ilPumpIndex_Click);
-            lbPage.Size = new Size(200, 40);
-            lbPage.Location = new Point(BmpLeft, 572);
+            this.Controls.Add(ilPumpIndex);
+            
+            lbPage.Size = new Size(300, 40);
+            lbPage.Location = new Point(BmpLeft+45, 572);
             lbPage.Font = currentFont;
             this.Controls.Add(lbPage);
 
-            ilCurrentPage.Location = new Point(BmpLeft + 27, 562);
+            this.ResumeLayout(false);
+        }
+
+        private void ibNextDay_Click(object sender, EventArgs e)
+        {
+            if (startTime.Add(new TimeSpan(1, 0, 0, 0)).Date <= DateTime.Now.Date)
+            {
+                startTime = startTime.Add(new TimeSpan(1, 0, 0, 0));
+                ilDate.Text = startTime.ToString("yyyy-MM-dd HH:mm");
+
+                if (ReadyToDrawChart() == 0)
+                {
+                    DrawChart();
+                    DrawTable();
+                }
+            }
+        }
+
+        private void ibPrevDay_Click(object sender, EventArgs e)
+        {
+            if (startTime.Subtract(new TimeSpan(1, 0, 0, 0)).Date >= DateTime.Now.Date.Subtract(new TimeSpan(reserveDays, 0,0,0)).Date)
+            {
+                startTime = startTime.Subtract(new TimeSpan(1, 0, 0, 0));
+                ilDate.Text = startTime.ToString("yyyy-MM-dd HH:mm");
+
+                if (ReadyToDrawChart() == 0)
+                {
+                    DrawChart();
+                    DrawTable();
+                }
+            }
+        }
+
+        private void prevPage_Click(object sender, EventArgs e)
+        {
+            if (pageIndex - 1 >= 0)
+                pageIndex = pageIndex - 1;
+            int index = totalPages > 0 ? pageIndex + 1 : 0;
+            ilCurrentPage.Text = index.ToString();
+            DrawDefaultTable();
+            DrawTableDatas(pageIndex);
+            pbDataTable.Image = table;
+        }
+
+        private void nextPage_Click(object sender, EventArgs e)
+        {
+            if (pageIndex + 1 < totalPages)
+                pageIndex = pageIndex + 1;
+            int index = totalPages > 0 ? pageIndex + 1 : 0;
+            ilCurrentPage.Text = index.ToString();
+            DrawDefaultTable();
+            DrawTableDatas(pageIndex);
+            pbDataTable.Image = table;
         }
 
         private void ilCurrentPage_Click(object sender, EventArgs e)
@@ -214,12 +307,14 @@ namespace AdvaMACSystem
         private List<ImageButton> cylinderList = null;
         private PictureBox pBox = null;
         
-        private List<ImageLabel> inputLabelList = null;
         private Label lbPumpName;
         private SimpleImagesContaner inputImage = null;
         private SimpleImagesContaner dateImage = null;
         private ImageLabel ilPumpIndex;//泵站选择
         private ImageLabel ilDate;//起始日期
+        private ImageButton ibPrevDay;//前一天
+        private ImageButton ibNextDay;//后一天
+
         private ImageButton ibBack;
 
         private FormTimeSetting timeSetting = null;
@@ -227,6 +322,8 @@ namespace AdvaMACSystem
         private Label lbPage;
         private ImageLabel ilCurrentPage;//当前页编号
         private PictureBox pbDataTable;//数据表格
+        private ImageButton prevPage;//上一页
+        private ImageButton nextPage;//下一页
 
        
         //绘图
@@ -337,7 +434,7 @@ namespace AdvaMACSystem
             pageIndex = 0;
             ilCurrentPage.Text = "0";
             totalPages = 0;
-            lbPage.Text = string.Format("第        页，共{0}页", totalPages);
+            lbPage.Text = string.Format("第                    页，共{0}页", totalPages);
             DrawDefaultChart();
             DrawDefaultTable();
             ibBack.Checked = false;
@@ -682,7 +779,7 @@ namespace AdvaMACSystem
                 totalDatas += dataList[i].Count;
             }
             totalPages = totalDatas / dataPerPage + (totalDatas % dataPerPage != 0 ? 1 : 0);
-            lbPage.Text = string.Format("第        页，共{0}页", totalPages);
+            lbPage.Text = string.Format("第                    页，共{0}页", totalPages);
             pageIndex = 0;
             ilCurrentPage.Text = totalPages > 0 ? "1" : "0";
             DrawTableDatas(pageIndex);
@@ -694,6 +791,9 @@ namespace AdvaMACSystem
             List<DataPair> result = new List<DataPair>();
             int sum = 0;
             int i = 0;
+            if (dataList == null)
+                return result;
+
             for (; i < dataList.Count; i++)
             {
                 if (sum + dataList[i].Count > startID)
