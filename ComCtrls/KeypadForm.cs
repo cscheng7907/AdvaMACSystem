@@ -22,6 +22,7 @@ namespace ComCtrls
 
             KeypadFormObject.isFirstenter = true;
             KeypadFormObject.KeyText = text;
+            KeypadFormObject.mode = KeypadMode.Normal;
 
             KeypadFormObject.Location = new Point((Screen.PrimaryScreen.WorkingArea.Width - KeypadFormObject.Width) / 2,
                (Screen.PrimaryScreen.WorkingArea.Height - KeypadFormObject.Height) / 2

@@ -1,4 +1,14 @@
-﻿using System;
+﻿/*AdvaMACSystem 监控软件
+ * 作者： 程慎
+ *  
+ * 修改记录：
+ *       时间                内容                人员
+ * 2015-2-15             创建                by cs 
+ * 
+ * copyright
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;

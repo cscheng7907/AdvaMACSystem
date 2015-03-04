@@ -1,4 +1,16 @@
-﻿using System;
+﻿/*AdvaMACSystem 监控软件
+ * 
+ * 版本号 V1.0
+ * 作者： 程慎
+ *  
+ * 修改记录：
+ *       时间                内容                人员
+ * 2015-2-15             创建                by cs 
+ * 
+ * copyright
+ */
+
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +33,7 @@ namespace AdvaMACSystem
         private System.Drawing.Size bigviewsize;
         private System.Drawing.Size smallviewsize;
         private AdvaCanBus AdvaCanBusObj = null;
+        private VirtualSetForm _VirtualSetForm = null;
 
         public mainForm()
         {
@@ -461,6 +474,13 @@ namespace AdvaMACSystem
 
                         Application.DoEvents();
                         Application.Exit();
+                    }
+                    else if (f.KeyText == "444444") //test
+                    {
+                        if (_VirtualSetForm == null)
+                            _VirtualSetForm = new VirtualSetForm();
+
+                        _VirtualSetForm.Show();                    
                     }
                 }
             }

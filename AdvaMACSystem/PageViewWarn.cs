@@ -1,4 +1,14 @@
-﻿using System;
+﻿/*AdvaMACSystem 监控软件
+ * 作者： 程慎
+ *  
+ * 修改记录：
+ *       时间                内容                人员
+ * 2015-2-15             创建                by cs 
+ * 
+ * copyright
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -17,7 +27,7 @@ namespace AdvaMACSystem
             InitializeComponent();
         }
 
-        public void DoEnter()
+        public override  void DoEnter()
         {
             base.DoEnter();
 
@@ -31,7 +41,7 @@ namespace AdvaMACSystem
             //更新数据
             if (IsReal)
             {
-                foreach (KeyValuePair<int, DateTime> item in optor.CurErrorList)
+                foreach (KeyValuePair<int, DateTime> item in optor.CurWarningList)
                 {
                     ListViewItem lv = new ListViewItem();
                     DateTime dt = item.Value;
@@ -43,7 +53,7 @@ namespace AdvaMACSystem
                     subid = item.Key % 10000 / 100;
                     cmdtype = item.Key % 10000 % 100;
 
-                    lv.SubItems.Add(string.Format("{0}#-{1}# {2}", id, subid, strlst[cmdtype - firstcmdtype]));
+                    lv.SubItems.Add(string.Format("{0}#- {1}# {2}", id+1, subid+1, strlst[cmdtype - firstcmdtype]));
                     listView1.Items.Add(lv);
                 }
             }
@@ -77,7 +87,7 @@ namespace AdvaMACSystem
 
                             lv.SubItems.Add(string.Format("{0:00}-{1:00}-{2:00} {3:00}:{4:00}:{5:00}", dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second));
                             lv.SubItems.Add(string.Format("{0}", (val) ? "发生" : "消失"));
-                            lv.SubItems.Add(string.Format("{0}#-{1}# {2}", id, subid, strlst[cmdtype - firstcmdtype]));
+                            lv.SubItems.Add(string.Format("{0}#- {1}# {2}", id+1, subid+1, strlst[cmdtype - firstcmdtype]));
 
                             listView1.Items.Insert(0, lv);
                         }
