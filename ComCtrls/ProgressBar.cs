@@ -163,7 +163,7 @@ namespace ComCtrls
                 else
                     backImageBrush = new SolidBrush(this.BackColor);
 
-                if (valuePercentage >= warningPercentage)
+                if (valuePercentage >= lowerWarningPercentage && valuePercentage <= upperWarningPercentage)
                 {
                     if (this.IMGContainer.FrontImage != null)
                         frontImageBrush = new TextureBrush(this.IMGContainer.FrontImage);
@@ -197,7 +197,7 @@ namespace ComCtrls
                 //标注报警值位置
                 if (IMGContainer.WarningImage != null)
                 {
-                    int warningPos = (int)(this.ClientRectangle.Width * warningPercentage);
+                    int warningPos = (int)(this.ClientRectangle.Width * lowerWarningPercentage);
                     imageLeft = warningPos - IMGContainer.WarningImage.Width / 2;
                     imageTop = 0;
                     imgRect = new Rectangle(imageLeft, imageTop, IMGContainer.WarningImage.Width, IMGContainer.WarningImage.Height);
@@ -205,7 +205,7 @@ namespace ComCtrls
                 }
                 else
                 {
-                    int warningPos = (int)(this.ClientRectangle.Width * warningPercentage);
+                    int warningPos = (int)(this.ClientRectangle.Width * lowerWarningPercentage);
                     if (warningPos > 0)
                     {
                         cutOffRule = new Pen(Color.Red, 2);
@@ -236,14 +236,28 @@ namespace ComCtrls
             e.Graphics.DrawImage(m_bmpOffscreen, 0, 0);
         }
 
-        private double warningPercentage;
-        public double WarningPercentage
+        private double lowerWarningPercentage;
+        public double LowerWarningPercentage
         {
             set
             {
-                if (warningPercentage != value)
+                if (lowerWarningPercentage != value)
                 {
-                    warningPercentage = value;
+                    lowerWarningPercentage = value;
+                    this.Invalidate();
+                }
+            }
+
+        }
+
+        private double upperWarningPercentage;
+        public double UpperWarningPercentage
+        {
+            set
+            {
+                if (upperWarningPercentage != value)
+                {
+                    upperWarningPercentage = value;
                     this.Invalidate();
                 }
             }
@@ -302,8 +316,8 @@ namespace ComCtrls
 
         public void SetWarningAndSettingPosition(float warningPercent, float settingPercent)
         {
-            if (this.warningPercentage != warningPercent)
-                this.warningPercentage = warningPercent;
+            if (this.lowerWarningPercentage != warningPercent)
+                this.lowerWarningPercentage = warningPercent;
             if (this.settingPercentage != settingPercent)
                 this.settingPercentage = settingPercent;
             this.Invalidate();

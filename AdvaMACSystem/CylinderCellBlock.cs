@@ -70,15 +70,26 @@ namespace AdvaMACSystem
             }
         }
 
-        private double warningPressureValue;
-        public double WarningPressureValue
+        private double lowerWarningPressureValue;
+        public double LowerWarningPressureValue
         {
             set
-            { 
-                warningPressureValue = value;
-                this.lbWarningPre.Text = warningPressureValue.ToString(numberFormat);
+            {
+                lowerWarningPressureValue = value;
+                this.lbWarningPre.Text = lowerWarningPressureValue.ToString(numberFormat);
                 if (maxPressureValue - minPressureValue != 0)
-                    this.progressBar.WarningPercentage = (warningPressureValue - minPressureValue) / (maxPressureValue - minPressureValue);
+                    this.progressBar.LowerWarningPercentage = (lowerWarningPressureValue - minPressureValue) / (maxPressureValue - minPressureValue);
+            }
+        }
+
+        private double upperWarningPressureValue;
+        public double UpperWarningPressureValue
+        {
+            set
+            {
+                upperWarningPressureValue = value;
+                if (maxPressureValue - minPressureValue != 0)
+                    this.progressBar.UpperWarningPercentage = (upperWarningPressureValue - minPressureValue) / (maxPressureValue - minPressureValue);
             }
         }
 
