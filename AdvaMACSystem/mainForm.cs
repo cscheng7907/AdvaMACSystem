@@ -34,6 +34,7 @@ namespace AdvaMACSystem
         private System.Drawing.Size smallviewsize;
         private AdvaCanBus AdvaCanBusObj = null;
         private VirtualSetForm _VirtualSetForm = null;
+        private const int mouselast = 3000;//ms
 
         public mainForm()
         {
@@ -49,6 +50,22 @@ namespace AdvaMACSystem
 
         private void mainForm_Load(object sender, EventArgs e)
         {
+#if WindowsCE
+            if (!Directory.Exists(@"\HardDisk\History"))
+                Directory.CreateDirectory(@"\HardDisk\History");
+
+            if (!Directory.Exists(@"\HardDisk\Record"))
+                Directory.CreateDirectory(@"\HardDisk\Record");
+#else
+            if (!Directory.Exists(Application.StartupPath + @"\History"))
+                Directory.CreateDirectory(Application.StartupPath + @"\History");
+
+            if (!Directory.Exists(Application.StartupPath + @"\Record"))
+                Directory.CreateDirectory(Application.StartupPath + @"\Record");
+
+#endif
+
+
             if (isFontExists())
                 LoadFont();
 
@@ -453,9 +470,25 @@ namespace AdvaMACSystem
         #endregion
 
         private Point _MP;
+        DateTime MouseDownTime = DateTime.Now;
         private void panel_Head_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+            //if (e.Button == MouseButtons.Right)
+            //else 
+            if (e.Button == MouseButtons.Left)
+            {
+                _MP.X = e.X;
+                _MP.Y = e.Y;
+                MouseDownTime = DateTime.Now;
+            }
+        }
+        private void panel_Head_MouseUp(object sender, MouseEventArgs e)
+        {
+            DateTime MouseUpTime = DateTime.Now;
+
+            TimeSpan ts = (TimeSpan)(MouseUpTime - MouseDownTime);
+
+            if (ts.TotalMilliseconds >= mouselast)
             {
                 KeypadForm f = KeypadForm.GetKeypadForm("", KeypadMode.password);
                 if (f.ShowDialog() == DialogResult.OK)
@@ -470,33 +503,44 @@ namespace AdvaMACSystem
                     }
                     else if (f.KeyText == "222222") //软件升级
                     {
-                        System.Diagnostics.Process.Start("\\HardDisk\\AdvaMACSysUpdater.exe", "");
+                        if (File.Exists("\\HardDisk\\AdvaMACSysUpdater.exe"))
+                        {
+                            System.Diagnostics.Process.Start("\\HardDisk\\AdvaMACSysUpdater.exe", "");
 
-                        Application.DoEvents();
-                        Application.Exit();
+                            Application.DoEvents();
+                            Application.Exit();
+                        }
+                        else
+                            if (File.Exists("\\USB Hard Disk\\AdvaMACSysUpdater.exe"))
+                            {
+                                System.Diagnostics.Process.Start("\\USB Hard Disk\\AdvaMACSysUpdater.exe", "");
+
+                                Application.DoEvents();
+                                Application.Exit();
+                            }
+
                     }
                     else if (f.KeyText == "444444") //test
                     {
                         if (_VirtualSetForm == null)
                             _VirtualSetForm = new VirtualSetForm();
 
-                        _VirtualSetForm.Show();                    
+                        _VirtualSetForm.Show();
                     }
                 }
             }
-            else if (e.Button == MouseButtons.Left)
-            {
-                _MP.X = e.X;
-                _MP.Y = e.Y;
-            }
         }
+
         private void panel_Head_MouseMove(object sender, MouseEventArgs e)
         {
+#if WindowsCE
+#else
             if (e.Button == MouseButtons.Left)
             {
                 Top = MousePosition.Y - _MP.Y;
                 Left = MousePosition.X - _MP.X;
             }
+#endif
         }
         private void EnterpvError()
         {

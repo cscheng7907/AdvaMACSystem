@@ -85,6 +85,7 @@
             this.panel_Head.Size = new System.Drawing.Size(1024, 94);
             this.panel_Head.Click += new System.EventHandler(this.panel_Head_Click);
             this.panel_Head.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_Head_MouseDown);
+            this.panel_Head.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel_Head_MouseUp);
             // 
             // Label_CurError
             // 

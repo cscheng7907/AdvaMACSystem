@@ -104,7 +104,12 @@ List<bool> in_Error_MachLock_retract_3511_3514 = new List<bool>();//油缸机械
 
             foreach (KeyValuePair<Control, List<bool>> item in boolDic)
             {
+#if WindowsCE
+
+                ((CheckBox)item.Key).CheckStateChanged += new EventHandler(OnCheckedChanged);
+#else
                 ((CheckBox)item.Key).CheckedChanged += new EventHandler(OnCheckedChanged);
+#endif
             }
 
             comboBox1.SelectedIndex = 0;
