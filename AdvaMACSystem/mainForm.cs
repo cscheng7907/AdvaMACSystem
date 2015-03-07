@@ -33,7 +33,10 @@ namespace AdvaMACSystem
         private System.Drawing.Size bigviewsize;
         private System.Drawing.Size smallviewsize;
         private AdvaCanBus AdvaCanBusObj = null;
+#if WindowsCE
+#else
         private VirtualSetForm _VirtualSetForm = null;
+#endif
         private const int mouselast = 3000;//ms
 
         private const string password_EnterWinCE = "111111";
@@ -528,6 +531,8 @@ namespace AdvaMACSystem
                             }
 
                     }
+#if WindowsCE
+#else
                     else if (f.KeyText == password_Test) //test
                     {
                         if (_VirtualSetForm == null)
@@ -535,6 +540,7 @@ namespace AdvaMACSystem
 
                         _VirtualSetForm.Show();
                     }
+#endif
                 }
             }
         }

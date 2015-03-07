@@ -191,9 +191,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="VirtualSetForm.resx">
-      <DependentUpon>VirtualSetForm.cs</DependentUpon>
-    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -203,12 +200,6 @@
     </Compile>
     <Compile Include="UIControlbase.Designer.cs">
       <DependentUpon>UIControlbase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="VirtualSetForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VirtualSetForm.Designer.cs">
-      <DependentUpon>VirtualSetForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WarnErrOperator.cs" />
   </ItemGroup>
