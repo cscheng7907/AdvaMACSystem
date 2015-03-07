@@ -36,6 +36,14 @@ namespace AdvaMACSystem
         private VirtualSetForm _VirtualSetForm = null;
         private const int mouselast = 3000;//ms
 
+        private const string password_EnterWinCE = "111111";
+        private const string password_Update = "222222";
+        private const string password_PageError = "333333";
+        private const string password_Test = "444444";
+        private const string password_PageSetup = "555555";
+        private const string password_PagePara = "666666";
+        private const string password_PagePara_Sensor = "777777";
+
         public mainForm()
         {
             InitializeComponent();
@@ -438,20 +446,19 @@ namespace AdvaMACSystem
         private void imageLabel_Setup_Click(object sender, EventArgs e)
         {
             Create_pvPara_Setup();
-
-            pvPara_Setup.DoEnter();
+            EnterpvSetup();
         }
 
         private void imageLabel_Para_Click(object sender, EventArgs e)
         {
             Create_pvPara();
-            pvPara.DoEnter();
+            EnterpvPara();
         }
 
         private void imageLabel_Senser_Click(object sender, EventArgs e)
         {
             Create_pvPara_Sensor();
-            pvPara_Sensor.DoEnter();
+            EnterpvPara_Sensor();
         }
         private void imageLabel_Diagnose_Click(object sender, EventArgs e)
         {
@@ -469,6 +476,7 @@ namespace AdvaMACSystem
         }
         #endregion
 
+        #region MouseEvent & password
         private Point _MP;
         DateTime MouseDownTime = DateTime.Now;
         private void panel_Head_MouseDown(object sender, MouseEventArgs e)
@@ -494,14 +502,14 @@ namespace AdvaMACSystem
                 if (f.ShowDialog() == DialogResult.OK)
                 {
                     //退出程序，进入wince 
-                    if (f.KeyText == "111111")
+                    if (f.KeyText == password_EnterWinCE)
                     {
                         System.Diagnostics.Process.Start("explorer.exe", "");
                         //System.Diagnostics.Process.Start("\\NORFlash\\001\\COPY.bat", "");
                         Application.DoEvents();
                         Application.Exit();
                     }
-                    else if (f.KeyText == "222222") //软件升级
+                    else if (f.KeyText == password_Update) //软件升级
                     {
                         if (File.Exists("\\HardDisk\\AdvaMACSysUpdater.exe"))
                         {
@@ -520,7 +528,7 @@ namespace AdvaMACSystem
                             }
 
                     }
-                    else if (f.KeyText == "444444") //test
+                    else if (f.KeyText == password_Test) //test
                     {
                         if (_VirtualSetForm == null)
                             _VirtualSetForm = new VirtualSetForm();
@@ -550,12 +558,62 @@ namespace AdvaMACSystem
                 if (f.ShowDialog() == DialogResult.OK)
                 {
                     // 故障界面
-                    if (f.KeyText == "333333")
+                    if (f.KeyText == password_PageError)
                     {
                         pvError.DoEnter();
                     }
                 }
             }
         }
+        private void EnterpvSetup()
+        {
+            if (pvPara_Setup != null)
+            {
+                KeypadForm f = KeypadForm.GetKeypadForm("", KeypadMode.password);
+                if (f.ShowDialog() == DialogResult.OK)
+                {
+                    // 安装设定
+                    if (f.KeyText == password_PageSetup)
+                    {
+                        pvPara_Setup.DoEnter();
+                    }
+                }
+            }
+
+        }
+        private void EnterpvPara()
+        {
+            if (pvPara != null)
+            {
+                KeypadForm f = KeypadForm.GetKeypadForm("", KeypadMode.password);
+                if (f.ShowDialog() == DialogResult.OK)
+                {
+                    // 参数
+                    if (f.KeyText == password_PagePara)
+                    {
+                        pvPara.DoEnter();
+                    }
+                }
+            }
+
+        }
+        private void EnterpvPara_Sensor()
+        {
+            if (pvPara_Sensor != null)
+            {
+                KeypadForm f = KeypadForm.GetKeypadForm("", KeypadMode.password);
+                if (f.ShowDialog() == DialogResult.OK)
+                {
+                    // 传感器标定
+                    if (f.KeyText == password_PagePara_Sensor)
+                    {
+                        pvPara_Sensor.DoEnter();
+                    }
+                }
+            }
+
+        }
+        #endregion
+
     }
 }
