@@ -190,6 +190,8 @@
             this.imageLabel4.TextX = -1F;
             this.imageLabel4.TextY = -1F;
             this.imageLabel4.TransParent = false;
+            this.imageLabel4.Tag = DataPool.CmdDataType.cdtPositionSenserLow_Value;
+            this.imageLabel4.Click += new System.EventHandler(imageLabel_Input_Click);
             // 
             // imageLabel5
             // 
@@ -205,6 +207,8 @@
             this.imageLabel5.TextX = -1F;
             this.imageLabel5.TextY = -1F;
             this.imageLabel5.TransParent = false;
+            this.imageLabel5.Tag = DataPool.CmdDataType.cdtPositionSenserHigh_Value;
+            this.imageLabel5.Click += new System.EventHandler(imageLabel_Input_Click);
             // 
             // imageLabel3
             // 

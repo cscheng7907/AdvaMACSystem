@@ -16,6 +16,8 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using DataPool;
+using ComCtrls;
 
 namespace AdvaMACSystem
 {
@@ -80,10 +82,6 @@ namespace AdvaMACSystem
 
         private void imageButton_OK_High_Click(object sender, EventArgs e)
         {
-
-
-
-
             SaveViewData_High();
         }
 
@@ -110,18 +108,63 @@ namespace AdvaMACSystem
         private void UpdateViewData()
         {
             //todo
+            //imageLabel1.Text =
+            //imageLabel2.Text =
+            //imageLabel3.Text =
+
+
+            //Y1
+            imageLabel4.Text = DataPool.CDataPool.GetDataPoolObject().GetRealValue(comboBox_id.SelectedIndex,
+               comboBox_subid.SelectedIndex, CmdDataType.cdtPositionSenserLow_Value).ToString("0.0");
+
+            //Y2
+            imageLabel5.Text = DataPool.CDataPool.GetDataPoolObject().GetRealValue(comboBox_id.SelectedIndex,
+               comboBox_subid.SelectedIndex, CmdDataType.cdtPositionSenserHigh_Value).ToString("0.0");
         }
 
         private void SaveViewData_Low()
         {
+            DataPool.CDataPool.GetDataPoolObject().SetRealValue(comboBox_id.SelectedIndex,
+                comboBox_subid.SelectedIndex, CmdDataType.cdtPositionSenserLow_Value, Convert.ToDouble(imageLabel4.Text));
             DataPool.CDataPool.GetDataPoolObject().SavetoFile();
             MessageBox.Show(string.Format("{0:00}#泵站-{1:00}#油缸，参数已经保存！", comboBox_id.SelectedIndex + 1, comboBox_subid.SelectedIndex + 1));
 
         }
         private void SaveViewData_High()
         {
+            DataPool.CDataPool.GetDataPoolObject().SetRealValue(comboBox_id.SelectedIndex,
+                comboBox_subid.SelectedIndex, CmdDataType.cdtPositionSenserHigh_Value, Convert.ToDouble(imageLabel5.Text));
             DataPool.CDataPool.GetDataPoolObject().SavetoFile();
             MessageBox.Show(string.Format("{0:00}#泵站-{1:00}#油缸，参数已经保存！", comboBox_id.SelectedIndex + 1, comboBox_subid.SelectedIndex + 1));
+        }
 
-        }    }
+        private void imageLabel_Input_Click(object sender, EventArgs e)
+        {
+            double dv = 0;
+
+            if (sender is ImageLabel)
+            {
+                ImageLabel lb = (ImageLabel)sender;
+
+                KeypadForm f = KeypadForm.GetKeypadForm(lb.Text);
+                if (f.ShowDialog() == DialogResult.OK)
+                {
+                    {
+                        try
+                        {
+                            dv = Convert.ToDouble(f.KeyText);
+
+                            lb.Text = dv.ToString("0.0");
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("输入非法！");
+                        }
+                    }
+                }
+
+            }
+        }
+
+    }
 }
