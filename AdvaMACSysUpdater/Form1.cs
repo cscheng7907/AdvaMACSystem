@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Threading;
 
 namespace AdvaMACSysUpdater
 {
@@ -17,8 +18,8 @@ namespace AdvaMACSysUpdater
 
         private const string Path_Local = "\\Harddisk";
 
-        private const string Path_USBDisk1 = "\\Usb\\Update";
-        private const string Path_USBDisk2 = "\\Harddisk\\Update";
+        private const string Path_USBDisk1 = "\\USB Hard Disk\\Update";
+        private const string Path_USBDisk2 = "\\USB\\Update";
 
         private string Path_USBDisk = string.Empty;
 
@@ -45,19 +46,25 @@ namespace AdvaMACSysUpdater
 
             if (CheckUSB())
             {
-                timer1.Enabled = false;
+                // timer1.Enabled = false;
 
-                lb_State.Text = "USB设备已经就绪，请按“升级”继续。。。";
+                lb_State.Text = "USB设备已经就绪，请按“升级”继续......";
 
                 button1.Enabled = true;
 
-                DoUpdate();
+            }
+            else
+            {
+                this.lb_State.Text = "USB设备未就绪";
+                button1.Enabled = false;
             }
 
         }
 
         private bool CheckUSB()
         {
+            Path_USBDisk = string.Empty;
+
             if (Directory.Exists(Path_USBDisk1))
                 Path_USBDisk = Path_USBDisk1;
 
@@ -73,15 +80,37 @@ namespace AdvaMACSysUpdater
         private void DoUpdate()
         {
 
-            DirectoryInfo di = new DirectoryInfo(Path_USBDisk);
-            Sum = di.GetFiles().Length;
-            timer2.Enabled = true;
+            //DirectoryInfo di = new DirectoryInfo(Path_USBDisk);
+            //Sum = di.GetFiles().Length;
 
-            button1.Enabled = false;
+            Sum = GetFileCount(Path_USBDisk);
+            //timer2.Enabled = true;
+
+            //Application.DoEvents();
+
             CopyDirectory(Path_USBDisk, Path_Local);
 
-            lb_State.Text = "升级完成，请断电重启系统";
-            timer2.Enabled = false;
+            //timer2.Enabled = false;
+        }
+
+        private int GetFileCount(string dir)
+        {
+            int cnt = 0;
+
+            string[] filenames = Directory.GetFileSystemEntries(dir);
+
+            foreach (string file in filenames)// 遍历所有的文件和目录
+            {
+                if (Directory.Exists(file))// 先当作目录处理如果存在这个目录就递归
+                {
+                    cnt += GetFileCount(file);
+                }
+                else // 否则文件
+                {
+                    cnt++;
+                }
+            }
+            return cnt;
         }
 
         private void CopyDirectory(string srcdir, string desdir)
@@ -122,33 +151,78 @@ namespace AdvaMACSysUpdater
                         Directory.CreateDirectory(desfolderdir);
                     }
 
-                    File.Copy(file, srcfileName);
+                    File.Copy(file, srcfileName, true);
+
+                    Num++;
+                    progressBar1.Invoke(SetProcess, Num);
                 }
             }//foreach
         }
 
-        private void DoProcess()
-        {
+        //private void DoProcess()
+        //{
 
-            if (Directory.Exists(Path_Local))
-            {
-                DirectoryInfo di = new DirectoryInfo(Path_Local);
-                Num = di.GetFiles().Length;
-            }
-            else
-                Num = 0;
+        //    if (Directory.Exists(Path_Local))
+        //    {
+        //        DirectoryInfo di = new DirectoryInfo(Path_Local);
+        //        Num = di.GetFiles().Length;
+        //    }
+        //    else
+        //        Num = 0;
 
-            if (Num > 0)
-                progressBar1.Value = Num / Sum;
-            else
-                progressBar1.Value = 100;
-        }
+        //    if (Num > 0)
+        //        progressBar1.Value = Num / Sum;
+        //    else
+        //        progressBar1.Value = 100;
+        //}
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            progressBar1.Visible = true;
+            //progressBar1.Visible = true;
 
-            DoProcess();
+            //DoProcess();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+            // DoUpdate();
+            button1.Enabled = false;
+
+            lb_State.Text = "升级中，请稍候......";
+
+            ThreadStart();
+        }
+
+        public delegate void UpdateProcessDelegate(int FileCopycount);
+        //Controls can be used in thread by delegate
+        private UpdateProcessDelegate SetProcess;
+
+        private void ThreadStart()
+        {
+            Thread MyThread;
+
+            SetProcess = new UpdateProcessDelegate(UpdateProcess);
+            MyThread = new Thread(new ThreadStart(WarnErrThreadMethod));
+            MyThread.Start();
+        }
+        private void WarnErrThreadMethod()
+        { DoUpdate(); }
+        public void UpdateProcess(int FileCopycount)
+        {
+            progressBar1.Visible = true;
+            lb_Process.Visible = true;
+            if (FileCopycount <= Sum && Sum >= 0)
+                progressBar1.Value = (int)((FileCopycount / (double)Sum) * 100);
+            else
+                progressBar1.Value = 100;
+
+            lb_Process.Text = progressBar1.Value.ToString() + "%";
+
+            Application.DoEvents();
+
+            if (progressBar1.Value >= 99)
+                lb_State.Text = "升级完成，请断电重启系统";
         }
 
     }
