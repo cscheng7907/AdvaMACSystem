@@ -115,15 +115,16 @@ namespace AdvaMACSysUpdater
 
         private void CopyDirectory(string srcdir, string desdir)
         {
-            string folderName = srcdir.Substring(srcdir.LastIndexOf("\\") + 1);
+            //string folderName = srcdir.Substring(srcdir.LastIndexOf("\\") + 1);
 
-            string desfolderdir = desdir + "\\" + folderName;
+            //string desfolderdir = desdir + "\\" + folderName;
 
-            if (desdir.LastIndexOf("\\") == (desdir.Length - 1))
-            {
-                desfolderdir = desdir + folderName;
-            }
+            //if (desdir.LastIndexOf("\\") == (desdir.Length - 1))
+            //{
+            //    desfolderdir = desdir + folderName;
+            //}
 
+            string desfolderdir = desdir;
 
             string[] filenames = Directory.GetFileSystemEntries(srcdir);
 
@@ -137,7 +138,7 @@ namespace AdvaMACSysUpdater
                         Directory.CreateDirectory(currentdir);
                     }
 
-                    CopyDirectory(file, desfolderdir);
+                    CopyDirectory(file, currentdir);
                 }
 
                 else // 否则直接copy文件
