@@ -158,7 +158,7 @@
             this.imageLabel_Diagnose.TextX = 45F;
             this.imageLabel_Diagnose.TextY = 0F;
             this.imageLabel_Diagnose.TransParent = true;
-            this.imageLabel_Diagnose.Click += new System.EventHandler(this.Label_Diagnose_Click);
+            this.imageLabel_Diagnose.Click += new System.EventHandler(this.imageLabel_Diagnose_Click);
             // 
             // imageLabel_Setting
             // 
