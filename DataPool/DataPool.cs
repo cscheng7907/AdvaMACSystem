@@ -96,6 +96,9 @@ namespace DataPool
 
                     out_PositionSenserLow_Value.Add(0);//油缸长度传感器低位值 4*8
                     out_PositionSenserHigh_Value.Add(0);//油缸长度传感器高位值 4*8
+
+                    View_SetupPosition_Row.Add(0);//油缸安装所在的层数 4*8
+                    View_SetupPosition_Col.Add(0);//油缸安装所在的支数 4*8
                 }
 
                 in_Pressure_Pump_Real_3301_3304.Add(0);// 泵站压力 4
@@ -225,6 +228,13 @@ namespace DataPool
                 case CmdDataType.cdtPressureAlarm_Pump://泵站压力报警值 4
                     rtv = (int)out_PressureAlarm_Pump[id];
                     break;
+                case CmdDataType.cdtView_SetupPosition_Row://油缸安装所在的层数 4*8
+                    rtv = (int)View_SetupPosition_Row[id * 8 + subid];
+                    break;
+                case CmdDataType.cdtView_SetupPosition_Col://油缸安装所在的支数 4*8
+                    rtv = (int)View_SetupPosition_Col[id * 8 + subid];
+                    break;
+
                 default:
                     break;
             }
@@ -357,6 +367,12 @@ namespace DataPool
                 case CmdDataType.cdtPressureAlarm_Pump://泵站压力报警值 4
                     out_PressureAlarm_Pump[id] = (byte)value;
                     break;
+                case CmdDataType.cdtView_SetupPosition_Row://油缸安装所在的层数 4*8
+                    View_SetupPosition_Row[id * 8 + subid] = (byte)value;
+                    break;
+                case CmdDataType.cdtView_SetupPosition_Col://油缸安装所在的支数 4*8
+                    View_SetupPosition_Col[id * 8 + subid] = (byte)value;
+                    break;
                 default:
                     break;
             }
@@ -427,6 +443,11 @@ namespace DataPool
         public ControlModeType ControlMode = ControlModeType.Auto;
         public MotionStateType out_MotionState = MotionStateType.stsStop;
 
+        public List<byte> View_SetupPosition_Row = new List<byte>();//油缸安装所在的层数 4*8
+        public List<byte> View_SetupPosition_Col = new List<byte>();//油缸安装所在的支数 4*8
+
+        public int View_SetupPosition_RowCount = 0;//油缸安装总层数
+        public int View_SetupPosition_ColCount = 0;//油缸安装总支数
         /*
         public Queue<CmdDataSetType> cansendFiFO = new Queue<CmdDataSetType>();
         public void UpdateDevice(int id, int subid, CmdDataType cmd)
@@ -464,8 +485,11 @@ namespace DataPool
                 FileStream fs = new FileStream(DataPoolRecFileName, FileMode.Open);
 
                 long dataSum =
+                    //public int View_SetupPosition_RowCount = 0;//油缸安装总层数
+                    //public int View_SetupPosition_ColCount = 0; //油缸安装总支数
+                            sizeof(int) * 2 +
                     //public List<byte> out_PressureAlarm_Pump  //泵站压力报警值 4
-                            sizeof(byte) * Number_Pump+
+                            sizeof(byte) * Number_Pump +
                     //public List<bool> out_Installed  //油缸是否安装 4*8
                             sizeof(bool) * Number_Pump * Number_Cylinder +
                     //public List<bool> out_PressureUpperLimitAlarm_Enable  //油缸压力上限报警功能开启 4*8
@@ -491,7 +515,11 @@ namespace DataPool
                     //public List<byte> out_PositionSenserLow_Value  //油缸长度传感器低位值 4*8
                             sizeof(byte) * Number_Pump * Number_Cylinder +
                     //public List<byte> out_PositionSenserHigh_Value  //油缸长度传感器高位值 4*8
-                            sizeof(byte) * Number_Pump * Number_Cylinder;
+                            sizeof(byte) * Number_Pump * Number_Cylinder +
+                    //public List<byte> View_SetupPosition_Row = new List<byte>();//油缸安装所在的层数 4*8
+                           sizeof(byte) * Number_Pump * Number_Cylinder +
+                    //public List<byte> View_SetupPosition_Col = new List<byte>();//油缸安装所在的支数 4*8
+                           sizeof(byte) * Number_Pump * Number_Cylinder;
 
                 try
                 {
@@ -502,6 +530,9 @@ namespace DataPool
                         BinaryReader br = new BinaryReader(fs);
                         try
                         {
+                            View_SetupPosition_RowCount = br.ReadInt32();//油缸安装总层数
+                            View_SetupPosition_ColCount = br.ReadInt32(); //油缸安装总支数
+
                             for (int i = 0; i < Number_Pump; i++)
                             {
                                 /*List<byte>*/
@@ -538,6 +569,10 @@ namespace DataPool
                                     out_PositionSenserLow_Value[i * 8 + j] = br.ReadByte();  //油缸长度传感器低位值 4*8
                                     /*List<byte>*/
                                     out_PositionSenserHigh_Value[i * 8 + j] = br.ReadByte();   //油缸长度传感器高位值 4*8
+                                    /*List<byte>*/
+                                    View_SetupPosition_Row[i * 8 + j] = br.ReadByte();   //油缸安装所在的层数 4*8
+                                    /*List<byte>*/
+                                    View_SetupPosition_Col[i * 8 + j] = br.ReadByte();   //油缸安装所在的支数 4*8
                                 }
                             }
                         }
@@ -562,6 +597,9 @@ namespace DataPool
 
             try
             {
+                bw.Write(View_SetupPosition_RowCount);//油缸安装总层数
+                bw.Write(View_SetupPosition_ColCount); //油缸安装总支数
+
                 for (int i = 0; i < Number_Pump; i++)
                 {
                     /*List<byte>*/
@@ -598,6 +636,10 @@ namespace DataPool
                         bw.Write(out_PositionSenserLow_Value[i * 8 + j]);  //油缸长度传感器低位值 4*8
                         /*List<byte>*/
                         bw.Write(out_PositionSenserHigh_Value[i * 8 + j]);   //油缸长度传感器高位值 4*8
+                        /*List<byte>*/
+                        bw.Write(View_SetupPosition_Row[i * 8 + j]);   //油缸安装所在的层数 4*8
+                        /*List<byte>*/
+                        bw.Write(View_SetupPosition_Col[i * 8 + j]);   //油缸安装所在的支数 4*8
                     }
                 }
 
@@ -685,7 +727,10 @@ namespace DataPool
         cdtPosition_Value, //油缸长度设定值 4*8
 
         cdtPositionSenserLow_Value,//油缸长度传感器低位值 4*8
-        cdtPositionSenserHigh_Value//油缸长度传感器高位值 4*8
+        cdtPositionSenserHigh_Value,//油缸长度传感器高位值 4*8
+
+        cdtView_SetupPosition_Row,//油缸安装所在的层数 4*8
+        cdtView_SetupPosition_Col//油缸安装所在的支数 4*8
     }
 
     /*
