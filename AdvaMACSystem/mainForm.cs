@@ -39,10 +39,16 @@ namespace AdvaMACSystem
 #endif
         private const int mouselast = 3000;//ms
 
+        //for testing
         private const string password_EnterWinCE = "111111";
+        private const string password_Test = "444444";
+
+        //password
         private const string password_Update = "222222";
         private const string password_PageError = "333333";
-        private const string password_Test = "444444";
+        private const string password_Setting = "555555";
+
+
         private const string password_PageSetup = "555555";
         private const string password_PagePara = "666666";
         private const string password_PagePara_Sensor = "777777";
@@ -101,8 +107,8 @@ namespace AdvaMACSystem
             Create_historyOper();
 
             bigviewLocation = new System.Drawing.Point(0, panel_Head.Height);
-            smallviewLocation = new System.Drawing.Point(0, panel_Head.Height + panel_Tabs.Height);
-            smallviewsize = new System.Drawing.Size(this.Width, this.Height - panel_Head.Height - panel_Tabs.Height);
+            smallviewLocation = new System.Drawing.Point(0, panel_Head.Height);
+            smallviewsize = new System.Drawing.Size(this.Width, this.Height - panel_Head.Height);
             bigviewsize = new System.Drawing.Size(this.Width, this.Height - panel_Head.Height);
 
             timer1.Enabled = true;
@@ -477,6 +483,22 @@ namespace AdvaMACSystem
         {
             imageLabel_RealError_Click(sender, e);
         }
+
+        private void Label_History_Click(object sender, EventArgs e)
+        {
+            imageLabel_History_Click(sender, e);
+        }
+
+        private void Label_Setting_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void Label_debug_Click(object sender, EventArgs e)
+        {
+            imageLabel_Diagnose_Click(sender, e);
+        }
+
+
         #endregion
 
         #region MouseEvent & password

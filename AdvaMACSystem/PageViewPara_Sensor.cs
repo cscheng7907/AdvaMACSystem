@@ -107,19 +107,23 @@ namespace AdvaMACSystem
 
         private void UpdateViewData()
         {
-            //todo
-            //imageLabel1.Text =
-            //imageLabel2.Text =
-            //imageLabel3.Text =
+            if (comboBox_id.SelectedIndex >= 0 &&
+                comboBox_subid.SelectedIndex >= 0)
+            {
+                //todo
+                //imageLabel1.Text =
+                //imageLabel2.Text =
+                //imageLabel3.Text =
 
 
-            //Y1
-            imageLabel4.Text = DataPool.CDataPool.GetDataPoolObject().GetRealValue(comboBox_id.SelectedIndex,
-               comboBox_subid.SelectedIndex, CmdDataType.cdtPositionSenserLow_Value).ToString("0.0");
+                //Y1
+                imageLabel4.Text = DataPool.CDataPool.GetDataPoolObject().GetRealValue(comboBox_id.SelectedIndex,
+                   comboBox_subid.SelectedIndex, CmdDataType.cdtPositionSenserLow_Value).ToString("0.0");
 
-            //Y2
-            imageLabel5.Text = DataPool.CDataPool.GetDataPoolObject().GetRealValue(comboBox_id.SelectedIndex,
-               comboBox_subid.SelectedIndex, CmdDataType.cdtPositionSenserHigh_Value).ToString("0.0");
+                //Y2
+                imageLabel5.Text = DataPool.CDataPool.GetDataPoolObject().GetRealValue(comboBox_id.SelectedIndex,
+                   comboBox_subid.SelectedIndex, CmdDataType.cdtPositionSenserHigh_Value).ToString("0.0");
+            }
         }
 
         private void SaveViewData_Low()

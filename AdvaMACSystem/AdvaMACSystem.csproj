@@ -148,7 +148,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AdvaMACSystemRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>AdvaMACSystemRes.Designer.cs</LastGenOutput>
+      <LastGenOutput>AdvaMACSystemRes1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CPumpButton.resx">
       <DependentUpon>CPumpButton.cs</DependentUpon>
@@ -301,6 +301,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Input80x40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fix2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\history_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\config64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings64.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>
