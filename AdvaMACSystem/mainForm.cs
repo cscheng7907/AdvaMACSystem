@@ -493,11 +493,6 @@ namespace AdvaMACSystem
         {
         }
 
-        private void Label_debug_Click(object sender, EventArgs e)
-        {
-            imageLabel_Diagnose_Click(sender, e);
-        }
-
 
         #endregion
 
