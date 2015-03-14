@@ -47,11 +47,12 @@ namespace AdvaMACSystem
         private const string password_Update = "222222";
         private const string password_PageError = "333333";
         private const string password_Setting = "555555";
+        private const string password_Diagnose = "666666";
 
 
-        private const string password_PageSetup = "555555";
-        private const string password_PagePara = "666666";
-        private const string password_PagePara_Sensor = "777777";
+        //private const string password_PageSetup = "555555";
+        //private const string password_PagePara = "666666";
+        //private const string password_PagePara_Sensor = "777777";
 
         public mainForm()
         {
@@ -111,9 +112,14 @@ namespace AdvaMACSystem
             smallviewsize = new System.Drawing.Size(this.Width, this.Height - panel_Head.Height);
             bigviewsize = new System.Drawing.Size(this.Width, this.Height - panel_Head.Height);
 
+            UpdateWarnErrorLabel(0, 0);
+
             timer1.Enabled = true;
+
             WarnErrThreadStart();
             historyRecordThreadStart();
+
+            UIControlbase.OnKTUIControlChanged += new KTUIControlChangedEventHandler(OnPageViewChanged);
 
             imageLabel_MAC_Click(null, new EventArgs());
         }
@@ -225,11 +231,19 @@ namespace AdvaMACSystem
 
         public void UpdateWarnErrorLabel(int warncount, int errcount)
         {
-            label_CurWarning.Visible = warncount > 0;
-            label_CurWarning.Text = warncount.ToString();
+            //label_CurWarning.Visible = warncount > 0;
+            //label_CurWarning.Text = warncount.ToString();
 
-            Label_CurError.Visible = errcount > 0;
-            Label_CurError.Text = errcount.ToString();
+            label_CurWarning.BackImg =
+                (warncount > 0) ? AdvaMACSystemRes.warning2 : AdvaMACSystemRes.warning2_gray;
+            label_CurWarning.Text = (warncount > 0) ? warncount.ToString() : string.Empty;
+
+            //Label_CurError.Visible = errcount > 0;
+            //Label_CurError.Text = errcount.ToString();
+
+            Label_CurError.BackImg =
+                (errcount > 0) ? AdvaMACSystemRes.fix2 : AdvaMACSystemRes.fix2_gray;
+            Label_CurError.Text = (errcount > 0) ? errcount.ToString() : string.Empty;
         }
 
         #endregion
@@ -290,6 +304,9 @@ namespace AdvaMACSystem
         private PageViewWarn pvWarn = null;
         private PageViewPara_Sensor pvPara_Sensor = null;
         private PageViewPara_Setup pvPara_Setup = null;
+
+        //private PagePanel_WarnErr ppWarnErr = null;
+        //private PagePanel_Para ppPara = null;
 
         private void Create_pvWarn()
         {
@@ -384,10 +401,37 @@ namespace AdvaMACSystem
                 pvMAC.Location = smallviewLocation;
                 pvMAC.Size = smallviewsize;
                 pvMAC.Enabled = false;
+                UIControlbase.BaseKTUIControl = pvMAC;
                 this.Controls.Add(this.pvMAC);
             }
         }
 
+        //private void Create_ppWarnErr()
+        //{
+        //    if (ppWarnErr == null)
+        //    {
+        //        ppWarnErr = new PagePanel_WarnErr();
+        //        Create_ppWarnErr();
+        //        ppWarnErr.AddPageView(pvWarn);
+
+        //        Create_pvError();
+        //        ppWarnErr.AddPageView(pvError);
+        //    }
+        //}
+
+        //private void Create_ppPara()
+        //{
+        //    if (ppPara == null)
+        //    {
+        //        ppPara = new PagePanel_Para();
+        //        Create_pvPara_Setup();
+        //        ppPara.AddPageView(pvPara_Setup);
+        //        Create_pvPara();
+        //        ppPara.AddPageView(pvPara);
+        //        Create_pvPara_Sensor();
+        //        ppPara.AddPageView(pvPara_Sensor);
+        //    }
+        //}
         #endregion
 
         private void panel_Head_Click(object sender, EventArgs e)
@@ -451,37 +495,55 @@ namespace AdvaMACSystem
                 //pvError.DoEnter();
             }
         }
+        /*
+                private void imageLabel_Setup_Click(object sender, EventArgs e)
+                {
+                   //Create_pvPara_Setup();
+                    EnterpvSetup();
+                }
 
-        private void imageLabel_Setup_Click(object sender, EventArgs e)
-        {
-            Create_pvPara_Setup();
-            EnterpvSetup();
-        }
+                private void imageLabel_Para_Click(object sender, EventArgs e)
+                {
+                    //Create_pvPara();
+                    EnterpvPara();
+                }
 
-        private void imageLabel_Para_Click(object sender, EventArgs e)
-        {
-            Create_pvPara();
-            EnterpvPara();
-        }
+                private void imageLabel_Senser_Click(object sender, EventArgs e)
+                {
+                    //Create_pvPara_Sensor();
+                    EnterpvPara_Sensor();
+                }
+        */
 
-        private void imageLabel_Senser_Click(object sender, EventArgs e)
-        {
-            Create_pvPara_Sensor();
-            EnterpvPara_Sensor();
-        }
         private void imageLabel_Diagnose_Click(object sender, EventArgs e)
         {
+#if UNPASSWORD
             Create_pvDiagnose();
             pvDiagnose.DoEnter();
+#else
+            KeypadForm f = KeypadForm.GetKeypadForm("", KeypadMode.password);
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                // 安装设定
+                if (f.KeyText == password_Diagnose)
+                {
+                    Create_pvDiagnose();
+                    pvDiagnose.DoEnter();
+                }
+            }
+#endif
         }
+
         private void label_CurWarning_Click(object sender, EventArgs e)
         {
             imageLabel_RealWarn_Click(sender, e);
+            imageLabel_WarnSet_Click(imageLabel_Warn_Real, new EventArgs());
         }
 
         private void Label_CurError_Click(object sender, EventArgs e)
         {
             imageLabel_RealError_Click(sender, e);
+            imageLabel_WarnSet_Click(imageLabel_Err_Real, new EventArgs());
         }
 
         private void Label_History_Click(object sender, EventArgs e)
@@ -491,9 +553,116 @@ namespace AdvaMACSystem
 
         private void Label_Setting_Click(object sender, EventArgs e)
         {
+#if UNPASSWORD
+            EnterpvSetup();
+#else
+
+            KeypadForm f = KeypadForm.GetKeypadForm("", KeypadMode.password);
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                // 安装设定
+                if (f.KeyText == password_Setting)
+                {
+                    EnterpvSetup();
+                }
+            }
+#endif
+            OnPageViewChanged(null);
+            imageLabel_ParaSet_Click(imageLabel_Setup, new EventArgs());
         }
 
+        private void OnPageViewChanged(UIControlbase PreUICtrl)
+        {
+            if (UIControlbase.CurKTUIControl != null)
+            {
+                UIControlbase c = UIControlbase.CurKTUIControl;
+                panel_Warn.Visible = c == pvWarn; panel_Warn.BringToFront();
+                panel_Err.Visible = c == pvError; panel_Err.BringToFront();
 
+                panel_Para.Visible =
+                    c == pvPara ||
+                    c == pvPara_Sensor ||
+                    c == pvPara_Setup;
+                panel_Para.BringToFront();
+            }
+        }
+
+        private void imageLabel_ParaSet_Click(object sender, EventArgs e)
+        {
+            Control btn = (Control)sender;
+            foreach (Control item in panel_Para.Controls)
+            {
+                item.Enabled = !(item == btn);
+            }
+
+            UIControlbase.CurKTUIControl.Exit();
+
+            switch (Convert.ToInt32(btn.Tag))
+            {
+                case 0:
+                    EnterpvSetup();
+                    break;
+                case 1:
+                    EnterpvPara();
+                    break;
+                case 2:
+                    EnterpvPara_Sensor();
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+        private void imageLabel_WarnSet_Click(object sender, EventArgs e)
+        {
+            Control btn = (Control)sender;
+
+            //btn enable
+            foreach (Control item in panel_Warn.Controls)
+            {
+                item.Enabled = !(item == btn);
+            }
+
+            //UIControlbase.CurKTUIControl.Exit();
+
+            switch (Convert.ToInt32(btn.Tag))
+            {
+                case 0:
+                    pvWarn.IsReal = true;
+                    break;
+                case 1:
+                    pvWarn.IsReal = false;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void imageLabel_ErrSet_Click(object sender, EventArgs e)
+        {
+            Control btn = (Control)sender;
+
+            //btn enable
+            foreach (Control item in panel_Err.Controls)
+            {
+                item.Enabled = !(item == btn);
+            }
+
+            //UIControlbase.CurKTUIControl.Exit();
+
+            switch (Convert.ToInt32(btn.Tag))
+            {
+                case 0:
+                    pvError.IsReal = true;
+                    break;
+                case 1:
+                    pvError.IsReal = false;
+                    break;
+                default:
+                    break;
+            }
+        }
         #endregion
 
         #region MouseEvent & password
@@ -577,6 +746,9 @@ namespace AdvaMACSystem
         {
             if (pvError != null)
             {
+#if UNPASSWORD
+                pvError.DoEnter();
+#else
                 KeypadForm f = KeypadForm.GetKeypadForm("", KeypadMode.password);
                 if (f.ShowDialog() == DialogResult.OK)
                 {
@@ -586,55 +758,61 @@ namespace AdvaMACSystem
                         pvError.DoEnter();
                     }
                 }
+#endif
             }
         }
         private void EnterpvSetup()
         {
-            if (pvPara_Setup != null)
-            {
-                KeypadForm f = KeypadForm.GetKeypadForm("", KeypadMode.password);
-                if (f.ShowDialog() == DialogResult.OK)
-                {
-                    // 安装设定
-                    if (f.KeyText == password_PageSetup)
-                    {
-                        pvPara_Setup.DoEnter();
-                    }
-                }
-            }
-
+            Create_pvPara_Setup();
+            //if (pvPara_Setup != null)
+            //{
+            //    KeypadForm f = KeypadForm.GetKeypadForm("", KeypadMode.password);
+            //    if (f.ShowDialog() == DialogResult.OK)
+            //    {
+            //        // 安装设定
+            //        if (f.KeyText == password_PageSetup)
+            //        {
+            //            pvPara_Setup.DoEnter();
+            //        }
+            //    }
+            //}
+            pvPara_Setup.DoEnter();
         }
         private void EnterpvPara()
         {
-            if (pvPara != null)
-            {
-                KeypadForm f = KeypadForm.GetKeypadForm("", KeypadMode.password);
-                if (f.ShowDialog() == DialogResult.OK)
-                {
-                    // 参数
-                    if (f.KeyText == password_PagePara)
-                    {
-                        pvPara.DoEnter();
-                    }
-                }
-            }
+            Create_pvPara();
+            //if (pvPara != null)
+            //{
+            //    KeypadForm f = KeypadForm.GetKeypadForm("", KeypadMode.password);
+            //    if (f.ShowDialog() == DialogResult.OK)
+            //    {
+            //        // 参数
+            //        if (f.KeyText == password_PagePara)
+            //        {
+            //            pvPara.DoEnter();
+            //        }
+            //    }
+            //}
+            pvPara.DoEnter();
 
         }
         private void EnterpvPara_Sensor()
         {
-            if (pvPara_Sensor != null)
-            {
-                KeypadForm f = KeypadForm.GetKeypadForm("", KeypadMode.password);
-                if (f.ShowDialog() == DialogResult.OK)
-                {
-                    // 传感器标定
-                    if (f.KeyText == password_PagePara_Sensor)
-                    {
-                        pvPara_Sensor.DoEnter();
-                    }
-                }
-            }
+            Create_pvPara_Sensor();
+            //if (pvPara_Sensor != null)
+            //{
+            //    KeypadForm f = KeypadForm.GetKeypadForm("", KeypadMode.password);
+            //    if (f.ShowDialog() == DialogResult.OK)
+            //    {
+            //        // 传感器标定
+            //        if (f.KeyText == password_PagePara_Sensor)
+            //        {
+            //            pvPara_Sensor.DoEnter();
+            //        }
+            //    }
+            //}
 
+            pvPara_Sensor.DoEnter();
         }
         #endregion
 

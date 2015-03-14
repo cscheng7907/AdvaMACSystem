@@ -317,6 +317,18 @@
   <ItemGroup>
     <None Include="Resources\settings64.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fix2_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning2_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu_disable.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

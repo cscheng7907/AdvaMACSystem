@@ -132,7 +132,7 @@ namespace AdvaMACSystem
             this.imageLabel_title.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
             this.imageLabel_title.Location = new System.Drawing.Point(0, 0);
             this.imageLabel_title.Name = "imageLabel_title";
-            this.imageLabel_title.Size = new System.Drawing.Size(1024, 85);
+            this.imageLabel_title.Size = new System.Drawing.Size(1024, 57);
             this.imageLabel_title.TabIndex = 0;
             this.imageLabel_title.Text = "历史记录";
             this.imageLabel_title.TransParent = false;

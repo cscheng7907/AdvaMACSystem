@@ -28,6 +28,16 @@ namespace AdvaMACSystem
         {
             UIControlbase uictrl = CurKTUIControl;
 
+            if (CurKTUIControl == this)
+                return;
+
+            if (_baseKTUIControl != null &&
+                CurKTUIControl!= null &&
+                _baseKTUIControl != CurKTUIControl)
+            {
+                CurKTUIControl.DoExit();
+            }
+
             if (CurKTUIControl != null)
             {
                 CurKTUIControl.Enabled = false;
@@ -80,6 +90,11 @@ namespace AdvaMACSystem
 
         }
 
+        public void Exit()
+        {
+            this.DoExit();
+        }
+
         protected bool _hideonexit = true;
         protected bool _disableonexit = true;
 
@@ -100,6 +115,16 @@ namespace AdvaMACSystem
                 {
                     return KTUIControlList[KTUIControlList.Count - 1];
                 }
+            }
+        }
+
+        private static UIControlbase _baseKTUIControl = null;
+        public static UIControlbase BaseKTUIControl
+        {
+            set
+            {
+                if (_baseKTUIControl != value)
+                    _baseKTUIControl = value;
             }
         }
 

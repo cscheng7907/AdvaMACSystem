@@ -113,6 +113,13 @@ namespace AdvaMACSystem {
             }
         }
         
+        internal static System.Drawing.Bitmap fix2_gray {
+            get {
+                object obj = ResourceManager.GetObject("fix2_gray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap gray_off {
             get {
                 object obj = ResourceManager.GetObject("gray_off", resourceCulture);
@@ -274,6 +281,20 @@ namespace AdvaMACSystem {
             }
         }
         
+        internal static System.Drawing.Bitmap Menu {
+            get {
+                object obj = ResourceManager.GetObject("Menu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Menu_disable {
+            get {
+                object obj = ResourceManager.GetObject("Menu_disable", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap pump {
             get {
                 object obj = ResourceManager.GetObject("pump", resourceCulture);
@@ -333,6 +354,13 @@ namespace AdvaMACSystem {
         internal static System.Drawing.Bitmap warning2 {
             get {
                 object obj = ResourceManager.GetObject("warning2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap warning2_gray {
+            get {
+                object obj = ResourceManager.GetObject("warning2_gray", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

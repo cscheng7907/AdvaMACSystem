@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem();
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem();
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem();
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem();
             this.imageButton_back = new ComCtrls.ImageButton(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -40,37 +40,58 @@
             this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
             // 
+            // imageButton_back
+            // 
+            this.imageButton_back.Checked = false;
+            this.imageButton_back.DNImg = global::AdvaMACSystem.AdvaMACSystemRes.Dgn_down;
+            this.imageButton_back.DownColor = System.Drawing.SystemColors.Control;
+            this.imageButton_back.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
+            this.imageButton_back.ForeColor = System.Drawing.Color.Black;
+            this.imageButton_back.Layout = ComCtrls.KTLayout.GlyphTop;
+            this.imageButton_back.Location = new System.Drawing.Point(780, 621);
+            this.imageButton_back.Name = "imageButton_back";
+            this.imageButton_back.ShortcutKeys = System.Windows.Forms.Keys.None;
+            this.imageButton_back.Size = new System.Drawing.Size(210, 40);
+            this.imageButton_back.TabIndex = 0;
+            this.imageButton_back.TabStop = false;
+            this.imageButton_back.Text = "返回";
+            this.imageButton_back.Toggle = false;
+            this.imageButton_back.TransParent = false;
+            this.imageButton_back.UpColor = System.Drawing.SystemColors.Control;
+            this.imageButton_back.UPImg = global::AdvaMACSystem.AdvaMACSystemRes.Dgn_up;
+            this.imageButton_back.Click += new System.EventHandler(this.imageButton_back_Click);
+            // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
+            this.label1.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(326, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(407, 38);
             this.label1.Text = "系统故障信息-实时数据";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label1.ForeColor = System.Drawing.Color.Black;
             // 
             // listView1
             // 
             this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular); 
             this.listView1.Columns.Add(this.columnHeader5);
             this.listView1.Columns.Add(this.columnHeader6);
             this.listView1.Columns.Add(this.columnHeader7);
             this.listView1.Columns.Add(this.columnHeader8);
+            this.listView1.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
             this.listView1.FullRowSelect = true;
             this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            listViewItem1.Text = "1";
-            listViewItem1.SubItems.Add("2014");
-            listViewItem1.SubItems.Add("发生");
-            listViewItem1.SubItems.Add("err1");
-            listViewItem2.Text = "2";
-            listViewItem2.SubItems.Add("2015");
-            listViewItem2.SubItems.Add("消失");
-            listViewItem2.SubItems.Add("err2");
-            this.listView1.Items.Add(listViewItem1);
-            this.listView1.Items.Add(listViewItem2);
+            listViewItem9.Text = "1";
+            listViewItem9.SubItems.Add("2014");
+            listViewItem9.SubItems.Add("发生");
+            listViewItem9.SubItems.Add("err1");
+            listViewItem10.Text = "2";
+            listViewItem10.SubItems.Add("2015");
+            listViewItem10.SubItems.Add("消失");
+            listViewItem10.SubItems.Add("err2");
+            this.listView1.Items.Add(listViewItem9);
+            this.listView1.Items.Add(listViewItem10);
             this.listView1.Location = new System.Drawing.Point(5, 57);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(1014, 519);
@@ -98,27 +119,6 @@
             // 
             this.columnHeader8.Text = "内容";
             this.columnHeader8.Width = 620;
-            // 
-            // imageButton_back
-            // 
-            this.imageButton_back.Checked = false;
-            this.imageButton_back.DownColor = System.Drawing.SystemColors.Control;
-            this.imageButton_back.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageButton_back.Location = new System.Drawing.Point(780, 621);
-            this.imageButton_back.Name = "imageButton_back";
-            this.imageButton_back.ShortcutKeys = System.Windows.Forms.Keys.None;
-            this.imageButton_back.ForeColor = System.Drawing.Color.Black;
-            this.imageButton_back.Size = new System.Drawing.Size(210, 40);
-            this.imageButton_back.TabIndex = 0;
-            this.imageButton_back.TabStop = false;
-            this.imageButton_back.Text = "返回";
-            this.imageButton_back.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
-            this.imageButton_back.Toggle = false;
-            this.imageButton_back.TransParent = false;
-            this.imageButton_back.UPImg = AdvaMACSystemRes.Dgn_up;
-            this.imageButton_back.DNImg = AdvaMACSystemRes.Dgn_down;
-            this.imageButton_back.UpColor = System.Drawing.SystemColors.Control;
-            this.imageButton_back.Click += new System.EventHandler(this.imageButton_back_Click);
             // 
             // PageViewError
             // 

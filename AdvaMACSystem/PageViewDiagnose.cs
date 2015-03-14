@@ -99,7 +99,7 @@ namespace AdvaMACSystem
             this.imageLabel_title.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageLabel_title.Location = new System.Drawing.Point(0, 0);
             this.imageLabel_title.Name = "imageLabel_title";
-            this.imageLabel_title.Size = new System.Drawing.Size(1024, 85);
+            this.imageLabel_title.Size = new System.Drawing.Size(1024, 57);
             this.imageLabel_title.TabIndex = 0;
             this.imageLabel_title.Text = "I/O诊断";
             this.imageLabel_title.TextX = -1F;

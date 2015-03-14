@@ -65,7 +65,7 @@
             this.imageLabel_title.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageLabel_title.Location = new System.Drawing.Point(0, 0);
             this.imageLabel_title.Name = "imageLabel_title";
-            this.imageLabel_title.Size = new System.Drawing.Size(1024, 85);
+            this.imageLabel_title.Size = new System.Drawing.Size(1024, 57);
             this.imageLabel_title.TabIndex = 0;
             this.imageLabel_title.Text = "传感器标定";
             this.imageLabel_title.TextX = -1F;
@@ -324,7 +324,7 @@
             this.imageButton_OK_High.DownColor = System.Drawing.SystemColors.Control;
             this.imageButton_OK_High.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
             this.imageButton_OK_High.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageButton_OK_High.Location = new System.Drawing.Point(323, 621);
+            this.imageButton_OK_High.Location = new System.Drawing.Point(263, 621);
             this.imageButton_OK_High.Name = "imageButton_OK_High";
             this.imageButton_OK_High.ShortcutKeys = System.Windows.Forms.Keys.None;
             this.imageButton_OK_High.Size = new System.Drawing.Size(210, 40);

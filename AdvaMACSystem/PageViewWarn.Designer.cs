@@ -42,7 +42,7 @@
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
+            this.label1.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(326, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(407, 38);
