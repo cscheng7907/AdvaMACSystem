@@ -106,6 +106,9 @@ namespace ComCtrls
                 {
                     Image bgimage = BackImg;
 
+                    if (!Enabled && ImgDisable != null)
+                        bgimage = ImgDisable;
+
                     int imageLeft = (this.Width - bgimage.Width) / 2;
                     int imageTop = (this.Height - bgimage.Height) / 2;
 
@@ -377,6 +380,22 @@ namespace ComCtrls
             }
         }
 
+        private Image imgdisable = null;
+        public Image ImgDisable
+        {
+            get
+            {
+                return imgdisable;
+            }
+            set
+            {
+                if (imgdisable != value)
+                {
+                    imgdisable = value;
+                    this.Invalidate();
+                }
+            }
+        }
 
 
     }
