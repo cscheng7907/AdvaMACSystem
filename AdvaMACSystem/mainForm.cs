@@ -595,8 +595,6 @@ namespace AdvaMACSystem
                 item.Enabled = !(item == btn);
             }
 
-            UIControlbase.CurKTUIControl.Exit();
-
             switch (Convert.ToInt32(btn.Tag))
             {
                 case 0:
