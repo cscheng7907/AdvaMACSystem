@@ -112,7 +112,7 @@ namespace AdvaMACSystem
 
                 for (int i = 0; i < btnList.Count; i++)
                 {
-                    btnList[i].Checked = !DataPool.CDataPool.GetDataPoolObject().GetBoolValue(comboBox_id.SelectedIndex,
+                    btnList[i].Checked = DataPool.CDataPool.GetDataPoolObject().GetBoolValue(comboBox_id.SelectedIndex,
                           comboBox_subid.SelectedIndex, (CmdDataType)btnList[i].Tag);
                 }
             }
@@ -136,7 +136,7 @@ namespace AdvaMACSystem
                 for (int i = 0; i < btnList.Count; i++)
                 {
                     DataPool.CDataPool.GetDataPoolObject().SetboolValue(comboBox_id.SelectedIndex,
-                          comboBox_subid.SelectedIndex, (CmdDataType)btnList[i].Tag, !btnList[i].Checked);
+                          comboBox_subid.SelectedIndex, (CmdDataType)btnList[i].Tag, btnList[i].Checked);
                 }
             }
             DataPool.CDataPool.GetDataPoolObject().SavetoFile();

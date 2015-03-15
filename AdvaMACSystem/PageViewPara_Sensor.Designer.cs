@@ -81,7 +81,7 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.comboBox_subid);
             this.panel1.Controls.Add(this.imageLabel_subidbk);
-            this.panel1.Location = new System.Drawing.Point(7, 93);
+            this.panel1.Location = new System.Drawing.Point(7, 93-29);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1010, 88);
             // 
@@ -172,7 +172,7 @@
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(7, 187);
+            this.panel2.Location = new System.Drawing.Point(7, 187-29);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1010, 333);
             // 

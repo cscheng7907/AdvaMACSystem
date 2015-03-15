@@ -329,6 +329,9 @@
   <ItemGroup>
     <None Include="Resources\Menu_disable.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LightOnRed100.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
