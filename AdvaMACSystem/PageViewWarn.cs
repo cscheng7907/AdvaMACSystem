@@ -31,12 +31,20 @@ namespace AdvaMACSystem
         {
             base.DoEnter();
 
-            listView1.Items.Clear();
             if (optor == null)
                 return;
 
+            Update();
+        }
+
+        private void Update()
+        { 
             int count = 0;
             int id, subid, cmdtype;
+            listView1.Items.Clear();
+
+            if (!Visible)
+                return;
 
             //更新数据
             if (IsReal)
@@ -102,7 +110,7 @@ namespace AdvaMACSystem
 
             }
         }
-
+        
         private bool _isreal = false;
         public bool IsReal
         {
@@ -114,6 +122,7 @@ namespace AdvaMACSystem
                     _isreal = value;
                     label1.Text = "系统报警信息-" +
                        ((_isreal) ? "实时数据" : "历史数据");
+                    Update();
                 }
             }
         }
