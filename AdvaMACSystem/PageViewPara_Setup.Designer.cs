@@ -100,7 +100,7 @@
             // 
             this.panel_body.Controls.Add(this.imageButton_OK);
             this.panel_body.Controls.Add(this.imageButton_back);
-            this.panel_body.Location = new System.Drawing.Point(6, 91);
+            this.panel_body.Location = new System.Drawing.Point(6, 68);
             this.panel_body.Name = "panel_body";
             this.panel_body.Size = new System.Drawing.Size(1011, 580);
 

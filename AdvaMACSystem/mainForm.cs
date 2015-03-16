@@ -563,12 +563,12 @@ namespace AdvaMACSystem
                 // 安装设定
                 if (f.KeyText == password_Setting)
                 {
-                    EnterpvSetup();
+                    //EnterpvSetup();
+                    OnPageViewChanged(null);
+                    imageLabel_ParaSet_Click(imageLabel_Setup, new EventArgs());
                 }
             }
 #endif
-            OnPageViewChanged(null);
-            imageLabel_ParaSet_Click(imageLabel_Setup, new EventArgs());
         }
 
         private void OnPageViewChanged(UIControlbase PreUICtrl)
