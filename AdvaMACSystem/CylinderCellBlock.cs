@@ -26,6 +26,8 @@ namespace AdvaMACSystem
         public CylinderCellBlock()
         {
             InitializeComponent();
+            Font f = new System.Drawing.Font("Microsoft YaHei", 14F, System.Drawing.FontStyle.Regular);
+            lbIndex.Font = lbRow.Font = lbCol.Font = lbValuePos.Font = lbValuePre.Font = f;
             pictureBox1.Image = AdvaMACSystemRes.border;
             foreach (Control c in panel1.Controls)
             {
@@ -185,6 +187,12 @@ namespace AdvaMACSystem
         {
             this.pumpIndex = PumpIndex;
             this.CylinderIndex = CylinderIndex;
+        }
+        
+        public void SetRowAndCol(int row, int col)
+        {
+            this.lbRow.Text = string.Format("第{0}层", row.ToString());
+            this.lbCol.Text = string.Format("第{0}支", col.ToString());
         }
 
         private bool selected = false;

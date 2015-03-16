@@ -42,7 +42,7 @@ namespace AdvaMACSystem
             buttonImage.UPImgDisaable = buttonImage.DNImgDisable = AdvaMACSystemRes.Dgn_disable;
 
             ibBack = new ImageButton();
-            ibBack.Size = new Size(CylinderWidth, CylinderHeight);
+            ibBack.Size = new Size(ButtonWidth, ButtonHeight);
             ibBack.Location = new Point(800, 600);
             ibBack.IMGContainer = buttonImage;
             ibBack.Font = currentFont;

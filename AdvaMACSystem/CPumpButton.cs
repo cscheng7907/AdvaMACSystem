@@ -55,7 +55,14 @@ namespace AdvaMACSystem
                     gxOff.DrawString(c.Text, c.Font, new SolidBrush(c.ForeColor), c.Left + c.Width / 2, c.Top + c.Height / 2, sf);
             }
             if (icon != null)
+            {
                 gxOff.DrawImage(icon, new Rectangle(40 - icon.Width / 2, 40 - icon.Height / 2, icon.Width, icon.Height), new Rectangle(0, 0, icon.Width, icon.Height), GraphicsUnit.Pixel);
+                if (warningCount > 0)
+                {
+                    gxOff.FillRectangle(new SolidBrush(Color.Red), 20 + icon.Width / 2, 20 + icon.Height / 2, 20, 20);
+                    gxOff.DrawString(warningCount.ToString("D2"), new System.Drawing.Font("Microsoft YaHei", 10F, System.Drawing.FontStyle.Bold), new SolidBrush(Color.Yellow), 30 + icon.Width / 2, 30 + icon.Height / 2, sf);
+                }
+            }
 
             e.Graphics.DrawImage(m_bmpOffscreen, 0, 0);
 
@@ -129,6 +136,21 @@ namespace AdvaMACSystem
                     this.Refresh();
                 }
             }
+        }
+
+        //报警数
+        private int warningCount = 1;
+        public int WarningCount
+        {
+            set
+            {
+                if (warningCount != value)
+                {
+                    warningCount = value;
+                    this.Refresh();
+                }
+            }
+
         }
     }
 }
