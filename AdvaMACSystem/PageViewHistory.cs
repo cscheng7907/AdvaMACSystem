@@ -189,7 +189,7 @@ namespace AdvaMACSystem
             {
                 startTime = startTime.Add(new TimeSpan(1, 0, 0, 0));
                 ilDate.Text = startTime.ToString("yyyy-MM-dd HH:mm");
-
+                ts = new TimeSpan(24, 0, 0);
                 if (ReadyToDrawChart() == 0)
                 {
                     DrawChart();
@@ -204,7 +204,7 @@ namespace AdvaMACSystem
             {
                 startTime = startTime.Subtract(new TimeSpan(1, 0, 0, 0));
                 ilDate.Text = startTime.ToString("yyyy-MM-dd HH:mm");
-
+                ts = new TimeSpan(24, 0, 0);
                 if (ReadyToDrawChart() == 0)
                 {
                     DrawChart();
