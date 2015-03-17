@@ -152,15 +152,21 @@ namespace AdvaMACSystem
                 button.Location = new Point(ButtonMarginLeft + (k + 1) * (ButtonWidth + ButtonSpacingX), ButtonMarginTop);
                 button.Font = currentFont;
                 button.IMGContainer = buttonImages;
-                button.Toggle = true;
+                button.Toggle = false;
                 this.Controls.Add(button);
             }
             cylinderExtendButton.Text = "油缸伸出";
-            cylinderExtendButton.Click += new EventHandler(cylinderExtendButton_Click);
+            //cylinderExtendButton.Click += new EventHandler(cylinderExtendButton_Click);
+            cylinderExtendButton.MouseDown += new MouseEventHandler(cylinderExtendButton_MouseDown);
+            cylinderExtendButton.MouseUp += new MouseEventHandler(cylinderExtendButton_MouseUp);
+
             //cylinderStopButton.Text = "油缸停止";
             //cylinderStopButton.Click += new EventHandler(cylinderStopButton_Click);
             cylinderRetractButton.Text = "油缸缩回";
-            cylinderRetractButton.Click += new EventHandler(cylinderRetractButton_Click);
+            //cylinderRetractButton.Click += new EventHandler(cylinderRetractButton_Click);
+            cylinderRetractButton.MouseDown += new MouseEventHandler(cylinderRetractButton_MouseDown);
+            cylinderRetractButton.MouseUp += new MouseEventHandler(cylinderRetractButton_MouseUp);
+
             cylinderExtendButton.Enabled = false;
             //cylinderStopButton.Enabled = false;
             cylinderRetractButton.Enabled = false;
@@ -374,9 +380,9 @@ namespace AdvaMACSystem
             else
                 _candatapool.out_MotionState = MotionStateType.stsretract;
 
-            cylinderExtendButton.Checked = (cylinderControlStatus == 1);
+            //cylinderExtendButton.Checked = (cylinderControlStatus == 1);
             //cylinderStopButton.Checked = (cylinderControlStatus == 0);
-            cylinderRetractButton.Checked = (cylinderControlStatus == 2);
+            //cylinderRetractButton.Checked = (cylinderControlStatus == 2);
         }
 
         private ImagesContaner buttonImages = null;
@@ -413,6 +419,14 @@ namespace AdvaMACSystem
             }
         }
 
+        private void cylinderRetractButton_MouseDown(object sender, MouseEventArgs e)
+        { cylinderRetractButton_Click(sender, e); }
+        private void cylinderRetractButton_MouseUp(object sender, MouseEventArgs e)
+        { cylinderStopButton_Click(sender, e); }
+        private void cylinderExtendButton_MouseDown(object sender, MouseEventArgs e)
+        { cylinderExtendButton_Click(sender, e); }
+        private void cylinderExtendButton_MouseUp(object sender, MouseEventArgs e)
+        { cylinderStopButton_Click(sender, e); }
 
         #endregion
 
@@ -543,7 +557,7 @@ namespace AdvaMACSystem
                     cylinderList[i].CurrentPositionValue = 0;
                 }
             }
-            
+
             int warncount = 0;
             //cylinder warning 
             for (int j = 0; j < pumpList.Count; j++)
@@ -565,7 +579,7 @@ namespace AdvaMACSystem
                         _candatapool.GetRealValue(j, i, CmdDataType.cdtPositionLowerLimitAlarm_Value)
                         )
                         warncount++;
-                    
+
                     //pressure UpperLimit
                     if (_candatapool.GetBoolValue(j, i, CmdDataType.cdtPressureUpperLimitAlarm_Enable) &&
                         _candatapool.GetRealValue(j, i, CmdDataType.cdtPressure_Real_3001_3008) >
