@@ -121,6 +121,7 @@ namespace AdvaMACSystem
             controlModeButton.Location = new Point(ButtonMarginLeft, ButtonMarginTop);
             controlModeButton.Font = currentFont;
             controlModeButton.IMGContainer = buttonImages;
+            controlModeButton.Checked = false;
             controlModeButton.Toggle = true;
             //controlModeButton.CheckedChanged += new EventHandler(controlModeButton_CheckedChanged);
             controlModeButton.MouseUp += new MouseEventHandler(controlModeButton_MouseUp);
@@ -169,8 +170,8 @@ namespace AdvaMACSystem
 
         private void controlModeButton_MouseUp(object sender, MouseEventArgs e)
         {
-            controlModeButton.Checked = !controlModeButton.Checked;
-            if (controlModeButton.Checked)
+            //controlModeButton.Checked = !controlModeButton.Checked;
+            if (!controlModeButton.Checked)
             {
                 ControlMode = 0;
                 _candatapool.ControlMode = ControlModeType.Auto;
@@ -542,8 +543,7 @@ namespace AdvaMACSystem
                     cylinderList[i].CurrentPositionValue = 0;
                 }
             }
-
-
+            
             int warncount = 0;
             //cylinder warning 
             for (int j = 0; j < pumpList.Count; j++)
