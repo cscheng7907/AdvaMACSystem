@@ -438,7 +438,7 @@ namespace AdvaMACSystem
             ControlMode = (int)_candatapool.ControlMode;
             //controlButtonList[controlMode].Checked = true;
             DoControlModeChanged();
-            
+
             //更新pumpList
             if (pumpList == null)
                 return;
@@ -461,7 +461,7 @@ namespace AdvaMACSystem
             UpdateCylinderControlButtonEnabled();
 
             this.timer_RefreshMac.Enabled = true;
-            
+
             base.DoReEnter();
         }
 
@@ -526,7 +526,6 @@ namespace AdvaMACSystem
             {
                 pumpList[j].CurrentStatus = "运行";
                 pumpList[j].CurrentPara = _candatapool.GetRealValue(j, 0, CmdDataType.cdtPressure_Pump_Real_3301_3304);
-                //pumpList[j].WarningCount = _candatapool.GetintValue(j, 0, CmdDataType.
             }
 
             //cylinders
@@ -543,7 +542,46 @@ namespace AdvaMACSystem
                     cylinderList[i].CurrentPositionValue = 0;
                 }
             }
-        }
 
+
+            int warncount = 0;
+            //cylinder warning 
+            for (int j = 0; j < pumpList.Count; j++)
+            {
+                warncount = 0;
+
+                for (int i = 0; i < cylinderList.Count; i++)
+                {
+                    //position UpperLimit
+                    if (_candatapool.GetBoolValue(j, i, CmdDataType.cdtPositionUpperLimitAlarm_Enable) &&
+                        _candatapool.GetRealValue(j, i, CmdDataType.cdtPosition_Real_3101_3108) >
+                        _candatapool.GetRealValue(j, i, CmdDataType.cdtPositionUpperLimitAlarm_Value)
+                        )
+                        warncount++;
+
+                    //position LowerLimit
+                    if (_candatapool.GetBoolValue(j, i, CmdDataType.cdtPositionLowerLimitAlarm_Enable) &&
+                        _candatapool.GetRealValue(j, i, CmdDataType.cdtPosition_Real_3101_3108) <
+                        _candatapool.GetRealValue(j, i, CmdDataType.cdtPositionLowerLimitAlarm_Value)
+                        )
+                        warncount++;
+                    
+                    //pressure UpperLimit
+                    if (_candatapool.GetBoolValue(j, i, CmdDataType.cdtPressureUpperLimitAlarm_Enable) &&
+                        _candatapool.GetRealValue(j, i, CmdDataType.cdtPressure_Real_3001_3008) >
+                        _candatapool.GetRealValue(j, i, CmdDataType.cdtPressureUpperLimitAlarm_Value)
+                        )
+                        warncount++;
+
+                    //pressure LowerLimit
+                    if (//_candatapool.GetBoolValue(j, i, CmdDataType.cdtPressureUpperLimitAlarm_Enable) &&
+                        _candatapool.GetRealValue(j, i, CmdDataType.cdtPressure_Real_3001_3008) <
+                        _candatapool.GetRealValue(j, i, CmdDataType.cdtPressureLowerLimitAlarm_Value)
+                        )
+                        warncount++;
+                }
+                pumpList[j].WarningCount = warncount;
+            }
+        }
     }
 }
