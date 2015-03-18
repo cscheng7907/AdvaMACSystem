@@ -57,11 +57,11 @@ namespace AdvaMACSystem
             if (icon != null)
             {
                 gxOff.DrawImage(icon, new Rectangle(40 - icon.Width / 2, 40 - icon.Height / 2, icon.Width, icon.Height), new Rectangle(0, 0, icon.Width, icon.Height), GraphicsUnit.Pixel);
-                if (warningCount > 0)
-                {
-                    gxOff.FillRectangle(new SolidBrush(Color.Red), 20 + icon.Width / 2, 20 + icon.Height / 2, 20, 20);
-                    gxOff.DrawString(warningCount.ToString("D2"), new System.Drawing.Font("Microsoft YaHei", 10F, System.Drawing.FontStyle.Bold), new SolidBrush(Color.Yellow), 30 + icon.Width / 2, 30 + icon.Height / 2, sf);
-                }
+            }
+            if (warningCount > 0)
+            {
+                gxOff.FillRectangle(new SolidBrush(Color.Red), 80, 50, 80,40);
+                gxOff.DrawString(warningCount.ToString("D2"), new System.Drawing.Font("Microsoft YaHei", 20F, System.Drawing.FontStyle.Bold), new SolidBrush(Color.Yellow), 120, 70, sf);
             }
 
             e.Graphics.DrawImage(m_bmpOffscreen, 0, 0);
@@ -139,7 +139,7 @@ namespace AdvaMACSystem
         }
 
         //报警数
-        private int warningCount = 1;
+        private int warningCount = 0;
         public int WarningCount
         {
             set

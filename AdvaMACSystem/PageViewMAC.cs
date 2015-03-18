@@ -205,20 +205,20 @@ namespace AdvaMACSystem
 
         #region 布局
         private Font currentFont = null;//字体
-        private int CBMarginTop = 3;//第一行CylinderBlock与顶端方向间距
+        private int CBMarginTop = 10;//第一行CylinderBlock与顶端方向间距
         private int CBMarginLeft = 200;//第一列CylinderBlock与左端方向间距
-        private int CBWidth = 390;//CylinderBlock宽度
+        private int CBWidth = 400;//CylinderBlock宽度
         private int CBHeight = 145;//CylinderBlock高度
-        private int CBSpacingX = 5;//CylinderBlock之间X方向间距
-        private int CBSpacingY = 5;//CylinderBlock之间Y方向间距
+        private int CBSpacingX = 12;//CylinderBlock之间X方向间距
+        private int CBSpacingY = 12;//CylinderBlock之间Y方向间距
 
-        private int PumpMarginTop = 3;//第一行Pump按钮与顶端方向间距
-        private int PumpMarginLeft = 6;//第一列Pump按钮与左端方向间距
+        private int PumpMarginTop = 10;//第一行Pump按钮与顶端方向间距
+        private int PumpMarginLeft = 10;//第一列Pump按钮与左端方向间距
         private int PumpWidth = 170;//Pump按钮宽度
         private int PumpHeight = 145;//Pump按钮高度
-        private int PumpSpacingY = 5;//Pump按钮之间Y方向间距
+        private int PumpSpacingY = 12;//Pump按钮之间Y方向间距
 
-        private int ButtonMarginTop = 610;
+        private int ButtonMarginTop = 633;
         private int ButtonMarginLeft = 200;
         private int ButtonWidth = 210;
         private int ButtonHeight = 40;

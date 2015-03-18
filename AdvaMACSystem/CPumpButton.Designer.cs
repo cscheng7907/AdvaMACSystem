@@ -44,7 +44,7 @@
             // lbPara
             // 
             this.lbPara.Font = new System.Drawing.Font("微软雅黑", 20F, System.Drawing.FontStyle.Regular);
-            this.lbPara.Location = new System.Drawing.Point(10, 95);
+            this.lbPara.Location = new System.Drawing.Point(10, 100);
             this.lbPara.Name = "lbPara";
             this.lbPara.Size = new System.Drawing.Size(150, 40);
             this.lbPara.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -54,9 +54,9 @@
             // 
             this.lbStatus.Font = new System.Drawing.Font("微软雅黑", 20F, System.Drawing.FontStyle.Regular);
             this.lbStatus.ForeColor = System.Drawing.Color.Blue;
-            this.lbStatus.Location = new System.Drawing.Point(80, 10);
+            this.lbStatus.Location = new System.Drawing.Point(80, 5);
             this.lbStatus.Name = "lbStatus";
-            this.lbStatus.Size = new System.Drawing.Size(80, 60);
+            this.lbStatus.Size = new System.Drawing.Size(80, 40);
             this.lbStatus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lbStatus.Visible = false;
             // 
