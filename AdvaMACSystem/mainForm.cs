@@ -40,14 +40,16 @@ namespace AdvaMACSystem
         private const int mouselast = 3000;//ms
 
         //for testing
-        private const string password_EnterWinCE = "111111";
-        private const string password_Test = "444444";
+        private const string password_EnterWinCE = "111";//进wince桌面密码
+        private const string password_Test = "444";//测试密码
 
         //password
-        private const string password_Update = "222222";
-        private const string password_PageError = "333333";
-        private const string password_Setting = "555555";
-        private const string password_Diagnose = "666666";
+        private const string password_Update = "222";//系统升级密码
+        private const string password_Reset = "234";//系统复位密码
+
+        private const string password_PageError = "333";//故障界面密码
+        private const string password_Setting = "555";//参数设置密码
+        private const string password_Diagnose = "666";//诊断界面密码
 
 
         //private const string password_PageSetup = "555555";
@@ -90,7 +92,7 @@ namespace AdvaMACSystem
 #if WindowsCE
             AdvaCanBusObj = AdvaCanBus.GetAdvaCanBus();
             CDataPool.GetDataPoolObject().LoadFromFile();
-            AdvaCanBusObj.CanDatapool = CDataPool.GetDataPoolObject();
+            //AdvaCanBusObj.CanDatapool = CDataPool.GetDataPoolObject();
             if (!AdvaCanBusObj.Open())
             {
                 MessageBox.Show(AdvaCanBusObj.canErrStrArray[AdvaCanBusObj.CanErrCode]);
@@ -725,6 +727,16 @@ namespace AdvaMACSystem
                         _VirtualSetForm.Show();
                     }
 #endif
+                    else if (f.KeyText == password_Reset) //系统数据复位
+                    {
+                        CDataPool.GetDataPoolObject().Reset();
+
+                        if (WarnErrOper != null)
+                            WarnErrOper.Reset();
+
+                        if (historyOper != null)
+                            historyOper.Reset();
+                    }
                 }
             }
         }

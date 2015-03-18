@@ -317,6 +317,9 @@ namespace AdvaMACSystem
             char[] data = new char[AdvCan.DATALENGTH];
             uint pulNumberofWritten = 0;
 
+            if (CanDatapool.IsLocked)
+                return;
+
             // 构造发送帧
             //RTR
             //if (!bLeftRtrFlag)
@@ -1714,15 +1717,16 @@ namespace AdvaMACSystem
         }
 
 
-        private CDataPool _candatapool = null;
+       // private CDataPool _candatapool = null;
         public CDataPool CanDatapool
         {
-            get { return _candatapool; }
-            set
-            {
-                if (_candatapool != value)
-                    _candatapool = value;
-            }
+            //get { return _candatapool; }
+            //set
+            //{
+            //    if (_candatapool != value)
+            //        _candatapool = value;
+            //}
+            get { return CDataPool.GetDataPoolObject(); }
         }
 
     }

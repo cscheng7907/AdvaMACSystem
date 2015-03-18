@@ -167,10 +167,10 @@ namespace AdvaMACSystem
                     #region 压力记录
                     pressureRecFile = string.Format(PressureRecFileName, i, j, t.ToString("yyyy-MM-dd HH-mm-ss"));
                     recPressureDirectory = Path.GetDirectoryName(pressureRecFile);
-                    
+
                     if (!Directory.Exists(recPressureDirectory))
                         Directory.CreateDirectory(recPressureDirectory);
-                    
+
                     if (File.Exists(pressureRecFile))
                         File.Delete(pressureRecFile);
                     FileStream fspressure = new FileStream(pressureRecFile, FileMode.OpenOrCreate);
@@ -196,7 +196,7 @@ namespace AdvaMACSystem
                     recPositionDirectory = Path.GetDirectoryName(positionRecFile);
                     if (!Directory.Exists(recPositionDirectory))
                         Directory.CreateDirectory(recPositionDirectory);
-                    
+
                     if (File.Exists(positionRecFile))
                         File.Delete(positionRecFile);
                     FileStream fsposition = new FileStream(positionRecFile, FileMode.OpenOrCreate);
@@ -224,6 +224,9 @@ namespace AdvaMACSystem
 
         private void RecordData()
         {
+            if (locked)
+                return;
+
             for (int i = 0; i < pumpNumber; i++)
             {
                 for (int j = 0; j < cylinderNumber; j++)
@@ -253,7 +256,7 @@ namespace AdvaMACSystem
             }//end of [for (int i = 0; i < pumpNumber; i++)]
         }
 
-         private void CloseFiles()
+        private void CloseFiles()
         {
             for (int i = 0; i < pumpNumber; i++)
             {
@@ -266,7 +269,7 @@ namespace AdvaMACSystem
                         fsPressureList[i * pumpNumber + j].Close();
                     }
                     finally
-                    {   }
+                    { }
                     #endregion
 
                     #region 位置记录
@@ -276,7 +279,7 @@ namespace AdvaMACSystem
                         fsPositionList[i * pumpNumber + j].Close();
                     }
                     finally
-                    {   }
+                    { }
                     #endregion
                 }//end of [for (int j = 0; j < cylinderNumber; j++)]
             }//end of [for (int i = 0; i < pumpNumber; i++)]
@@ -304,6 +307,36 @@ namespace AdvaMACSystem
                 MessageBox.Show(e.Message);
             }
         }
+
+
+        #region 复位
+        private bool locked = false;
+
+        public void Reset()
+        {
+            locked = true;
+            try
+            {
+                CloseFiles();
+                List<string> recFiles = new List<string>();
+                FindFiles(HistoryDirectory, recFiles);
+                foreach (string s in recFiles)
+                {
+                    try
+                    {
+                        File.Delete(s);
+                    }
+                    catch
+                    { }
+                }
+                CreateNewFiles();
+            }
+            finally
+            {
+                locked = false;
+            }
+        }
+        #endregion
 
     }
 }
