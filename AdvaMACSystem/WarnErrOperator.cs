@@ -263,6 +263,12 @@ namespace AdvaMACSystem
             if (OnWarnErrChanged != null)
                 OnWarnErrChanged(this, new EventArgs());
         }
+
+        public void Reset()
+        {
+            File.Delete(WarningRecFileName);
+            File.Delete(ErrorRecFileName);
+        }
     }
 
 }

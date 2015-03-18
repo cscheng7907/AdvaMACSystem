@@ -26,33 +26,12 @@ namespace DataPool
 
         private CDataPool()
         {
-            //in_Pressure_Real = new List<int>();
-            //in_Position_Real = new List<int>();
-            //in_cylinderState_Real = new List<StateType>();
-            //in_MachLockState_Real = new List<StateType>();
+            Initial_in();
+            Initial_out();
+        }
 
-            //in_Limit_5 = new List<bool>();
-            //in_Limit_10 = new List<bool>();
-
-
-            //in_Warn_HighPressure = new List<bool>();
-            //in_Warn_LowPressure = new List<bool>();
-            //in_Warn_HighPosition = new List<bool>();
-            //in_Warn_LowPosition = new List<bool>();
-
-            //in_Error_PressureSenser = new List<bool>();
-            //in_Error_PositionSenser = new List<bool>();
-            //in_Error_cylinder_extend = new List<bool>();
-            //in_Error_cylinder_retract = new List<bool>();
-            //in_Error_MachLock_extend = new List<bool>();
-            //in_Error_MachLock_retract = new List<bool>();
-
-            //in_Pressure_Pump_Real = new List<int>();
-            //in_Voltage_Real = new List<int>();
-            //in_PowerSupply = new List<bool>();
-            //in_Error_Pump = new List<bool>();
-
-
+        private void Initial_in()
+        {
             for (int i = 0; i < Number_Pump; i++)
             {
                 for (int j = 0; j < Number_Cylinder; j++)
@@ -77,39 +56,82 @@ namespace DataPool
                     in_Error_cylinder_retract_3511_3514.Add(false); //油缸缩回电磁阀线路短路 4*8                     
                     in_Error_MachLock_extend_3511_3514.Add(false); //油缸机械锁伸出电磁阀线路短路 4*8                    
                     in_Error_MachLock_retract_3511_3514.Add(false); //油缸机械锁缩回电磁阀线路短路 4*8                     
-
-
-                    out_Installed.Add(false); //油缸是否安装 4*8
-
-                    out_PressureUpperLimitAlarm_Enable.Add(false);//油缸压力上限报警功能开启 4*8
-                    out_PositionUpperLimitAlarm_Enable.Add(false);//油缸长度上限报警功能开启 4*8
-                    out_PositionLowerLimitAlarm_Enable.Add(false);//油缸长度下限报警功能开启 4*8
-                    out_PositionControl_Enable.Add(false);//油缸长度控制功能开启 4*8
-
-                    out_PressureUpperLimitAlarm_Value.Add(0);//油缸压力上限报警值设定 4*8
-                    out_PressureLowerLimitAlarm_Value.Add(0);//油缸压力下限报警值设定 4*8
-                    out_PositionUpperLimitAlarm_Value.Add(0); //油缸长度上限报警值设定 4*8
-                    out_PositionLowerLimitAlarm_Value.Add(0); //油缸长度下限报警值设定 4*8
-
-                    out_Pressure_Value.Add(0);//油缸压力设定值 4*8
-                    out_Position_Value.Add(0); //油缸长度设定值 4*8
-
-                    out_PositionSenserLow_Value.Add(0);//油缸长度传感器低位值 4*8
-                    out_PositionSenserHigh_Value.Add(0);//油缸长度传感器高位值 4*8
-
-                    View_SetupPosition_Row.Add(0);//油缸安装所在的层数 4*8
-                    View_SetupPosition_Col.Add(0);//油缸安装所在的支数 4*8
                 }
 
                 in_Pressure_Pump_Real_3301_3304.Add(0);// 泵站压力 4
                 in_Voltage_Real_3301_3304.Add(0);// 控制器电压 4
                 in_PowerSupply_3301_3304.Add(false);// 控制器检测当前供电 0：市电 1：发电机 4
-                out_PressureAlarm_Pump.Add(0);//泵站压力报警值 4
 
                 for (int j = 0; j < 16; j++)
                 {
                     in_Error_Pump_3501_3504.Add(false); //泵站及控制器 故障 4*16
                 }
+            }
+        }
+
+
+        private void Initial_out()
+        {
+            this.Lock();
+
+            try
+            {
+                out_Installed.Clear(); //油缸是否安装 4*8
+
+                out_PressureUpperLimitAlarm_Enable.Clear();//油缸压力上限报警功能开启 4*8
+                out_PositionUpperLimitAlarm_Enable.Clear();//油缸长度上限报警功能开启 4*8
+                out_PositionLowerLimitAlarm_Enable.Clear();//油缸长度下限报警功能开启 4*8
+                out_PositionControl_Enable.Clear();//油缸长度控制功能开启 4*8
+
+                out_PressureUpperLimitAlarm_Value.Clear();//油缸压力上限报警值设定 4*8
+                out_PressureLowerLimitAlarm_Value.Clear();//油缸压力下限报警值设定 4*8
+                out_PositionUpperLimitAlarm_Value.Clear(); //油缸长度上限报警值设定 4*8
+                out_PositionLowerLimitAlarm_Value.Clear(); //油缸长度下限报警值设定 4*8
+
+                out_Pressure_Value.Clear();//油缸压力设定值 4*8
+                out_Position_Value.Clear(); //油缸长度设定值 4*8
+
+                out_PositionSenserLow_Value.Clear();//油缸长度传感器低位值 4*8
+                out_PositionSenserHigh_Value.Clear();//油缸长度传感器高位值 4*8
+
+                View_SetupPosition_Row.Clear();//油缸安装所在的层数 4*8
+                View_SetupPosition_Col.Clear();//油缸安装所在的支数 4*8
+
+                out_PressureAlarm_Pump.Clear();//泵站压力报警值 4
+
+                for (int i = 0; i < Number_Pump; i++)
+                {
+                    for (int j = 0; j < Number_Cylinder; j++)
+                    {
+                        out_Installed.Add(false); //油缸是否安装 4*8
+
+                        out_PressureUpperLimitAlarm_Enable.Add(false);//油缸压力上限报警功能开启 4*8
+                        out_PositionUpperLimitAlarm_Enable.Add(false);//油缸长度上限报警功能开启 4*8
+                        out_PositionLowerLimitAlarm_Enable.Add(false);//油缸长度下限报警功能开启 4*8
+                        out_PositionControl_Enable.Add(false);//油缸长度控制功能开启 4*8
+
+                        out_PressureUpperLimitAlarm_Value.Add(0);//油缸压力上限报警值设定 4*8
+                        out_PressureLowerLimitAlarm_Value.Add(0);//油缸压力下限报警值设定 4*8
+                        out_PositionUpperLimitAlarm_Value.Add(0); //油缸长度上限报警值设定 4*8
+                        out_PositionLowerLimitAlarm_Value.Add(0); //油缸长度下限报警值设定 4*8
+
+                        out_Pressure_Value.Add(0);//油缸压力设定值 4*8
+                        out_Position_Value.Add(0); //油缸长度设定值 4*8
+
+                        out_PositionSenserLow_Value.Add(0);//油缸长度传感器低位值 4*8
+                        out_PositionSenserHigh_Value.Add(0);//油缸长度传感器高位值 4*8
+
+                        View_SetupPosition_Row.Add(0);//油缸安装所在的层数 4*8
+                        View_SetupPosition_Col.Add(0);//油缸安装所在的支数 4*8
+                    }
+
+                    out_PressureAlarm_Pump.Add(0);//泵站压力报警值 4
+                }
+
+            }
+            finally
+            {
+                this.UnLock();
             }
         }
 
@@ -651,6 +673,14 @@ namespace DataPool
                 fs.Close();
             }
 
+        }
+        #endregion
+
+        #region 复位
+        public void Reset()
+        {
+            Initial_out();
+            File.Delete(DataPoolRecFileName);
         }
         #endregion
     }
