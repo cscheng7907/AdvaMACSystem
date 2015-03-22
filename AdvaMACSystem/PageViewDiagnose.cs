@@ -123,6 +123,7 @@ namespace AdvaMACSystem
                 pumpName.Size = new Size(IOWidth, IOHeight);
                 pumpName.Location = new Point(IOMarginLeft + i * (IOWidth + IOSpacingX), IOMarginTop);
                 pumpName.Font = currentFont;
+                pumpName.TransParent = true;
                 pumpName.ForeColor = textColor;
                 pumpName.IMGContainer = pumpNameImage;
                 this.Controls.Add(pumpName);
@@ -135,6 +136,7 @@ namespace AdvaMACSystem
                 pumpPara.Location = new Point(IOMarginLeft + (i / 3) * (IOWidth + IOSpacingX), IOMarginTop + (i % 3 + 1) * (IOHeight + IOSpacingY));
                 pumpPara.Font = currentFont;
                 pumpPara.ForeColor = textColor;
+                pumpPara.TransParent = true;
                 pumpPara.TextX = TextMarginLeft;
                 pumpPara.TextY = TextMarginTop;
                 pumpPara.IMGContainer = pumpParaImage;
@@ -148,6 +150,7 @@ namespace AdvaMACSystem
                 cylinder.IMGContainer = cylinderImage;
                 cylinder.Font = currentFont;
                 cylinder.ForeColor = textColor;
+                cylinder.TransParent = true;
                 cylinder.TextX = TextMarginLeft;
                 cylinder.TextY = TextMarginTop;
                 this.panelIO.Controls.Add(cylinder);
@@ -160,6 +163,7 @@ namespace AdvaMACSystem
                 cylinderPara.IMGContainer = pumpParaImage;
                 cylinderPara.Font = currentFont;
                 cylinderPara.ForeColor = textColor;
+                cylinderPara.TransParent = true;
                 cylinderPara.TextX = TextMarginLeft;
                 cylinderPara.TextY = TextMarginTop;
                 this.panelPara.Controls.Add(cylinderPara);
