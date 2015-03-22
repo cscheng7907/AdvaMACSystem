@@ -293,145 +293,145 @@ namespace ComCtrls
 
                 }
             }
-            else 
+            else
                 if ((DNImg != null) &&
                 (DNImgDisable != null) &&
                 (UPImgDisable != null) &&
                 (UPImg != null)
                 )
-            {
-                Image bgimage;
+                {
+                    Image bgimage;
 
-                if (!Enabled)
-                    if (!Checked)
-                        bgimage = UPImgDisable;
+                    if (!Enabled)
+                        if (!Checked)
+                            bgimage = UPImgDisable;
+                        else
+                            bgimage = DNImgDisable;
                     else
-                        bgimage = DNImgDisable;
-                else
+                        if (!Checked)
+                            bgimage = UPImg;
+                        else
+                            bgimage = DNImg;
+
+                    //Center the image relativelly to the control
+                    int imageLeft = (this.Width - bgimage.Width) / 2;
+                    int imageTop = (this.Height - bgimage.Height) / 2;
+
+                    imgRect = new Rectangle(imageLeft, imageTop, bgimage.Width, bgimage.Height);
+
+                    //if (!Checked)
+                    //    imgRect = new Rectangle(imageLeft, imageTop, bgimage.Width, bgimage.Height);
+                    //else //The button was pressed
+                    //    //Shift the image by one pixel
+                    //    imgRect = new Rectangle(imageLeft + 1, imageTop + 1, bgimage.Width, bgimage.Height);
+
+                    if (this.TransParent)
+                    {
+                        //Set transparent key
+                        ImageAttributes imageAttr = new ImageAttributes();
+                        imageAttr.SetColorKey(BackgroundImageColor(bgimage), BackgroundImageColor(bgimage));
+
+                        //Draw image
+                        gxOff.DrawImage(bgimage, imgRect, 0, 0, bgimage.Width, bgimage.Height, GraphicsUnit.Pixel, imageAttr);
+                    }
+                    else
+                    {
+                        gxOff.DrawImage(bgimage, imgRect, new Rectangle(0, 0, bgimage.Width, bgimage.Height), GraphicsUnit.Pixel);
+
+                    }
+                }
+                else if ((DNImg != null) &&
+                    //(DNImgDisable != null) &&
+                    //(UPImgDisable != null) &&
+                (UPImg != null)
+                )
+                {
+                    Image bgimage;
+
+                    //if (!Enabled)
+                    //    if (!Checked)
+                    //        bgimage = UPImgDisable;
+                    //    else
+                    //        bgimage = DNImgDisable;
+                    //else
                     if (!Checked)
                         bgimage = UPImg;
                     else
                         bgimage = DNImg;
 
-                //Center the image relativelly to the control
-                int imageLeft = (this.Width - bgimage.Width) / 2;
-                int imageTop = (this.Height - bgimage.Height) / 2;
+                    //Center the image relativelly to the control
+                    int imageLeft = (this.Width - bgimage.Width) / 2;
+                    int imageTop = (this.Height - bgimage.Height) / 2;
 
-                imgRect = new Rectangle(imageLeft, imageTop, bgimage.Width, bgimage.Height);
+                    imgRect = new Rectangle(imageLeft, imageTop, bgimage.Width, bgimage.Height);
 
-                //if (!Checked)
-                //    imgRect = new Rectangle(imageLeft, imageTop, bgimage.Width, bgimage.Height);
-                //else //The button was pressed
-                //    //Shift the image by one pixel
-                //    imgRect = new Rectangle(imageLeft + 1, imageTop + 1, bgimage.Width, bgimage.Height);
+                    //if (!Checked)
+                    //    imgRect = new Rectangle(imageLeft, imageTop, bgimage.Width, bgimage.Height);
+                    //else //The button was pressed
+                    //    //Shift the image by one pixel
+                    //    imgRect = new Rectangle(imageLeft + 1, imageTop + 1, bgimage.Width, bgimage.Height);
 
-                if (this.TransParent)
-                {
-                    //Set transparent key
-                    ImageAttributes imageAttr = new ImageAttributes();
-                    imageAttr.SetColorKey(BackgroundImageColor(bgimage), BackgroundImageColor(bgimage));
+                    if (this.TransParent)
+                    {
+                        //Set transparent key
+                        ImageAttributes imageAttr = new ImageAttributes();
+                        imageAttr.SetColorKey(BackgroundImageColor(bgimage), BackgroundImageColor(bgimage));
 
-                    //Draw image
-                    gxOff.DrawImage(bgimage, imgRect, 0, 0, bgimage.Width, bgimage.Height, GraphicsUnit.Pixel, imageAttr);
+                        //Draw image
+                        gxOff.DrawImage(bgimage, imgRect, 0, 0, bgimage.Width, bgimage.Height, GraphicsUnit.Pixel, imageAttr);
+                    }
+                    else
+                    {
+                        gxOff.DrawImage(bgimage, imgRect, new Rectangle(0, 0, bgimage.Width, bgimage.Height), GraphicsUnit.Pixel);
+
+                    }
                 }
-                else
+                else //draw frame
                 {
-                    gxOff.DrawImage(bgimage, imgRect, new Rectangle(0, 0, bgimage.Width, bgimage.Height), GraphicsUnit.Pixel);
+                    if (!Checked) //up
+                    {
+                        //gray
+                        framepen = new Pen(Color.Gray, 1);
+                        gxOff.DrawRectangle(framepen, 0, 0, ClientSize.Width - 2, ClientSize.Height - 2);
 
+
+                        //white
+                        framepen = new Pen(System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(127)))), ((int)(((byte)(181))))), 1);
+                        gxOff.DrawLine(framepen, 1, 1, ClientSize.Width - 3, 1);
+                        gxOff.DrawLine(framepen, 1, 1, 1, ClientSize.Height - 3);
+
+                        //black
+                        framepen = new Pen(Color.Black, 1);
+                        gxOff.DrawLine(framepen, ClientSize.Width - 1, ClientSize.Height - 1, 0, ClientSize.Height - 1);
+                        gxOff.DrawLine(framepen, ClientSize.Width - 1, ClientSize.Height - 1, ClientSize.Width - 1, 0);
+
+                    }
+                    else//down
+                    {
+                        //white
+                        framepen = new Pen(System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(86)))), ((int)(((byte)(111))))), 1);
+                        gxOff.DrawLine(framepen, ClientSize.Width - 1, ClientSize.Height - 1, 0, ClientSize.Height - 1);
+                        gxOff.DrawLine(framepen, ClientSize.Width - 1, ClientSize.Height - 1, ClientSize.Width - 1, 0);
+
+                        //black
+                        framepen = new Pen(Color.Black, 1);
+                        gxOff.DrawLine(framepen, 0, 0, ClientSize.Width - 1, 0);
+                        gxOff.DrawLine(framepen, 0, 0, 0, ClientSize.Height - 1);
+
+                        gxOff.DrawLine(framepen, 1, 1, ClientSize.Width - 2, 1);
+                        gxOff.DrawLine(framepen, 1, 1, 1, ClientSize.Height - 2);
+                    }
+
+                    //draw fucus frame
+                    //if (this.Focused)
+                    //{
+                    //    framepen = new Pen(Color.Black, 1);
+
+                    //    framepen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+
+                    //    gxOff.DrawRectangle(framepen, 4, 4, ClientSize.Width - 10, ClientSize.Height - 10);
+                    //}
                 }
-            }
-            else if ((DNImg != null) &&
-                //(DNImgDisable != null) &&
-                //(UPImgDisable != null) &&
-                (UPImg != null)
-                )
-            {
-                Image bgimage;
-
-                //if (!Enabled)
-                //    if (!Checked)
-                //        bgimage = UPImgDisable;
-                //    else
-                //        bgimage = DNImgDisable;
-                //else
-                if (!Checked)
-                    bgimage = UPImg;
-                else
-                    bgimage = DNImg;
-
-                //Center the image relativelly to the control
-                int imageLeft = (this.Width - bgimage.Width) / 2;
-                int imageTop = (this.Height - bgimage.Height) / 2;
-
-                imgRect = new Rectangle(imageLeft, imageTop, bgimage.Width, bgimage.Height);
-
-                //if (!Checked)
-                //    imgRect = new Rectangle(imageLeft, imageTop, bgimage.Width, bgimage.Height);
-                //else //The button was pressed
-                //    //Shift the image by one pixel
-                //    imgRect = new Rectangle(imageLeft + 1, imageTop + 1, bgimage.Width, bgimage.Height);
-
-                if (this.TransParent)
-                {
-                    //Set transparent key
-                    ImageAttributes imageAttr = new ImageAttributes();
-                    imageAttr.SetColorKey(BackgroundImageColor(bgimage), BackgroundImageColor(bgimage));
-
-                    //Draw image
-                    gxOff.DrawImage(bgimage, imgRect, 0, 0, bgimage.Width, bgimage.Height, GraphicsUnit.Pixel, imageAttr);
-                }
-                else
-                {
-                    gxOff.DrawImage(bgimage, imgRect, new Rectangle(0, 0, bgimage.Width, bgimage.Height), GraphicsUnit.Pixel);
-
-                }
-            }
-            else //draw frame
-            {
-                if (!Checked) //up
-                {
-                    //gray
-                    framepen = new Pen(Color.Gray, 1);
-                    gxOff.DrawRectangle(framepen, 0, 0, ClientSize.Width - 2, ClientSize.Height - 2);
-
-
-                    //white
-                    framepen = new Pen(System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(127)))), ((int)(((byte)(181))))), 1);
-                    gxOff.DrawLine(framepen, 1, 1, ClientSize.Width - 3, 1);
-                    gxOff.DrawLine(framepen, 1, 1, 1, ClientSize.Height - 3);
-
-                    //black
-                    framepen = new Pen(Color.Black, 1);
-                    gxOff.DrawLine(framepen, ClientSize.Width - 1, ClientSize.Height - 1, 0, ClientSize.Height - 1);
-                    gxOff.DrawLine(framepen, ClientSize.Width - 1, ClientSize.Height - 1, ClientSize.Width - 1, 0);
-
-                }
-                else//down
-                {
-                    //white
-                    framepen = new Pen(System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(86)))), ((int)(((byte)(111))))), 1);
-                    gxOff.DrawLine(framepen, ClientSize.Width - 1, ClientSize.Height - 1, 0, ClientSize.Height - 1);
-                    gxOff.DrawLine(framepen, ClientSize.Width - 1, ClientSize.Height - 1, ClientSize.Width - 1, 0);
-
-                    //black
-                    framepen = new Pen(Color.Black, 1);
-                    gxOff.DrawLine(framepen, 0, 0, ClientSize.Width - 1, 0);
-                    gxOff.DrawLine(framepen, 0, 0, 0, ClientSize.Height - 1);
-
-                    gxOff.DrawLine(framepen, 1, 1, ClientSize.Width - 2, 1);
-                    gxOff.DrawLine(framepen, 1, 1, 1, ClientSize.Height - 2);
-                }
-
-                //draw fucus frame
-                //if (this.Focused)
-                //{
-                //    framepen = new Pen(Color.Black, 1);
-
-                //    framepen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-
-                //    gxOff.DrawRectangle(framepen, 4, 4, ClientSize.Width - 10, ClientSize.Height - 10);
-                //}
-            }
 
             //todo: icon
             //添加了ImageButton 的自绘背景及图标的功能，并通过聚合ImagesContaner以优化资源分配 by cs at 2009-1-20  {295CEBAC-5099-403c-90BF-DD86BC58264D} 
@@ -698,7 +698,7 @@ namespace ComCtrls
 
         #endregion
 
-        private Color BackgroundImageColor(Image image)
+        protected Color BackgroundImageColor(Image image)
         {
             Bitmap bmp = new Bitmap(image);
             return bmp.GetPixel(0, 0);

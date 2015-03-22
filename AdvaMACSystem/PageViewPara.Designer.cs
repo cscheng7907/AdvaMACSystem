@@ -165,7 +165,7 @@
             this.imageLabel_idbk.Text = "imageLabel2";
             this.imageLabel_idbk.TextX = -1F;
             this.imageLabel_idbk.TextY = -1F;
-            this.imageLabel_idbk.TransParent = false;
+            this.imageLabel_idbk.TransParent = true;
             // 
             // label1
             // 
@@ -430,7 +430,7 @@
             this.imageLabel_subidbk.Text = "imageLabel3";
             this.imageLabel_subidbk.TextX = -1F;
             this.imageLabel_subidbk.TextY = -1F;
-            this.imageLabel_subidbk.TransParent = false;
+            this.imageLabel_subidbk.TransParent = true;
             // 
             // label2
             // 

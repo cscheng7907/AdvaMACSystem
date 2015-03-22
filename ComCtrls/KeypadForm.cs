@@ -20,6 +20,7 @@ namespace ComCtrls
             if (KeypadFormObject == null)
                 KeypadFormObject = new KeypadForm();
 
+            KeypadFormObject.ClientSize = new System.Drawing.Size(209, 254);
             KeypadFormObject.isFirstenter = true;
             KeypadFormObject.KeyText = text;
             KeypadFormObject.mode = KeypadMode.Normal;
@@ -36,6 +37,7 @@ namespace ComCtrls
             if (KeypadFormObject == null)
                 KeypadFormObject = new KeypadForm();
 
+            KeypadFormObject.ClientSize = new System.Drawing.Size(209, 254);
             KeypadFormObject.isFirstenter = true;
             KeypadFormObject.KeyText = text;
             KeypadFormObject.mode = Mode;

@@ -61,7 +61,7 @@
             this.imageLabel_title.Checked = false;
             this.imageLabel_title.Dock = System.Windows.Forms.DockStyle.Top;
             this.imageLabel_title.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
-            this.imageLabel_title.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            //this.imageLabel_title.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.imageLabel_title.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageLabel_title.Location = new System.Drawing.Point(0, 0);
             this.imageLabel_title.Name = "imageLabel_title";
@@ -74,14 +74,14 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel1.Controls.Add(this.comboBox_id);
             this.panel1.Controls.Add(this.imageLabel_idbk);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.comboBox_subid);
             this.panel1.Controls.Add(this.imageLabel_subidbk);
-            this.panel1.Location = new System.Drawing.Point(7, 93-29);
+            this.panel1.Location = new System.Drawing.Point(7, 93 - 29);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1010, 88);
             // 
@@ -110,7 +110,7 @@
             this.imageLabel_idbk.Text = "imageLabel2";
             this.imageLabel_idbk.TextX = -1F;
             this.imageLabel_idbk.TextY = -1F;
-            this.imageLabel_idbk.TransParent = false;
+            this.imageLabel_idbk.TransParent = true;
             // 
             // label1
             // 
@@ -157,11 +157,11 @@
             this.imageLabel_subidbk.Text = "imageLabel3";
             this.imageLabel_subidbk.TextX = -1F;
             this.imageLabel_subidbk.TextY = -1F;
-            this.imageLabel_subidbk.TransParent = false;
+            this.imageLabel_subidbk.TransParent = true;
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel2.Controls.Add(this.imageLabel4);
             this.panel2.Controls.Add(this.imageLabel5);
             this.panel2.Controls.Add(this.imageLabel3);
@@ -172,7 +172,7 @@
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(7, 187-29);
+            this.panel2.Location = new System.Drawing.Point(7, 187 - 29);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1010, 333);
             // 

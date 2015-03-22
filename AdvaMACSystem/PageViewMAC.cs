@@ -99,6 +99,7 @@ namespace AdvaMACSystem
                 pumpBlock.Toggle = true;
                 pumpBlock.PumpIndex = j;
                 pumpBlock.IMGContainer = pumpImages;
+                pumpBlock.TransParent = true;
                 pumpBlock.Icon = pumpIcon;
                 pumpBlock.Click += new EventHandler(pumpBlock_Click);
                 this.Controls.Add(pumpBlock);

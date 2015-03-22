@@ -56,7 +56,38 @@ namespace AdvaMACSystem
             }
             if (icon != null)
             {
-                gxOff.DrawImage(icon, new Rectangle(40 - icon.Width / 2, 40 - icon.Height / 2, icon.Width, icon.Height), new Rectangle(0, 0, icon.Width, icon.Height), GraphicsUnit.Pixel);
+                Image bgimage = icon;
+
+                //if (!Enabled)
+                //    if (!Checked)
+                //        bgimage = IMGContainer.UPImgDisaable;
+                //    else
+                //        bgimage = IMGContainer.DNImgDisable;
+                //else
+                //    if (!Checked)
+                //        bgimage = IMGContainer.UPImg;
+                //    else
+                //        bgimage = IMGContainer.DNImg;
+
+                if (this.TransParent)
+                {
+                    //Set transparent key
+                    ImageAttributes imageAttr = new ImageAttributes();
+                    imageAttr.SetColorKey(BackgroundImageColor(bgimage), BackgroundImageColor(bgimage));
+
+                    //Draw image
+                    gxOff.DrawImage(icon, 
+                        new Rectangle(40 - icon.Width / 2, 40 - icon.Height / 2, icon.Width, icon.Height),
+                        0, 0, icon.Width, icon.Height, GraphicsUnit.Pixel, imageAttr);
+                }
+                else
+                {
+                    gxOff.DrawImage(icon, 
+                        new Rectangle(40 - icon.Width / 2, 40 - icon.Height / 2, icon.Width, icon.Height),
+                        new Rectangle(0, 0, icon.Width, icon.Height), GraphicsUnit.Pixel);
+
+                }
+                //gxOff.DrawImage(icon, new Rectangle(40 - icon.Width / 2, 40 - icon.Height / 2, icon.Width, icon.Height), new Rectangle(0, 0, icon.Width, icon.Height), GraphicsUnit.Pixel);
             }
             if (warningCount > 0)
             {

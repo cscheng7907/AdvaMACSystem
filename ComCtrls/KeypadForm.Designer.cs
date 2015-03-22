@@ -52,11 +52,13 @@
             // 
             // imageButton_ent
             // 
-            this.imageButton_ent.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.imageButton_ent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_ent.Checked = false;
             this.imageButton_ent.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_ent.DNImg")));
             this.imageButton_ent.DNImgDisable = null;
             this.imageButton_ent.DownColor = System.Drawing.SystemColors.Control;
+            this.imageButton_ent.IMGContainer = null;
             this.imageButton_ent.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageButton_ent.Location = new System.Drawing.Point(107, 201);
             this.imageButton_ent.Name = "imageButton_ent";
@@ -73,11 +75,13 @@
             // 
             // imageButton_0
             // 
-            this.imageButton_0.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.imageButton_0.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_0.Checked = false;
             this.imageButton_0.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_0.DNImg")));
             this.imageButton_0.DNImgDisable = null;
             this.imageButton_0.DownColor = System.Drawing.SystemColors.Control;
+            this.imageButton_0.IMGContainer = null;
             this.imageButton_0.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageButton_0.Location = new System.Drawing.Point(59, 201);
             this.imageButton_0.Name = "imageButton_0";
@@ -95,11 +99,13 @@
             // 
             // imageButton_dot
             // 
-            this.imageButton_dot.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.imageButton_dot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_dot.Checked = false;
             this.imageButton_dot.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_dot.DNImg")));
             this.imageButton_dot.DNImgDisable = null;
             this.imageButton_dot.DownColor = System.Drawing.SystemColors.Control;
+            this.imageButton_dot.IMGContainer = null;
             this.imageButton_dot.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageButton_dot.Location = new System.Drawing.Point(9, 201);
             this.imageButton_dot.Name = "imageButton_dot";
@@ -117,11 +123,13 @@
             // 
             // imageButton_es
             // 
-            this.imageButton_es.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.imageButton_es.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_es.Checked = false;
             this.imageButton_es.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_es.DNImg")));
             this.imageButton_es.DNImgDisable = null;
             this.imageButton_es.DownColor = System.Drawing.SystemColors.Control;
+            this.imageButton_es.IMGContainer = null;
             this.imageButton_es.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageButton_es.Location = new System.Drawing.Point(154, 154);
             this.imageButton_es.Name = "imageButton_es";
@@ -138,11 +146,13 @@
             // 
             // imageButton_3
             // 
-            this.imageButton_3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.imageButton_3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_3.Checked = false;
             this.imageButton_3.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_3.DNImg")));
             this.imageButton_3.DNImgDisable = null;
             this.imageButton_3.DownColor = System.Drawing.SystemColors.Control;
+            this.imageButton_3.IMGContainer = null;
             this.imageButton_3.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageButton_3.Location = new System.Drawing.Point(107, 154);
             this.imageButton_3.Name = "imageButton_3";
@@ -160,11 +170,13 @@
             // 
             // imageButton_2
             // 
-            this.imageButton_2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.imageButton_2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_2.Checked = false;
             this.imageButton_2.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_2.DNImg")));
             this.imageButton_2.DNImgDisable = null;
             this.imageButton_2.DownColor = System.Drawing.SystemColors.Control;
+            this.imageButton_2.IMGContainer = null;
             this.imageButton_2.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageButton_2.Location = new System.Drawing.Point(59, 154);
             this.imageButton_2.Name = "imageButton_2";
@@ -182,11 +194,13 @@
             // 
             // imageButton_1
             // 
-            this.imageButton_1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.imageButton_1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_1.Checked = false;
             this.imageButton_1.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_1.DNImg")));
             this.imageButton_1.DNImgDisable = null;
             this.imageButton_1.DownColor = System.Drawing.SystemColors.Control;
+            this.imageButton_1.IMGContainer = null;
             this.imageButton_1.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageButton_1.Location = new System.Drawing.Point(9, 154);
             this.imageButton_1.Name = "imageButton_1";
@@ -204,11 +218,13 @@
             // 
             // imageButton_cr
             // 
-            this.imageButton_cr.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.imageButton_cr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_cr.Checked = false;
             this.imageButton_cr.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_cr.DNImg")));
             this.imageButton_cr.DNImgDisable = null;
             this.imageButton_cr.DownColor = System.Drawing.SystemColors.Control;
+            this.imageButton_cr.IMGContainer = null;
             this.imageButton_cr.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageButton_cr.Location = new System.Drawing.Point(154, 104);
             this.imageButton_cr.Name = "imageButton_cr";
@@ -225,11 +241,13 @@
             // 
             // imageButton_6
             // 
-            this.imageButton_6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.imageButton_6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_6.Checked = false;
             this.imageButton_6.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_6.DNImg")));
             this.imageButton_6.DNImgDisable = null;
             this.imageButton_6.DownColor = System.Drawing.SystemColors.Control;
+            this.imageButton_6.IMGContainer = null;
             this.imageButton_6.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageButton_6.Location = new System.Drawing.Point(107, 104);
             this.imageButton_6.Name = "imageButton_6";
@@ -247,11 +265,13 @@
             // 
             // imageButton_5
             // 
-            this.imageButton_5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.imageButton_5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_5.Checked = false;
             this.imageButton_5.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_5.DNImg")));
             this.imageButton_5.DNImgDisable = null;
             this.imageButton_5.DownColor = System.Drawing.SystemColors.Control;
+            this.imageButton_5.IMGContainer = null;
             this.imageButton_5.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageButton_5.Location = new System.Drawing.Point(59, 104);
             this.imageButton_5.Name = "imageButton_5";
@@ -269,11 +289,13 @@
             // 
             // imageButton_4
             // 
-            this.imageButton_4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.imageButton_4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_4.Checked = false;
             this.imageButton_4.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_4.DNImg")));
             this.imageButton_4.DNImgDisable = null;
             this.imageButton_4.DownColor = System.Drawing.SystemColors.Control;
+            this.imageButton_4.IMGContainer = null;
             this.imageButton_4.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageButton_4.Location = new System.Drawing.Point(9, 104);
             this.imageButton_4.Name = "imageButton_4";
@@ -291,11 +313,13 @@
             // 
             // imageButton_Minus
             // 
-            this.imageButton_Minus.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.imageButton_Minus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_Minus.Checked = false;
             this.imageButton_Minus.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_Minus.DNImg")));
             this.imageButton_Minus.DNImgDisable = null;
             this.imageButton_Minus.DownColor = System.Drawing.SystemColors.Control;
+            this.imageButton_Minus.IMGContainer = null;
             this.imageButton_Minus.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageButton_Minus.Location = new System.Drawing.Point(154, 56);
             this.imageButton_Minus.Name = "imageButton_Minus";
@@ -313,11 +337,13 @@
             // 
             // imageButton_9
             // 
-            this.imageButton_9.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.imageButton_9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_9.Checked = false;
             this.imageButton_9.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_9.DNImg")));
             this.imageButton_9.DNImgDisable = null;
             this.imageButton_9.DownColor = System.Drawing.SystemColors.Control;
+            this.imageButton_9.IMGContainer = null;
             this.imageButton_9.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageButton_9.Location = new System.Drawing.Point(107, 56);
             this.imageButton_9.Name = "imageButton_9";
@@ -335,11 +361,13 @@
             // 
             // imageButton_8
             // 
-            this.imageButton_8.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.imageButton_8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_8.Checked = false;
             this.imageButton_8.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_8.DNImg")));
             this.imageButton_8.DNImgDisable = null;
             this.imageButton_8.DownColor = System.Drawing.SystemColors.Control;
+            this.imageButton_8.IMGContainer = null;
             this.imageButton_8.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageButton_8.Location = new System.Drawing.Point(59, 56);
             this.imageButton_8.Name = "imageButton_8";
@@ -357,11 +385,13 @@
             // 
             // imageButton_7
             // 
-            this.imageButton_7.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.imageButton_7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_7.Checked = false;
             this.imageButton_7.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_7.DNImg")));
             this.imageButton_7.DNImgDisable = null;
             this.imageButton_7.DownColor = System.Drawing.SystemColors.Control;
+            this.imageButton_7.IMGContainer = null;
             this.imageButton_7.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageButton_7.Location = new System.Drawing.Point(9, 56);
             this.imageButton_7.Name = "imageButton_7";
@@ -379,10 +409,13 @@
             // 
             // imageLabel_input
             // 
-            this.imageLabel_input.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.imageLabel_input.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.imageLabel_input.BackImg = ((System.Drawing.Image)(resources.GetObject("imageLabel_input.BackImg")));
             this.imageLabel_input.Checked = false;
             this.imageLabel_input.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Regular);
+            this.imageLabel_input.IMGContainer = null;
+            this.imageLabel_input.ImgDisable = null;
             this.imageLabel_input.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageLabel_input.Location = new System.Drawing.Point(9, 9);
             this.imageLabel_input.Name = "imageLabel_input";
@@ -394,9 +427,11 @@
             // 
             // imageLabel_Back
             // 
-            this.imageLabel_Back.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.imageLabel_Back.BackImg = ((System.Drawing.Image)(resources.GetObject("imageLabel_Back.BackImg")));
             this.imageLabel_Back.Checked = false;
+            this.imageLabel_Back.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageLabel_Back.IMGContainer = null;
+            this.imageLabel_Back.ImgDisable = null;
             this.imageLabel_Back.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageLabel_Back.Location = new System.Drawing.Point(0, 0);
             this.imageLabel_Back.Name = "imageLabel_Back";
@@ -408,20 +443,19 @@
             // 
             // label_input
             // 
-            this.label_input.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label_input.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.label_input.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(255)))), ((int)(((byte)(248)))));
             this.label_input.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Regular);
             this.label_input.Location = new System.Drawing.Point(11, 12);
             this.label_input.Name = "label_input";
             this.label_input.Size = new System.Drawing.Size(188, 34);
-            this.label_input.Text = "";
             this.label_input.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // KeypadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(209, 254);
             this.ControlBox = false;
             this.Controls.Add(this.label_input);
