@@ -140,13 +140,23 @@ namespace AdvaMACSystem
             }
         }
 
-        private double warningPositionValue;
-        public double WarningPositionValue
+        private double lowerwarningPositionValue;
+        public double LowerWarningPositionValue
         {
             set
             {
-                warningPositionValue = value;
-                this.lbWarningPos.Text = warningPositionValue.ToString(numberFormat);
+                lowerwarningPositionValue = value;
+                this.lbWarningPos.Text = lowerwarningPositionValue.ToString(numberFormat);
+            }
+        }
+
+        private double upperwarningPositionValue;
+        public double UpperWarningPositionValue
+        {
+            set
+            {
+                upperwarningPositionValue = value;
+                //this.lbWarningPos.Text = upperwarningPositionValue.ToString(numberFormat);
             }
         }
 

@@ -526,7 +526,9 @@ namespace AdvaMACSystem
                 //设定长度条上限值
                 cylinderList[i].MaxPositionValue = MaxPositionValue;
                 //设定长度条下限报警值
-                cylinderList[i].WarningPositionValue = _candatapool.GetRealValue(selectedPumpIndex, i, CmdDataType.cdtPositionLowerLimitAlarm_Value);
+                cylinderList[i].LowerWarningPositionValue = _candatapool.GetRealValue(selectedPumpIndex, i, CmdDataType.cdtPositionLowerLimitAlarm_Value);
+                //设定长度条上限报警值
+                cylinderList[i].UpperWarningPositionValue = _candatapool.GetRealValue(selectedPumpIndex, i, CmdDataType.cdtPositionUpperLimitAlarm_Value);
                 //设定长度条设定值
                 cylinderList[i].SettingPositionValue = _candatapool.GetRealValue(selectedPumpIndex, i, CmdDataType.cdtPosition_Value);
 
