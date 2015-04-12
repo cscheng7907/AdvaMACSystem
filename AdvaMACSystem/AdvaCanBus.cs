@@ -669,6 +669,8 @@ namespace AdvaMACSystem
                     msgSend[canmsgIndex].data[2] = (byte)(subid + 1);
                     msgSend[canmsgIndex].data[3] = (byte)CanDatapool.out_MotionState;
                     msgSend[canmsgIndex].data[4] = 19;
+                    msgSend[canmsgIndex].data[5] = (byte)(CanDatapool.out_PressureAlarm_Pump[id] & 0xFF);
+                    msgSend[canmsgIndex].data[6] = (byte)(CanDatapool.out_PressureAlarm_Pump[id] >> 8);
 
                     canmsgIndex++;
                 }

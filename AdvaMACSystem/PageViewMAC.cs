@@ -42,10 +42,10 @@ namespace AdvaMACSystem
 
             //button美化
             buttonImages = new ImagesContaner();
-            buttonImages.DNImg = AdvaMACSystemRes.Dgn_down;
-            buttonImages.UPImg = AdvaMACSystemRes.Dgn_up;
-            buttonImages.DNImgDisable = AdvaMACSystemRes.Dgn_disable;
-            buttonImages.UPImgDisaable = AdvaMACSystemRes.Dgn_disable;
+            buttonImages.DNImg = AdvaMACSystemRes.half_down;
+            buttonImages.UPImg = AdvaMACSystemRes.half_up;
+            buttonImages.DNImgDisable = AdvaMACSystemRes.half_disable;
+            buttonImages.UPImgDisaable = AdvaMACSystemRes.half_disable;
 
             //cylinder美化
             progressBarImages = new CProgressBarImagesContainer();
@@ -81,12 +81,20 @@ namespace AdvaMACSystem
             //controlButtonList.Add(manualModeButton);
 
             stateButtonList = new List<ImageButton>();
+
+            PumpInstallButton = new ImageButton();
+            stateButtonList.Add(PumpInstallButton);
+
+            PumpSettingButton = new ImageButton();
+            stateButtonList.Add(PumpSettingButton);
+
             cylinderExtendButton = new ImageButton();
             stateButtonList.Add(cylinderExtendButton);
             //cylinderStopButton = new ImageButton();
             //stateButtonList.Add(cylinderStopButton);
             cylinderRetractButton = new ImageButton();
             stateButtonList.Add(cylinderRetractButton);
+
 
             this.SuspendLayout();
 
@@ -172,24 +180,80 @@ namespace AdvaMACSystem
             //cylinderStopButton.Enabled = false;
             cylinderRetractButton.Enabled = false;
 
+
+            PumpInstallButton.Text = "启动泵站";
+            PumpInstallButton.Click += new EventHandler(PumpInstallButton_Click);
+            //PumpInstallButton.MouseDown += new MouseEventHandler();
+            //PumpInstallButton.MouseUp += new MouseEventHandler();
+            PumpInstallButton.Enabled = false;
+
+            PumpSettingButton.Text = "泵站设置";
+            PumpSettingButton.Click += new EventHandler(PumpSettingButton_Click);
+            //PumpSettingButton.MouseDown += new MouseEventHandler();
+            //PumpSettingButton.MouseUp += new MouseEventHandler();
+            PumpSettingButton.Enabled = false;
+
             this.ResumeLayout(false);
         }
 
         private void controlModeButton_MouseUp(object sender, MouseEventArgs e)
         {
-            //controlModeButton.Checked = !controlModeButton.Checked;
-            if (!controlModeButton.Checked)
+            if (MessageBox.Show(string.Format("是否切换为 {0} 模式？", (!controlModeButton.Checked) ? "自动" : "手动"),
+                 "",
+                 MessageBoxButtons.OKCancel, MessageBoxIcon.None, MessageBoxDefaultButton.Button1
+                 ) == DialogResult.OK)
             {
-                ControlMode = 0;
-                _candatapool.ControlMode = ControlModeType.Auto;
+                //controlModeButton.Checked = !controlModeButton.Checked;
+                if (!controlModeButton.Checked)
+                {
+                    ControlMode = ControlModeType.Auto;
+                    //_candatapool.ControlMode = ControlModeType.Auto;
 
+                }
+                else
+                {
+                    ControlMode = ControlModeType.CylinderManual;
+                    //_candatapool.ControlMode = ControlModeType.CylinderManual;
+                }
             }
             else
-            {
-                ControlMode = 1;
-                _candatapool.ControlMode = ControlModeType.CylinderManual;
-            }
+                controlModeButton.Checked = !controlModeButton.Checked;
+        }
 
+        private void PumpInstallButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PumpSettingButton_Click(object sender, EventArgs e)
+        {
+            short dv = (short)DataPool.CDataPool.GetDataPoolObject().GetintValue(
+                            selectedPumpIndex,
+                            selectedCylinderIndex,
+                            CmdDataType.cdtPressure_Pump);
+
+            KeypadForm f = KeypadForm.GetKeypadForm(dv.ToString());
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+
+                    if (dv >= 0 && dv <= 4000)
+                    {
+                        DataPool.CDataPool.GetDataPoolObject().SetintValue(
+                            selectedPumpIndex,
+                            selectedCylinderIndex,
+                            CmdDataType.cdtPressure_Pump,
+                            dv);
+                    }
+                    else
+                        MessageBox.Show("输入非法！");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("输入非法！");
+                }
+            }
         }
 
         private void controlModeButton_CheckedChanged(object sender, EventArgs e)
@@ -220,10 +284,10 @@ namespace AdvaMACSystem
         private int PumpSpacingY = 12;//Pump按钮之间Y方向间距
 
         private int ButtonMarginTop = 633;
-        private int ButtonMarginLeft = 200;
-        private int ButtonWidth = 210;
+        private int ButtonMarginLeft = 10;//200;
+        private int ButtonWidth = 184;//210;
         private int ButtonHeight = 40;
-        private int ButtonSpacingX = 10;
+        private int ButtonSpacingX = 20;
         #endregion
 
         #region 油缸
@@ -244,7 +308,7 @@ namespace AdvaMACSystem
         }
         private void UpdateCylinderControlButtonEnabled()
         {
-            if (controlMode == 1 && cylinderList[selectedCylinderIndex].InUse)
+            if (ControlMode == ControlModeType.CylinderManual && cylinderList[selectedCylinderIndex].InUse)
             {
                 cylinderExtendButton.Enabled = true;
                 //cylinderStopButton.Enabled = true;
@@ -257,6 +321,13 @@ namespace AdvaMACSystem
                 cylinderRetractButton.Enabled = false;
             }
         }
+
+        private void UpdatePumpButtonEnabled()
+        {
+            PumpInstallButton.Enabled = pumpList[selectedPumpIndex].CurrentPara < 20 && ControlMode != ControlModeType.Auto;
+
+        }
+
 
         private CProgressBarImagesContainer progressBarImages = null;
         #endregion
@@ -299,15 +370,15 @@ namespace AdvaMACSystem
         #endregion
 
         #region 控制按钮
-        private int controlMode = 0; //0:Auto 1:Manual
-        public int ControlMode
+        //private ControlModeType controlMode = ControlModeType.cmtAuto; //0:Auto 1:Manual
+        public ControlModeType ControlMode
         {
-            get { return controlMode; }
+            get { return _candatapool.ControlMode; }
             set
             {
-                if (controlMode != value)
+                if (_candatapool.ControlMode != value)
                 {
-                    controlMode = value;
+                    _candatapool.ControlMode = value;
                     DoControlModeChanged();
                 }
             }
@@ -315,7 +386,7 @@ namespace AdvaMACSystem
 
         private void DoControlModeChanged()
         {
-            if (controlMode == 0)
+            if (ControlMode == ControlModeType.Auto)
             {
                 controlModeButton.Checked = false;
                 controlModeButton.Text = "自动模式";
@@ -325,6 +396,9 @@ namespace AdvaMACSystem
                 cylinderExtendButton.Enabled = false;
                 //cylinderStopButton.Enabled = false;
                 cylinderRetractButton.Enabled = false;
+
+                PumpInstallButton.Enabled = false;
+                PumpSettingButton.Enabled = false;
             }
             else
             {
@@ -333,7 +407,7 @@ namespace AdvaMACSystem
 
                 //autoModeButton.Checked = false;
                 //manualModeButton.Checked = true;
-
+                PumpSettingButton.Enabled = true;
                 UpdateCylinderControlButtonEnabled();
             }
         }
@@ -396,9 +470,12 @@ namespace AdvaMACSystem
         //private ImageButton cylinderStopButton = null;
         private ImageButton cylinderRetractButton = null;
 
+        private ImageButton PumpInstallButton = null;
+        private ImageButton PumpSettingButton = null;
+
         private void cylinderRetractButton_Click(object sender, EventArgs e)
         {
-            if (controlMode == 1 && selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
+            if (ControlMode == ControlModeType.CylinderManual && selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
             {
                 CylinderControlStatus = 2;
             }
@@ -406,7 +483,7 @@ namespace AdvaMACSystem
 
         private void cylinderStopButton_Click(object sender, EventArgs e)
         {
-            if (controlMode == 1 && selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
+            if (ControlMode == ControlModeType.CylinderManual && selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
             {
                 CylinderControlStatus = 0;
             }
@@ -414,7 +491,7 @@ namespace AdvaMACSystem
 
         private void cylinderExtendButton_Click(object sender, EventArgs e)
         {
-            if (controlMode == 1 && selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
+            if (ControlMode == ControlModeType.CylinderManual && selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
             {
                 CylinderControlStatus = 1;
             }
@@ -451,7 +528,7 @@ namespace AdvaMACSystem
         public override void DoReEnter()
         {
             //更新控制方式
-            ControlMode = (int)_candatapool.ControlMode;
+            //ControlMode = (int)_candatapool.ControlMode;
             //controlButtonList[controlMode].Checked = true;
             DoControlModeChanged();
 
@@ -545,6 +622,7 @@ namespace AdvaMACSystem
                 pumpList[j].CurrentStatus = "运行";
                 pumpList[j].CurrentPara = _candatapool.GetRealValue(j, 0, CmdDataType.cdtPressure_Pump_Real_3301_3304);
             }
+            UpdatePumpButtonEnabled();
 
             //cylinders
             for (int i = 0; i < cylinderList.Count; i++)
@@ -600,5 +678,8 @@ namespace AdvaMACSystem
                 pumpList[j].WarningCount = warncount;
             }
         }
+
+
     }
+
 }

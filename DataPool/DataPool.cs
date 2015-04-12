@@ -98,7 +98,7 @@ namespace DataPool
                 View_SetupPosition_Col.Clear();//油缸安装所在的支数 4*8
 
                 out_PressureAlarm_Pump.Clear();//泵站压力报警值 4
-
+                out_Pressure_Pump.Clear();//泵站压力设定值 4
                 for (int i = 0; i < Number_Pump; i++)
                 {
                     for (int j = 0; j < Number_Cylinder; j++)
@@ -126,6 +126,7 @@ namespace DataPool
                     }
 
                     out_PressureAlarm_Pump.Add(0);//泵站压力报警值 4
+                    out_Pressure_Pump.Add(0);//泵站压力设定值 4
                 }
 
             }
@@ -249,6 +250,9 @@ namespace DataPool
                     break;
                 case CmdDataType.cdtPressureAlarm_Pump://泵站压力报警值 4
                     rtv = (int)out_PressureAlarm_Pump[id];
+                    break;
+                case CmdDataType.cdtPressure_Pump://泵站压力设定值 4
+                    rtv = (int)out_Pressure_Pump[id];
                     break;
                 case CmdDataType.cdtView_SetupPosition_Row://油缸安装所在的层数 4*8
                     rtv = (int)View_SetupPosition_Row[id * 8 + subid];
@@ -389,6 +393,9 @@ namespace DataPool
                 case CmdDataType.cdtPressureAlarm_Pump://泵站压力报警值 4
                     out_PressureAlarm_Pump[id] = (byte)value;
                     break;
+                case CmdDataType.cdtPressure_Pump://泵站压力设定值 4
+                    out_Pressure_Pump[id] = (short)value;
+                    break;
                 case CmdDataType.cdtView_SetupPosition_Row://油缸安装所在的层数 4*8
                     View_SetupPosition_Row[id * 8 + subid] = (byte)value;
                     break;
@@ -431,6 +438,7 @@ namespace DataPool
         public List<bool> out_Installed = new List<bool>();//油缸是否安装 4*8
 
         public List<byte> out_PressureAlarm_Pump = new List<byte>();//泵站压力报警值 4
+        public List<short> out_Pressure_Pump = new List<short>();//泵站压力设定值 4
 
 
         public List<bool> out_PressureUpperLimitAlarm_Enable = new List<bool>();//油缸压力上限报警功能开启 4*8
@@ -512,6 +520,8 @@ namespace DataPool
                             sizeof(int) * 2 +
                     //public List<byte> out_PressureAlarm_Pump  //泵站压力报警值 4
                             sizeof(byte) * Number_Pump +
+                    //public List<short> out_Pressure_Pump //泵站压力设定值 4
+                            sizeof(short) * Number_Pump +
                     //public List<bool> out_Installed  //油缸是否安装 4*8
                             sizeof(bool) * Number_Pump * Number_Cylinder +
                     //public List<bool> out_PressureUpperLimitAlarm_Enable  //油缸压力上限报警功能开启 4*8
@@ -559,6 +569,7 @@ namespace DataPool
                             {
                                 /*List<byte>*/
                                 out_PressureAlarm_Pump[i] = br.ReadByte();  //泵站压力报警值 4
+                                out_Pressure_Pump[i] = br.ReadInt16 ();  //泵站压力设定值 4
                             }
 
                             for (int i = 0; i < Number_Pump; i++)
@@ -626,6 +637,7 @@ namespace DataPool
                 {
                     /*List<byte>*/
                     bw.Write(out_PressureAlarm_Pump[i]); //泵站压力报警值 4
+                    bw.Write(out_Pressure_Pump[i]); //泵站压力设定值 4
                 }
 
                 for (int i = 0; i < Number_Pump; i++)
@@ -740,7 +752,7 @@ namespace DataPool
         cdtInstalled,//油缸是否安装 4*8
 
         cdtPressureAlarm_Pump,//泵站压力报警值 4
-
+        cdtPressure_Pump,//泵站压力设定值 4
 
         cdtPressureUpperLimitAlarm_Enable,//油缸压力上限报警功能开启 4*8
 

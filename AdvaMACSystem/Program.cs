@@ -13,7 +13,7 @@ namespace AdvaMACSystem
         [MTAThread]
         static void Main()
         {
-            Application.Run(new mainForm());
+            Application.Run(new SplashForm());
         }
     }
 }

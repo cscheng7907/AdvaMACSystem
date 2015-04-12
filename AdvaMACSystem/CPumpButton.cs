@@ -76,13 +76,13 @@ namespace AdvaMACSystem
                     imageAttr.SetColorKey(BackgroundImageColor(bgimage), BackgroundImageColor(bgimage));
 
                     //Draw image
-                    gxOff.DrawImage(icon, 
+                    gxOff.DrawImage(icon,
                         new Rectangle(40 - icon.Width / 2, 40 - icon.Height / 2, icon.Width, icon.Height),
                         0, 0, icon.Width, icon.Height, GraphicsUnit.Pixel, imageAttr);
                 }
                 else
                 {
-                    gxOff.DrawImage(icon, 
+                    gxOff.DrawImage(icon,
                         new Rectangle(40 - icon.Width / 2, 40 - icon.Height / 2, icon.Width, icon.Height),
                         new Rectangle(0, 0, icon.Width, icon.Height), GraphicsUnit.Pixel);
 
@@ -91,7 +91,7 @@ namespace AdvaMACSystem
             }
             if (warningCount > 0)
             {
-                gxOff.FillRectangle(new SolidBrush(Color.Red), 80, 50, 80,40);
+                gxOff.FillRectangle(new SolidBrush(Color.Red), 80, 50, 80, 40);
                 gxOff.DrawString(warningCount.ToString("D2"), new System.Drawing.Font("Microsoft YaHei", 20F, System.Drawing.FontStyle.Bold), new SolidBrush(Color.Yellow), 120, 70, sf);
             }
 
@@ -131,7 +131,7 @@ namespace AdvaMACSystem
         private string unit = string.Empty;
         public string Unit
         {
-            set 
+            set
             {
                 if (unit != value)
                 {
@@ -145,6 +145,7 @@ namespace AdvaMACSystem
         private double currentPara;
         public double CurrentPara
         {
+            get { return currentPara; }
             set
             {
                 if (currentPara != value)

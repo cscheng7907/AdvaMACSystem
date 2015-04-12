@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.timer1 = new System.Windows.Forms.Timer();
             this.lb_date = new System.Windows.Forms.Label();
             this.panel_Head = new System.Windows.Forms.Panel();
@@ -37,7 +36,9 @@
             this.imageLabel_Setting = new ComCtrls.ImageLabel();
             this.Label_CurError = new ComCtrls.ImageLabel();
             this.label_CurWarning = new ComCtrls.ImageLabel();
+            this.panel_LOGO = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lb_time = new System.Windows.Forms.Label();
             this.panel_Warn = new System.Windows.Forms.Panel();
@@ -51,6 +52,7 @@
             this.imageLabel_Err_History = new ComCtrls.ImageLabel();
             this.imageLabel_Err_Real = new ComCtrls.ImageLabel();
             this.panel_Head.SuspendLayout();
+            this.panel_LOGO.SuspendLayout();
             this.panel_Warn.SuspendLayout();
             this.panel_Para.SuspendLayout();
             this.panel_Err.SuspendLayout();
@@ -65,10 +67,10 @@
             // 
             this.lb_date.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
             this.lb_date.ForeColor = System.Drawing.Color.White;
-            this.lb_date.Location = new System.Drawing.Point(834, 10);
+            this.lb_date.Location = new System.Drawing.Point(889, 10);
             this.lb_date.Name = "lb_date";
             this.lb_date.Size = new System.Drawing.Size(187, 31);
-            this.lb_date.Text = "日期：2015-02-12";
+            this.lb_date.Text = "2015-02-12";
             // 
             // panel_Head
             // 
@@ -78,14 +80,14 @@
             this.panel_Head.Controls.Add(this.imageLabel_Setting);
             this.panel_Head.Controls.Add(this.Label_CurError);
             this.panel_Head.Controls.Add(this.label_CurWarning);
-            this.panel_Head.Controls.Add(this.pictureBox1);
+            this.panel_Head.Controls.Add(this.panel_LOGO);
             this.panel_Head.Controls.Add(this.label2);
             this.panel_Head.Controls.Add(this.lb_time);
             this.panel_Head.Controls.Add(this.lb_date);
             this.panel_Head.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_Head.Location = new System.Drawing.Point(0, 0);
             this.panel_Head.Name = "panel_Head";
-            this.panel_Head.Size = new System.Drawing.Size(1024, 85);
+            this.panel_Head.Size = new System.Drawing.Size(1024, 86);
             this.panel_Head.Click += new System.EventHandler(this.panel_Head_Click);
             this.panel_Head.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_Head_MouseDown);
             this.panel_Head.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel_Head_MouseUp);
@@ -100,7 +102,7 @@
             this.imageLabel_History.IMGContainer = null;
             this.imageLabel_History.ImgDisable = null;
             this.imageLabel_History.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageLabel_History.Location = new System.Drawing.Point(435, 8);
+            this.imageLabel_History.Location = new System.Drawing.Point(480, 8);
             this.imageLabel_History.Name = "imageLabel_History";
             this.imageLabel_History.Size = new System.Drawing.Size(75, 70);
             this.imageLabel_History.TabIndex = 21;
@@ -119,7 +121,7 @@
             this.imageLabel_Diagnose.IMGContainer = null;
             this.imageLabel_Diagnose.ImgDisable = null;
             this.imageLabel_Diagnose.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageLabel_Diagnose.Location = new System.Drawing.Point(516, 8);
+            this.imageLabel_Diagnose.Location = new System.Drawing.Point(561, 8);
             this.imageLabel_Diagnose.Name = "imageLabel_Diagnose";
             this.imageLabel_Diagnose.Size = new System.Drawing.Size(75, 70);
             this.imageLabel_Diagnose.TabIndex = 20;
@@ -138,7 +140,7 @@
             this.imageLabel_Setting.IMGContainer = null;
             this.imageLabel_Setting.ImgDisable = null;
             this.imageLabel_Setting.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageLabel_Setting.Location = new System.Drawing.Point(599, 8);
+            this.imageLabel_Setting.Location = new System.Drawing.Point(644, 8);
             this.imageLabel_Setting.Name = "imageLabel_Setting";
             this.imageLabel_Setting.Size = new System.Drawing.Size(75, 70);
             this.imageLabel_Setting.TabIndex = 19;
@@ -157,7 +159,7 @@
             this.Label_CurError.IMGContainer = null;
             this.Label_CurError.ImgDisable = null;
             this.Label_CurError.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.Label_CurError.Location = new System.Drawing.Point(757, 8);
+            this.Label_CurError.Location = new System.Drawing.Point(802, 8);
             this.Label_CurError.Name = "Label_CurError";
             this.Label_CurError.Size = new System.Drawing.Size(75, 70);
             this.Label_CurError.TabIndex = 14;
@@ -176,7 +178,7 @@
             this.label_CurWarning.IMGContainer = null;
             this.label_CurWarning.ImgDisable = null;
             this.label_CurWarning.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.label_CurWarning.Location = new System.Drawing.Point(671, 8);
+            this.label_CurWarning.Location = new System.Drawing.Point(716, 8);
             this.label_CurWarning.Name = "label_CurWarning";
             this.label_CurWarning.Size = new System.Drawing.Size(75, 70);
             this.label_CurWarning.TabIndex = 7;
@@ -185,31 +187,48 @@
             this.label_CurWarning.TransParent = true;
             this.label_CurWarning.Click += new System.EventHandler(this.label_CurWarning_Click);
             // 
+            // panel_LOGO
+            // 
+            this.panel_LOGO.Controls.Add(this.pictureBox1);
+            this.panel_LOGO.Controls.Add(this.pictureBox2);
+            this.panel_LOGO.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel_LOGO.Location = new System.Drawing.Point(0, 0);
+            this.panel_LOGO.Name = "panel_LOGO";
+            this.panel_LOGO.Size = new System.Drawing.Size(119, 86);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.None;
+            this.pictureBox2.Image = global::AdvaMACSystem.AdvaMACSystemRes.LogoBack;
+            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(119, 86);
+            // 
             // pictureBox1
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.None;
+            this.pictureBox1.Image = global::AdvaMACSystem.AdvaMACSystemRes.logo;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(85, 85);
+            this.pictureBox1.Size = new System.Drawing.Size(119, 86);
             // 
             // label2
             // 
-            this.label2.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold);
+            this.label2.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(92, 8);
+            this.label2.Location = new System.Drawing.Point(131, 8);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(347, 37);
-            this.label2.Text = "HIS0350A钢支撑轴力补偿系统";
+            this.label2.Size = new System.Drawing.Size(292, 70);
+            this.label2.Text = "HIS0350A\n钢支撑轴力补偿系统";
             // 
             // lb_time
             // 
             this.lb_time.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
             this.lb_time.ForeColor = System.Drawing.Color.White;
-            this.lb_time.Location = new System.Drawing.Point(834, 49);
+            this.lb_time.Location = new System.Drawing.Point(889, 49);
             this.lb_time.Name = "lb_time";
             this.lb_time.Size = new System.Drawing.Size(187, 32);
-            this.lb_time.Text = "时间：12 : 11 : 18";
+            this.lb_time.Text = "12 : 11 : 18";
             // 
             // panel_Warn
             // 
@@ -399,6 +418,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.mainForm_Load);
             this.panel_Head.ResumeLayout(false);
+            this.panel_LOGO.ResumeLayout(false);
             this.panel_Warn.ResumeLayout(false);
             this.panel_Para.ResumeLayout(false);
             this.panel_Err.ResumeLayout(false);
@@ -411,8 +431,10 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lb_date;
         private System.Windows.Forms.Panel panel_Head;
+        private System.Windows.Forms.Panel panel_LOGO;
         private System.Windows.Forms.Label lb_time;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label2;
         private ComCtrls.ImageLabel label_CurWarning;
         private ComCtrls.ImageLabel Label_CurError;

@@ -167,6 +167,14 @@
       <Link>PageViewWarn.designer.cs</Link>
       <DependentUpon>PageViewWarn.cs</DependentUpon>
     </Compile>
+    <Compile Include="..\AdvaMACSystem\SplashForm.cs">
+      <Link>SplashForm.cs</Link>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\AdvaMACSystem\SplashForm.designer.cs">
+      <Link>SplashForm.designer.cs</Link>
+      <DependentUpon>SplashForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="..\AdvaMACSystem\UIControlbase.cs">
       <Link>UIControlbase.cs</Link>
       <SubType>UserControl</SubType>
@@ -238,6 +246,10 @@
     <EmbeddedResource Include="..\AdvaMACSystem\PageViewWarn.resx">
       <Link>PageViewWarn.resx</Link>
       <DependentUpon>PageViewWarn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\AdvaMACSystem\SplashForm.resx">
+      <Link>SplashForm.resx</Link>
+      <DependentUpon>SplashForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="..\AdvaMACSystem\VirtualSetForm.resx">
       <Link>VirtualSetForm.resx</Link>
