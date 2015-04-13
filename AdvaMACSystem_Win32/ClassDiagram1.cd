@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DataPool.CDataPool" Collapsed="true">
+    <Position X="7.25" Y="4.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="ComCtrls.ImageButton">
+    <Position X="4.5" Y="2.75" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="ComCtrls.ImageLabel">
+    <Position X="2.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Windows.Forms.Control" Collapsed="true">
+    <Position X="3.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ComCtrls.KeypadForm" Collapsed="true">
+    <Position X="7.25" Y="2" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="AdvaMACSystem.AdvaCanBus">
+    <Position X="2" Y="9" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>IAAAAQASAAAAIggAEIAAIQaAAAARTIAAFAgCAACOAAA=</HashCode>
+      <FileName>D:\csWork\AdvaMACSystem-8\AdvaMACSystem\AdvaCanBus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvaMACSystem.PageViewDiagnose" Collapsed="true">
+    <Position X="8.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FOIQAIAAYGACAACA4CCEiWACAgBMAKAGkMgBAAAIiAg=</HashCode>
+      <FileName>D:\csWork\AdvaMACSystem-8\AdvaMACSystem\PageViewDiagnose.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvaMACSystem.PageViewError" Collapsed="true">
+    <Position X="5.5" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQAAAAAACAQABAAAACAkAE+AAAAgAAAAAAABYAAAAE=</HashCode>
+      <FileName>D:\csWork\AdvaMACSystem-8\AdvaMACSystem\PageViewError.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvaMACSystem.PageViewHistory" Collapsed="true">
+    <Position X="6.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BCEMwAPj0igCDAD0QBLoiLAiBjhMAKJfEpMBi4wCgeo=</HashCode>
+      <FileName>D:\csWork\AdvaMACSystem-8\AdvaMACSystem\PageViewHistory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvaMACSystem.PageViewMAC" Collapsed="true">
+    <Position X="4.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>pCnCwiDEcOKABREEQQGKEQECACRA0OsUBKALQmoAAEo=</HashCode>
+      <FileName>D:\csWork\AdvaMACSystem-8\AdvaMACSystem\PageViewMAC.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvaMACSystem.PageViewPara" Collapsed="true">
+    <Position X="4.25" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>9ySQEAEgsCAAERAQBaCAgGACAAAGAACIAAERHQYQACA=</HashCode>
+      <FileName>D:\csWork\AdvaMACSystem-8\AdvaMACSystem\PageViewPara.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvaMACSystem.PageViewPara_Sensor" Collapsed="true">
+    <Position X="6.5" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gGCAEAAgEGAAABAAAICBgAAiAAQEAgCYAAACBQIBAAI=</HashCode>
+      <FileName>D:\csWork\AdvaMACSystem-8\AdvaMACSystem\PageViewPara_Sensor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvaMACSystem.PageViewPara_Setup" Collapsed="true">
+    <Position X="8.75" Y="12.75" Width="1.5" />
+    <InheritanceLine Type="AdvaMACSystem.UIControlbase" ManuallyRouted="true">
+      <Path>
+        <Point X="7.25" Y="10.897" />
+        <Point X="7.25" Y="11.2" />
+        <Point X="8.481" Y="11.2" />
+        <Point X="8.481" Y="12.45" />
+        <Point X="9.5" Y="12.45" />
+        <Point X="9.5" Y="12.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>ACQIAAAAFCgAEAEAAACAggQCAAQUADAIAAAMDAQIAAA=</HashCode>
+      <FileName>D:\csWork\AdvaMACSystem-8\AdvaMACSystem\PageViewPara_Setup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvaMACSystem.PageViewWarn" Collapsed="true">
+    <Position X="7.75" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQAAAAAACAQABAAAACAkAE+AAAAgAAAAAAABYAAAAE=</HashCode>
+      <FileName>D:\csWork\AdvaMACSystem-8\AdvaMACSystem\PageViewWarn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvaMACSystem.UIControlbase" Collapsed="true">
+    <Position X="6.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ASAAAgAkAGAAAAAAAAGAAQACAABAAAAAIBAIAAAAAAA=</HashCode>
+      <FileName>D:\csWork\AdvaMACSystem-8\AdvaMACSystem\UIControlbase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Windows.Forms.Form" Collapsed="true">
+    <Position X="7.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="AdvaMACSystem.WarnErrOperator">
+    <Position X="12" Y="6.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAUAAAAEADAADBAAAGQgwACEEAAgCKCICAgAgAQAAAA=</HashCode>
+      <FileName>D:\csWork\AdvaMACSystem-8\AdvaMACSystem\WarnErrOperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvaMACSystem.HistoryOperator">
+    <Position X="9.75" Y="6.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAQAEACAYkQAJAFARABgAACAAAAlAKAAAMQBAgIAwAY=</HashCode>
+      <FileName>D:\csWork\AdvaMACSystem-8\AdvaMACSystem\HistoryOperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="AdvaMACSystem.DataPair" Collapsed="true">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAgA=</HashCode>
+      <FileName>D:\csWork\AdvaMACSystem-8\AdvaMACSystem\PageViewHistory.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="DataPool.MotionStateType" Collapsed="true">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="DataPool.ControlModeType" Collapsed="true">
+    <Position X="0.5" Y="4" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="DataPool.CmdDataType" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="ComCtrls.KTLayout" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="ComCtrls.KeypadMode" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Font Name="SimSun" Size="9" />
+</ClassDiagram>
