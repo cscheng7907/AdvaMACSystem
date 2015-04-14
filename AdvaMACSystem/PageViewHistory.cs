@@ -587,7 +587,7 @@ namespace AdvaMACSystem
             }
 
             //draw setting line
-            int ysetting = (int)(270 - (settingValue - minValue) / (maxValue - minValue) * 2409);
+            int ysetting = (int)(270 - (settingValue - minValue) / (maxValue - minValue) * 240);
             g.DrawLine(settingValuePen, 40, ysetting, 40 + 720, ysetting);
             
             //draw legend
