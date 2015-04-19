@@ -31,7 +31,7 @@ namespace AdvaMACSystem
         private const uint M_SENDCOUNT = 164;
         private AdvCan.canmsg_t[] msgSend = new AdvCan.canmsg_t[M_SENDCOUNT];                 //Package for write 
 
-        private const uint M_RECIEVECOUNT = 40;
+        private const uint M_RECIEVECOUNT = 1;//40;
         private AdvCan.canmsg_t[] msgRecieve = new AdvCan.canmsg_t[M_RECIEVECOUNT];                 //Package for write 
 
         private static AdvaCanBus AdvaCanBusObject = null;
@@ -62,10 +62,10 @@ namespace AdvaMACSystem
 
         private UInt32 ReadTimeOutValue = 3000;
         private UInt32 WriteTimeOutValue = 3000;
-        private uint dwMaskCode = 0;
-        private uint dwAccCode = 0;
+        private uint dwMaskCode = 0xFFFFFFFF;//0;
+        private uint dwAccCode = 0xFFFFFFFF;//0;
         private bool AcceptanceFilterMode = true;//false single true dual
-        private uint EventMask = 0;
+        private uint EventMask = 0xFFFFFFFF;//0;
         //-通讯配置参数
 
 
@@ -165,8 +165,8 @@ namespace AdvaMACSystem
                 Device.acCanClose();
                 return false;
             }
-
-            if (AcceptanceFilterMode) // "Single"                     //Set acceptance filter mode
+            /*
+            if (!AcceptanceFilterMode) // "Single"                     //Set acceptance filter mode
                 nRet = Device.acSetAcceptanceFilterMode(AdvCan.PELICAN_SINGLE_FILTER);
             else
                 nRet = Device.acSetAcceptanceFilterMode(AdvCan.PELICAN_DUAL_FILTER);
@@ -192,7 +192,7 @@ namespace AdvaMACSystem
                 Device.acCanClose();
                 return false;
             }
-
+            */
             nRet = Device.acSetTimeOut(WriteTimeOutValue, ReadTimeOutValue);      //Set timeout
             if (nRet < 0)
             {
@@ -201,6 +201,7 @@ namespace AdvaMACSystem
                 return false;
             }
 
+            //*
             //todo
             EventMask = AdvCan.EV_ERR + AdvCan.EV_RXCHAR;
             flag = Device.acSetCommMask(EventMask);                                                                 //Set event mask
@@ -226,7 +227,8 @@ namespace AdvaMACSystem
                 Device.acCanClose();
                 return false;
             }
-
+            //*/
+            
             nRet = Device.acEnterWorkMode();                                     //Enter work mdoe
             if (nRet < 0)
             {
@@ -242,7 +244,6 @@ namespace AdvaMACSystem
                 Device.acCanClose();
                 return false;
             }
-
             Thread1 = new Thread(new ThreadStart(ThreadMethod));
             Thread1.Start();
 
