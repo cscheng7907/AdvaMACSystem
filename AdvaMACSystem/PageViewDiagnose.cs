@@ -201,12 +201,26 @@ namespace AdvaMACSystem
 
         private void diagnoseItemButton_Click(object sender, EventArgs e)
         {
+
+
+
             ImageButton bSender = (ImageButton)sender;
-            foreach (ImageButton button in buttonList)
+
+            timer_Refresh.Enabled = false;
+            try
             {
-                button.Checked = button == bSender;
+                foreach (ImageButton button in buttonList)
+                {
+                    button.Checked = button == bSender;
+                }
+                DiagnoseItem = (int)bSender.Tag;
+
             }
-            DiagnoseItem = (int)bSender.Tag;
+            finally
+            {
+                timer_Refresh.Enabled = true;
+            }
+
         }
 
         private void exitButton_CheckedChanged(object sender, EventArgs e)
@@ -362,8 +376,8 @@ namespace AdvaMACSystem
         {
             diagnoseItemButton_Click(buttonList[0], null);
             RefreshList();
-            timer_Refresh.Enabled = true;
             base.DoEnter();
+            timer_Refresh.Enabled = true;
         }
         #endregion
 
