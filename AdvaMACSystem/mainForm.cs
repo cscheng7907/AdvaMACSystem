@@ -28,6 +28,8 @@ namespace AdvaMACSystem
 {
     public partial class mainForm : Form
     {
+        private System.Windows.Forms.Timer timerLoad;
+
         private System.Drawing.Point bigviewLocation;
         private System.Drawing.Point smallviewLocation;
         private System.Drawing.Size bigviewsize;
@@ -70,6 +72,16 @@ namespace AdvaMACSystem
 
         private void mainForm_Load(object sender, EventArgs e)
         {
+            this.timerLoad = new System.Windows.Forms.Timer();
+
+            this.timerLoad.Interval = 500;
+            this.timerLoad.Tick += new System.EventHandler(this.timerLoad_Tick);
+
+            this.timerLoad.Enabled = true;
+
+
+
+
 #if WindowsCE
             if (!Directory.Exists(@"\HardDisk\History"))
                 Directory.CreateDirectory(@"\HardDisk\History");
@@ -85,9 +97,27 @@ namespace AdvaMACSystem
 
 #endif
 
+            timer1.Enabled = true;
+
+
+            UIControlbase.OnKTUIControlChanged += new KTUIControlChangedEventHandler(OnPageViewChanged);
+
+        }
+
+        private void timerLoad_Tick(object sender, EventArgs e)
+        {
+            this.timerLoad.Enabled = false;
 
             if (isFontExists())
                 LoadFont();
+
+            UpdateWarnErrorLabel(0, 0);
+
+            bigviewLocation = new System.Drawing.Point(0, panel_Head.Height);
+            smallviewLocation = new System.Drawing.Point(0, panel_Head.Height);
+            smallviewsize = new System.Drawing.Size(this.Width, this.Height - panel_Head.Height);
+            bigviewsize = new System.Drawing.Size(this.Width, this.Height - panel_Head.Height);
+
 
 #if WindowsCE
             AdvaCanBusObj = AdvaCanBus.GetAdvaCanBus();
@@ -105,25 +135,17 @@ namespace AdvaMACSystem
             this.MaximizeBox = false;
             CDataPool.GetDataPoolObject().LoadFromFile();
 #endif
+            imageLabel_MAC_Click(null, new EventArgs());
+
+            Application.DoEvents();
 
             Create_WarnErrOper();
             Create_historyOper();
 
-            bigviewLocation = new System.Drawing.Point(0, panel_Head.Height);
-            smallviewLocation = new System.Drawing.Point(0, panel_Head.Height);
-            smallviewsize = new System.Drawing.Size(this.Width, this.Height - panel_Head.Height);
-            bigviewsize = new System.Drawing.Size(this.Width, this.Height - panel_Head.Height);
-
-            UpdateWarnErrorLabel(0, 0);
-
-            timer1.Enabled = true;
-
             WarnErrThreadStart();
             historyRecordThreadStart();
 
-            UIControlbase.OnKTUIControlChanged += new KTUIControlChangedEventHandler(OnPageViewChanged);
 
-            imageLabel_MAC_Click(null, new EventArgs());
         }
 
         private void timer1_Tick(object sender, EventArgs e)

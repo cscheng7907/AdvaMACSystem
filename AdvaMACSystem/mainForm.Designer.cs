@@ -238,6 +238,7 @@
             this.panel_Warn.Location = new System.Drawing.Point(5, 95);
             this.panel_Warn.Name = "panel_Warn";
             this.panel_Warn.Size = new System.Drawing.Size(258, 45);
+            this.panel_Warn.Visible = false;
             // 
             // imageLabel_Warn_History
             // 
@@ -289,6 +290,7 @@
             this.panel_Para.Location = new System.Drawing.Point(5, 95);
             this.panel_Para.Name = "panel_Para";
             this.panel_Para.Size = new System.Drawing.Size(387, 45);
+            this.panel_Para.Visible = false;
             // 
             // imageLabel_Sensor
             // 
@@ -359,6 +361,7 @@
             this.panel_Err.Location = new System.Drawing.Point(5, 95);
             this.panel_Err.Name = "panel_Err";
             this.panel_Err.Size = new System.Drawing.Size(258, 45);
+            this.panel_Err.Visible = false;
             // 
             // imageLabel_Err_History
             // 
