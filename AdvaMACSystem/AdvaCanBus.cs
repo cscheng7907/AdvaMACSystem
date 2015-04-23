@@ -56,7 +56,7 @@ namespace AdvaMACSystem
 
         //通讯配置参数 XML序列化 导入
         private string CanPortName = "can1";
-        private uint BaudRateValue = AdvCan.CAN_TIMING_125K;
+        private uint BaudRateValue = AdvCan.CAN_TIMING_250K;
         private uint nWriteCount = M_SENDCOUNT;
         private uint nReadCount = M_RECIEVECOUNT;
 
