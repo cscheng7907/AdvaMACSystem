@@ -228,7 +228,7 @@ namespace AdvaMACSystem
                 return false;
             }
             //*/
-            
+
             nRet = Device.acEnterWorkMode();                                     //Enter work mdoe
             if (nRet < 0)
             {
@@ -492,14 +492,34 @@ namespace AdvaMACSystem
                     msgSend[canmsgIndex].id = 0x2001;
                     msgSend[canmsgIndex].length = (short)AdvCan.DATALENGTH;
 
+                    //msgSend[canmsgIndex].data[0] = (Csign_View_Parameter) ? (byte)1 : (byte)0;
+                    //msgSend[canmsgIndex].data[1] = (byte)(id + 1);
+                    //msgSend[canmsgIndex].data[2] = (byte)(subid + 1);
+                    //msgSend[canmsgIndex].data[3] = CanDatapool.out_PressureAlarm_Pump[id];
+                    //msgSend[canmsgIndex].data[4] = (CanDatapool.out_PressureUpperLimitAlarm_Enable[(int)(id * CanDatapool.CylinderCount + subid)]) ? (byte)1 : (byte)0;
+                    //msgSend[canmsgIndex].data[5] = (CanDatapool.out_PositionUpperLimitAlarm_Enable[(int)(id * CanDatapool.CylinderCount + subid)]) ? (byte)1 : (byte)0;
+                    //msgSend[canmsgIndex].data[6] = (CanDatapool.out_PositionLowerLimitAlarm_Enable[(int)(id * CanDatapool.CylinderCount + subid)]) ? (byte)1 : (byte)0;
+                    //msgSend[canmsgIndex].data[7] = (CanDatapool.out_PositionControl_Enable[(int)(id * CanDatapool.CylinderCount + subid)]) ? (byte)1 : (byte)0;
+
+                    //进入“参数设定”界面标志位	2001	0		1	1：表示进入界面；0：表示未进入界面
+                    //泵站选择		                                1		1	1：表示1#泵站；2：表示2#泵站 3：表示3#泵站；4：表示4#泵站，以此类推"
+                    //油缸选择（选定某一泵站后）		    2		1	1：表示1#油缸...8:表示8#油缸
+                    //泵站压力报警值		                    3,4		0.1
+                    //油缸压力上限报警功能开启		    5	0	1	1：开启；0：未开启
+                    //油缸长度上限报警功能开启			    1	1	1：开启；0：未开启
+                    //油缸长度下限报警功能开启			    2	1	1：开启；0：未开启
+                    //油缸长度控制功能开启			            3	1	1：开启；0：未开启
+
                     msgSend[canmsgIndex].data[0] = (Csign_View_Parameter) ? (byte)1 : (byte)0;
                     msgSend[canmsgIndex].data[1] = (byte)(id + 1);
                     msgSend[canmsgIndex].data[2] = (byte)(subid + 1);
-                    msgSend[canmsgIndex].data[3] = CanDatapool.out_PressureAlarm_Pump[id];
-                    msgSend[canmsgIndex].data[4] = (CanDatapool.out_PressureUpperLimitAlarm_Enable[(int)(id * CanDatapool.CylinderCount + subid)]) ? (byte)1 : (byte)0;
-                    msgSend[canmsgIndex].data[5] = (CanDatapool.out_PositionUpperLimitAlarm_Enable[(int)(id * CanDatapool.CylinderCount + subid)]) ? (byte)1 : (byte)0;
-                    msgSend[canmsgIndex].data[6] = (CanDatapool.out_PositionLowerLimitAlarm_Enable[(int)(id * CanDatapool.CylinderCount + subid)]) ? (byte)1 : (byte)0;
-                    msgSend[canmsgIndex].data[7] = (CanDatapool.out_PositionControl_Enable[(int)(id * CanDatapool.CylinderCount + subid)]) ? (byte)1 : (byte)0;
+                    msgSend[canmsgIndex].data[3] = (byte)(CanDatapool.out_PressureAlarm_Pump[id] & 0xFF);
+                    msgSend[canmsgIndex].data[4] = (byte)(CanDatapool.out_PressureAlarm_Pump[id] >> 8);
+                    msgSend[canmsgIndex].data[5] = (byte)(
+                        (((CanDatapool.out_PressureUpperLimitAlarm_Enable[(int)(id * CanDatapool.CylinderCount + subid)]) ? (byte)1 : (byte)0) << 0) &
+                        (((CanDatapool.out_PositionUpperLimitAlarm_Enable[(int)(id * CanDatapool.CylinderCount + subid)]) ? (byte)1 : (byte)0) << 1) &
+                        (((CanDatapool.out_PositionLowerLimitAlarm_Enable[(int)(id * CanDatapool.CylinderCount + subid)]) ? (byte)1 : (byte)0) << 2) &
+                        (((CanDatapool.out_PositionControl_Enable[(int)(id * CanDatapool.CylinderCount + subid)]) ? (byte)1 : (byte)0) << 3));
 
                     canmsgIndex++;
 
@@ -659,10 +679,9 @@ namespace AdvaMACSystem
                     }
                 }
                 */
-
                 {
                     msgSend[canmsgIndex].id = 0x2005;
-                    msgSend[canmsgIndex].length = 5;// (short)AdvCan.DATALENGTH;
+                    msgSend[canmsgIndex].length = (short)AdvCan.DATALENGTH;
 
                     //todo 手动控制 通过单独发送还是遍历设备？
                     msgSend[canmsgIndex].data[0] = (byte)CanDatapool.ControlMode;
@@ -670,12 +689,132 @@ namespace AdvaMACSystem
                     msgSend[canmsgIndex].data[2] = (byte)(subid + 1);
                     msgSend[canmsgIndex].data[3] = (byte)CanDatapool.out_MotionState;
                     msgSend[canmsgIndex].data[4] = 19;
-                    msgSend[canmsgIndex].data[5] = (byte)(CanDatapool.out_PressureAlarm_Pump[id] & 0xFF);
-                    msgSend[canmsgIndex].data[6] = (byte)(CanDatapool.out_PressureAlarm_Pump[id] >> 8);
-
+                    msgSend[canmsgIndex].data[5] = (byte)(CanDatapool.out_StartPressure_Pump[id] & 0xFF);
+                    msgSend[canmsgIndex].data[6] = (byte)(CanDatapool.out_StartPressure_Pump[id] >> 8);
+                    msgSend[canmsgIndex].data[7] = (byte)((CanDatapool.out_ManualStart_Pump[id]) ? 1 : 0);
                     canmsgIndex++;
                 }
 
+                //当前泵站无补偿动作	1000	0		1	"值为0：否，值为1：是
+                //计算规则：
+                //1#泵站无补偿动作 AND 2#泵站无补偿动作 AND
+                //3#泵站无补偿动作 AND 4#泵站无补偿动作"	"
+                //根据接收到的1010、1011、1012、1013帧进行控制，并以100ms周期发送给控制器(注意：在手动模式下，第1、2、3、4字节全发送0）"
+
+                //开启冗余控制		1		1	"值为0：否，值为1：是
+                //计算规则：
+                //某一或几#泵站建压失败，且其它泵站无补偿动作，
+                //如2#泵站建压失败，1#、3#、4#无补偿动作；
+                //或2#、3#泵站建压失败，1#、4#无补偿动作。"	
+
+                //被控泵站		2		1	"1：1号泵站，2:2号泵站，3:3号…
+                //计算规则：
+                //开启冗余控制后，如当前只有1个泵站建压失败，则该泵站为被控泵站，如当前有多个泵站建压失败，则按1-2-3-4的优先级确定被控泵站。"	
+
+                //冗余泵站		3		1	"1：1号泵站，2:2号泵站，3:3号…
+                //计算规则：
+                //按1-2-3-4-1确定冗余泵站，成为冗余泵站条件（泵站无补偿动作 AND 泵站未建压失败）
+                //如：被控泵站为2，如3无补偿动作且未建压失败，则3为冗余泵站，如3有补偿动作或建压失败，则4为冗余泵站，以此类推。"	
+
+                //冗余设定压力		4,5		0.1	"根据1011帧内容确定以及被控泵站内容确定。
+                //如被控泵站为2，则冗余设定压力为“2#泵站当前设定压力”"	
+                bool bval = true;
+                byte id_controledPump = 0;//被控泵站
+                byte id_redundantPump = 0;//冗余泵站
+                byte tp_id_redundantPump = 0;
+
+
+                {
+                    msgSend[canmsgIndex].id = 0x1000;
+                    msgSend[canmsgIndex].length = 6;// (short)AdvCan.DATALENGTH;
+
+                    //(注意：在手动模式下，第1、2、3、4字节全发送0）
+                    if (CanDatapool.ControlMode != ControlModeType.Auto)
+                    {
+                        msgSend[canmsgIndex].data[0] = 0;
+                        msgSend[canmsgIndex].data[1] = 0;
+                        msgSend[canmsgIndex].data[2] = 0;
+                        msgSend[canmsgIndex].data[3] = 0;
+                    }
+                    else
+                    {
+                        //*当前泵站无补偿动作
+                        msgSend[canmsgIndex].data[0] = (
+                            !CanDatapool.in_CompAct_Pump_1010_1013[0] &&
+                            !CanDatapool.in_CompAct_Pump_1010_1013[1] &&
+                            !CanDatapool.in_CompAct_Pump_1010_1013[2] &&
+                            !CanDatapool.in_CompAct_Pump_1010_1013[3]
+                            ) ? (byte)1 : (byte)0;
+
+                        //*开启冗余控制
+                        //某一或几#泵站建压失败，且其它泵站无补偿动作
+                        //即，当某一泵站没有建压失败，且它有补偿动作，则开启冗余控制不成立
+                        //边界条件，1 没有泵站建压失败，且所有泵站无补偿动作 ，目前结果为是
+                        //          2 所有泵站建压失败，目前结果为是
+
+                        for (int i = 0; i < CanDatapool.PumpCount; i++)
+                        {
+                            if (!CanDatapool.in_StartFailed_Pump_1010_1013[i] &&
+                                CanDatapool.in_CompAct_Pump_1010_1013[i])
+                                bval = false;
+                        }
+
+                        msgSend[canmsgIndex].data[1] = (bval) ? (byte)1 : (byte)0;
+
+
+                        //*被控泵站
+                        //开启冗余控制后，如当前只有1个泵站建压失败，则该泵站为被控泵站，如当前有多个泵站建压失败，则按1-2-3-4的优先级确定被控泵站。
+                        if (bval)
+                        {
+                            for (int i = 0; i < CanDatapool.PumpCount; i++)
+                            {
+                                if (CanDatapool.in_StartFailed_Pump_1010_1013[i])
+                                {
+                                    id_controledPump = (byte)(i + 1);
+                                    break;
+                                }
+                            }
+
+                            msgSend[canmsgIndex].data[2] = id_controledPump;
+                        }
+                        else
+                            msgSend[canmsgIndex].data[2] = 0;
+
+                        //*冗余泵站
+                        //按1-2-3-4-1确定冗余泵站，成为冗余泵站条件（泵站无补偿动作 AND 泵站未建压失败）
+                        //如：被控泵站为2，如3无补偿动作且未建压失败，则3为冗余泵站，如3有补偿动作或建压失败，则4为冗余泵站，以此类推。"	
+                        //边界条件，1 如没有被控泵站，从1-4判断，没有则为0
+                        //          2 如有被控泵站， 没有符合条件的冗余泵站，目前为0
+                        for (byte i = msgSend[canmsgIndex].data[2]; i < msgSend[canmsgIndex].data[2] + CanDatapool.PumpCount; i++)
+                        {
+                            if (i < CanDatapool.PumpCount)
+                                tp_id_redundantPump = i;
+                            else
+                                tp_id_redundantPump = (byte)(i - CanDatapool.PumpCount);
+
+                            if (!CanDatapool.in_CompAct_Pump_1010_1013[tp_id_redundantPump] &&
+                                !CanDatapool.in_StartFailed_Pump_1010_1013[tp_id_redundantPump])
+                                id_redundantPump = (byte)(tp_id_redundantPump + 1);
+                        }
+
+                        msgSend[canmsgIndex].data[3] = id_redundantPump;
+                    }
+
+                    //冗余设定压力
+                    //如被控泵站为2，则冗余设定压力为“2#泵站当前设定压力”"
+                    if (id_controledPump > 0)
+                    {
+                        msgSend[canmsgIndex].data[4] = CanDatapool.in_CurPressureLow_Pump_Real_1010_1013[id_controledPump - 1];
+                        msgSend[canmsgIndex].data[5] = CanDatapool.in_CurPressureHigh_Pump_Real_1010_1013[id_controledPump - 1];
+                    }
+                    else
+                    {
+                        msgSend[canmsgIndex].data[4] = 0;
+                        msgSend[canmsgIndex].data[5] = 0;
+                    }
+
+                    canmsgIndex++;
+                }
             }
 
             nRet = Device.acCanWrite(msgSend, canmsgIndex, ref pulNumberofWritten);
@@ -759,6 +898,30 @@ namespace AdvaMACSystem
 
                                 switch (msgRecieve[j].id)
                                 {
+                                    //1#泵站当前设定压力	1010	0,1	0.1
+                                    //1#泵站建压失败		        2		1	0:否，1：是
+                                    //1#泵站补偿动作情况		    3		1	0：无动作，1：有动作
+                                    //2#泵站当前设定压力	1011	0,1	0.1
+                                    //2#泵站建压失败		        2		1	0:否，1：是
+                                    //2#泵站补偿动作情况		    3		1	0：无动作，1：有动作
+                                    //3#泵站当前设定压力	1012	0,1	0.1
+                                    //3#泵站建压失败		        2		1	0:否，1：是
+                                    //3#泵站补偿动作情况		    3		1	0：无动作，1：有动作
+                                    //4#泵站当前设定压力	1013	0,1	0.1
+                                    //4#泵站建压失败		        2		1	0:否，1：是
+                                    //4#泵站补偿动作情况		    3		1	0：无动作，1：有动作
+                                    case 0x1010:
+                                    case 0x1011:
+                                    case 0x1012:
+                                    case 0x1013:
+                                        idArray = BitConverter.GetBytes(msgRecieve[j].id);
+                                        idArray0 = idArray[0];
+
+                                        CanDatapool.in_CurPressureLow_Pump_Real_1010_1013[idArray0] = msgRecieve[j].data[0];
+                                        CanDatapool.in_CurPressureHigh_Pump_Real_1010_1013[idArray0] = msgRecieve[j].data[1];
+                                        CanDatapool.in_StartFailed_Pump_1010_1013[idArray0] = msgRecieve[j].data[2] != 0;
+                                        CanDatapool.in_CompAct_Pump_1010_1013[idArray0] = msgRecieve[j].data[3] != 0;
+                                        break;
                                     #region 3001-3008
                                     //3001
                                     //11#油缸压力当前值	    	0,1		0.1	
@@ -1720,7 +1883,7 @@ namespace AdvaMACSystem
         }
 
 
-       // private CDataPool _candatapool = null;
+        // private CDataPool _candatapool = null;
         public CDataPool CanDatapool
         {
             //get { return _candatapool; }

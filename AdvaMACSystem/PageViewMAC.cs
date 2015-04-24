@@ -222,7 +222,10 @@ namespace AdvaMACSystem
 
         private void PumpInstallButton_Click(object sender, EventArgs e)
         {
-
+            DataPool.CDataPool.GetDataPoolObject().SetboolValue(
+                    selectedPumpIndex,
+                    selectedCylinderIndex,
+                    CmdDataType.cdtManualStart_Pump, true);
         }
 
         private void PumpSettingButton_Click(object sender, EventArgs e)
@@ -237,7 +240,7 @@ namespace AdvaMACSystem
             {
                 try
                 {
-
+                    dv = Convert.ToInt16(f.KeyText);
                     if (dv >= 0 && dv <= 4000)
                     {
                         DataPool.CDataPool.GetDataPoolObject().SetintValue(
