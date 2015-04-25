@@ -567,7 +567,7 @@ namespace AdvaMACSystem
         private void Label_CurError_Click(object sender, EventArgs e)
         {
             imageLabel_RealError_Click(sender, e);
-            imageLabel_WarnSet_Click(imageLabel_Err_Real, new EventArgs());
+            imageLabel_ErrSet_Click(imageLabel_Err_Real, new EventArgs());
         }
 
         private void Label_History_Click(object sender, EventArgs e)
@@ -578,7 +578,10 @@ namespace AdvaMACSystem
         private void Label_Setting_Click(object sender, EventArgs e)
         {
 #if UNPASSWORD
-            EnterpvSetup();
+            //EnterpvSetup();
+            OnPageViewChanged(null);
+            imageLabel_ParaSet_Click(imageLabel_Setup, new EventArgs());
+
 #else
 
             KeypadForm f = KeypadForm.GetKeypadForm("", KeypadMode.password);
@@ -643,7 +646,7 @@ namespace AdvaMACSystem
             //btn enable
             foreach (Control item in panel_Warn.Controls)
             {
-                item.Enabled = !(item == btn);
+                item.Enabled = !(item.Text == btn.Text);
             }
 
             //UIControlbase.CurKTUIControl.Exit();
@@ -668,7 +671,7 @@ namespace AdvaMACSystem
             //btn enable
             foreach (Control item in panel_Err.Controls)
             {
-                item.Enabled = !(item == btn);
+                item.Enabled = !(item.Text == btn.Text);
             }
 
             //UIControlbase.CurKTUIControl.Exit();
