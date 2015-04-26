@@ -71,11 +71,11 @@ List<bool> in_Error_MachLock_retract_3511_3514 = new List<bool>();//油缸机械
             boolDic.Add(rb_Warn_LowPosition, CDataPool.GetDataPoolObject().in_Warn_LowPosition_3401_3404);
             boolDic.Add(rb_Warn_HighPosition, CDataPool.GetDataPoolObject().in_Warn_HighPosition_3401_3404);
             boolDic.Add(rb_Warn_LowPressure, CDataPool.GetDataPoolObject().in_Warn_LowPressure_3401_3404);
-            boolDic.Add(rb_Error_cylinder_extend, CDataPool.GetDataPoolObject().in_Error_cylinder_extend_3511_3514);
-            boolDic.Add(rb_Error_MachLock_retract, CDataPool.GetDataPoolObject().in_Error_MachLock_retract_3511_3514);
+            boolDic.Add(rb_Error_cylinder_extend, CDataPool.GetDataPoolObject().in_Error_cylinder_extend_shortcircuit_3511_3514);
+            boolDic.Add(rb_Error_MachLock_retract, CDataPool.GetDataPoolObject().in_Error_MachLock_retract_shortcircuit_3511_3514);
             boolDic.Add(rb_Error_Pump, CDataPool.GetDataPoolObject().in_Error_Pump_3501_3504);
-            boolDic.Add(rb_Error_cylinder_retract, CDataPool.GetDataPoolObject().in_Error_cylinder_retract_3511_3514);
-            boolDic.Add(rb_Error_MachLock_extend, CDataPool.GetDataPoolObject().in_Error_MachLock_extend_3511_3514);
+            boolDic.Add(rb_Error_cylinder_retract, CDataPool.GetDataPoolObject().in_Error_cylinder_retract_shortcircuit_3511_3514);
+            boolDic.Add(rb_Error_MachLock_extend, CDataPool.GetDataPoolObject().in_Error_MachLock_extend_shortcircuit_3511_3514);
             boolDic.Add(rb_Error_PressureSenser, CDataPool.GetDataPoolObject().in_Error_PressureSenser_3501_3504);
             boolDic.Add(rb_Error_PositionSenser, CDataPool.GetDataPoolObject().in_Error_PositionSenser_3501_3504);
 

@@ -28,7 +28,7 @@ namespace AdvaMACSystem
             InitializeComponent();
         }
 
-        public override  void DoEnter()
+        public override void DoEnter()
         {
             base.DoEnter();
 
@@ -39,7 +39,7 @@ namespace AdvaMACSystem
         }
 
         private void Update()
-        { 
+        {
             int count = 0;
             int id, subid, cmdtype;
 
@@ -63,7 +63,11 @@ namespace AdvaMACSystem
                     subid = item.Key % 10000 / 100;
                     cmdtype = item.Key % 10000 % 100;
 
-                    lv.SubItems.Add(string.Format("{0}#- {1}# {2}", id+1, subid+1, strlst[cmdtype - firstcmdtype]));
+                    if (cmdtype > (int)CmdDataType.cdtError_controller_warnlight_opencircuit_3501_3504)
+                        lv.SubItems.Add(string.Format("{0}#泵站 {1}# {2}", id + 1, subid + 1, strlst[cmdtype - firstcmdtype]));
+                    else 
+                        lv.SubItems.Add(string.Format("{0}#{1}", id + 1, strlst[cmdtype - firstcmdtype]));
+
                     listView1.Items.Add(lv);
                 }
             }
@@ -97,7 +101,10 @@ namespace AdvaMACSystem
 
                             lv.SubItems.Add(string.Format("{0:00}-{1:00}-{2:00} {3:00}:{4:00}:{5:00}", dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second));
                             lv.SubItems.Add(string.Format("{0}", (val) ? "发生" : "消失"));
-                            lv.SubItems.Add(string.Format("{0}#- {1}# {2}", id+1, subid+1, strlst[cmdtype - firstcmdtype]));
+                            if (cmdtype > (int)CmdDataType.cdtError_controller_warnlight_opencircuit_3501_3504)
+                                lv.SubItems.Add(string.Format("{0}#泵站 {1}# {2}", id + 1, subid + 1, strlst[cmdtype - firstcmdtype]));
+                            else
+                                lv.SubItems.Add(string.Format("{0}#{1}", id + 1, strlst[cmdtype - firstcmdtype]));
 
                             listView1.Items.Insert(0, lv);
                         }
@@ -111,7 +118,7 @@ namespace AdvaMACSystem
                 }
 
             }
-        
+
         }
 
         private bool _isreal = false;
@@ -136,14 +143,61 @@ namespace AdvaMACSystem
 
         private string[] strlst = new string[]{
             /*cdtError_Pump_3501_3504,//*/"泵站及控制器 故障",// 4*16
+
+
+            /*cdtError_pump_motor_shortcircuit_3501_3504,                       //*/"泵站电动机启动线路短路",  // 4
+            /*cdtError_pump_motor_opencircuit_3501_3504,                        //*/"泵站电动机启动线路断路",  // 4
+
+            /*cdtError_pump_electromagneticvalve_shortcircuit_3501_3504,        //*/"泵站冗余电磁阀线路短路",  // 4
+            /*cdtError_pump_electromagneticvalve_opencircuit_3501_3504,         //*/"泵站冗余电磁阀线路断路",  // 4
+
+            /*cdtError_pump_proportionalvalve_shortcircuit_3501_3504,           //*/"泵站比例阀线路短路",      // 4   
+            /*cdtError_pump_proportionalvalve_opencircuit_3501_3504,            //*/"泵站比例阀线路断路",      // 4
+
+            /*cdtError_pump_MachLock_proportionalvalve_shortcircuit_3501_3504, //*/"泵站机械锁马达电磁阀线路短路",  // 4
+            /*cdtError_pump_MachLock_proportionalvalve_opencircuit_3501_3504,  //*/"泵站机械锁马达电磁阀线路断路",  // 4
+
+
+            /*cdtError_controller_dynamo_Start_shortcircuit_3501_3504,      //*/"控制器发电机启动线路短路",  // 4
+            /*cdtError_controller_dynamo_Start_opencircuit_3501_3504,       //*/"控制器发电机启动线路断路",  // 4
+
+            /*cdtError_controller_dynamo_Stop_shortcircuit_3501_3504,        //*/"控制器发电机停止线路短路",  // 4
+            /*cdtError_controller_dynamo_Stop_opencircuit_3501_3504,         //*/"控制器发电机停止线路断路",  // 4
+
+            /*cdtError_controller_warnlight_shortcircuit_3501_3504,         //*/"控制器声光报警灯线路短路",  // 4
+            /*cdtError_controller_warnlight_opencircuit_3501_3504,          //*/"控制器声光报警灯线路断路",  // 4
+
+
             /*cdtError_PressureSenser_3501_3504,//*/"油缸压力传感器故障",// 4*8
             /*cdtError_PositionSenser_3501_3504,//*/"油缸长度传感器故障",// 4*8
 
-            /*cdtError_cylinder_extend_3511_3514,//*/"油缸伸出电磁阀线路短路",// 4*8
-            /*cdtError_cylinder_retract_3511_3514,//*/"油缸缩回电磁阀线路短路",// 4*8
-            /*cdtError_MachLock_extend_3511_3514,//*/"油缸机械锁伸出电磁阀线路短路",// 4*8
-            /*cdtError_MachLock_retract_3511_3514,//*/"油缸机械锁缩回电磁阀线路短路"// 4*8           
+            /*cdtError_cylinder_extend_shortcircuit_3511_3514,//*/"油缸伸出电磁阀线路短路",// 4*8
+            /*cdtError_cylinder_retract_shortcircuit_3511_3514,//*/"油缸缩回电磁阀线路短路",// 4*8
+            /*cdtError_MachLock_extend_shortcircuit_3511_3514,//*/"油缸机械锁伸出电磁阀线路短路",// 4*8
+            /*cdtError_MachLock_retract_shortcircuit_3511_3514,//*/"油缸机械锁缩回电磁阀线路短路",// 4*8 
+          
+            /*cdtError_cylinder_extend_opencircuit_3511_3514,//*/"油缸伸出电磁阀线路断路",// 4*8
+            /*cdtError_cylinder_retract_opencircuit_3511_3514,//*/"油缸缩回电磁阀线路断路",// 4*8
+            /*cdtError_MachLock_extend_opencircuit_3511_3514,//*/"油缸机械锁伸出电磁阀线路断路",// 4*8
+            /*cdtError_MachLock_retract_opencircuit_3511_3514//*/"油缸机械锁缩回电磁阀线路断路"// 4*8
         };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         private int firstcmdtype = (int)CmdDataType.cdtError_Pump_3501_3504;
 
         private void imageButton_back_Click(object sender, EventArgs e)

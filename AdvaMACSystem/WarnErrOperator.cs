@@ -39,10 +39,10 @@ namespace AdvaMACSystem
             dic.Add(CmdDataType.cdtError_PressureSenser_3501_3504, _Error_PressureSenser_3501_3504);//油缸压力传感器故障 4*8
             dic.Add(CmdDataType.cdtError_PositionSenser_3501_3504, _Error_PositionSenser_3501_3504);//油缸长度传感器故障 4*8
 
-            dic.Add(CmdDataType.cdtError_cylinder_extend_3511_3514, _Error_cylinder_extend_3511_3514);//油缸伸出电磁阀线路短路 4*8
-            dic.Add(CmdDataType.cdtError_cylinder_retract_3511_3514, _Error_cylinder_retract_3511_3514);//油缸缩回电磁阀线路短路 4*8
-            dic.Add(CmdDataType.cdtError_MachLock_extend_3511_3514, _Error_MachLock_extend_3511_3514);//油缸机械锁伸出电磁阀线路短路 4*8
-            dic.Add(CmdDataType.cdtError_MachLock_retract_3511_3514, _Error_MachLock_retract_3511_3514);//油缸机械锁缩回电磁阀线路短路 4*8
+            dic.Add(CmdDataType.cdtError_cylinder_extend_shortcircuit_3511_3514, _Error_cylinder_extend_3511_3514);//油缸伸出电磁阀线路短路 4*8
+            dic.Add(CmdDataType.cdtError_cylinder_retract_shortcircuit_3511_3514, _Error_cylinder_retract_3511_3514);//油缸缩回电磁阀线路短路 4*8
+            dic.Add(CmdDataType.cdtError_MachLock_extend_shortcircuit_3511_3514, _Error_MachLock_extend_3511_3514);//油缸机械锁伸出电磁阀线路短路 4*8
+            dic.Add(CmdDataType.cdtError_MachLock_retract_shortcircuit_3511_3514, _Error_MachLock_retract_3511_3514);//油缸机械锁缩回电磁阀线路短路 4*8
         }
 
         #region 缓存

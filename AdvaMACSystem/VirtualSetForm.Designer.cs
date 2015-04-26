@@ -374,7 +374,7 @@ namespace AdvaMACSystem
             this.rb_Error_cylinder_extend.Name = "rb_Error_cylinder_extend";
             this.rb_Error_cylinder_extend.Size = new System.Drawing.Size(165, 20);
             this.rb_Error_cylinder_extend.TabIndex = 0;
-            this.rb_Error_cylinder_extend.Tag = DataPool.CmdDataType.cdtError_cylinder_extend_3511_3514;
+            this.rb_Error_cylinder_extend.Tag = DataPool.CmdDataType.cdtError_cylinder_extend_shortcircuit_3511_3514;
             this.rb_Error_cylinder_extend.Text = "油缸伸出电磁阀线路短路";
             // 
             // rb_Error_MachLock_retract
@@ -383,7 +383,7 @@ namespace AdvaMACSystem
             this.rb_Error_MachLock_retract.Name = "rb_Error_MachLock_retract";
             this.rb_Error_MachLock_retract.Size = new System.Drawing.Size(165, 20);
             this.rb_Error_MachLock_retract.TabIndex = 0;
-            this.rb_Error_MachLock_retract.Tag = DataPool.CmdDataType.cdtError_MachLock_retract_3511_3514;
+            this.rb_Error_MachLock_retract.Tag = DataPool.CmdDataType.cdtError_MachLock_retract_shortcircuit_3511_3514;
             this.rb_Error_MachLock_retract.Text = "油缸机械锁缩回电磁阀线路短路";
             // 
             // rb_Error_Pump
@@ -401,7 +401,7 @@ namespace AdvaMACSystem
             this.rb_Error_cylinder_retract.Name = "rb_Error_cylinder_retract";
             this.rb_Error_cylinder_retract.Size = new System.Drawing.Size(165, 20);
             this.rb_Error_cylinder_retract.TabIndex = 0;
-            this.rb_Error_cylinder_retract.Tag = DataPool.CmdDataType.cdtError_cylinder_retract_3511_3514;
+            this.rb_Error_cylinder_retract.Tag = DataPool.CmdDataType.cdtError_cylinder_retract_shortcircuit_3511_3514;
             this.rb_Error_cylinder_retract.Text = "油缸缩回电磁阀线路短路";
             // 
             // rb_Error_MachLock_extend
@@ -410,7 +410,7 @@ namespace AdvaMACSystem
             this.rb_Error_MachLock_extend.Name = "rb_Error_MachLock_extend";
             this.rb_Error_MachLock_extend.Size = new System.Drawing.Size(165, 20);
             this.rb_Error_MachLock_extend.TabIndex = 0;
-            this.rb_Error_MachLock_extend.Tag = DataPool.CmdDataType.cdtError_MachLock_extend_3511_3514;
+            this.rb_Error_MachLock_extend.Tag = DataPool.CmdDataType.cdtError_MachLock_extend_shortcircuit_3511_3514;
             this.rb_Error_MachLock_extend.Text = "油缸机械锁伸出电磁阀线路短路";
             // 
             // rb_Error_PressureSenser

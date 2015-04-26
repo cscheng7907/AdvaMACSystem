@@ -915,7 +915,7 @@ namespace AdvaMACSystem
                                     case 0x1012:
                                     case 0x1013:
                                         idArray = BitConverter.GetBytes(msgRecieve[j].id);
-                                        idArray0 = idArray[0];
+                                        idArray0 = Convert.ToByte(idArray[0] - 0x10);
 
                                         CanDatapool.in_CurPressureLow_Pump_Real_1010_1013[idArray0] = msgRecieve[j].data[0];
                                         CanDatapool.in_CurPressureHigh_Pump_Real_1010_1013[idArray0] = msgRecieve[j].data[1];
@@ -1269,7 +1269,7 @@ namespace AdvaMACSystem
                                     case 0x3303:
                                     case 0x3304:
                                         idArray = BitConverter.GetBytes(msgRecieve[j].id);
-                                        idArray0 = idArray[0];
+                                        idArray0 = Convert.ToByte(idArray[0] - 1);
 
                                         CanDatapool.in_Pressure_Pump_Real_3301_3304[idArray0] =
                                              msgRecieve[j].data[0] + (msgRecieve[j].data[1] << 8);
@@ -1280,9 +1280,9 @@ namespace AdvaMACSystem
 
                                         for (int k = 0; k < 8; k++)
                                         {
-                                            CanDatapool.in_Limit_5_3301_3304[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[5] & (1 << k)) != 0);
+                                            CanDatapool.in_Limit_5_3301_3304[idArray0 * 8 + k] = ((msgRecieve[j].data[5] & (1 << k)) != 0);
 
-                                            CanDatapool.in_Limit_10_3301_3304[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[6] & (1 << k)) != 0);
+                                            CanDatapool.in_Limit_10_3301_3304[idArray0 * 8 + k] = ((msgRecieve[j].data[6] & (1 << k)) != 0);
                                         }
 
                                         break;
@@ -1560,16 +1560,66 @@ namespace AdvaMACSystem
                                     case 0x3503:
                                     case 0x3504:
                                         idArray = BitConverter.GetBytes(msgRecieve[j].id);
-                                        idArray0 = idArray[0];
+                                        idArray0 = Convert.ToByte(idArray[0] - 1);
 
-                                        for (int k = 0; k < 8; k++)
+                                        for (int k = 0; k < 8; k++)//位
                                         {
-                                            CanDatapool.in_Error_Pump_3501_3504[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[0] & (1 << k)) != 0);
-                                            CanDatapool.in_Error_Pump_3501_3504[(idArray0) * 8 + k] = ((msgRecieve[j].data[1] & (1 << k)) != 0);
+                                            //0
+                                            //0泵站电动机启动线路短路
+                                            //1泵站电动机启动线路断路
+                                            //2泵站冗余电磁阀线路短路
+                                            //3泵站冗余电磁阀线路断路
+                                            //4泵站机械锁马达电磁阀线路短路
+                                            //5泵站机械锁马达电磁阀线路断路
+                                            //6控制器发电机启动线路短路
+                                            //7控制器发电机启动线路断路
 
-                                            CanDatapool.in_Error_PressureSenser_3501_3504[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[2] & (1 << k)) != 0);
-                                            CanDatapool.in_Error_PositionSenser_3501_3504[(idArray0 - 1) * 8 + k] = ((msgRecieve[j].data[3] & (1 << k)) != 0);
+                                            //1
+                                            //0控制器发电机停止线路短路
+                                            //1控制器发电机停止线路断路
+                                            //2控制器声光报警灯线路短路
+                                            //3控制器声光报警灯线路断路
+                                            //4泵站比例阀线路短路
+                                            //5泵站比例阀线路断路
 
+                                            switch (k)
+                                            {
+                                                case 0:
+                                                    CanDatapool.in_Error_pump_motor_shortcircuit_3501_3504[idArray0] = ((msgRecieve[j].data[0] & (1 << k)) != 0);                       //泵站电动机启动线路短路  // 4
+                                                    CanDatapool.in_Error_controller_dynamo_Stop_shortcircuit_3501_3504[idArray0] = ((msgRecieve[j].data[0] & (1 << k)) != 0);        //控制器发电机停止线路短路  // 4
+                                                    break;
+                                                case 1:
+                                                    CanDatapool.in_Error_pump_motor_opencircuit_3501_3504[idArray0] = ((msgRecieve[j].data[0] & (1 << k)) != 0);                        //泵站电动机启动线路断路  // 4
+                                                    CanDatapool.in_Error_controller_dynamo_Stop_opencircuit_3501_3504[idArray0] = ((msgRecieve[j].data[0] & (1 << k)) != 0);         //控制器发电机停止线路断路  // 4
+                                                    break;
+                                                case 2:
+                                                    CanDatapool.in_Error_pump_electromagneticvalve_shortcircuit_3501_3504[idArray0] = ((msgRecieve[j].data[0] & (1 << k)) != 0);        //泵站冗余电磁阀线路短路  // 4
+                                                    CanDatapool.in_Error_controller_warnlight_shortcircuit_3501_3504[idArray0] = ((msgRecieve[j].data[0] & (1 << k)) != 0);         //控制器声光报警灯线路短路  // 4
+                                                    break;
+                                                case 3:
+                                                    CanDatapool.in_Error_pump_electromagneticvalve_opencircuit_3501_3504[idArray0] = ((msgRecieve[j].data[0] & (1 << k)) != 0);         //泵站冗余电磁阀线路断路  // 4
+                                                    CanDatapool.in_Error_controller_warnlight_opencircuit_3501_3504[idArray0] = ((msgRecieve[j].data[0] & (1 << k)) != 0);          //控制器声光报警灯线路断路  // 4
+                                                    break;
+                                                case 4:
+                                                    CanDatapool.in_Error_pump_MachLock_proportionalvalve_shortcircuit_3501_3504[idArray0] = ((msgRecieve[j].data[0] & (1 << k)) != 0); //泵站机械锁马达电磁阀线路短路  // 4
+                                                    CanDatapool.in_Error_pump_proportionalvalve_shortcircuit_3501_3504[idArray0] = ((msgRecieve[j].data[0] & (1 << k)) != 0);           //泵站比例阀线路短路      // 4   
+                                                    break;
+                                                case 5:
+                                                    CanDatapool.in_Error_pump_MachLock_proportionalvalve_opencircuit_3501_3504[idArray0] = ((msgRecieve[j].data[0] & (1 << k)) != 0);  //泵站机械锁马达电磁阀线路断路  // 4
+                                                    CanDatapool.in_Error_pump_proportionalvalve_opencircuit_3501_3504[idArray0] = ((msgRecieve[j].data[0] & (1 << k)) != 0);            //泵站比例阀线路断路      // 4
+                                                    break;
+                                                case 6:
+                                                    CanDatapool.in_Error_controller_dynamo_Start_shortcircuit_3501_3504[idArray0] = ((msgRecieve[j].data[0] & (1 << k)) != 0);      //控制器发电机启动线路短路  // 4
+                                                    break;
+                                                case 7:
+                                                    CanDatapool.in_Error_controller_dynamo_Start_opencircuit_3501_3504[idArray0] = ((msgRecieve[j].data[0] & (1 << k)) != 0);       //控制器发电机启动线路断路  // 4
+                                                    break;
+                                            }
+                                            //CanDatapool.in_Error_Pump_3501_3504[idArray0 * 8 + k] = ((msgRecieve[j].data[0] & (1 << k)) != 0);
+                                            //CanDatapool.in_Error_Pump_3501_3504[idArray0 * 8 + k] = ((msgRecieve[j].data[1] & (1 << k)) != 0);
+
+                                            CanDatapool.in_Error_PressureSenser_3501_3504[idArray0 * 8 + k] = ((msgRecieve[j].data[2] & (1 << k)) != 0);
+                                            CanDatapool.in_Error_PositionSenser_3501_3504[idArray0 * 8 + k] = ((msgRecieve[j].data[3] & (1 << k)) != 0);
                                         }
 
                                         break;
@@ -1841,8 +1891,8 @@ namespace AdvaMACSystem
                                     case 0x3513:
                                     case 0x3514:
                                         idArray = BitConverter.GetBytes(msgRecieve[j].id);
-                                        idArray0 = Convert.ToByte(idArray[0] - 10);
-
+                                        idArray0 = Convert.ToByte(idArray[0] - 0x10 - 1);
+                                        /*
                                         for (int k = 0; k < 8; k++)
                                         {
                                             if (k < 4)//油缸伸出/缩回电磁阀线路断路
@@ -1850,9 +1900,9 @@ namespace AdvaMACSystem
                                                 for (int l = 0; l < 8; l++)
                                                 {
                                                     if (l % 2 == 0)
-                                                        CanDatapool.in_Error_cylinder_extend_3511_3514[(8 * k + l) / 2] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
+                                                        CanDatapool.in_Error_cylinder_extend_shortcircuit_3511_3514[(8 * k + l) / 2] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
                                                     else
-                                                        CanDatapool.in_Error_cylinder_retract_3511_3514[(8 * k + l) / 2] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
+                                                        CanDatapool.in_Error_cylinder_retract_shortcircuit_3511_3514[(8 * k + l) / 2] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
                                                 }
                                             }
                                             else //油缸机械锁伸出/缩回电磁阀线路断路
@@ -1861,9 +1911,35 @@ namespace AdvaMACSystem
                                                 for (int l = 0; l < 8; l++)
                                                 {
                                                     if (l % 2 == 0)
-                                                        CanDatapool.in_Error_MachLock_extend_3511_3514[(8 * (k - 4) + l) / 2] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
+                                                        CanDatapool.in_Error_MachLock_extend_shortcircuit_3511_3514[(8 * (k - 4) + l) / 2] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
                                                     else
-                                                        CanDatapool.in_Error_MachLock_retract_3511_3514[(8 * (k - 4) + l) / 2] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
+                                                        CanDatapool.in_Error_MachLock_retract_shortcircuit_3511_3514[(8 * (k - 4) + l) / 2] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
+                                                }
+                                            }
+                                        }
+                                        */
+                                        for (int k = 0; k < 8; k++)//字节数 
+                                        {
+                                            for (int l = 0; l < 8; l++)//位数
+                                            {
+                                                switch (k)
+                                                {
+                                                    case 0:
+                                                    case 1:
+                                                        CanDatapool.in_Error_cylinder_extend_shortcircuit_3511_3514[(int)(idArray0 * 8 + ((l % 2 == 0) ? l / 2 : l / 2 + 4))] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
+                                                        break;
+                                                    case 2:
+                                                    case 3:
+                                                        CanDatapool.in_Error_cylinder_extend_opencircuit_3511_3514[(int)(idArray0 * 8 + ((l % 2 == 0) ? l / 2 : l / 2 + 4))] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
+                                                        break;
+                                                    case 4:
+                                                    case 5:
+                                                        CanDatapool.in_Error_cylinder_retract_shortcircuit_3511_3514[(int)(idArray0 * 8 + ((l % 2 == 0) ? l / 2 : l / 2 + 4))] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
+                                                        break;
+                                                    case 6:
+                                                    case 7:
+                                                        CanDatapool.in_Error_cylinder_retract_opencircuit_3511_3514[(int)(idArray0 * 8 + ((l % 2 == 0) ? l / 2 : l / 2 + 4))] = ((msgRecieve[j].data[k] & (1 << l)) != 0);
+                                                        break;
                                                 }
                                             }
                                         }

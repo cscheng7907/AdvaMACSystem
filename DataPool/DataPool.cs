@@ -52,11 +52,39 @@ namespace DataPool
 
                     in_Error_PressureSenser_3501_3504.Add(false); //油缸压力传感器故障 4*8                          
                     in_Error_PositionSenser_3501_3504.Add(false); //油缸长度传感器故障 4*8                     
-                    in_Error_cylinder_extend_3511_3514.Add(false); //油缸伸出电磁阀线路短路 4*8                    
-                    in_Error_cylinder_retract_3511_3514.Add(false); //油缸缩回电磁阀线路短路 4*8                     
-                    in_Error_MachLock_extend_3511_3514.Add(false); //油缸机械锁伸出电磁阀线路短路 4*8                    
-                    in_Error_MachLock_retract_3511_3514.Add(false); //油缸机械锁缩回电磁阀线路短路 4*8                     
+                    in_Error_cylinder_extend_shortcircuit_3511_3514.Add(false); //油缸伸出电磁阀线路短路 4*8                    
+                    in_Error_cylinder_retract_shortcircuit_3511_3514.Add(false); //油缸缩回电磁阀线路短路 4*8                     
+                    in_Error_MachLock_extend_shortcircuit_3511_3514.Add(false); //油缸机械锁伸出电磁阀线路短路 4*8                    
+                    in_Error_MachLock_retract_shortcircuit_3511_3514.Add(false); //油缸机械锁缩回电磁阀线路短路 4*8
+
+                    in_Error_cylinder_extend_opencircuit_3511_3514.Add(false); //油缸伸出电磁阀线路断路 4*8                    
+                    in_Error_cylinder_retract_opencircuit_3511_3514.Add(false); //油缸缩回电磁阀线路断路 4*8                     
+                    in_Error_MachLock_extend_opencircuit_3511_3514.Add(false); //油缸机械锁伸出电磁阀线路断路 4*8                    
+                    in_Error_MachLock_retract_opencircuit_3511_3514.Add(false); //油缸机械锁缩回电磁阀线路断路 4*8                     
                 }
+
+
+                in_Error_pump_motor_shortcircuit_3501_3504.Add(false);                      //泵站电动机启动线路短路  // 4
+                in_Error_pump_motor_opencircuit_3501_3504.Add(false);                       //泵站电动机启动线路断路  // 4
+
+                in_Error_pump_electromagneticvalve_shortcircuit_3501_3504.Add(false);       //泵站冗余电磁阀线路短路  // 4
+                in_Error_pump_electromagneticvalve_opencircuit_3501_3504.Add(false);        //泵站冗余电磁阀线路断路  // 4
+
+                in_Error_pump_proportionalvalve_shortcircuit_3501_3504.Add(false);          //泵站比例阀线路短路      // 4   
+                in_Error_pump_proportionalvalve_opencircuit_3501_3504.Add(false);           //泵站比例阀线路断路      // 4
+
+                in_Error_pump_MachLock_proportionalvalve_shortcircuit_3501_3504.Add(false);//泵站机械锁马达电磁阀线路短路  // 4
+                in_Error_pump_MachLock_proportionalvalve_opencircuit_3501_3504.Add(false); //泵站机械锁马达电磁阀线路断路  // 4
+                
+                in_Error_controller_dynamo_Start_shortcircuit_3501_3504.Add(false);     //控制器发电机启动线路短路  // 4
+                in_Error_controller_dynamo_Start_opencircuit_3501_3504.Add(false);      //控制器发电机启动线路断路  // 4
+
+                in_Error_controller_dynamo_Stop_shortcircuit_3501_3504.Add(false);       //控制器发电机停止线路短路  // 4
+                in_Error_controller_dynamo_Stop_opencircuit_3501_3504.Add(false);        //控制器发电机停止线路断路  // 4
+
+                in_Error_controller_warnlight_shortcircuit_3501_3504.Add(false);        //控制器声光报警灯线路短路  // 4
+                in_Error_controller_warnlight_opencircuit_3501_3504.Add(false);         //控制器声光报警灯线路断路  // 4
+                
 
                 in_Pressure_Pump_Real_3301_3304.Add(0);// 泵站压力 4
                 in_Voltage_Real_3301_3304.Add(0);// 控制器电压 4
@@ -187,14 +215,43 @@ namespace DataPool
 
 
         public List<bool> in_Error_Pump_3501_3504 = new List<bool>();//泵站及控制器 故障 4*16
+
+
+        public List<bool> in_Error_pump_motor_shortcircuit_3501_3504 = new List<bool>();                       //泵站电动机启动线路短路  // 4
+        public List<bool> in_Error_pump_motor_opencircuit_3501_3504 = new List<bool>();                        //泵站电动机启动线路断路  // 4
+
+        public List<bool> in_Error_pump_electromagneticvalve_shortcircuit_3501_3504 = new List<bool>();        //泵站冗余电磁阀线路短路  // 4
+        public List<bool> in_Error_pump_electromagneticvalve_opencircuit_3501_3504 = new List<bool>();         //泵站冗余电磁阀线路断路  // 4
+
+        public List<bool> in_Error_pump_proportionalvalve_shortcircuit_3501_3504 = new List<bool>();           //泵站比例阀线路短路      // 4   
+        public List<bool> in_Error_pump_proportionalvalve_opencircuit_3501_3504 = new List<bool>();            //泵站比例阀线路断路      // 4
+
+        public List<bool> in_Error_pump_MachLock_proportionalvalve_shortcircuit_3501_3504 = new List<bool>(); //泵站机械锁马达电磁阀线路短路  // 4
+        public List<bool> in_Error_pump_MachLock_proportionalvalve_opencircuit_3501_3504 = new List<bool>();  //泵站机械锁马达电磁阀线路断路  // 4
+
+
+        public List<bool> in_Error_controller_dynamo_Start_shortcircuit_3501_3504 = new List<bool>();      //控制器发电机启动线路短路  // 4
+        public List<bool> in_Error_controller_dynamo_Start_opencircuit_3501_3504 = new List<bool>();       //控制器发电机启动线路断路  // 4
+
+        public List<bool> in_Error_controller_dynamo_Stop_shortcircuit_3501_3504 = new List<bool>();        //控制器发电机停止线路短路  // 4
+        public List<bool> in_Error_controller_dynamo_Stop_opencircuit_3501_3504 = new List<bool>();         //控制器发电机停止线路断路  // 4
+
+        public List<bool> in_Error_controller_warnlight_shortcircuit_3501_3504 = new List<bool>();         //控制器声光报警灯线路短路  // 4
+        public List<bool> in_Error_controller_warnlight_opencircuit_3501_3504 = new List<bool>();          //控制器声光报警灯线路断路  // 4
+
+
         public List<bool> in_Error_PressureSenser_3501_3504 = new List<bool>();//油缸压力传感器故障 4*8
         public List<bool> in_Error_PositionSenser_3501_3504 = new List<bool>();//油缸长度传感器故障 4*8
 
-        public List<bool> in_Error_cylinder_extend_3511_3514 = new List<bool>();//油缸伸出电磁阀线路短路 4*8
-        public List<bool> in_Error_cylinder_retract_3511_3514 = new List<bool>();//油缸缩回电磁阀线路短路 4*8
-        public List<bool> in_Error_MachLock_extend_3511_3514 = new List<bool>();//油缸机械锁伸出电磁阀线路短路 4*8
-        public List<bool> in_Error_MachLock_retract_3511_3514 = new List<bool>();//油缸机械锁缩回电磁阀线路短路 4*8
+        public List<bool> in_Error_cylinder_extend_shortcircuit_3511_3514 = new List<bool>();//油缸伸出电磁阀线路短路 4*8
+        public List<bool> in_Error_cylinder_retract_shortcircuit_3511_3514 = new List<bool>();//油缸缩回电磁阀线路短路 4*8
+        public List<bool> in_Error_MachLock_extend_shortcircuit_3511_3514 = new List<bool>();//油缸机械锁伸出电磁阀线路短路 4*8
+        public List<bool> in_Error_MachLock_retract_shortcircuit_3511_3514 = new List<bool>();//油缸机械锁缩回电磁阀线路短路 4*8
 
+        public List<bool> in_Error_cylinder_extend_opencircuit_3511_3514 = new List<bool>();//油缸伸出电磁阀线路断路 4*8
+        public List<bool> in_Error_cylinder_retract_opencircuit_3511_3514 = new List<bool>();//油缸缩回电磁阀线路断路 4*8
+        public List<bool> in_Error_MachLock_extend_opencircuit_3511_3514 = new List<bool>();//油缸机械锁伸出电磁阀线路断路 4*8
+        public List<bool> in_Error_MachLock_retract_opencircuit_3511_3514 = new List<bool>();//油缸机械锁缩回电磁阀线路断路 4*8
         #endregion
 
         //Get function
@@ -322,6 +379,58 @@ namespace DataPool
                     rtv = in_Error_Pump_3501_3504[id * 8 + subid];
                     break;
 
+
+                case CmdDataType.cdtError_pump_motor_shortcircuit_3501_3504:                       //泵站电动机启动线路短路  // 4
+                    rtv = in_Error_pump_motor_shortcircuit_3501_3504[id];
+                    break;
+                case CmdDataType.cdtError_pump_motor_opencircuit_3501_3504:                        //泵站电动机启动线路断路  // 4
+                    rtv = in_Error_pump_motor_opencircuit_3501_3504[id];
+                    break;
+
+                case CmdDataType.cdtError_pump_electromagneticvalve_shortcircuit_3501_3504:        //泵站冗余电磁阀线路短路  // 4
+                    rtv = in_Error_pump_electromagneticvalve_shortcircuit_3501_3504[id];
+                    break;
+                case CmdDataType.cdtError_pump_electromagneticvalve_opencircuit_3501_3504:         //泵站冗余电磁阀线路断路  // 4
+                    rtv = in_Error_pump_electromagneticvalve_opencircuit_3501_3504[id];
+                    break;
+
+                case CmdDataType.cdtError_pump_proportionalvalve_shortcircuit_3501_3504:           //泵站比例阀线路短路      // 4   
+                    rtv = in_Error_pump_proportionalvalve_shortcircuit_3501_3504[id];
+                    break;
+                case CmdDataType.cdtError_pump_proportionalvalve_opencircuit_3501_3504:            //泵站比例阀线路断路      // 4
+                    rtv = in_Error_pump_proportionalvalve_opencircuit_3501_3504[id];
+                    break;
+
+                case CmdDataType.cdtError_pump_MachLock_proportionalvalve_shortcircuit_3501_3504: //泵站机械锁马达电磁阀线路短路  // 4
+                    rtv = in_Error_pump_MachLock_proportionalvalve_shortcircuit_3501_3504[id];
+                    break;
+                case CmdDataType.cdtError_pump_MachLock_proportionalvalve_opencircuit_3501_3504:  //泵站机械锁马达电磁阀线路断路  // 4
+                    rtv = in_Error_pump_MachLock_proportionalvalve_opencircuit_3501_3504[id];
+                    break;
+
+
+                case CmdDataType.cdtError_controller_dynamo_Start_shortcircuit_3501_3504:      //控制器发电机启动线路短路  // 4
+                    rtv = in_Error_controller_dynamo_Start_shortcircuit_3501_3504[id];
+                    break;
+                case CmdDataType.cdtError_controller_dynamo_Start_opencircuit_3501_3504:       //控制器发电机启动线路断路  // 4
+                    rtv = in_Error_controller_dynamo_Start_opencircuit_3501_3504[id];
+                    break;
+
+                case CmdDataType.cdtError_controller_dynamo_Stop_shortcircuit_3501_3504:        //控制器发电机停止线路短路  // 4
+                    rtv = in_Error_controller_dynamo_Stop_shortcircuit_3501_3504[id];
+                    break;
+                case CmdDataType.cdtError_controller_dynamo_Stop_opencircuit_3501_3504:         //控制器发电机停止线路断路  // 4
+                    rtv = in_Error_controller_dynamo_Stop_opencircuit_3501_3504[id];
+                    break;
+
+                case CmdDataType.cdtError_controller_warnlight_shortcircuit_3501_3504:         //控制器声光报警灯线路短路  // 4
+                    rtv = in_Error_controller_warnlight_shortcircuit_3501_3504[id];
+                    break;
+                case CmdDataType.cdtError_controller_warnlight_opencircuit_3501_3504:          //控制器声光报警灯线路断路  // 4
+                    rtv = in_Error_controller_warnlight_opencircuit_3501_3504[id];
+                    break;
+
+
                 case CmdDataType.cdtError_PressureSenser_3501_3504://油缸压力传感器故障 4*8
                     rtv = in_Error_PressureSenser_3501_3504[id * 8 + subid];
                     break;
@@ -330,22 +439,40 @@ namespace DataPool
                     rtv = in_Error_PositionSenser_3501_3504[id * 8 + subid];
                     break;
 
-                case CmdDataType.cdtError_cylinder_extend_3511_3514://油缸伸出电磁阀线路短路 4*8
-                    rtv = in_Error_cylinder_extend_3511_3514[id * 8 + subid];
+                case CmdDataType.cdtError_cylinder_extend_shortcircuit_3511_3514://油缸伸出电磁阀线路短路 4*8
+                    rtv = in_Error_cylinder_extend_shortcircuit_3511_3514[id * 8 + subid];
                     break;
 
-                case CmdDataType.cdtError_cylinder_retract_3511_3514://油缸缩回电磁阀线路短路 4*8
-                    rtv = in_Error_cylinder_retract_3511_3514[id * 8 + subid];
+                case CmdDataType.cdtError_cylinder_retract_shortcircuit_3511_3514://油缸缩回电磁阀线路短路 4*8
+                    rtv = in_Error_cylinder_retract_shortcircuit_3511_3514[id * 8 + subid];
 
                     break;
-                case CmdDataType.cdtError_MachLock_extend_3511_3514://油缸机械锁伸出电磁阀线路短路 4*8
-                    rtv = in_Error_MachLock_extend_3511_3514[id * 8 + subid];
+                case CmdDataType.cdtError_MachLock_extend_shortcircuit_3511_3514://油缸机械锁伸出电磁阀线路短路 4*8
+                    rtv = in_Error_MachLock_extend_shortcircuit_3511_3514[id * 8 + subid];
 
                     break;
-                case CmdDataType.cdtError_MachLock_retract_3511_3514://油缸机械锁缩回电磁阀线路短路 4*8
-                    rtv = in_Error_MachLock_retract_3511_3514[id * 8 + subid];
+                case CmdDataType.cdtError_MachLock_retract_shortcircuit_3511_3514://油缸机械锁缩回电磁阀线路短路 4*8
+                    rtv = in_Error_MachLock_retract_shortcircuit_3511_3514[id * 8 + subid];
 
                     break;
+
+                case CmdDataType.cdtError_cylinder_extend_opencircuit_3511_3514://油缸伸出电磁阀线路断路 4*8
+                    rtv = in_Error_cylinder_extend_opencircuit_3511_3514[id * 8 + subid];
+                    break;
+
+                case CmdDataType.cdtError_cylinder_retract_opencircuit_3511_3514://油缸缩回电磁阀线路断路 4*8
+                    rtv = in_Error_cylinder_retract_opencircuit_3511_3514[id * 8 + subid];
+
+                    break;
+                case CmdDataType.cdtError_MachLock_extend_opencircuit_3511_3514://油缸机械锁伸出电磁阀线路断路 4*8
+                    rtv = in_Error_MachLock_extend_opencircuit_3511_3514[id * 8 + subid];
+
+                    break;
+                case CmdDataType.cdtError_MachLock_retract_opencircuit_3511_3514://油缸机械锁缩回电磁阀线路断路 4*8
+                    rtv = in_Error_MachLock_retract_opencircuit_3511_3514[id * 8 + subid];
+
+                    break;
+
                 case CmdDataType.cdtInstalled://油缸是否安装 4*8
                     rtv = out_Installed[id * 8 + subid];
                     break;
@@ -775,14 +902,42 @@ namespace DataPool
 
 
         cdtError_Pump_3501_3504,//泵站及控制器 故障 4*16
+
+        cdtError_pump_motor_shortcircuit_3501_3504,                       //泵站电动机启动线路短路  // 4
+        cdtError_pump_motor_opencircuit_3501_3504,                        //泵站电动机启动线路断路  // 4
+
+        cdtError_pump_electromagneticvalve_shortcircuit_3501_3504,        //泵站冗余电磁阀线路短路  // 4
+        cdtError_pump_electromagneticvalve_opencircuit_3501_3504,         //泵站冗余电磁阀线路断路  // 4
+
+        cdtError_pump_proportionalvalve_shortcircuit_3501_3504,           //泵站比例阀线路短路      // 4   
+        cdtError_pump_proportionalvalve_opencircuit_3501_3504,            //泵站比例阀线路断路      // 4
+
+        cdtError_pump_MachLock_proportionalvalve_shortcircuit_3501_3504, //泵站机械锁马达电磁阀线路短路  // 4
+        cdtError_pump_MachLock_proportionalvalve_opencircuit_3501_3504,  //泵站机械锁马达电磁阀线路断路  // 4
+
+
+        cdtError_controller_dynamo_Start_shortcircuit_3501_3504,      //控制器发电机启动线路短路  // 4
+        cdtError_controller_dynamo_Start_opencircuit_3501_3504,       //控制器发电机启动线路断路  // 4
+
+        cdtError_controller_dynamo_Stop_shortcircuit_3501_3504,        //控制器发电机停止线路短路  // 4
+        cdtError_controller_dynamo_Stop_opencircuit_3501_3504,         //控制器发电机停止线路断路  // 4
+
+        cdtError_controller_warnlight_shortcircuit_3501_3504,         //控制器声光报警灯线路短路  // 4
+        cdtError_controller_warnlight_opencircuit_3501_3504,          //控制器声光报警灯线路断路  // 4
+
+
         cdtError_PressureSenser_3501_3504,//油缸压力传感器故障 4*8
         cdtError_PositionSenser_3501_3504,//油缸长度传感器故障 4*8
 
-        cdtError_cylinder_extend_3511_3514,//油缸伸出电磁阀线路短路 4*8
-        cdtError_cylinder_retract_3511_3514,//油缸缩回电磁阀线路短路 4*8
-        cdtError_MachLock_extend_3511_3514,//油缸机械锁伸出电磁阀线路短路 4*8
-        cdtError_MachLock_retract_3511_3514,//油缸机械锁缩回电磁阀线路短路 4*8
+        cdtError_cylinder_extend_shortcircuit_3511_3514,//油缸伸出电磁阀线路短路 4*8
+        cdtError_cylinder_retract_shortcircuit_3511_3514,//油缸缩回电磁阀线路短路 4*8
+        cdtError_MachLock_extend_shortcircuit_3511_3514,//油缸机械锁伸出电磁阀线路短路 4*8
+        cdtError_MachLock_retract_shortcircuit_3511_3514,//油缸机械锁缩回电磁阀线路短路 4*8
 
+        cdtError_cylinder_extend_opencircuit_3511_3514,//"油缸伸出电磁阀线路断路",// 4*8
+        cdtError_cylinder_retract_opencircuit_3511_3514,//"油缸缩回电磁阀线路断路",// 4*8
+        cdtError_MachLock_extend_opencircuit_3511_3514,//"油缸机械锁伸出电磁阀线路断路",// 4*8
+        cdtError_MachLock_retract_opencircuit_3511_3514,//"油缸机械锁缩回电磁阀线路断路"// 4*8
 
         cdtInstalled,//油缸是否安装 4*8
 
