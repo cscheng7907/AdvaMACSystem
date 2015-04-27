@@ -86,7 +86,7 @@
             // progressBar
             // 
             this.progressBar.IMGContainer = null;
-            this.progressBar.Location = new System.Drawing.Point(95, 50);
+            this.progressBar.Location = new System.Drawing.Point(95, 52);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(280, 30);
             this.progressBar.TabIndex = 11;
@@ -95,34 +95,34 @@
             // 
             // lbMaxPos
             // 
-            this.lbMaxPos.Location = new System.Drawing.Point(305, 33);
+            this.lbMaxPos.Location = new System.Drawing.Point(305, 36);
             this.lbMaxPos.Name = "lbMaxPos";
             this.lbMaxPos.Size = new System.Drawing.Size(80, 15);
             this.lbMaxPos.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // lbMinPos
             // 
-            this.lbMinPos.Location = new System.Drawing.Point(85, 33);
+            this.lbMinPos.Location = new System.Drawing.Point(85, 36);
             this.lbMinPos.Name = "lbMinPos";
             this.lbMinPos.Size = new System.Drawing.Size(60, 15);
             // 
             // lbMaxPre
             // 
-            this.lbMaxPre.Location = new System.Drawing.Point(305, 82);
+            this.lbMaxPre.Location = new System.Drawing.Point(305, 83);
             this.lbMaxPre.Name = "lbMaxPre";
             this.lbMaxPre.Size = new System.Drawing.Size(80, 15);
             this.lbMaxPre.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // lbMinPre
             // 
-            this.lbMinPre.Location = new System.Drawing.Point(85, 82);
+            this.lbMinPre.Location = new System.Drawing.Point(85, 83);
             this.lbMinPre.Name = "lbMinPre";
             this.lbMinPre.Size = new System.Drawing.Size(60, 15);
             // 
             // lbSettingPre
             // 
             this.lbSettingPre.ForeColor = System.Drawing.Color.Blue;
-            this.lbSettingPre.Location = new System.Drawing.Point(235, 85);
+            this.lbSettingPre.Location = new System.Drawing.Point(235, 83);
             this.lbSettingPre.Name = "lbSettingPre";
             this.lbSettingPre.Size = new System.Drawing.Size(60, 15);
             this.lbSettingPre.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -130,7 +130,7 @@
             // lbWarningPre
             // 
             this.lbWarningPre.ForeColor = System.Drawing.Color.Red;
-            this.lbWarningPre.Location = new System.Drawing.Point(160, 85);
+            this.lbWarningPre.Location = new System.Drawing.Point(160, 83);
             this.lbWarningPre.Name = "lbWarningPre";
             this.lbWarningPre.Size = new System.Drawing.Size(60, 15);
             this.lbWarningPre.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -138,7 +138,7 @@
             // lbSettingPos
             // 
             this.lbSettingPos.ForeColor = System.Drawing.Color.Blue;
-            this.lbSettingPos.Location = new System.Drawing.Point(235, 28);
+            this.lbSettingPos.Location = new System.Drawing.Point(235, 36);
             this.lbSettingPos.Name = "lbSettingPos";
             this.lbSettingPos.Size = new System.Drawing.Size(60, 15);
             this.lbSettingPos.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -147,7 +147,7 @@
             // lbWarningPos
             // 
             this.lbWarningPos.ForeColor = System.Drawing.Color.Red;
-            this.lbWarningPos.Location = new System.Drawing.Point(160, 28);
+            this.lbWarningPos.Location = new System.Drawing.Point(160, 36);
             this.lbWarningPos.Name = "lbWarningPos";
             this.lbWarningPos.Size = new System.Drawing.Size(60, 15);
             this.lbWarningPos.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -156,17 +156,17 @@
             // lbValuePre
             // 
             this.lbValuePre.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular);
-            this.lbValuePre.Location = new System.Drawing.Point(165, 113);
+            this.lbValuePre.Location = new System.Drawing.Point(95, 99);
             this.lbValuePre.Name = "lbValuePre";
-            this.lbValuePre.Size = new System.Drawing.Size(160, 20);
+            this.lbValuePre.Size = new System.Drawing.Size(280, 35);
             this.lbValuePre.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lbValuePos
             // 
             this.lbValuePos.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular);
-            this.lbValuePos.Location = new System.Drawing.Point(165, 1);
+            this.lbValuePos.Location = new System.Drawing.Point(95, 0);
             this.lbValuePos.Name = "lbValuePos";
-            this.lbValuePos.Size = new System.Drawing.Size(160, 20);
+            this.lbValuePos.Size = new System.Drawing.Size(280, 35);
             this.lbValuePos.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lbIndex

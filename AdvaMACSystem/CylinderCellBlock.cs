@@ -27,7 +27,9 @@ namespace AdvaMACSystem
         {
             InitializeComponent();
             Font f = new System.Drawing.Font("Microsoft YaHei", 14F, System.Drawing.FontStyle.Regular);
-            lbIndex.Font = lbRow.Font = lbCol.Font = lbValuePos.Font = lbValuePre.Font = f;
+            Font vf = new System.Drawing.Font("Microsoft YaHei", 20F, System.Drawing.FontStyle.Regular);
+            lbIndex.Font = lbRow.Font = lbCol.Font = f;
+            lbValuePos.Font = lbValuePre.Font = vf;
             pictureBox1.Image = AdvaMACSystemRes.border;
             foreach (Control c in panel1.Controls)
             {
