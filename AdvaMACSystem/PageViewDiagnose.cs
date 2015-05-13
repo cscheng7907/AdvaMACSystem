@@ -334,7 +334,7 @@ namespace AdvaMACSystem
                     {
                         for (int j = 0; j < 8; j++)
                         {
-                            cylinderIOList[i * 8 + j].Checked = _candatapool.GetBoolValue(startPumpIndex + i, j, CmdDataType.cdtLimit_5_3301_3304);
+                            cylinderIOList[i * 8 + j].Checked = !_candatapool.GetBoolValue(startPumpIndex + i, j, CmdDataType.cdtLimit_5_3301_3304);
                         }
                     }
                 }
@@ -344,7 +344,7 @@ namespace AdvaMACSystem
                     {
                         for (int j = 0; j < 8; j++)
                         {
-                            cylinderIOList[i * 8 + j].Checked = _candatapool.GetBoolValue(startPumpIndex + i, j, CmdDataType.cdtLimit_10_3301_3304);
+                            cylinderIOList[i * 8 + j].Checked = !_candatapool.GetBoolValue(startPumpIndex + i, j, CmdDataType.cdtLimit_10_3301_3304);
                         }
                     }
                 }

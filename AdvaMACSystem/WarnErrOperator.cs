@@ -21,8 +21,8 @@ namespace AdvaMACSystem
     public class WarnErrOperator
     {
 #if WindowsCE
-        public  string WarningRecFileName = @"\HardDisk\Record\Warning.Rec";
-        public  string ErrorRecFileName = @"\HardDisk\Record\Error.Rec";
+        public string WarningRecFileName = @"\HardDisk\Record\Warning.Rec";
+        public string ErrorRecFileName = @"\HardDisk\Record\Error.Rec";
 #else
         public string WarningRecFileName = Application.StartupPath + @"\Record\Warning.Rec";
         public string ErrorRecFileName = Application.StartupPath + @"\Record\Error.Rec";
@@ -38,6 +38,31 @@ namespace AdvaMACSystem
             //dic.Add(CmdDataType.cdtError_Pump_3501_3504,_Error_Pump_3501_3504);//泵站及控制器 故障 4*16
             dic.Add(CmdDataType.cdtError_PressureSenser_3501_3504, _Error_PressureSenser_3501_3504);//油缸压力传感器故障 4*8
             dic.Add(CmdDataType.cdtError_PositionSenser_3501_3504, _Error_PositionSenser_3501_3504);//油缸长度传感器故障 4*8
+
+
+
+            dic4.Add(CmdDataType.cdtError_pump_motor_shortcircuit_3501_3504, _Error_pump_motor_shortcircuit_3501_3504);                    //泵站电动机启动线路短路  // 4
+            dic4.Add(CmdDataType.cdtError_pump_motor_opencircuit_3501_3504, _Error_pump_motor_opencircuit_3501_3504);                      //泵站电动机启动线路断路  // 4
+
+            dic4.Add(CmdDataType.cdtError_pump_electromagneticvalve_shortcircuit_3501_3504, _Error_pump_electromagneticvalve_shortcircuit_3501_3504);      //泵站冗余电磁阀线路短路  // 4
+            dic4.Add(CmdDataType.cdtError_pump_electromagneticvalve_opencircuit_3501_3504, _Error_pump_electromagneticvalve_opencircuit_3501_3504);       //泵站冗余电磁阀线路断路  // 4
+
+            dic4.Add(CmdDataType.cdtError_pump_proportionalvalve_shortcircuit_3501_3504, _Error_pump_proportionalvalve_shortcircuit_3501_3504);         //泵站比例阀线路短路      // 4   
+            dic4.Add(CmdDataType.cdtError_pump_proportionalvalve_opencircuit_3501_3504, _Error_pump_proportionalvalve_opencircuit_3501_3504);           //泵站比例阀线路断路      // 4
+
+            dic4.Add(CmdDataType.cdtError_pump_MachLock_proportionalvalve_shortcircuit_3501_3504, _Error_pump_MachLock_proportionalvalve_shortcircuit_3501_3504);//泵站机械锁马达电磁阀线路短路  // 4
+            dic4.Add(CmdDataType.cdtError_pump_MachLock_proportionalvalve_opencircuit_3501_3504, _Error_pump_MachLock_proportionalvalve_opencircuit_3501_3504); //泵站机械锁马达电磁阀线路断路  // 4
+
+
+            dic4.Add(CmdDataType.cdtError_controller_dynamo_Start_shortcircuit_3501_3504, _Error_controller_dynamo_Start_shortcircuit_3501_3504);    //控制器发电机启动线路短路  // 4
+            dic4.Add(CmdDataType.cdtError_controller_dynamo_Start_opencircuit_3501_3504, _Error_controller_dynamo_Start_opencircuit_3501_3504);     //控制器发电机启动线路断路  // 4
+
+            dic4.Add(CmdDataType.cdtError_controller_dynamo_Stop_shortcircuit_3501_3504, _Error_controller_dynamo_Stop_shortcircuit_3501_3504);     //控制器发电机停止线路短路  // 4
+            dic4.Add(CmdDataType.cdtError_controller_dynamo_Stop_opencircuit_3501_3504, _Error_controller_dynamo_Stop_opencircuit_3501_3504);     //控制器发电机停止线路断路  // 4
+
+            dic4.Add(CmdDataType.cdtError_controller_warnlight_shortcircuit_3501_3504, _Error_controller_warnlight_shortcircuit_3501_3504);       //控制器声光报警灯线路短路  // 4
+            dic4.Add(CmdDataType.cdtError_controller_warnlight_opencircuit_3501_3504, _Error_controller_warnlight_opencircuit_3501_3504);        //控制器声光报警灯线路断路  // 4
+
 
             dic.Add(CmdDataType.cdtError_cylinder_extend_shortcircuit_3511_3514, _Error_cylinder_extend_3511_3514);//油缸伸出电磁阀线路短路 4*8
             dic.Add(CmdDataType.cdtError_cylinder_retract_shortcircuit_3511_3514, _Error_cylinder_retract_3511_3514);//油缸缩回电磁阀线路短路 4*8
@@ -56,12 +81,44 @@ namespace AdvaMACSystem
         private List<bool> _Error_PressureSenser_3501_3504 = new List<bool>();//油缸压力传感器故障 4*8
         private List<bool> _Error_PositionSenser_3501_3504 = new List<bool>();//油缸长度传感器故障 4*8
 
+        public List<bool> _Error_pump_motor_shortcircuit_3501_3504 = new List<bool>();                       //泵站电动机启动线路短路  // 4
+        public List<bool> _Error_pump_motor_opencircuit_3501_3504 = new List<bool>();                        //泵站电动机启动线路断路  // 4
+
+        public List<bool> _Error_pump_electromagneticvalve_shortcircuit_3501_3504 = new List<bool>();        //泵站冗余电磁阀线路短路  // 4
+        public List<bool> _Error_pump_electromagneticvalve_opencircuit_3501_3504 = new List<bool>();         //泵站冗余电磁阀线路断路  // 4
+
+        public List<bool> _Error_pump_proportionalvalve_shortcircuit_3501_3504 = new List<bool>();           //泵站比例阀线路短路      // 4   
+        public List<bool> _Error_pump_proportionalvalve_opencircuit_3501_3504 = new List<bool>();            //泵站比例阀线路断路      // 4
+
+        public List<bool> _Error_pump_MachLock_proportionalvalve_shortcircuit_3501_3504 = new List<bool>(); //泵站机械锁马达电磁阀线路短路  // 4
+        public List<bool> _Error_pump_MachLock_proportionalvalve_opencircuit_3501_3504 = new List<bool>();  //泵站机械锁马达电磁阀线路断路  // 4
+
+
+        public List<bool> _Error_controller_dynamo_Start_shortcircuit_3501_3504 = new List<bool>();      //控制器发电机启动线路短路  // 4
+        public List<bool> _Error_controller_dynamo_Start_opencircuit_3501_3504 = new List<bool>();       //控制器发电机启动线路断路  // 4
+
+        public List<bool> _Error_controller_dynamo_Stop_shortcircuit_3501_3504 = new List<bool>();        //控制器发电机停止线路短路  // 4
+        public List<bool> _Error_controller_dynamo_Stop_opencircuit_3501_3504 = new List<bool>();         //控制器发电机停止线路断路  // 4
+
+        public List<bool> _Error_controller_warnlight_shortcircuit_3501_3504 = new List<bool>();         //控制器声光报警灯线路短路  // 4
+        public List<bool> _Error_controller_warnlight_opencircuit_3501_3504 = new List<bool>();          //控制器声光报警灯线路断路  // 4
+
+
+
+
+
+
+
+
+
+
         private List<bool> _Error_cylinder_extend_3511_3514 = new List<bool>();//油缸伸出电磁阀线路短路 4*8
         private List<bool> _Error_cylinder_retract_3511_3514 = new List<bool>();//油缸缩回电磁阀线路短路 4*8
         private List<bool> _Error_MachLock_extend_3511_3514 = new List<bool>();//油缸机械锁伸出电磁阀线路短路 4*8
         private List<bool> _Error_MachLock_retract_3511_3514 = new List<bool>();//油缸机械锁缩回电磁阀线路短路 4*8
 
         Dictionary<CmdDataType, List<bool>> dic = new Dictionary<CmdDataType, List<bool>>();
+        Dictionary<CmdDataType, List<bool>> dic4 = new Dictionary<CmdDataType, List<bool>>();
 
         #endregion
 
@@ -144,6 +201,27 @@ namespace AdvaMACSystem
                     _Error_MachLock_retract_3511_3514.Add(false); //油缸机械锁缩回电磁阀线路短路 4*8
                 }
 
+                _Error_pump_motor_shortcircuit_3501_3504.Add(false);                      //泵站电动机启动线路短路  // 4
+                _Error_pump_motor_opencircuit_3501_3504.Add(false);                       //泵站电动机启动线路断路  // 4
+
+                _Error_pump_electromagneticvalve_shortcircuit_3501_3504.Add(false);       //泵站冗余电磁阀线路短路  // 4
+                _Error_pump_electromagneticvalve_opencircuit_3501_3504.Add(false);        //泵站冗余电磁阀线路断路  // 4
+
+                _Error_pump_proportionalvalve_shortcircuit_3501_3504.Add(false);          //泵站比例阀线路短路      // 4   
+                _Error_pump_proportionalvalve_opencircuit_3501_3504.Add(false);           //泵站比例阀线路断路      // 4
+
+                _Error_pump_MachLock_proportionalvalve_shortcircuit_3501_3504.Add(false);//泵站机械锁马达电磁阀线路短路  // 4
+                _Error_pump_MachLock_proportionalvalve_opencircuit_3501_3504.Add(false); //泵站机械锁马达电磁阀线路断路  // 4
+
+                _Error_controller_dynamo_Start_shortcircuit_3501_3504.Add(false);     //控制器发电机启动线路短路  // 4
+                _Error_controller_dynamo_Start_opencircuit_3501_3504.Add(false);      //控制器发电机启动线路断路  // 4
+
+                _Error_controller_dynamo_Stop_shortcircuit_3501_3504.Add(false);       //控制器发电机停止线路短路  // 4
+                _Error_controller_dynamo_Stop_opencircuit_3501_3504.Add(false);        //控制器发电机停止线路断路  // 4
+
+                _Error_controller_warnlight_shortcircuit_3501_3504.Add(false);        //控制器声光报警灯线路短路  // 4
+                _Error_controller_warnlight_opencircuit_3501_3504.Add(false);         //控制器声光报警灯线路断路  // 4
+
                 for (int j = 0; j < 16; j++)
                 {
                     _Error_Pump_3501_3504.Add(false); //泵站及控制器 故障 4*16
@@ -177,21 +255,44 @@ namespace AdvaMACSystem
                     }
                 }
 
-                for (int i = 0; i < _candatapool.PumpCount; i++)
+                foreach (KeyValuePair<CmdDataType, List<bool>> item in dic4)
                 {
-                    for (int j = 0; j < 16; j++)
+                    for (int i = 0; i < _candatapool.PumpCount; i++)
                     {
-                        cur = _candatapool.GetBoolValue(i, j, CmdDataType.cdtError_Pump_3501_3504);//泵站及控制器 故障 4*16
-
-                        if (cur != _Error_Pump_3501_3504[i * 16 + j])
+                        cur = _candatapool.GetBoolValue(i, 0, item.Key);
+                        if (cur != item.Value[i])
                         {
-                            _Error_Pump_3501_3504[i * 16 + j] = cur;
+                            item.Value[i] = cur;
 
-                            SaveChangedData(i, j, CmdDataType.cdtError_Pump_3501_3504, cur);
+                            SaveChangedData(i, 0, item.Key, cur);
+
                             ischanged = true;
                         }
                     }
                 }
+
+
+
+                //for (int i = 0; i < _candatapool.PumpCount; i++)
+                //{
+                //    for (int j = 0; j < 16; j++)
+                //    {
+                //        cur = _candatapool.GetBoolValue(i, j, CmdDataType.cdtError_Pump_3501_3504);//泵站及控制器 故障 4*16
+
+                //        if (cur != _Error_Pump_3501_3504[i * 16 + j])
+                //        {
+                //            _Error_Pump_3501_3504[i * 16 + j] = cur;
+
+                //            SaveChangedData(i, j, CmdDataType.cdtError_Pump_3501_3504, cur);
+                //            ischanged = true;
+                //        }
+                //    }
+                //}
+
+
+
+
+
 
                 if (ischanged)
                     DoDataChanged();
@@ -232,7 +333,10 @@ namespace AdvaMACSystem
                 RecFile = new FileStream(ErrorRecFileName, FileMode.Append);
 
                 if (val)
-                    _curerrorlist.Add(listkey, t);
+                {
+                    if (!_curerrorlist.ContainsKey(listkey))
+                        _curerrorlist.Add(listkey, t);
+                }
                 else
                 {
                     _curerrorlist.Remove(listkey);
