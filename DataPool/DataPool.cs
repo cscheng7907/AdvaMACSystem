@@ -626,6 +626,8 @@ namespace DataPool
         public bool sign_View_PositionSenserLow_Confirm = false;//油缸长度传感器低位值确认
         public bool sign_View_PositionSenserHigh_Confirm = false;//油缸长度传感器高位值确认
         public bool sign_isSame = false;    //单独/统一标定标志位		            5		1	0：每个油缸单独标定；1：所有油缸按同一值标定	
+        public bool sign_View_SetupFinish_Confirm = false;//安装调试完毕确定标志
+        
         public int CurId = 0;
         public int CurSubId = 0;
         public ControlModeType ControlMode = ControlModeType.Auto;

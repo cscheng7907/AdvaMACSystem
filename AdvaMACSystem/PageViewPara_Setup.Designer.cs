@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.imageLabel_title = new ComCtrls.ImageLabel();
+            this.imageButton_Finish_OK = new ComCtrls.ImageButton(this.components);
             this.imageButton_OK = new ComCtrls.ImageButton(this.components);
             this.imageButton_back = new ComCtrls.ImageButton(this.components);
             this.panel_body = new System.Windows.Forms.Panel();
@@ -50,6 +51,31 @@
             this.imageLabel_title.TextX = -1F;
             this.imageLabel_title.TextY = -1F;
             this.imageLabel_title.TransParent = false;
+            
+            // 
+            // imageButton_Finish_OK
+            // 
+            this.imageButton_Finish_OK.Checked = false;
+            this.imageButton_Finish_OK.DownColor = System.Drawing.SystemColors.Control;
+            this.imageButton_Finish_OK.Layout = ComCtrls.KTLayout.GlyphTop;
+            this.imageButton_Finish_OK.Location = new System.Drawing.Point(266, 521);
+            this.imageButton_Finish_OK.Name = "imageButton_Finish_OK";
+            this.imageButton_Finish_OK.ShortcutKeys = System.Windows.Forms.Keys.None;
+            this.imageButton_Finish_OK.Size = new System.Drawing.Size(210, 40);
+            this.imageButton_Finish_OK.ForeColor = System.Drawing.Color.Black;
+            this.imageButton_Finish_OK.TabIndex = 4;
+            this.imageButton_Finish_OK.TabStop = false;
+            this.imageButton_Finish_OK.Text = "安装调试完毕确认";
+            this.imageButton_Finish_OK.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
+            this.imageButton_Finish_OK.Toggle = false;
+            this.imageButton_Finish_OK.TransParent = false;
+            this.imageButton_Finish_OK.UPImg = AdvaMACSystemRes.Dgn_up;
+            this.imageButton_Finish_OK.DNImg = AdvaMACSystemRes.Dgn_down;
+            this.imageButton_Finish_OK.UpColor = System.Drawing.SystemColors.Control;
+            this.imageButton_Finish_OK.Click += new System.EventHandler(this.imageButton_Finish_OK_Click);
+            this.imageButton_Finish_OK.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageButton_Finish_OK_MouseUp);
+            this.imageButton_Finish_OK.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageButton_Finish_OK_MouseDown);
+            
             // 
             // imageButton_OK
             // 
@@ -98,6 +124,7 @@
             // 
             // panel_body
             // 
+            this.panel_body.Controls.Add(this.imageButton_Finish_OK);
             this.panel_body.Controls.Add(this.imageButton_OK);
             this.panel_body.Controls.Add(this.imageButton_back);
             this.panel_body.Location = new System.Drawing.Point(6, 68);
@@ -122,6 +149,7 @@
         #endregion
 
         private ComCtrls.ImageLabel imageLabel_title;
+        private ComCtrls.ImageButton imageButton_Finish_OK;
         private ComCtrls.ImageButton imageButton_OK;
         private ComCtrls.ImageButton imageButton_back;
         private System.Windows.Forms.Panel panel_body;

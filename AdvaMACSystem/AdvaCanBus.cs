@@ -343,6 +343,8 @@ namespace AdvaMACSystem
             bool Csign_View_Parameter = CanDatapool.sign_View_Parameter;
             bool Csign_View_Parameter_Confirm = CanDatapool.sign_View_Parameter_Confirm;
             bool Csign_View_SenserCalibration = CanDatapool.sign_View_SenserCalibration;
+            bool Csign_View_SetupFinish_Confirm = CanDatapool.sign_View_SetupFinish_Confirm;
+
             int id = CanDatapool.CurId;
             int subid = CanDatapool.CurSubId;
 
@@ -359,7 +361,8 @@ namespace AdvaMACSystem
                 //                                                             5	1	1：表示6#油缸安装；0表示没有安装	
                 //                                                             6	1	1：表示7#油缸安装；0表示没有安装	
                 //                                                             7	1	1：表示8#油缸安装；0表示没有安装	
-                //安装确定标志		                                3		1	1：确定按键按下；0：按键未按下	
+                //安装确定标志		                                3		1	1：确定按键按下；0：按键未按下
+                //安装调试完毕确定标志		                    4		1	1：确定按键按下；0：按键未按下
                 /*
                 for (int i = 0; i < CanDatapool.PumpCount; i++)
                 {
@@ -398,6 +401,8 @@ namespace AdvaMACSystem
                     }
 
                     msgSend[canmsgIndex].data[3] = (Csign_View_Setup_Confirm) ? (byte)1 : (byte)0;
+                    msgSend[canmsgIndex].data[4] = (Csign_View_SetupFinish_Confirm) ? (byte)1 : (byte)0;
+                   
                     canmsgIndex++;
                 }
                 else

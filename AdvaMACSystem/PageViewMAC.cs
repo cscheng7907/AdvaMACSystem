@@ -619,6 +619,9 @@ namespace AdvaMACSystem
 
         private void timer_RefreshMac_Tick(object sender, EventArgs e)
         {
+            if (!this.Visible)
+                return;
+
             //pumps
             for (int j = 0; j < pumpList.Count; j++)
             {

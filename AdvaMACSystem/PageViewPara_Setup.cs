@@ -369,6 +369,19 @@ namespace AdvaMACSystem
         {
             DataPool.CDataPool.GetDataPoolObject().sign_View_Setup_Confirm = true;
         }
+
+        private void imageButton_Finish_OK_Click(object sender, EventArgs e)
+        { }
+        private void imageButton_Finish_OK_MouseUp(object sender, EventArgs e)
+        {
+            DataPool.CDataPool.GetDataPoolObject().sign_View_SetupFinish_Confirm = false;
+        }
+        private void imageButton_Finish_OK_MouseDown(object sender, EventArgs e)
+        {
+            DataPool.CDataPool.GetDataPoolObject().sign_View_SetupFinish_Confirm = true;
+        }
+
+
         private void SaveViewData()
         {
             for (int i = 0; i < btnlst_subid.Count; i++)
