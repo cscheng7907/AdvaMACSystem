@@ -68,17 +68,19 @@ namespace AdvaMACSystem
             panel_Head.MouseMove += new MouseEventHandler(panel_Head_MouseMove);
 
 #endif
+
+            timerLoad_Tick(null, null);
+
         }
 
         private void mainForm_Load(object sender, EventArgs e)
         {
-            this.timerLoad = new System.Windows.Forms.Timer();
+            //this.timerLoad = new System.Windows.Forms.Timer();
 
-            this.timerLoad.Interval = 500;
-            this.timerLoad.Tick += new System.EventHandler(this.timerLoad_Tick);
+            //this.timerLoad.Interval = 500;
+            //this.timerLoad.Tick += new System.EventHandler(this.timerLoad_Tick);
 
-            this.timerLoad.Enabled = true;
-
+            //this.timerLoad.Enabled = true;
 
 
 
@@ -106,7 +108,7 @@ namespace AdvaMACSystem
 
         private void timerLoad_Tick(object sender, EventArgs e)
         {
-            this.timerLoad.Enabled = false;
+            //this.timerLoad.Enabled = false;
 
             if (isFontExists())
                 LoadFont();
@@ -135,7 +137,7 @@ namespace AdvaMACSystem
             this.MaximizeBox = false;
             CDataPool.GetDataPoolObject().LoadFromFile();
 #endif
-            imageLabel_MAC_Click(null, new EventArgs());
+            //imageLabel_MAC_Click(null, new EventArgs());
 
             Application.DoEvents();
 
@@ -332,7 +334,7 @@ namespace AdvaMACSystem
         //private PagePanel_WarnErr ppWarnErr = null;
         //private PagePanel_Para ppPara = null;
 
-        private void Create_pvWarn()
+        public void Create_pvWarn()
         {
             if (pvWarn == null)
             {
@@ -344,7 +346,7 @@ namespace AdvaMACSystem
                 this.Controls.Add(this.pvWarn);
             }
         }
-        private void Create_pvPara()
+        public void Create_pvPara()
         {
             if (pvPara == null)
             {
@@ -355,7 +357,7 @@ namespace AdvaMACSystem
                 this.Controls.Add(this.pvPara);
             }
         }
-        private void Create_pvPara_Sensor()
+        public void Create_pvPara_Sensor()
         {
             if (pvPara_Sensor == null)
             {
@@ -366,7 +368,7 @@ namespace AdvaMACSystem
                 this.Controls.Add(this.pvPara_Sensor);
             }
         }
-        private void Create_pvPara_Setup()
+        public void Create_pvPara_Setup()
         {
             if (pvPara_Setup == null)
             {
@@ -378,7 +380,7 @@ namespace AdvaMACSystem
             }
         }
 
-        private void Create_pvHistory()
+        public void Create_pvHistory()
         {
             if (pvHistory == null)
             {
@@ -392,7 +394,7 @@ namespace AdvaMACSystem
             }
         }
 
-        private void Create_pvError()
+        public void Create_pvError()
         {
             if (pvError == null)
             {
@@ -405,7 +407,7 @@ namespace AdvaMACSystem
             }
         }
 
-        private void Create_pvDiagnose()
+        public void Create_pvDiagnose()
         {
             if (pvDiagnose == null)
             {
@@ -417,7 +419,7 @@ namespace AdvaMACSystem
             }
         }
 
-        private void Create_pvMAC()
+        public void Create_pvMAC()
         {
             if (pvMAC == null)
             {
@@ -430,6 +432,17 @@ namespace AdvaMACSystem
             }
         }
 
+        public void Create_UIControls()
+        {
+            Create_pvMAC();
+            Create_pvHistory();
+            Create_pvDiagnose();
+            Create_pvError();
+            Create_pvPara();
+            Create_pvPara_Sensor();
+            Create_pvPara_Setup();
+            Create_pvWarn();
+        }
         //private void Create_ppWarnErr()
         //{
         //    if (ppWarnErr == null)
@@ -465,7 +478,7 @@ namespace AdvaMACSystem
         }
 
         #region Tab 事件
-        private void imageLabel_MAC_Click(object sender, EventArgs e)
+        public void imageLabel_MAC_Click(object sender, EventArgs e)
         {
             Create_pvMAC();
             if (UIControlbase.CurKTUIControl != pvMAC)
