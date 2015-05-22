@@ -103,8 +103,8 @@ namespace AdvaMACSystem
                 for (int i = 0; i < lbList.Count; i++)
                 {
                     if ((CmdDataType)lbList[i].Tag == CmdDataType.cdtPressureAlarm_Pump)
-                        lbList[i].Text = DataPool.CDataPool.GetDataPoolObject().GetintValue(comboBox_id.SelectedIndex,
-                          comboBox_subid.SelectedIndex, (CmdDataType)lbList[i].Tag).ToString();
+                        lbList[i].Text = DataPool.CDataPool.GetDataPoolObject().GetRealValue(comboBox_id.SelectedIndex,
+                          comboBox_subid.SelectedIndex, (CmdDataType)lbList[i].Tag).ToString("0.0");
                     else
                         lbList[i].Text = DataPool.CDataPool.GetDataPoolObject().GetRealValue(comboBox_id.SelectedIndex,
                           comboBox_subid.SelectedIndex, (CmdDataType)lbList[i].Tag).ToString("0.0");
@@ -126,8 +126,8 @@ namespace AdvaMACSystem
                 for (int i = 0; i < lbList.Count; i++)
                 {
                     if ((CmdDataType)lbList[i].Tag == CmdDataType.cdtPressureAlarm_Pump)
-                        DataPool.CDataPool.GetDataPoolObject().SetintValue(comboBox_id.SelectedIndex,
-                        comboBox_subid.SelectedIndex, (CmdDataType)lbList[i].Tag, Convert.ToInt32(lbList[i].Text));
+                        DataPool.CDataPool.GetDataPoolObject().SetRealValue(comboBox_id.SelectedIndex,
+                        comboBox_subid.SelectedIndex, (CmdDataType)lbList[i].Tag, Convert.ToDouble(lbList[i].Text));
                     else
                         DataPool.CDataPool.GetDataPoolObject().SetRealValue(comboBox_id.SelectedIndex,
                             comboBox_subid.SelectedIndex, (CmdDataType)lbList[i].Tag, Convert.ToDouble(lbList[i].Text));
@@ -184,9 +184,9 @@ namespace AdvaMACSystem
                     {
                         try
                         {
-                            dv = Convert.ToByte (f.KeyText);
+                            dv = Convert.ToDouble(f.KeyText);
 
-                            lb.Text = dv.ToString();
+                            lb.Text = dv.ToString("0.0");
                         }
                         catch (Exception)
                         {

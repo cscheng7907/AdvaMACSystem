@@ -68,22 +68,14 @@ namespace AdvaMACSystem
             panel_Head.MouseMove += new MouseEventHandler(panel_Head_MouseMove);
 
 #endif
+            InitAppDirs();
 
             timerLoad_Tick(null, null);
 
         }
 
-        private void mainForm_Load(object sender, EventArgs e)
+        private void InitAppDirs()
         {
-            //this.timerLoad = new System.Windows.Forms.Timer();
-
-            //this.timerLoad.Interval = 500;
-            //this.timerLoad.Tick += new System.EventHandler(this.timerLoad_Tick);
-
-            //this.timerLoad.Enabled = true;
-
-
-
 #if WindowsCE
             if (!Directory.Exists(@"\HardDisk\History"))
                 Directory.CreateDirectory(@"\HardDisk\History");
@@ -98,6 +90,22 @@ namespace AdvaMACSystem
                 Directory.CreateDirectory(Application.StartupPath + @"\Record");
 
 #endif
+
+        }
+
+
+        private void mainForm_Load(object sender, EventArgs e)
+        {
+            //this.timerLoad = new System.Windows.Forms.Timer();
+
+            //this.timerLoad.Interval = 500;
+            //this.timerLoad.Tick += new System.EventHandler(this.timerLoad_Tick);
+
+            //this.timerLoad.Enabled = true;
+
+
+            InitAppDirs();
+
 
             timer1.Enabled = true;
 

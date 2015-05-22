@@ -521,9 +521,9 @@ namespace AdvaMACSystem
                     msgSend[canmsgIndex].data[3] = (byte)(CanDatapool.out_PressureAlarm_Pump[id] & 0xFF);
                     msgSend[canmsgIndex].data[4] = (byte)(CanDatapool.out_PressureAlarm_Pump[id] >> 8);
                     msgSend[canmsgIndex].data[5] = (byte)(
-                        (((CanDatapool.out_PressureUpperLimitAlarm_Enable[(int)(id * CanDatapool.CylinderCount + subid)]) ? (byte)1 : (byte)0) << 0) &
-                        (((CanDatapool.out_PositionUpperLimitAlarm_Enable[(int)(id * CanDatapool.CylinderCount + subid)]) ? (byte)1 : (byte)0) << 1) &
-                        (((CanDatapool.out_PositionLowerLimitAlarm_Enable[(int)(id * CanDatapool.CylinderCount + subid)]) ? (byte)1 : (byte)0) << 2) &
+                        (((CanDatapool.out_PressureUpperLimitAlarm_Enable[(int)(id * CanDatapool.CylinderCount + subid)]) ? (byte)1 : (byte)0) << 0) |
+                        (((CanDatapool.out_PositionUpperLimitAlarm_Enable[(int)(id * CanDatapool.CylinderCount + subid)]) ? (byte)1 : (byte)0) << 1) |
+                        (((CanDatapool.out_PositionLowerLimitAlarm_Enable[(int)(id * CanDatapool.CylinderCount + subid)]) ? (byte)1 : (byte)0) << 2) |
                         (((CanDatapool.out_PositionControl_Enable[(int)(id * CanDatapool.CylinderCount + subid)]) ? (byte)1 : (byte)0) << 3));
 
                     canmsgIndex++;

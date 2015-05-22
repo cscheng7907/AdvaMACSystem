@@ -306,6 +306,9 @@ namespace DataPool
                 case CmdDataType.cdtStartPressure_Pump: //泵站启动压力设定值 4
                     rtv = out_StartPressure_Pump[id] * 0.1;
                     break;
+                case CmdDataType.cdtPressureAlarm_Pump://泵站压力报警值 4
+                    rtv = out_PressureAlarm_Pump[id] * 0.1;
+                    break;
                 default:
                     break;
             }
@@ -325,9 +328,9 @@ namespace DataPool
                 case CmdDataType.cdtMachLockState_Real_3201_3208:// 油缸机械锁运行状态 4*8
                     rtv = (int)in_MachLockState_Real_3201_3208[id * 8 + subid];
                     break;
-                case CmdDataType.cdtPressureAlarm_Pump://泵站压力报警值 4
-                    rtv = (int)out_PressureAlarm_Pump[id];
-                    break;
+                //case CmdDataType.cdtPressureAlarm_Pump://泵站压力报警值 4
+                //    rtv = (int)out_PressureAlarm_Pump[id];
+                //    break;
                 case CmdDataType.cdtPressure_Pump://泵站压力设定值 4
                     rtv = (int)out_Pressure_Pump[id];
                     break;
@@ -534,6 +537,9 @@ namespace DataPool
                 case CmdDataType.cdtStartPressure_Pump://泵站启动压力设定值 4
                     out_StartPressure_Pump[id] = Convert.ToByte(value * 10);
                     break;
+                case CmdDataType.cdtPressureAlarm_Pump://泵站压力报警值 4
+                    out_PressureAlarm_Pump[id] = Convert.ToInt16(value * 10);
+                    break;
                 default:
                     break;
             }
@@ -543,9 +549,9 @@ namespace DataPool
         {
             switch (type)
             {
-                case CmdDataType.cdtPressureAlarm_Pump://泵站压力报警值 4
-                    out_PressureAlarm_Pump[id] = (short)value;
-                    break;
+                //case CmdDataType.cdtPressureAlarm_Pump://泵站压力报警值 4
+                //    out_PressureAlarm_Pump[id] = (short)value;
+                //    break;
                 case CmdDataType.cdtPressure_Pump://泵站压力设定值 4
                     out_Pressure_Pump[id] = (short)value;
                     break;
