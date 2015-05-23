@@ -116,7 +116,7 @@
             this.imageLabel_Diagnose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(74)))), ((int)(((byte)(132)))));
             this.imageLabel_Diagnose.BackImg = global::AdvaMACSystem.AdvaMACSystemRes.config64;
             this.imageLabel_Diagnose.Checked = false;
-            this.imageLabel_Diagnose.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular);
+            this.imageLabel_Diagnose.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
             this.imageLabel_Diagnose.ForeColor = System.Drawing.Color.Red;
             this.imageLabel_Diagnose.IMGContainer = null;
             this.imageLabel_Diagnose.ImgDisable = null;
@@ -245,7 +245,7 @@
             this.imageLabel_Warn_History.BackImg = global::AdvaMACSystem.AdvaMACSystemRes.Menu;
             this.imageLabel_Warn_History.Checked = false;
             this.imageLabel_Warn_History.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imageLabel_Warn_History.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
+            this.imageLabel_Warn_History.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold);
             this.imageLabel_Warn_History.IMGContainer = null;
             this.imageLabel_Warn_History.ImgDisable = global::AdvaMACSystem.AdvaMACSystemRes.Menu_disable;
             this.imageLabel_Warn_History.Layout = ComCtrls.KTLayout.GlyphTop;
@@ -266,7 +266,7 @@
             this.imageLabel_Warn_Real.Checked = false;
             this.imageLabel_Warn_Real.Dock = System.Windows.Forms.DockStyle.Left;
             this.imageLabel_Warn_Real.Enabled = false;
-            this.imageLabel_Warn_Real.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
+            this.imageLabel_Warn_Real.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold);
             this.imageLabel_Warn_Real.IMGContainer = null;
             this.imageLabel_Warn_Real.ImgDisable = global::AdvaMACSystem.AdvaMACSystemRes.Menu_disable;
             this.imageLabel_Warn_Real.Layout = ComCtrls.KTLayout.GlyphTop;
@@ -297,7 +297,7 @@
             this.imageLabel_Sensor.BackImg = global::AdvaMACSystem.AdvaMACSystemRes.Menu;
             this.imageLabel_Sensor.Checked = false;
             this.imageLabel_Sensor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imageLabel_Sensor.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
+            this.imageLabel_Sensor.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold);
             this.imageLabel_Sensor.IMGContainer = null;
             this.imageLabel_Sensor.ImgDisable = global::AdvaMACSystem.AdvaMACSystemRes.Menu_disable;
             this.imageLabel_Sensor.Layout = ComCtrls.KTLayout.GlyphTop;
@@ -317,7 +317,7 @@
             this.imageLabel_Para.BackImg = global::AdvaMACSystem.AdvaMACSystemRes.Menu;
             this.imageLabel_Para.Checked = false;
             this.imageLabel_Para.Dock = System.Windows.Forms.DockStyle.Left;
-            this.imageLabel_Para.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
+            this.imageLabel_Para.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold);
             this.imageLabel_Para.IMGContainer = null;
             this.imageLabel_Para.ImgDisable = global::AdvaMACSystem.AdvaMACSystemRes.Menu_disable;
             this.imageLabel_Para.Layout = ComCtrls.KTLayout.GlyphTop;
@@ -338,7 +338,7 @@
             this.imageLabel_Setup.Checked = false;
             this.imageLabel_Setup.Dock = System.Windows.Forms.DockStyle.Left;
             this.imageLabel_Setup.Enabled = false;
-            this.imageLabel_Setup.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
+            this.imageLabel_Setup.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold);
             this.imageLabel_Setup.IMGContainer = null;
             this.imageLabel_Setup.ImgDisable = global::AdvaMACSystem.AdvaMACSystemRes.Menu_disable;
             this.imageLabel_Setup.Layout = ComCtrls.KTLayout.GlyphTop;
@@ -368,7 +368,7 @@
             this.imageLabel_Err_History.BackImg = global::AdvaMACSystem.AdvaMACSystemRes.Menu;
             this.imageLabel_Err_History.Checked = false;
             this.imageLabel_Err_History.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imageLabel_Err_History.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
+            this.imageLabel_Err_History.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold);
             this.imageLabel_Err_History.IMGContainer = null;
             this.imageLabel_Err_History.ImgDisable = global::AdvaMACSystem.AdvaMACSystemRes.Menu_disable;
             this.imageLabel_Err_History.Layout = ComCtrls.KTLayout.GlyphTop;
@@ -389,7 +389,7 @@
             this.imageLabel_Err_Real.Checked = false;
             this.imageLabel_Err_Real.Dock = System.Windows.Forms.DockStyle.Left;
             this.imageLabel_Err_Real.Enabled = false;
-            this.imageLabel_Err_Real.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
+            this.imageLabel_Err_Real.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold);
             this.imageLabel_Err_Real.IMGContainer = null;
             this.imageLabel_Err_Real.ImgDisable = global::AdvaMACSystem.AdvaMACSystemRes.Menu_disable;
             this.imageLabel_Err_Real.Layout = ComCtrls.KTLayout.GlyphTop;

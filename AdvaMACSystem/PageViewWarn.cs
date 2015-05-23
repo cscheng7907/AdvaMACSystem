@@ -27,7 +27,7 @@ namespace AdvaMACSystem
             InitializeComponent();
         }
 
-        public override  void DoEnter()
+        public override void DoEnter()
         {
             base.DoEnter();
 
@@ -38,7 +38,7 @@ namespace AdvaMACSystem
         }
 
         private void Update()
-        { 
+        {
             int count = 0;
             int id, subid, cmdtype;
             listView1.Items.Clear();
@@ -77,27 +77,24 @@ namespace AdvaMACSystem
                     long linecount = fs.Length / (sizeof(int) + sizeof(int) + sizeof(long));
                     BinaryReader br = new BinaryReader(fs);
                     br.BaseStream.Seek(0, SeekOrigin.Begin); //将文件指针设置到文件开始
+
+                    logbuff.Clear();
+
                     try
                     {
                         while (br.BaseStream.Position < br.BaseStream.Length) // 当未到达文件结尾时
                         {
-                            ListViewItem lv = new ListViewItem();
-                            lv.Text = (linecount--).ToString();
-
+                            logType l = new logType();
                             fixitem = br.ReadInt32();//type
-                            id = fixitem / 10000;
-                            subid = fixitem % 10000 / 100;
-                            cmdtype = fixitem % 10000 % 100;
 
-                            val = br.ReadInt32() != 0;//val
+                            l.id = fixitem / 10000;
+                            l.subid = fixitem % 10000 / 100;
+                            l.cmdtype = fixitem % 10000 % 100;
 
-                            dt = new DateTime(br.ReadInt64());//time tick
+                            l.val = br.ReadInt32() != 0;//val
 
-                            lv.SubItems.Add(string.Format("{0:00}-{1:00}-{2:00} {3:00}:{4:00}:{5:00}", dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second));
-                            lv.SubItems.Add(string.Format("{0}", (val) ? "发生" : "消失"));
-                            lv.SubItems.Add(string.Format("{0}#泵站 {1}# {2}", id + 1, subid + 1, strlst[cmdtype - firstcmdtype]));
-
-                            listView1.Items.Insert(0, lv);
+                            l.time = br.ReadInt64();
+                            logbuff.Insert(0, l);
                         }
                     }
                     finally
@@ -106,11 +103,59 @@ namespace AdvaMACSystem
                         fs.Close();
                     }
 
-                }
+                    listView1.BeginUpdate();
+                    for (int i = 0; i < logbuff.Count; i++)
+                    {
+                        ListViewItem lv = new ListViewItem();
+                        lv.Text = (i + 1).ToString();
+                        dt = new DateTime(logbuff[i].time);//time tick
 
+                        lv.SubItems.Add(string.Format("{0:00}-{1:00}-{2:00} {3:00}:{4:00}:{5:00}", dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second));
+                        lv.SubItems.Add(string.Format("{0}", (logbuff[i].val) ? "发生" : "消失"));
+                        lv.SubItems.Add(string.Format("{0}#泵站 {1}# {2}", logbuff[i].id + 1, logbuff[i].subid + 1, strlst[logbuff[i].cmdtype - firstcmdtype]));
+
+                        listView1.Items.Add(lv);
+                    }
+                    listView1.EndUpdate();
+
+
+
+                    //listView1.BeginUpdate();
+                    //try
+                    //{
+                    //    while (br.BaseStream.Position < br.BaseStream.Length) // 当未到达文件结尾时
+                    //    {
+                    //        ListViewItem lv = new ListViewItem();
+                    //        lv.Text = (linecount--).ToString();
+
+                    //        fixitem = br.ReadInt32();//type
+                    //        id = fixitem / 10000;
+                    //        subid = fixitem % 10000 / 100;
+                    //        cmdtype = fixitem % 10000 % 100;
+
+                    //        val = br.ReadInt32() != 0;//val
+
+                    //        dt = new DateTime(br.ReadInt64());//time tick
+
+                    //        lv.SubItems.Add(string.Format("{0:00}-{1:00}-{2:00} {3:00}:{4:00}:{5:00}", dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second));
+                    //        lv.SubItems.Add(string.Format("{0}", (val) ? "发生" : "消失"));
+                    //        lv.SubItems.Add(string.Format("{0}#泵站 {1}# {2}", id + 1, subid + 1, strlst[cmdtype - firstcmdtype]));
+
+                    //        listView1.Items.Insert(0, lv);
+                    //    }
+                    //}
+                    //finally
+                    //{
+                    //    listView1.EndUpdate();
+                    //    br.Close();
+                    //    fs.Close();
+                    //}
+
+
+                }
             }
         }
-        
+
         private bool _isreal = false;
         public bool IsReal
         {
@@ -143,5 +188,16 @@ namespace AdvaMACSystem
         {
             this.DoExit();
         }
+
+        public struct logType
+        {
+            public int id;
+            public int subid;
+            public int cmdtype;
+            public bool val;
+            public long time;
+        };
+
+        private List<logType> logbuff = new List<logType>();
     }
 }
