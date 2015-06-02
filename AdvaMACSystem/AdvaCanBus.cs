@@ -402,7 +402,7 @@ namespace AdvaMACSystem
 
                     msgSend[canmsgIndex].data[3] = (Csign_View_Setup_Confirm) ? (byte)1 : (byte)0;
                     msgSend[canmsgIndex].data[4] = (Csign_View_SetupFinish_Confirm) ? (byte)1 : (byte)0;
-                   
+
                     canmsgIndex++;
                 }
                 else
@@ -1172,14 +1172,14 @@ namespace AdvaMACSystem
                                         {
                                             for (int k = 0; k < msgRecieve[j].data.Length; k++)
                                             {
-                                                CanDatapool.in_MachLockState_Real_3201_3208[(idArray0 - 1) * 4 + k] = (MotionStateType)msgRecieve[j].data[k];
+                                                CanDatapool.in_MachLockState_Real_3201_3208[(idArray0 / 2 - 1) * 8 + k] = (MotionStateType)msgRecieve[j].data[k];
                                             }
                                         }
                                         else //奇数 油缸运行状态
                                         {
                                             for (int k = 0; k < msgRecieve[j].data.Length; k++)
                                             {
-                                                CanDatapool.in_cylinderState_Real_3201_3208[(idArray0 - 1) * 4 + k] = (MotionStateType)msgRecieve[j].data[k];
+                                                CanDatapool.in_cylinderState_Real_3201_3208[(idArray0 / 2) * 8 + k] = (MotionStateType)msgRecieve[j].data[k];
                                             }
                                         }
 
