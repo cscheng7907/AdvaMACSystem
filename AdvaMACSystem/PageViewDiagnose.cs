@@ -181,8 +181,8 @@ namespace AdvaMACSystem
                 button.Tag = i;//diagnoseItem_Tag
                 this.Controls.Add(button);
             }
-            buttonList[0].Text = "5mm接近开关限位";
-            buttonList[1].Text = "10mm接近开关限位";
+            buttonList[0].Text = "近端锁定螺母限位";
+            buttonList[1].Text = "远端锁定螺母限位";
             buttonList[2].Text = "油缸运行状态";
             buttonList[3].Text = "油缸机械锁状态";
 
