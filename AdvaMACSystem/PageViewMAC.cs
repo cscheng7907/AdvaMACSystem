@@ -478,7 +478,7 @@ namespace AdvaMACSystem
 
         private void cylinderRetractButton_Click(object sender, EventArgs e)
         {
-            if (ControlMode == ControlModeType.CylinderManual && selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
+            //if (ControlMode == ControlModeType.CylinderManual && selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
             {
                 CylinderControlStatus = 2;
             }
@@ -486,7 +486,7 @@ namespace AdvaMACSystem
 
         private void cylinderStopButton_Click(object sender, EventArgs e)
         {
-            if (ControlMode == ControlModeType.CylinderManual && selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
+            //if (ControlMode == ControlModeType.CylinderManual && selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
             {
                 CylinderControlStatus = 0;
             }
@@ -494,7 +494,7 @@ namespace AdvaMACSystem
 
         private void cylinderExtendButton_Click(object sender, EventArgs e)
         {
-            if (ControlMode == ControlModeType.CylinderManual && selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
+            //if (ControlMode == ControlModeType.CylinderManual && selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
             {
                 CylinderControlStatus = 1;
             }
