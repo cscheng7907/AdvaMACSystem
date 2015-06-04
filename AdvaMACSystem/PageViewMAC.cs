@@ -380,6 +380,14 @@ namespace AdvaMACSystem
                 }
                 SelectedPumpIndex = pBSender.PumpIndex;
                 cylinder_OnCylinderClicked(0);
+
+                //
+                bool vb = DataPool.CDataPool.GetDataPoolObject().GetBoolValue(
+                            selectedPumpIndex,
+                            selectedCylinderIndex,
+                            CmdDataType.cdtManualStart_Pump);
+
+                PumpInstallButton.Text = (vb) ? "停止泵站" : "启动泵站";
             }
 
         }
