@@ -61,7 +61,7 @@ namespace AdvaMACSystem
             }
         }
 
-        private int timerInterval = 1000;
+        private int timerInterval = 4000;
         public int TimerInterVal
         {
             set

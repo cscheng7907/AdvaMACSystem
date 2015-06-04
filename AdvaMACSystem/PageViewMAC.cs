@@ -227,10 +227,24 @@ namespace AdvaMACSystem
         {
             if (PumpInstallButton.Enabled)
             {
-                DataPool.CDataPool.GetDataPoolObject().SetboolValue(
-                        selectedPumpIndex,
-                        selectedCylinderIndex,
-                        CmdDataType.cdtManualStart_Pump, true);
+                if (PumpInstallButton.Text == "启动泵站")
+                {
+                    DataPool.CDataPool.GetDataPoolObject().SetboolValue(
+                            selectedPumpIndex,
+                            selectedCylinderIndex,
+                            CmdDataType.cdtManualStart_Pump, true);
+
+                    PumpInstallButton.Text = "停止泵站";
+                }
+                else
+                {
+                    DataPool.CDataPool.GetDataPoolObject().SetboolValue(
+                            selectedPumpIndex,
+                            selectedCylinderIndex,
+                            CmdDataType.cdtManualStart_Pump, false);
+
+                    PumpInstallButton.Text = "启动泵站";
+                }
             }
         }
 
@@ -238,24 +252,24 @@ namespace AdvaMACSystem
         {
             if (PumpSettingButton.Enabled)
             {
-                short dv = (short)DataPool.CDataPool.GetDataPoolObject().GetintValue(
-                                selectedPumpIndex,
-                                selectedCylinderIndex,
-                                CmdDataType.cdtPressure_Pump);
+                double dv = (short)DataPool.CDataPool.GetDataPoolObject().GetRealValue(
+                                    selectedPumpIndex,
+                                    selectedCylinderIndex,
+                                CmdDataType.cdtStartPressure_Pump);
 
-                KeypadForm f = KeypadForm.GetKeypadForm(dv.ToString());
+                KeypadForm f = KeypadForm.GetKeypadForm(dv.ToString("0.0"));
                 if (f.ShowDialog() == DialogResult.OK)
                 {
                     try
                     {
-                        dv = Convert.ToInt16(f.KeyText);
+                        dv = Convert.ToDouble(f.KeyText);
                         if (dv >= 0 && dv <= 4000)
                         {
-                            DataPool.CDataPool.GetDataPoolObject().SetintValue(
-                                selectedPumpIndex,
-                                selectedCylinderIndex,
-                                CmdDataType.cdtPressure_Pump,
-                                dv);
+                            DataPool.CDataPool.GetDataPoolObject().SetRealValue(
+                                    selectedPumpIndex,
+                                    selectedCylinderIndex,
+                                CmdDataType.cdtStartPressure_Pump,
+                                    dv);
                         }
                         else
                             MessageBox.Show("输入非法！");
@@ -375,6 +389,14 @@ namespace AdvaMACSystem
                 }
                 SelectedPumpIndex = pBSender.PumpIndex;
                 cylinder_OnCylinderClicked(0);
+
+                //
+                bool vb = DataPool.CDataPool.GetDataPoolObject().GetBoolValue(
+                            selectedPumpIndex,
+                            selectedCylinderIndex,
+                            CmdDataType.cdtManualStart_Pump);
+
+                PumpInstallButton.Text = (vb) ? "停止泵站" : "启动泵站";
             }
 
         }
@@ -498,7 +520,7 @@ namespace AdvaMACSystem
 
         private void cylinderRetractButton_Click(object sender, EventArgs e)
         {
-            if (ControlMode == ControlModeType.CylinderManual && selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
+            //if (ControlMode == ControlModeType.CylinderManual && selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
             {
                 CylinderControlStatus = 2;
             }
@@ -506,7 +528,7 @@ namespace AdvaMACSystem
 
         private void cylinderStopButton_Click(object sender, EventArgs e)
         {
-            if (ControlMode == ControlModeType.CylinderManual && selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
+            //if (ControlMode == ControlModeType.CylinderManual && selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
             {
                 CylinderControlStatus = 0;
             }
@@ -514,7 +536,7 @@ namespace AdvaMACSystem
 
         private void cylinderExtendButton_Click(object sender, EventArgs e)
         {
-            if (ControlMode == ControlModeType.CylinderManual && selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
+            //if (ControlMode == ControlModeType.CylinderManual && selectedCylinderIndex >= 0 && selectedCylinderIndex < cylinderList.Count)
             {
                 CylinderControlStatus = 1;
             }
@@ -671,8 +693,8 @@ namespace AdvaMACSystem
 
         private void timer_RefreshMac_Tick(object sender, EventArgs e)
         {
-            if (!this.Visible)
-                return;
+            //if (!this.Visible)
+            //    return;
 
             //pumps
             for (int j = 0; j < pumpList.Count; j++)
