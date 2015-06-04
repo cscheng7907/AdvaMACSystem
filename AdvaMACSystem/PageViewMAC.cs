@@ -187,7 +187,7 @@ namespace AdvaMACSystem
             //PumpInstallButton.MouseUp += new MouseEventHandler();
             PumpInstallButton.Enabled = false;
 
-            PumpSettingButton.Text = "泵站设置";
+            PumpSettingButton.Text = "压力设定";
             PumpSettingButton.Click += new EventHandler(PumpSettingButton_Click);
             //PumpSettingButton.MouseDown += new MouseEventHandler();
             //PumpSettingButton.MouseUp += new MouseEventHandler();
@@ -222,31 +222,45 @@ namespace AdvaMACSystem
 
         private void PumpInstallButton_Click(object sender, EventArgs e)
         {
-            DataPool.CDataPool.GetDataPoolObject().SetboolValue(
-                    selectedPumpIndex,
-                    selectedCylinderIndex,
-                    CmdDataType.cdtManualStart_Pump, true);
+            if (PumpInstallButton.Text == "启动泵站")
+            {
+                DataPool.CDataPool.GetDataPoolObject().SetboolValue(
+                        selectedPumpIndex,
+                        selectedCylinderIndex,
+                        CmdDataType.cdtManualStart_Pump, true);
+
+                PumpInstallButton.Text = "停止泵站";
+            }
+            else
+            {
+                DataPool.CDataPool.GetDataPoolObject().SetboolValue(
+                        selectedPumpIndex,
+                        selectedCylinderIndex,
+                        CmdDataType.cdtManualStart_Pump, false);
+
+                PumpInstallButton.Text = "启动泵站";
+            }
         }
 
         private void PumpSettingButton_Click(object sender, EventArgs e)
         {
-            short dv = (short)DataPool.CDataPool.GetDataPoolObject().GetintValue(
+            double dv = (short)DataPool.CDataPool.GetDataPoolObject().GetRealValue(
                             selectedPumpIndex,
                             selectedCylinderIndex,
-                            CmdDataType.cdtPressure_Pump);
+                            CmdDataType.cdtStartPressure_Pump);
 
-            KeypadForm f = KeypadForm.GetKeypadForm(dv.ToString());
+            KeypadForm f = KeypadForm.GetKeypadForm(dv.ToString("0.0"));
             if (f.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    dv = Convert.ToInt16(f.KeyText);
+                    dv = Convert.ToDouble(f.KeyText);
                     if (dv >= 0 && dv <= 4000)
                     {
-                        DataPool.CDataPool.GetDataPoolObject().SetintValue(
+                        DataPool.CDataPool.GetDataPoolObject().SetRealValue(
                             selectedPumpIndex,
                             selectedCylinderIndex,
-                            CmdDataType.cdtPressure_Pump,
+                            CmdDataType.cdtStartPressure_Pump,
                             dv);
                     }
                     else

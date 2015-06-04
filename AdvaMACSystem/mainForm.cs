@@ -220,7 +220,7 @@ namespace AdvaMACSystem
         }
 
         private Thread WarnErrThread;
-        private int WarnErrThreadInterval = 500;
+        private int WarnErrThreadInterval = 2000;
         private bool WarnErrThreadrunning = false;
         private void WarnErrThreadStart()
         {
@@ -297,7 +297,7 @@ namespace AdvaMACSystem
         }
 
         private Thread historyRecordThread;
-        private int historyRecordThreadInterval = 500;
+        private int historyRecordThreadInterval = 4000;
         private bool historyRecordThreadrunning = false;
         private void historyRecordThreadStart()
         {
