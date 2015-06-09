@@ -45,7 +45,7 @@ namespace AdvaMACSystem
             this.il_Pressure_Pump = new ComCtrls.ImageLabel();
             this.label8 = new System.Windows.Forms.Label();
             this.il_Voltage = new ComCtrls.ImageLabel();
-            this.rb__PowerSupply = new System.Windows.Forms.CheckBox();
+            this.rb__PowerSupply = new ComCtrls.ImageLabel();
             this.rb_Limit_5 = new System.Windows.Forms.CheckBox();
             this.rb_Limit_10 = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -249,12 +249,26 @@ namespace AdvaMACSystem
             // 
             // rb__PowerSupply
             // 
+            this.rb__PowerSupply.BackColor = System.Drawing.Color.White;
+            this.rb__PowerSupply.BackImg = null;
+            this.rb__PowerSupply.Checked = false;
+            this.rb__PowerSupply.IMGContainer = null;
+            this.rb__PowerSupply.Layout = ComCtrls.KTLayout.GlyphTop;
             this.rb__PowerSupply.Location = new System.Drawing.Point(19, 177);
             this.rb__PowerSupply.Name = "rb__PowerSupply";
-            this.rb__PowerSupply.Size = new System.Drawing.Size(298, 20);
-            this.rb__PowerSupply.TabIndex = 16;
+            this.rb__PowerSupply.Size = new System.Drawing.Size(104, 20);
+            this.rb__PowerSupply.TabIndex = 6;
             this.rb__PowerSupply.Tag = DataPool.CmdDataType.cdtPowerSupply_3301_3304;
-            this.rb__PowerSupply.Text = "控制器检测当前供电 0：市电 1：发电机";
+            this.rb__PowerSupply.Text = "0";
+            this.rb__PowerSupply.TextX = -1F;
+            this.rb__PowerSupply.TextY = -1F;
+            this.rb__PowerSupply.TransParent = false;
+            //this.rb__PowerSupply.Location = new System.Drawing.Point(19, 177);
+            //this.rb__PowerSupply.Name = "rb__PowerSupply";
+            //this.rb__PowerSupply.Size = new System.Drawing.Size(298, 20);
+            //this.rb__PowerSupply.TabIndex = 16;
+            //this.rb__PowerSupply.Tag = DataPool.CmdDataType.cdtPowerSupply_3301_3304;
+            //this.rb__PowerSupply.Text = "控制器检测当前供电 0：市电 1：发电机";
             // 
             // rb_Limit_5
             // 
@@ -493,7 +507,7 @@ namespace AdvaMACSystem
         private ComCtrls.ImageLabel il_Pressure_Pump;
         private System.Windows.Forms.Label label8;
         private ComCtrls.ImageLabel il_Voltage;
-        private System.Windows.Forms.CheckBox rb__PowerSupply;
+        private ComCtrls.ImageLabel rb__PowerSupply;
         private System.Windows.Forms.CheckBox rb_Limit_5;
         private System.Windows.Forms.CheckBox rb_Limit_10;
         private System.Windows.Forms.Panel panel1;

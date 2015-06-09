@@ -1327,7 +1327,8 @@ namespace AdvaMACSystem
                                             (vs_High | vs_low);
                                         //msgRecieve[j].data[2] + (msgRecieve[j].data[3] << 8);
 
-                                        CanDatapool.in_PowerSupply_3301_3304[idArray0] = (msgRecieve[j].data[4] != 0);
+                                        //CanDatapool.in_PowerSupply_3301_3304[idArray0] = (msgRecieve[j].data[4] != 0);
+                                        CanDatapool.in_PowerSupply_3301_3304[idArray0] = msgRecieve[j].data[4];
 
                                         for (int k = 0; k < 8; k++)
                                         {

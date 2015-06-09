@@ -88,7 +88,7 @@ namespace DataPool
 
                 in_Pressure_Pump_Real_3301_3304.Add(0);// 泵站压力 4
                 in_Voltage_Real_3301_3304.Add(0);// 控制器电压 4
-                in_PowerSupply_3301_3304.Add(false);// 控制器检测当前供电 0：市电 1：发电机 4
+                in_PowerSupply_3301_3304.Add(0);// 控制器检测当前供电 0：市电 1：发电机 4
 
                 in_CurPressureHigh_Pump_Real_1010_1013.Add(0);// 泵站当前设定压力高位 4
                 in_CurPressureLow_Pump_Real_1010_1013.Add(0); // 泵站当前设定压力低位 4
@@ -203,7 +203,7 @@ namespace DataPool
 
 
         public List<int> in_Voltage_Real_3301_3304 = new List<int>();// 控制器电压 4
-        public List<bool> in_PowerSupply_3301_3304 = new List<bool>();// 控制器检测当前供电 0：市电 1：发电机 4
+        public List<int> in_PowerSupply_3301_3304 = new List<int>();// 控制器检测当前供电 0：市电 1：发电机 4
 
         public List<bool> in_Limit_5_3301_3304 = new List<bool>();// 油缸5mm接近开关限位 4*8
         public List<bool> in_Limit_10_3301_3304 = new List<bool>();// 油缸10mm接近开关限位 4*8
@@ -322,6 +322,9 @@ namespace DataPool
 
             switch (type)
             {
+                case CmdDataType.cdtPowerSupply_3301_3304:// 控制器检测当前供电 0：市电 1：发电机 4
+                    rtv = in_PowerSupply_3301_3304[id];
+                    break;
                 case CmdDataType.cdtcylinderState_Real_3201_3208:// 油缸运行状态 4*8
                     rtv = (int)in_cylinderState_Real_3201_3208[id * 8 + subid];
                     break;
@@ -354,9 +357,9 @@ namespace DataPool
 
             switch (type)
             {
-                case CmdDataType.cdtPowerSupply_3301_3304:// 控制器检测当前供电 0：市电 1：发电机 4
-                    rtv = in_PowerSupply_3301_3304[id];
-                    break;
+                //case CmdDataType.cdtPowerSupply_3301_3304:// 控制器检测当前供电 0：市电 1：发电机 4
+                //    rtv = in_PowerSupply_3301_3304[id];
+                //    break;
                 case CmdDataType.cdtLimit_5_3301_3304:// 油缸5mm接近开关限位 4*8
                     rtv = in_Limit_5_3301_3304[id * 8 + subid];
                     break;

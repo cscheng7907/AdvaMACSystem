@@ -60,11 +60,12 @@ List<bool> in_Error_MachLock_retract_3511_3514 = new List<bool>();//油缸机械
             IntDic.Add(il_Position, CDataPool.GetDataPoolObject().in_Position_Real_3101_3108);
             IntDic.Add(il_Pressure_Pump, CDataPool.GetDataPoolObject().in_Pressure_Pump_Real_3301_3304);
             IntDic.Add(il_Voltage, CDataPool.GetDataPoolObject().in_Voltage_Real_3301_3304);
+            IntDic.Add(rb__PowerSupply, CDataPool.GetDataPoolObject().in_PowerSupply_3301_3304);
 
             doubleDic.Add(comboBoxcylinderState, CDataPool.GetDataPoolObject().in_cylinderState_Real_3201_3208);
             doubleDic.Add(comboBoxMachLockState, CDataPool.GetDataPoolObject().in_MachLockState_Real_3201_3208);
 
-            boolDic.Add(rb__PowerSupply, CDataPool.GetDataPoolObject().in_PowerSupply_3301_3304);
+            //boolDic.Add(rb__PowerSupply, CDataPool.GetDataPoolObject().in_PowerSupply_3301_3304);
             boolDic.Add(rb_Limit_5, CDataPool.GetDataPoolObject().in_Limit_5_3301_3304);
             boolDic.Add(rb_Limit_10, CDataPool.GetDataPoolObject().in_Limit_10_3301_3304);
             boolDic.Add(rb_Warn_HighPressure, CDataPool.GetDataPoolObject().in_Warn_HighPressure_3401_3404);

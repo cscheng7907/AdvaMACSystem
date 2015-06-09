@@ -38,7 +38,7 @@ namespace AdvaMACSystem
             pumpNameImage = new SimpleImagesContaner();
             pumpNameImage.BackImg = pumpNameImage.CheckedBackImg
                 = pumpNameImage.ImgDisable = AdvaMACSystemRes.IO;
-            
+
             pumpParaImage = new SimpleImagesContaner();
             pumpParaImage.BackImg = pumpParaImage.CheckedBackImg
                 = pumpParaImage.ImgDisable = AdvaMACSystemRes.IOlabel;
@@ -326,7 +326,28 @@ namespace AdvaMACSystem
                         = _candatapool.GetRealValue(startPumpIndex + i, 0, CmdDataType.cdtPressure_Pump_Real_3301_3304).ToString(numberFormat) + PressureUnit;
                     pumpImgLabelList[i * 3 + 1].Para
                         = _candatapool.GetRealValue(startPumpIndex + i, 0, CmdDataType.cdtVoltage_Real_3301_3304).ToString(numberFormat) + VoltageUnit;
+
                     pumpImgLabelList[i * 3 + 2].Para = _candatapool.GetBoolValue(startPumpIndex + i, 0, CmdDataType.cdtPowerSupply_3301_3304) ? "发电机" : "市电";
+
+                    switch (_candatapool.GetintValue(startPumpIndex + i, 0, CmdDataType.cdtPowerSupply_3301_3304))
+                    {
+                        case 0:
+                            pumpImgLabelList[i * 3 + 2].Para = "无电";
+                            break;
+                        case 1:
+                            pumpImgLabelList[i * 3 + 2].Para = "市电";
+
+                            break;
+                        case 2:
+                            pumpImgLabelList[i * 3 + 2].Para = "发电机";
+
+                            break;
+                        default:
+                            pumpImgLabelList[i * 3 + 2].Para = "未知";
+
+                            break;
+                    }
+
                 }
                 if (diagnoseItem == 0)
                 {
@@ -435,7 +456,7 @@ namespace AdvaMACSystem
                 }
             }
         }
-        
+
         private void timer_Refresh_Tick(object sender, EventArgs e)
         {
             DoRefresh();
