@@ -350,7 +350,7 @@ namespace AdvaMACSystem
 
         private void UpdatePumpButtonEnabled()
         {
-            PumpInstallButton.Enabled = pumpList[selectedPumpIndex].Enabled && pumpList[selectedPumpIndex].CurrentPara < 20 && ControlMode != ControlModeType.Auto;
+            PumpInstallButton.Enabled = pumpList[selectedPumpIndex].Enabled && pumpList[selectedPumpIndex].CurrentPara < 30 && ControlMode != ControlModeType.Auto;
 
         }
 
@@ -396,7 +396,14 @@ namespace AdvaMACSystem
                             selectedCylinderIndex,
                             CmdDataType.cdtManualStart_Pump);
 
-                PumpInstallButton.Text = (vb) ? "停止泵站" : "启动泵站";
+                //PumpInstallButton.Text = (vb) ? "停止泵站" : "启动泵站";
+                if (vb)
+                { PumpInstallButton.Text = "停止泵站"; }
+                else
+                    PumpInstallButton.Text =
+                        (pumpList[selectedPumpIndex].Enabled && pumpList[selectedPumpIndex].CurrentPara < 30) ?
+                        "启动泵站" : "停止泵站";
+
             }
 
         }
