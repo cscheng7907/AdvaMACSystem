@@ -372,7 +372,7 @@ namespace AdvaMACSystem
         private double maxValue;
         private double settingValue;
         private string XUnit = string.Empty;
-        private string YUnit = "kN";
+        private string YUnit = "KN";
         private int MinValueInImg;
         private int ValueRangeInImg;
         private List<string> filesToDraw;
@@ -381,6 +381,7 @@ namespace AdvaMACSystem
         private List<int> intervalTimeInFileList;
         private List<List<int>> dataList;
         private int multiplyingFactor = 1;
+        private double Scale = 10.17;//轴力比例 1.8*1.8*3.14, 位移比例 1
 
 #if WindowsCE
         private string tempFolder = @"\HardDisk\History\Temp\";
@@ -453,14 +454,14 @@ namespace AdvaMACSystem
 
         private int ReadyToDrawChart()
         {
-            //debug by zxj
-            maxValue = 100;
-            minValue = 0;
-            if (maxValue - minValue <= 0)
-            {
-                MessageBox.Show("数据范围不正确！");
-                return 1;
-            }
+            ////debug by zxj
+            //maxValue = 100;
+            //minValue = 0;
+            //if (maxValue - minValue <= 0)
+            //{
+            //    MessageBox.Show("数据范围不正确！");
+            //    return 1;
+            //}
             try
             {
                 //结束时间
@@ -484,11 +485,19 @@ namespace AdvaMACSystem
             string tempFile;
             if (drawPressure)
             {
+                Scale = 10.17;
+                maxValue = 3560.7;
+                minValue = 0;
+
                 tempFile = string.Format(historyOper.PressureRecFileName, pumpIndex, cylinderIndex, startTime.ToString("yyyy-MM-dd HH-mm-ss"));
                 settingValue = _candatapool.GetRealValue(pumpIndex, cylinderIndex, CmdDataType.cdtPressure_Value);
             }
             else
             {
+                Scale = 1;
+                maxValue = 100;
+                minValue = 0;
+
                 tempFile = string.Format(historyOper.PositionRecFileName, pumpIndex, cylinderIndex, startTime.ToString("yyyy-MM-dd HH-mm-ss"));
                 settingValue = _candatapool.GetRealValue(pumpIndex, cylinderIndex, CmdDataType.cdtPosition_Value);
             }
@@ -879,7 +888,7 @@ namespace AdvaMACSystem
             {
                 gt.DrawString((lvl[i].id + 1).ToString(), currentFont, blackBrush, 3 * CellWidth / 2 + i * CellWidth, CellHeight / 2, sf);
                 gt.DrawString((new DateTime(lvl[i].recTime)).ToString("HH:mm"), currentFont, blackBrush, 3 * CellWidth / 2 + i * CellWidth, 3 * CellHeight / 2, sf);
-                gt.DrawString(((double)lvl[i].data / multiplyingFactor).ToString(numberFormat), currentFont, blackBrush, 3 * CellWidth / 2 + i * CellWidth, 5 * CellHeight / 2, sf);
+                gt.DrawString(((double)lvl[i].data / multiplyingFactor * Scale).ToString(numberFormat), currentFont, blackBrush, 3 * CellWidth / 2 + i * CellWidth, 5 * CellHeight / 2, sf);
             }
         }
 

@@ -81,12 +81,12 @@ namespace AdvaMACSystem
                 button.IMGContainer = buttonImage;
                 this.Controls.Add(button);
             }
-            ibPressure.Text = "压力记录";
+            ibPressure.Text = "轴力记录";
             ibPressure.Name = "Pressure";
             ibPressure.Toggle = true;
             ibPressure.CheckedChanged += new EventHandler(dataTypeChanged);
 
-            ibPosition.Text = "位置记录";
+            ibPosition.Text = "位移记录";
             ibPosition.Name = "Position";
             ibPosition.Toggle = true;
             ibPosition.CheckedChanged += new EventHandler(dataTypeChanged);

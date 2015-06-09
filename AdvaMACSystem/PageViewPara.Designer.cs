@@ -234,7 +234,7 @@
             this.label16.Location = new System.Drawing.Point(526, 181);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(234, 33);
-            this.label16.Text = "油缸长度下限报警值：";
+            this.label16.Text = "油缸位移下限报警值：";
             // 
             // label13
             // 
@@ -267,7 +267,7 @@
             this.label14.Location = new System.Drawing.Point(526, 124);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(234, 33);
-            this.label14.Text = "油缸长度上限报警值：";
+            this.label14.Text = "油缸位移上限报警值：";
             // 
             // label11
             // 
@@ -300,7 +300,7 @@
             this.label12.Location = new System.Drawing.Point(526, 70);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(234, 33);
-            this.label12.Text = "油缸长度设定值：";
+            this.label12.Text = "油缸位移设定值：";
             // 
             // label9
             // 
@@ -333,7 +333,7 @@
             this.label10.Location = new System.Drawing.Point(23, 181);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(236, 33);
-            this.label10.Text = "油缸压力下限报警值：";
+            this.label10.Text = "油缸轴力下限报警值：";
             // 
             // label7
             // 
@@ -366,7 +366,7 @@
             this.label8.Location = new System.Drawing.Point(23, 124);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(236, 33);
-            this.label8.Text = "油缸压力上限报警值：";
+            this.label8.Text = "油缸轴力上限报警值：";
             // 
             // label5
             // 
@@ -399,7 +399,7 @@
             this.label6.Location = new System.Drawing.Point(23, 70);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(236, 33);
-            this.label6.Text = "油缸压力设定值：";
+            this.label6.Text = "油缸轴力设定值：";
             // 
             // comboBox_subid
             // 
@@ -573,7 +573,7 @@
             this.label_PositionControl_Enable.Location = new System.Drawing.Point(710, 168);
             this.label_PositionControl_Enable.Name = "label_PositionControl_Enable";
             this.label_PositionControl_Enable.Size = new System.Drawing.Size(298, 40);
-            this.label_PositionControl_Enable.Text = "油缸长度控制功能";
+            this.label_PositionControl_Enable.Text = "油缸位移控制功能";
             // 
             // label_PressureUpperLimitAlarm_Enable
             // 
@@ -581,7 +581,7 @@
             this.label_PressureUpperLimitAlarm_Enable.Location = new System.Drawing.Point(710, 55);
             this.label_PressureUpperLimitAlarm_Enable.Name = "label_PressureUpperLimitAlarm_Enable";
             this.label_PressureUpperLimitAlarm_Enable.Size = new System.Drawing.Size(298, 40);
-            this.label_PressureUpperLimitAlarm_Enable.Text = "油缸压力上限报警功能";
+            this.label_PressureUpperLimitAlarm_Enable.Text = "油缸轴力上限报警功能";
             // 
             // label_PositionLowerLimitAlarm_Enable
             // 
@@ -589,7 +589,7 @@
             this.label_PositionLowerLimitAlarm_Enable.Location = new System.Drawing.Point(197, 168);
             this.label_PositionLowerLimitAlarm_Enable.Name = "label_PositionLowerLimitAlarm_Enable";
             this.label_PositionLowerLimitAlarm_Enable.Size = new System.Drawing.Size(298, 40);
-            this.label_PositionLowerLimitAlarm_Enable.Text = "油缸长度下限报警功能";
+            this.label_PositionLowerLimitAlarm_Enable.Text = "油缸位移下限报警功能";
             // 
             // label_PositionUpperLimitAlarm_Enable
             // 
@@ -597,7 +597,7 @@
             this.label_PositionUpperLimitAlarm_Enable.Location = new System.Drawing.Point(197, 55);
             this.label_PositionUpperLimitAlarm_Enable.Name = "label_PositionUpperLimitAlarm_Enable";
             this.label_PositionUpperLimitAlarm_Enable.Size = new System.Drawing.Size(298, 40);
-            this.label_PositionUpperLimitAlarm_Enable.Text = "油缸长度上限报警功能";
+            this.label_PositionUpperLimitAlarm_Enable.Text = "油缸位移上限报警功能";
             // 
             // imageButton_OK
             // 

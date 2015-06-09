@@ -99,12 +99,14 @@
             this.lbMaxPos.Name = "lbMaxPos";
             this.lbMaxPos.Size = new System.Drawing.Size(80, 15);
             this.lbMaxPos.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lbMaxPos.Visible = false;
             // 
             // lbMinPos
             // 
             this.lbMinPos.Location = new System.Drawing.Point(85, 36);
             this.lbMinPos.Name = "lbMinPos";
             this.lbMinPos.Size = new System.Drawing.Size(60, 15);
+            this.lbMinPos.Visible = false;
             // 
             // lbMaxPre
             // 
