@@ -75,7 +75,7 @@ namespace DataPool
 
                 in_Error_pump_MachLock_proportionalvalve_shortcircuit_3501_3504.Add(false);//泵站机械锁马达电磁阀线路短路  // 4
                 in_Error_pump_MachLock_proportionalvalve_opencircuit_3501_3504.Add(false); //泵站机械锁马达电磁阀线路断路  // 4
-                
+
                 in_Error_controller_dynamo_Start_shortcircuit_3501_3504.Add(false);     //控制器发电机启动线路短路  // 4
                 in_Error_controller_dynamo_Start_opencircuit_3501_3504.Add(false);      //控制器发电机启动线路断路  // 4
 
@@ -84,7 +84,7 @@ namespace DataPool
 
                 in_Error_controller_warnlight_shortcircuit_3501_3504.Add(false);        //控制器声光报警灯线路短路  // 4
                 in_Error_controller_warnlight_opencircuit_3501_3504.Add(false);         //控制器声光报警灯线路断路  // 4
-                
+
 
                 in_Pressure_Pump_Real_3301_3304.Add(0);// 泵站压力 4
                 in_Voltage_Real_3301_3304.Add(0);// 控制器电压 4
@@ -633,7 +633,7 @@ namespace DataPool
         public bool sign_View_PositionSenserHigh_Confirm = false;//油缸长度传感器高位值确认
         public bool sign_isSame = false;    //单独/统一标定标志位		            5		1	0：每个油缸单独标定；1：所有油缸按同一值标定	
         public bool sign_View_SetupFinish_Confirm = false;//安装调试完毕确定标志
-        
+
         public int CurId = 0;
         public int CurSubId = 0;
         public ControlModeType ControlMode = ControlModeType.Auto;
@@ -878,7 +878,7 @@ namespace DataPool
 
     //0：表示自动控制方式
     //1：表示油缸伸缩手动控制
-    //2：表示机械锁手动控制"	手动控制
+    //2：表示无线遥感
     public enum ControlModeType
     {
         Auto = 0,

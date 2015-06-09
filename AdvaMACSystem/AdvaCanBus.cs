@@ -929,6 +929,7 @@ namespace AdvaMACSystem
                                         CanDatapool.in_CurPressureHigh_Pump_Real_1010_1013[idArray0] = msgRecieve[j].data[1];
                                         CanDatapool.in_StartFailed_Pump_1010_1013[idArray0] = msgRecieve[j].data[2] != 0;
                                         CanDatapool.in_CompAct_Pump_1010_1013[idArray0] = msgRecieve[j].data[3] != 0;
+                                        CanDatapool.ControlMode = (ControlModeType)msgRecieve[j].data[4];
                                         break;
                                     #region 3001-3008
                                     //3001

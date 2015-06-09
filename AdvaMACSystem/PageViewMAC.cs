@@ -82,11 +82,11 @@ namespace AdvaMACSystem
 
             stateButtonList = new List<ImageButton>();
 
-            PumpInstallButton = new ImageButton();
-            stateButtonList.Add(PumpInstallButton);
-
             PumpSettingButton = new ImageButton();
             stateButtonList.Add(PumpSettingButton);
+
+            PumpInstallButton = new ImageButton();
+            stateButtonList.Add(PumpInstallButton);
 
             cylinderExtendButton = new ImageButton();
             stateButtonList.Add(cylinderExtendButton);
@@ -133,7 +133,7 @@ namespace AdvaMACSystem
             controlModeButton.Checked = false;
             controlModeButton.Toggle = true;
             //controlModeButton.CheckedChanged += new EventHandler(controlModeButton_CheckedChanged);
-            controlModeButton.MouseUp += new MouseEventHandler(controlModeButton_MouseUp);
+            //controlModeButton.MouseUp += new MouseEventHandler(controlModeButton_MouseUp);
             //controlModeButton.Click += new EventHandler(controlModeButton_Click);
             controlModeButton.Text = "自动模式";
             this.Controls.Add(controlModeButton);
@@ -196,32 +196,32 @@ namespace AdvaMACSystem
             this.ResumeLayout(false);
         }
 
-        private void controlModeButton_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (controlModeButton.Enabled)
-            {
-                if (MessageBox.Show(string.Format("是否切换为 {0} 模式？", (!controlModeButton.Checked) ? "自动" : "手动"),
-                     "",
-                     MessageBoxButtons.OKCancel, MessageBoxIcon.None, MessageBoxDefaultButton.Button1
-                     ) == DialogResult.OK)
-                {
-                    //controlModeButton.Checked = !controlModeButton.Checked;
-                    if (!controlModeButton.Checked)
-                    {
-                        ControlMode = ControlModeType.Auto;
-                        //_candatapool.ControlMode = ControlModeType.Auto;
+        //private void controlModeButton_MouseUp(object sender, MouseEventArgs e)
+        //{
+        //    if (controlModeButton.Enabled)
+        //    {
+        //        if (MessageBox.Show(string.Format("是否切换为 {0} 模式？", (!controlModeButton.Checked) ? "自动" : "手动"),
+        //             "",
+        //             MessageBoxButtons.OKCancel, MessageBoxIcon.None, MessageBoxDefaultButton.Button1
+        //             ) == DialogResult.OK)
+        //        {
+        //            //controlModeButton.Checked = !controlModeButton.Checked;
+        //            if (!controlModeButton.Checked)
+        //            {
+        //                ControlMode = ControlModeType.Auto;
+        //                //_candatapool.ControlMode = ControlModeType.Auto;
 
-                    }
-                    else
-                    {
-                        ControlMode = ControlModeType.CylinderManual;
-                        //_candatapool.ControlMode = ControlModeType.CylinderManual;
-                    }
-                }
-                else
-                    controlModeButton.Checked = !controlModeButton.Checked;
-            }
-        }
+        //            }
+        //            else
+        //            {
+        //                ControlMode = ControlModeType.CylinderManual;
+        //                //_candatapool.ControlMode = ControlModeType.CylinderManual;
+        //            }
+        //        }
+        //        else
+        //            controlModeButton.Checked = !controlModeButton.Checked;
+        //    }
+        //}
 
         private void PumpInstallButton_Click(object sender, EventArgs e)
         {
@@ -404,15 +404,18 @@ namespace AdvaMACSystem
         #endregion
 
         #region 控制按钮
-        //private ControlModeType controlMode = ControlModeType.cmtAuto; //0:Auto 1:Manual
+        private ControlModeType _controlMode = ControlModeType.CylinderManual; //0:Auto 1:Manual
         public ControlModeType ControlMode
         {
-            get { return _candatapool.ControlMode; }
+            //get { return _candatapool.ControlMode; }
+            get { return _controlMode; }
             set
             {
-                if (_candatapool.ControlMode != value)
+                //if (_candatapool.ControlMode != value)
+                if (_controlMode != value)
                 {
-                    _candatapool.ControlMode = value;
+                    //_candatapool.ControlMode = value;
+                    _controlMode = value;
                     DoControlModeChanged();
                 }
             }
@@ -420,6 +423,7 @@ namespace AdvaMACSystem
 
         private void DoControlModeChanged()
         {
+            /*
             controlModeButton.Enabled = pumpList[selectedPumpIndex].Enabled;
             if (controlModeButton.Enabled)
             {
@@ -454,6 +458,33 @@ namespace AdvaMACSystem
                 PumpSettingButton.Enabled = false;
                 cylinderExtendButton.Enabled = false;
                 cylinderRetractButton.Enabled = false;
+            }
+
+            */
+
+            switch (ControlMode)
+            {
+                case ControlModeType.Auto:
+                    controlModeButton.Text = "自动模式";
+                    cylinderExtendButton.Enabled = false;
+                    cylinderRetractButton.Enabled = false;
+                    PumpInstallButton.Enabled = false;
+                    PumpSettingButton.Enabled = false;
+                    break;
+                case ControlModeType.MachLockManual:
+                    controlModeButton.Text = "无线遥感";
+                    cylinderExtendButton.Enabled = false;
+                    cylinderRetractButton.Enabled = false;
+                    PumpInstallButton.Enabled = false;
+                    PumpSettingButton.Enabled = false;
+                    break;
+                case ControlModeType.CylinderManual:
+                    controlModeButton.Text = "手动模式";
+                    MessageBox.Show("当前为手动模式，请注意！");
+                    PumpSettingButton.Enabled = true;
+                    PumpInstallButton.Enabled = true;
+                    UpdateCylinderControlButtonEnabled();
+                    break;
             }
         }
 
@@ -695,6 +726,8 @@ namespace AdvaMACSystem
         {
             //if (!this.Visible)
             //    return;
+
+            ControlMode = _candatapool.ControlMode;
 
             //pumps
             for (int j = 0; j < pumpList.Count; j++)
