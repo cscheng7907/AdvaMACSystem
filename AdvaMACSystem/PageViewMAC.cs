@@ -131,7 +131,7 @@ namespace AdvaMACSystem
             controlModeButton.Font = currentFont;
             controlModeButton.IMGContainer = buttonImages;
             controlModeButton.Checked = false;
-            controlModeButton.Toggle = true;
+            controlModeButton.Toggle = false;
             //controlModeButton.CheckedChanged += new EventHandler(controlModeButton_CheckedChanged);
             //controlModeButton.MouseUp += new MouseEventHandler(controlModeButton_MouseUp);
             //controlModeButton.Click += new EventHandler(controlModeButton_Click);
@@ -412,7 +412,7 @@ namespace AdvaMACSystem
         #endregion
 
         #region 控制按钮
-        private ControlModeType _controlMode = ControlModeType.CylinderManual; //0:Auto 1:Manual
+        private ControlModeType _controlMode = ControlModeType.Auto; //0:Auto 1:Manual
         public ControlModeType ControlMode
         {
             //get { return _candatapool.ControlMode; }

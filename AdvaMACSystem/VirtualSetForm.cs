@@ -180,12 +180,13 @@ List<bool> in_Error_MachLock_retract_3511_3514 = new List<bool>();//油缸机械
 
         private void OnClick(object Sender, EventArgs e)
         {
-            KeypadForm f = KeypadForm.GetKeypadForm("", KeypadMode.Normal);
+            KeypadForm f = KeypadForm.GetKeypadForm("0", KeypadMode.Normal);
             if (f.ShowDialog() == DialogResult.OK)
             {
                 ((ImageLabel)Sender).Text = f.KeyText;
 
                 if (Sender == il_Pressure_Pump ||// 泵站压力 4
+                   Sender == rb__PowerSupply ||
                    Sender == il_Voltage)// 控制器电压 4
                 {
                     IntDic[(Control)Sender]
