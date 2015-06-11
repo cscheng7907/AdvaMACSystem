@@ -31,7 +31,7 @@ namespace AdvaMACSystem
         private const uint M_SENDCOUNT = 164;
         private AdvCan.canmsg_t[] msgSend = new AdvCan.canmsg_t[M_SENDCOUNT];                 //Package for write 
 
-        private const uint M_RECIEVECOUNT = 1;//40;
+        private const uint M_RECIEVECOUNT = 44;
         private AdvCan.canmsg_t[] msgRecieve = new AdvCan.canmsg_t[M_RECIEVECOUNT];                 //Package for write 
 
         private static AdvaCanBus AdvaCanBusObject = null;
@@ -990,40 +990,36 @@ namespace AdvaMACSystem
                                     case 0x3007:
                                     case 0x3008:
                                         idArray = BitConverter.GetBytes(msgRecieve[j].id);
-                                        idArray0 = idArray[0];
+                                        idArray0 = Convert.ToByte(idArray[0] - 1);//0~7
 
-                                        Idx_Pump = (idArray0 - 1) / 2 + 1;
+                                        Idx_Pump = idArray0 / 2;//0~3
+                                        Idx_Cylinder = (((idArray0 % 2) != 0) ? 4 : 0);
 
-                                        Idx_Cylinder = 1 + (((idArray0 % 2) == 0) ? 4 : 0);
                                         vs_High = (short)msgRecieve[j].data[1];
                                         vs_High = (short)(vs_High << 8);
                                         vs_low = msgRecieve[j].data[0];
-                                        CanDatapool.in_Pressure_Real_3001_3008[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
+                                        CanDatapool.in_Pressure_Real_3001_3008[(int)(Idx_Pump * 8 + Idx_Cylinder + 0)] =
                                             (vs_High | vs_low);
                                         //msgRecieve[j].data[0] + (msgRecieve[j].data[1] << 8);
-
-                                        Idx_Cylinder = 2 + (((idArray0 % 2) == 0) ? 4 : 0);
 
                                         vs_High = (short)msgRecieve[j].data[3];
                                         vs_High = (short)(vs_High << 8);
                                         vs_low = msgRecieve[j].data[2];
-                                        CanDatapool.in_Pressure_Real_3001_3008[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
+                                        CanDatapool.in_Pressure_Real_3001_3008[(int)(Idx_Pump * 8 + Idx_Cylinder + 1)] =
                                             (vs_High | vs_low);
                                         //msgRecieve[j].data[2] + (msgRecieve[j].data[3] << 8);
 
-                                        Idx_Cylinder = 3 + (((idArray0 % 2) == 0) ? 4 : 0);
                                         vs_High = (short)msgRecieve[j].data[5];
                                         vs_High = (short)(vs_High << 8);
                                         vs_low = msgRecieve[j].data[4];
-                                        CanDatapool.in_Pressure_Real_3001_3008[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
+                                        CanDatapool.in_Pressure_Real_3001_3008[(int)(Idx_Pump * 8 + Idx_Cylinder + 2)] =
                                             (vs_High | vs_low);
                                         //msgRecieve[j].data[4] + (msgRecieve[j].data[5] << 8);
 
-                                        Idx_Cylinder = 4 + (((idArray0 % 2) == 0) ? 4 : 0);
                                         vs_High = (short)msgRecieve[j].data[7];
                                         vs_High = (short)(vs_High << 8);
                                         vs_low = msgRecieve[j].data[6];
-                                        CanDatapool.in_Pressure_Real_3001_3008[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
+                                        CanDatapool.in_Pressure_Real_3001_3008[(int)(Idx_Pump * 8 + Idx_Cylinder + 3)] =
                                                 (vs_High | vs_low);
                                         //msgRecieve[j].data[6] + (msgRecieve[j].data[7] << 8);
 
@@ -1081,15 +1077,15 @@ namespace AdvaMACSystem
                                     case 0x3107:
                                     case 0x3108:
                                         idArray = BitConverter.GetBytes(msgRecieve[j].id);
-                                        idArray0 = idArray[0];
+                                        idArray0 = Convert.ToByte(idArray[0] - 1);//0~7
 
-                                        Idx_Pump = (idArray0 - 1) / 2 + 1;
+                                        Idx_Pump = idArray0 / 2;//0~3
+                                        Idx_Cylinder = (((idArray0 % 2) != 0) ? 4 : 0);
 
-                                        Idx_Cylinder = 1 + (((idArray0 % 2) == 0) ? 4 : 0);
                                         vs_High = (short)msgRecieve[j].data[1];
                                         vs_High = (short)(vs_High << 8);
                                         vs_low = msgRecieve[j].data[0];
-                                        CanDatapool.in_Position_Real_3101_3108[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
+                                        CanDatapool.in_Position_Real_3101_3108[(int)(Idx_Pump * 8 + Idx_Cylinder + 0)] =
                                                (vs_High | vs_low);
                                         //msgRecieve[j].data[0] + (msgRecieve[j].data[1] << 8);
 
@@ -1097,7 +1093,7 @@ namespace AdvaMACSystem
                                         vs_High = (short)msgRecieve[j].data[3];
                                         vs_High = (short)(vs_High << 8);
                                         vs_low = msgRecieve[j].data[2];
-                                        CanDatapool.in_Position_Real_3101_3108[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
+                                        CanDatapool.in_Position_Real_3101_3108[(int)(Idx_Pump * 8 + Idx_Cylinder + 1)] =
                                                (vs_High | vs_low);
                                         //msgRecieve[j].data[2] + (msgRecieve[j].data[3] << 8);
 
@@ -1105,7 +1101,7 @@ namespace AdvaMACSystem
                                         vs_High = (short)msgRecieve[j].data[5];
                                         vs_High = (short)(vs_High << 8);
                                         vs_low = msgRecieve[j].data[4];
-                                        CanDatapool.in_Position_Real_3101_3108[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
+                                        CanDatapool.in_Position_Real_3101_3108[(int)(Idx_Pump * 8 + Idx_Cylinder + 2)] =
                                                (vs_High | vs_low);
                                         //msgRecieve[j].data[4] + (msgRecieve[j].data[5] << 8);
 
@@ -1113,7 +1109,7 @@ namespace AdvaMACSystem
                                         vs_High = (short)msgRecieve[j].data[7];
                                         vs_High = (short)(vs_High << 8);
                                         vs_low = msgRecieve[j].data[6];
-                                        CanDatapool.in_Position_Real_3101_3108[(int)((Idx_Pump - 1) * 8 + Idx_Cylinder - 1)] =
+                                        CanDatapool.in_Position_Real_3101_3108[(int)(Idx_Pump * 8 + Idx_Cylinder + 3)] =
                                                (vs_High | vs_low);
                                         //msgRecieve[j].data[6] + (msgRecieve[j].data[7] << 8);
 

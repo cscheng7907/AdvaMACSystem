@@ -351,7 +351,7 @@ namespace AdvaMACSystem
 
         private void UpdatePumpButtonEnabled()
         {
-            PumpInstallButton.Enabled = pumpList[selectedPumpIndex].Enabled && pumpList[selectedPumpIndex].CurrentPara < 30 && ControlMode != ControlModeType.Auto;
+            PumpInstallButton.Enabled = pumpList[selectedPumpIndex].Enabled && pumpList[selectedPumpIndex].CurrentPara < 30 && ControlMode == ControlModeType.CylinderManual;
 
         }
 
@@ -625,8 +625,8 @@ namespace AdvaMACSystem
 
         public override void DoEnter()
         {
-            DoReEnter();
             base.DoEnter();
+            DoReEnter();
         }
 
         public override void DoReEnter()
