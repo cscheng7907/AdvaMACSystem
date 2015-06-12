@@ -31,7 +31,7 @@ namespace AdvaMACSystem
         private const uint M_SENDCOUNT = 164;
         private AdvCan.canmsg_t[] msgSend = new AdvCan.canmsg_t[M_SENDCOUNT];                 //Package for write 
 
-        private const uint M_RECIEVECOUNT = 44;
+        private const uint M_RECIEVECOUNT = 100;//44;
         private AdvCan.canmsg_t[] msgRecieve = new AdvCan.canmsg_t[M_RECIEVECOUNT];                 //Package for write 
 
         private static AdvaCanBus AdvaCanBusObject = null;
