@@ -335,7 +335,10 @@ namespace AdvaMACSystem
         }
         private void UpdateCylinderControlButtonEnabled()
         {
-            if (ControlMode == ControlModeType.CylinderManual && cylinderList[selectedCylinderIndex].InUse)
+            if ((ControlMode == ControlModeType.CylinderManual ||
+                ControlMode == ControlModeType.MachLockManual)
+
+                && cylinderList[selectedCylinderIndex].InUse)
             {
                 cylinderExtendButton.Enabled = true;
                 //cylinderStopButton.Enabled = true;
@@ -481,8 +484,8 @@ namespace AdvaMACSystem
                     break;
                 case ControlModeType.MachLockManual:
                     controlModeButton.Text = "无线遥感";
-                    cylinderExtendButton.Enabled = false;
-                    cylinderRetractButton.Enabled = false;
+                    cylinderExtendButton.Enabled = true;
+                    cylinderRetractButton.Enabled = true;
                     PumpInstallButton.Enabled = false;
                     PumpSettingButton.Enabled = false;
                     break;

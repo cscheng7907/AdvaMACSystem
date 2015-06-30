@@ -538,7 +538,7 @@ namespace DataPool
                     out_PositionSenserHigh_Value[id * 8 + subid] = Convert.ToByte(value * 10);
                     break;
                 case CmdDataType.cdtStartPressure_Pump://泵站启动压力设定值 4
-                    out_StartPressure_Pump[id] = Convert.ToByte(value * 10);
+                    out_StartPressure_Pump[id] = Convert.ToInt16(value * 10);
                     break;
                 case CmdDataType.cdtPressureAlarm_Pump://泵站压力报警值 4
                     out_PressureAlarm_Pump[id] = Convert.ToInt16(value * 10);
@@ -639,7 +639,13 @@ namespace DataPool
 
         public int CurId = 0;
         public int CurSubId = 0;
+#if WindowsCE
+
         public ControlModeType ControlMode = ControlModeType.Auto;
+#else
+        public ControlModeType ControlMode = ControlModeType.MachLockManual ;
+
+#endif
         public MotionStateType out_MotionState = MotionStateType.stsStop;
 
         public List<byte> View_SetupPosition_Row = new List<byte>();//油缸安装所在的层数 4*8
