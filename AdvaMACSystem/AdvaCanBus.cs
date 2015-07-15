@@ -372,7 +372,7 @@ namespace AdvaMACSystem
                 //                                   6	1	1：7#油缸调试完毕按钮按下；0：按钮未按下	
                 //                                   7	1	1：8#油缸调试完毕按钮按下；0：按钮未按下	
 
-                
+
                 /*
                 for (int i = 0; i < CanDatapool.PumpCount; i++)
                 {
@@ -713,6 +713,24 @@ namespace AdvaMACSystem
                     msgSend[canmsgIndex].data[5] = (byte)(CanDatapool.out_StartPressure_Pump[id] & 0xFF);
                     msgSend[canmsgIndex].data[6] = (byte)(CanDatapool.out_StartPressure_Pump[id] >> 8);
                     msgSend[canmsgIndex].data[7] = (byte)((CanDatapool.out_ManualStart_Pump[id]) ? 1 : 0);
+                    canmsgIndex++;
+                }
+
+                //2006
+                //油缸截面积值设定		0,1		0.01		
+                //油缸最大压力值设定		2,3		0.1		
+                //油缸最大位移值设定		4,5		0.1		
+                {
+                    msgSend[canmsgIndex].id = 0x2006;
+
+                    msgSend[canmsgIndex].data[0] = (byte)(CanDatapool.out_SectionalArea_Value[(int)(id * CanDatapool.CylinderCount + subid)] & 0xFF);
+                    msgSend[canmsgIndex].data[1] = (byte)(CanDatapool.out_SectionalArea_Value[(int)(id * CanDatapool.CylinderCount + subid)] >> 8);
+
+                    msgSend[canmsgIndex].data[2] = (byte)(CanDatapool.out_MAXPressure_Value[(int)(id * CanDatapool.CylinderCount + subid)] & 0xFF);
+                    msgSend[canmsgIndex].data[3] = (byte)(CanDatapool.out_MAXPressure_Value[(int)(id * CanDatapool.CylinderCount + subid)] >> 8);
+
+                    msgSend[canmsgIndex].data[4] = (byte)(CanDatapool.out_MAXPosition_Value[(int)(id * CanDatapool.CylinderCount + subid)] & 0xFF);
+                    msgSend[canmsgIndex].data[5] = (byte)(CanDatapool.out_MAXPosition_Value[(int)(id * CanDatapool.CylinderCount + subid)] >> 8);
                     canmsgIndex++;
                 }
 

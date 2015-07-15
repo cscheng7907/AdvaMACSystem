@@ -161,6 +161,10 @@ namespace DataPool
                         out_PositionSenserLow_Value.Add(0);//油缸长度传感器低位值 4*8
                         out_PositionSenserHigh_Value.Add(0);//油缸长度传感器高位值 4*8
 
+                        out_SectionalArea_Value.Add(0);  //油缸截面积 4*8
+                        out_MAXPressure_Value.Add(0);  //油缸最大压力 4*8
+                        out_MAXPosition_Value.Add(0);   //油缸最大位移 4*8
+
                         View_SetupPosition_Row.Add(0);//油缸安装所在的层数 4*8
                         View_SetupPosition_Col.Add(0);//油缸安装所在的支数 4*8
                         sign_View_SetupFinish_Confirm_seperate.Add(false);//安装调试完毕确认_油缸 4*8
@@ -314,6 +318,15 @@ namespace DataPool
                     break;
                 case CmdDataType.cdtPressureAlarm_Pump://泵站压力报警值 4
                     rtv = out_PressureAlarm_Pump[id] * 0.1;
+                    break;
+                case CmdDataType.cdtSectionalArea_Value://油缸截面积 4*8
+                    rtv = out_SectionalArea_Value[id * 8 + subid] * 0.01;
+                    break;
+                case CmdDataType.cdtMAXPressure_Value://油缸最大压力 4*8
+                    rtv = out_MAXPressure_Value[id * 8 + subid] * 0.1;
+                    break;
+                case CmdDataType.cdtMAXPosition_Value: //油缸最大位移 4*8
+                    rtv = out_MAXPosition_Value[id * 8 + subid] * 0.1;
                     break;
                 default:
                     break;
@@ -552,6 +565,15 @@ namespace DataPool
                 case CmdDataType.cdtPressureAlarm_Pump://泵站压力报警值 4
                     out_PressureAlarm_Pump[id] = Convert.ToInt16(value * 10);
                     break;
+                case CmdDataType.cdtSectionalArea_Value://油缸截面积 4*8
+                    out_SectionalArea_Value[id * 8 + subid] = Convert.ToInt16(value * 100);
+                    break;
+                case CmdDataType.cdtMAXPressure_Value://油缸最大压力 4*8
+                    out_MAXPressure_Value[id * 8 + subid] = Convert.ToInt16(value * 10);
+                    break;
+                case CmdDataType.cdtMAXPosition_Value: //油缸最大位移 4*8
+                    out_MAXPosition_Value[id * 8 + subid] = Convert.ToInt16(value * 10);
+                    break;
                 default:
                     break;
             }
@@ -633,6 +655,12 @@ namespace DataPool
 
         public List<byte> out_PositionSenserLow_Value = new List<byte>();//油缸长度传感器低位值 4*8
         public List<byte> out_PositionSenserHigh_Value = new List<byte>();//油缸长度传感器高位值 4*8
+
+        public List<short> out_SectionalArea_Value = new List<short>();//油缸截面积 4*8
+        public List<short> out_MAXPressure_Value = new List<short>();//油缸最大压力 4*8
+        public List<short> out_MAXPosition_Value = new List<short>();//油缸最大位移 4*8
+
+
 
         //-------sign
         public bool sign_View_Setup = false;//进入“安装设定”界面标志位
@@ -738,7 +766,13 @@ namespace DataPool
                     //public List<byte> View_SetupPosition_Row = new List<byte>();//油缸安装所在的层数 4*8
                            sizeof(byte) * Number_Pump * Number_Cylinder +
                     //public List<byte> View_SetupPosition_Col = new List<byte>();//油缸安装所在的支数 4*8
-                           sizeof(byte) * Number_Pump * Number_Cylinder;
+                           sizeof(byte) * Number_Pump * Number_Cylinder +
+                    //public List<short> out_SectionalArea_Value = new List<short>();//油缸截面积 4*8
+                            sizeof(short) * Number_Pump * Number_Cylinder +
+                    //public List<short> out_MAXPressure_Value = new List<short>();//油缸最大压力 4*8
+                            sizeof(short) * Number_Pump * Number_Cylinder +
+                    //public List<short> out_MAXPosition_Value = new List<short>();//油缸最大位移 4*8
+                            sizeof(short) * Number_Pump * Number_Cylinder;
 
                 try
                 {
@@ -794,6 +828,10 @@ namespace DataPool
                                     View_SetupPosition_Row[i * 8 + j] = br.ReadByte();   //油缸安装所在的层数 4*8
                                     /*List<byte>*/
                                     View_SetupPosition_Col[i * 8 + j] = br.ReadByte();   //油缸安装所在的支数 4*8
+
+                                    out_SectionalArea_Value[i * 8 + j] = br.ReadInt16();//油缸截面积 4*8
+                                    out_MAXPressure_Value[i * 8 + j] = br.ReadInt16(); //油缸最大压力 4*8
+                                    out_MAXPosition_Value[i * 8 + j] = br.ReadInt16(); //油缸最大位移 4*8
                                 }
                             }
                         }
@@ -863,6 +901,10 @@ namespace DataPool
                         bw.Write(View_SetupPosition_Row[i * 8 + j]);   //油缸安装所在的层数 4*8
                         /*List<byte>*/
                         bw.Write(View_SetupPosition_Col[i * 8 + j]);   //油缸安装所在的支数 4*8
+
+                        bw.Write(out_SectionalArea_Value[i * 8 + j]);//油缸截面积 4*8
+                        bw.Write(out_MAXPressure_Value[i * 8 + j]); //油缸最大压力 4*8
+                        bw.Write(out_MAXPosition_Value[i * 8 + j]); //油缸最大位移 4*8
                     }
                 }
 
@@ -994,7 +1036,12 @@ namespace DataPool
         cdtPositionSenserHigh_Value,//油缸长度传感器高位值 4*8
 
         cdtView_SetupPosition_Row,//油缸安装所在的层数 4*8
-        cdtView_SetupPosition_Col//油缸安装所在的支数 4*8
+        cdtView_SetupPosition_Col,//油缸安装所在的支数 4*8
+
+        cdtSectionalArea_Value,//油缸截面积 4*8
+        cdtMAXPressure_Value,//油缸最大压力 4*8
+        cdtMAXPosition_Value //油缸最大位移 4*8
+
     }
 
     /*
