@@ -31,6 +31,7 @@
             this.timer1 = new System.Windows.Forms.Timer();
             this.lb_date = new System.Windows.Forms.Label();
             this.panel_Head = new System.Windows.Forms.Panel();
+            this.imageLabel_Estop = new ComCtrls.ImageLabel();
             this.imageLabel_History = new ComCtrls.ImageLabel();
             this.imageLabel_Diagnose = new ComCtrls.ImageLabel();
             this.imageLabel_Setting = new ComCtrls.ImageLabel();
@@ -75,6 +76,7 @@
             // panel_Head
             // 
             this.panel_Head.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(74)))), ((int)(((byte)(132)))));
+            this.panel_Head.Controls.Add(this.imageLabel_Estop);
             this.panel_Head.Controls.Add(this.imageLabel_History);
             this.panel_Head.Controls.Add(this.imageLabel_Diagnose);
             this.panel_Head.Controls.Add(this.imageLabel_Setting);
@@ -91,6 +93,25 @@
             this.panel_Head.Click += new System.EventHandler(this.panel_Head_Click);
             this.panel_Head.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_Head_MouseDown);
             this.panel_Head.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel_Head_MouseUp);
+            // 
+            // imageLabel_Estop
+            // 
+            this.imageLabel_Estop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(74)))), ((int)(((byte)(132)))));
+            this.imageLabel_Estop.BackImg = global::AdvaMACSystem.AdvaMACSystemRes.estop64;
+            this.imageLabel_Estop.Checked = false;
+            this.imageLabel_Estop.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular);
+            this.imageLabel_Estop.ForeColor = System.Drawing.Color.Red;
+            this.imageLabel_Estop.IMGContainer = null;
+            this.imageLabel_Estop.ImgDisable = null;
+            this.imageLabel_Estop.Layout = ComCtrls.KTLayout.GlyphTop;
+            this.imageLabel_Estop.Location = new System.Drawing.Point(400, 8);
+            this.imageLabel_Estop.Name = "imageLabel_Estop";
+            this.imageLabel_Estop.Size = new System.Drawing.Size(75, 70);
+            this.imageLabel_Estop.TabIndex = 26;
+            this.imageLabel_Estop.TextX = 45F;
+            this.imageLabel_Estop.TextY = 0F;
+            this.imageLabel_Estop.TransParent = true;
+            this.imageLabel_Estop.Visible = false;
             // 
             // imageLabel_History
             // 
@@ -454,6 +475,7 @@
         private System.Windows.Forms.Panel panel_Err;
         private ComCtrls.ImageLabel imageLabel_Err_History;
         private ComCtrls.ImageLabel imageLabel_Err_Real;
+        private ComCtrls.ImageLabel imageLabel_Estop;
     }
 }
 
