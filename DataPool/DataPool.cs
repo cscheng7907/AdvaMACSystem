@@ -137,6 +137,7 @@ namespace DataPool
 
                 out_StartPressure_Pump.Clear(); //泵站启动压力设定值 4
                 out_ManualStart_Pump.Clear(); //手动启动泵站  4
+                sign_View_SetupFinish_Confirm_seperate.Clear();//安装调试完毕确认_油缸 8
 
                 for (int i = 0; i < Number_Pump; i++)
                 {
@@ -162,6 +163,7 @@ namespace DataPool
 
                         View_SetupPosition_Row.Add(0);//油缸安装所在的层数 4*8
                         View_SetupPosition_Col.Add(0);//油缸安装所在的支数 4*8
+                        sign_View_SetupFinish_Confirm_seperate.Add(false);//安装调试完毕确认_油缸 4*8
                     }
 
                     out_PressureAlarm_Pump.Add(0);//泵站压力报警值 4
@@ -254,8 +256,8 @@ namespace DataPool
         public List<bool> in_Error_cylinder_retract_opencircuit_3511_3514 = new List<bool>();//油缸缩回电磁阀线路断路 4*8
         public List<bool> in_Error_MachLock_extend_opencircuit_3511_3514 = new List<bool>();//油缸机械锁伸出电磁阀线路断路 4*8
         public List<bool> in_Error_MachLock_retract_opencircuit_3511_3514 = new List<bool>();//油缸机械锁缩回电磁阀线路断路 4*8
-        
-        public List<bool> in_EStop_1010_1013 =  new List<bool>();//急停按钮 // 4
+
+        public List<bool> in_EStop_1010_1013 = new List<bool>();//急停按钮 // 4
         #endregion
 
         //Get function
@@ -501,7 +503,7 @@ namespace DataPool
                 case CmdDataType.cdtManualStart_Pump://手动启动泵站  4
                     rtv = out_ManualStart_Pump[id];
                     break;
-                case CmdDataType.  cdtEStop_1010_1013:
+                case CmdDataType.cdtEStop_1010_1013:
                     rtv = in_EStop_1010_1013[id];
                     break;
                 default:
@@ -643,6 +645,7 @@ namespace DataPool
         public bool sign_View_PositionSenserHigh_Confirm = false;//油缸长度传感器高位值确认
         public bool sign_isSame = false;    //单独/统一标定标志位		            5		1	0：每个油缸单独标定；1：所有油缸按同一值标定	
         public bool sign_View_SetupFinish_Confirm = false;//安装调试完毕确定标志
+        public List<bool> sign_View_SetupFinish_Confirm_seperate = new List<bool>();//安装调试完毕确认_油缸 4*8
 
         public int CurId = 0;
         public int CurSubId = 0;

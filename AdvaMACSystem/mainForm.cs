@@ -632,6 +632,10 @@ namespace AdvaMACSystem
                     c == pvPara_Sensor ||
                     c == pvPara_Setup;
                 panel_Para.BringToFront();
+
+                if (PreUICtrl == pvMAC && c != pvMAC &&
+                    pvMAC.ControlMode == ControlModeType.CylinderManual)
+                    MessageBox.Show("当前为手动模式，请注意！");
             }
         }
 

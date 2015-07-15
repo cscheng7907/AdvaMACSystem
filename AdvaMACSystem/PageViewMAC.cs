@@ -491,7 +491,7 @@ namespace AdvaMACSystem
                     break;
                 case ControlModeType.CylinderManual:
                     controlModeButton.Text = "手动模式";
-                    MessageBox.Show("当前为手动模式，请注意！");
+                    //MessageBox.Show("当前为手动模式，请注意！");
                     PumpSettingButton.Enabled = true;
                     PumpInstallButton.Enabled = true;
                     UpdateCylinderControlButtonEnabled();
