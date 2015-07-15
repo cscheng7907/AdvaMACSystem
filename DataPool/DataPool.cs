@@ -95,6 +95,8 @@ namespace DataPool
                 in_StartFailed_Pump_1010_1013.Add(false);// 泵站建压失败 4
                 in_CompAct_Pump_1010_1013.Add(false); // 泵站补偿动作情况 4
 
+                in_EStop_1010_1013.Add(false); //急停按钮 // 4
+
                 for (int j = 0; j < 16; j++)
                 {
                     in_Error_Pump_3501_3504.Add(false); //泵站及控制器 故障 4*16
@@ -252,6 +254,8 @@ namespace DataPool
         public List<bool> in_Error_cylinder_retract_opencircuit_3511_3514 = new List<bool>();//油缸缩回电磁阀线路断路 4*8
         public List<bool> in_Error_MachLock_extend_opencircuit_3511_3514 = new List<bool>();//油缸机械锁伸出电磁阀线路断路 4*8
         public List<bool> in_Error_MachLock_retract_opencircuit_3511_3514 = new List<bool>();//油缸机械锁缩回电磁阀线路断路 4*8
+        
+        public List<bool> in_EStop_1010_1013 =  new List<bool>();//急停按钮 // 4
         #endregion
 
         //Get function
@@ -496,6 +500,9 @@ namespace DataPool
                     break;
                 case CmdDataType.cdtManualStart_Pump://手动启动泵站  4
                     rtv = out_ManualStart_Pump[id];
+                    break;
+                case CmdDataType.  cdtEStop_1010_1013:
+                    rtv = in_EStop_1010_1013[id];
                     break;
                 default:
                     break;
@@ -955,6 +962,8 @@ namespace DataPool
         cdtError_cylinder_retract_opencircuit_3511_3514,//"油缸缩回电磁阀线路断路",// 4*8
         cdtError_MachLock_extend_opencircuit_3511_3514,//"油缸机械锁伸出电磁阀线路断路",// 4*8
         cdtError_MachLock_retract_opencircuit_3511_3514,//"油缸机械锁缩回电磁阀线路断路"// 4*8
+
+        cdtEStop_1010_1013,//急停按钮 // 4
 
         cdtInstalled,//油缸是否安装 4*8
 
