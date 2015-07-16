@@ -167,7 +167,12 @@ namespace AdvaMACSystem
             lb_time.Text = string.Format("{0:00} : {1:00} : {2:00}", dt.Hour, dt.Minute, dt.Second);//"时间：12 : 11 : 18";
 
             //刷新紧停标志
-            //dataPool ...
+            int pumpCount = (int)dataPool.PumpCount;
+            isEmergencyStop = false;
+            for (int i = 0; i < pumpCount; i++)
+            {
+                isEmergencyStop = isEmergencyStop || dataPool.GetBoolValue(i, 0, CmdDataType.cdtEStop_1010_1013);
+            }
             if (isEmergencyStop)
             {
                 imageLabel_Estop.Visible = showEStopIcon;
