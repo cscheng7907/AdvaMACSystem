@@ -495,9 +495,24 @@ namespace AdvaMACSystem
                     PumpSettingButton.Enabled = true;
                     PumpInstallButton.Enabled = true;
                     UpdateCylinderControlButtonEnabled();
+
+                    ResetManualStart_Pump();
                     break;
             }
         }
+
+        private void ResetManualStart_Pump()
+        {
+            for (int j = 0; j < pumpList.Count; j++)
+
+            DataPool.CDataPool.GetDataPoolObject().SetboolValue(
+                            j,
+                            0,
+                            CmdDataType.cdtManualStart_Pump, false);
+
+            PumpInstallButton.Text = "启动泵站";
+        }
+
 
         private void controlModeButton_Click(object sender, EventArgs e)
         {
