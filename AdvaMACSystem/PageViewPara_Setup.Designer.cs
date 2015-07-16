@@ -55,6 +55,7 @@
             // 
             // imageButton_Finish_OK
             // 
+            this.imageButton_Finish_OK.Visible = false;
             this.imageButton_Finish_OK.Checked = false;
             this.imageButton_Finish_OK.DownColor = System.Drawing.SystemColors.Control;
             this.imageButton_Finish_OK.Layout = ComCtrls.KTLayout.GlyphTop;

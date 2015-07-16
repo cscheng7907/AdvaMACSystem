@@ -367,6 +367,15 @@
   <ItemGroup>
     <None Include="Resources\estop64.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Set_disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Set_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Set_up.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
