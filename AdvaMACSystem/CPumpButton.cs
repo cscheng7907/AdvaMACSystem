@@ -91,9 +91,22 @@ namespace AdvaMACSystem
             }
             if (warningCount > 0)
             {
-                gxOff.FillRectangle(new SolidBrush(Color.Red), 80, 50, 80, 40);
+                gxOff.FillRectangle(new SolidBrush(Color.Red), 80, 34, 80, 30);
                 gxOff.DrawString(warningCount.ToString("D2"), new System.Drawing.Font("Microsoft YaHei", 20F, System.Drawing.FontStyle.Bold), new SolidBrush(Color.Yellow), 120, 70, sf);
             }
+
+            switch (type)
+            {
+                case PumpType.ptEmpty:
+                    break;
+                case PumpType.ptControlled:
+                    gxOff.DrawString("被控站", new System.Drawing.Font("Microsoft YaHei", 20F, System.Drawing.FontStyle.Regular), new SolidBrush(Color.Black), 120, 81, sf);
+                    break;
+                case PumpType.ptRedundancy:
+                    gxOff.DrawString("冗余站", new System.Drawing.Font("Microsoft YaHei", 20F, System.Drawing.FontStyle.Regular), new SolidBrush(Color.Black), 120, 81, sf);
+                    break;
+            }
+
 
             e.Graphics.DrawImage(m_bmpOffscreen, 0, 0);
 
@@ -184,5 +197,26 @@ namespace AdvaMACSystem
             }
 
         }
+
+        //被控站和冗余站信息
+        private PumpType type = PumpType.ptEmpty;
+        public PumpType Type
+        {
+            set
+            {
+                if (type != value)
+                {
+                    type = value;
+                    this.Refresh();
+                }
+            }
+        }
+    }
+
+    public enum PumpType
+    {
+        ptEmpty = 0,
+        ptControlled = 1,
+        ptRedundancy = 2
     }
 }

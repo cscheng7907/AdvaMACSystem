@@ -666,6 +666,22 @@ namespace AdvaMACSystem
                     }
                 }
 
+                int pumpType = 0;
+                /* //获取冗余站设置
+                pumpType = _candatapool.GetintValue(j, 0, CmdDataType.冗余站信息);
+                switch (pumpType)
+                {
+                    case 0:
+                        pumpList[j].Type = PumpType.ptEmpty;
+                        break;
+                    case 1:
+                        pumpList[j].Type = PumpType.ptControlled;
+                        break;
+                    case 2:
+                        pumpList[j].Type = PumpType.ptRedundancy;
+                        break;
+                }
+                 */
                 pumpList[j].Unit = PumpUnit;
             }
 
