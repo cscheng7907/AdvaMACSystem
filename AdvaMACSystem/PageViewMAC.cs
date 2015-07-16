@@ -42,10 +42,10 @@ namespace AdvaMACSystem
 
             //button美化
             buttonImages = new ImagesContaner();
-            buttonImages.DNImg = AdvaMACSystemRes.half_down;
-            buttonImages.UPImg = AdvaMACSystemRes.half_up;
-            buttonImages.DNImgDisable = AdvaMACSystemRes.half_disable;
-            buttonImages.UPImgDisaable = AdvaMACSystemRes.half_disable;
+            buttonImages.DNImg = AdvaMACSystemRes.MAC_down;
+            buttonImages.UPImg = AdvaMACSystemRes.MAC_up;
+            buttonImages.DNImgDisable = AdvaMACSystemRes.MAC_disable;
+            buttonImages.UPImgDisaable = AdvaMACSystemRes.MAC_disable;
 
             //cylinder美化
             progressBarImages = new CProgressBarImagesContainer();
@@ -83,7 +83,7 @@ namespace AdvaMACSystem
             stateButtonList = new List<ImageButton>();
 
             PumpSettingButton = new ImageButton();
-            stateButtonList.Add(PumpSettingButton);
+            //stateButtonList.Add(PumpSettingButton);
 
             PumpInstallButton = new ImageButton();
             stateButtonList.Add(PumpInstallButton);
@@ -312,7 +312,7 @@ namespace AdvaMACSystem
 
         private int ButtonMarginTop = 633;
         private int ButtonMarginLeft = 10;//200;
-        private int ButtonWidth = 184;//210;
+        private int ButtonWidth = 234;//210;
         private int ButtonHeight = 40;
         private int ButtonSpacingX = 20;
         #endregion
