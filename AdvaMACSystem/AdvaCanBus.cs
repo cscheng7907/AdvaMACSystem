@@ -363,6 +363,16 @@ namespace AdvaMACSystem
                 //                                                             7	1	1：表示8#油缸安装；0表示没有安装	
                 //安装确定标志		                                3		1	1：确定按键按下；0：按键未按下
                 //安装调试完毕确定标志		                    4		1	1：确定按键按下；0：按键未按下
+                //安装调试完毕确认		4	0	1	1：1#油缸调试完毕按钮按下；0：按钮未按下	
+                //                                   1	1	1：2#油缸调试完毕按钮按下；0：按钮未按下	
+                //                                   2	1	1：3#油缸调试完毕按钮按下；0：按钮未按下	
+                //                                   3	1	1：4#油缸调试完毕按钮按下；0：按钮未按下	
+                //                                   4	1	1：5#油缸调试完毕按钮按下；0：按钮未按下	
+                //                                   5	1	1：6#油缸调试完毕按钮按下；0：按钮未按下	
+                //                                   6	1	1：7#油缸调试完毕按钮按下；0：按钮未按下	
+                //                                   7	1	1：8#油缸调试完毕按钮按下；0：按钮未按下	
+
+
                 /*
                 for (int i = 0; i < CanDatapool.PumpCount; i++)
                 {
@@ -401,8 +411,14 @@ namespace AdvaMACSystem
                     }
 
                     msgSend[canmsgIndex].data[3] = (Csign_View_Setup_Confirm) ? (byte)1 : (byte)0;
-                    msgSend[canmsgIndex].data[4] = (Csign_View_SetupFinish_Confirm) ? (byte)1 : (byte)0;
-
+                    //msgSend[canmsgIndex].data[4] = (Csign_View_SetupFinish_Confirm) ? (byte)1 : (byte)0;
+                    for (int j = 0; j < 8; j++)
+                    {
+                        if (CanDatapool.sign_View_SetupFinish_Confirm_seperate[(int)(id * CanDatapool.CylinderCount + j)])
+                            msgSend[canmsgIndex].data[4] |= (byte)(1 << j);
+                        else
+                            msgSend[canmsgIndex].data[4] &= (byte)~(1 << j);
+                    }
                     canmsgIndex++;
                 }
                 else
@@ -700,6 +716,24 @@ namespace AdvaMACSystem
                     canmsgIndex++;
                 }
 
+                //2006
+                //油缸截面积值设定		0,1		0.01		
+                //油缸最大压力值设定		2,3		0.1		
+                //油缸最大位移值设定		4,5		0.1		
+                {
+                    msgSend[canmsgIndex].id = 0x2006;
+
+                    msgSend[canmsgIndex].data[0] = (byte)(CanDatapool.out_SectionalArea_Value[(int)(id * CanDatapool.CylinderCount + subid)] & 0xFF);
+                    msgSend[canmsgIndex].data[1] = (byte)(CanDatapool.out_SectionalArea_Value[(int)(id * CanDatapool.CylinderCount + subid)] >> 8);
+
+                    msgSend[canmsgIndex].data[2] = (byte)(CanDatapool.out_MAXPressure_Value[(int)(id * CanDatapool.CylinderCount + subid)] & 0xFF);
+                    msgSend[canmsgIndex].data[3] = (byte)(CanDatapool.out_MAXPressure_Value[(int)(id * CanDatapool.CylinderCount + subid)] >> 8);
+
+                    msgSend[canmsgIndex].data[4] = (byte)(CanDatapool.out_MAXPosition_Value[(int)(id * CanDatapool.CylinderCount + subid)] & 0xFF);
+                    msgSend[canmsgIndex].data[5] = (byte)(CanDatapool.out_MAXPosition_Value[(int)(id * CanDatapool.CylinderCount + subid)] >> 8);
+                    canmsgIndex++;
+                }
+
                 //当前泵站无补偿动作	1000	0		1	"值为0：否，值为1：是
                 //计算规则：
                 //1#泵站无补偿动作 AND 2#泵站无补偿动作 AND
@@ -909,15 +943,23 @@ namespace AdvaMACSystem
                                     //1#泵站当前设定压力	1010	0,1	0.1
                                     //1#泵站建压失败		        2		1	0:否，1：是
                                     //1#泵站补偿动作情况		    3		1	0：无动作，1：有动作
+                                    //1#运行模式		                    4		1	0：自动模式，1：手动模式；2：无线遥控	
+                                    //1#急停按钮		                    5		1	0:否，1：是	
                                     //2#泵站当前设定压力	1011	0,1	0.1
                                     //2#泵站建压失败		        2		1	0:否，1：是
                                     //2#泵站补偿动作情况		    3		1	0：无动作，1：有动作
+                                    //2#运行模式		                    4		1	0：自动模式，1：手动模式；2：无线遥控	
+                                    //2#急停按钮		                    5		1	0:否，1：是	
                                     //3#泵站当前设定压力	1012	0,1	0.1
                                     //3#泵站建压失败		        2		1	0:否，1：是
                                     //3#泵站补偿动作情况		    3		1	0：无动作，1：有动作
+                                    //3#运行模式		                    4		1	0：自动模式，1：手动模式；2：无线遥控	
+                                    //3#急停按钮		                    5		1	0:否，1：是	
                                     //4#泵站当前设定压力	1013	0,1	0.1
                                     //4#泵站建压失败		        2		1	0:否，1：是
                                     //4#泵站补偿动作情况		    3		1	0：无动作，1：有动作
+                                    //4#运行模式		                    4		1	0：自动模式，1：手动模式；2：无线遥控	
+                                    //4#急停按钮		                    5		1	0:否，1：是	
                                     case 0x1010:
                                     case 0x1011:
                                     case 0x1012:
@@ -930,6 +972,8 @@ namespace AdvaMACSystem
                                         CanDatapool.in_StartFailed_Pump_1010_1013[idArray0] = msgRecieve[j].data[2] != 0;
                                         CanDatapool.in_CompAct_Pump_1010_1013[idArray0] = msgRecieve[j].data[3] != 0;
                                         CanDatapool.ControlMode = (ControlModeType)msgRecieve[j].data[4];
+                                        CanDatapool.in_EStop_1010_1013[idArray0] = msgRecieve[j].data[5] != 0;
+                                       
                                         break;
                                     #region 3001-3008
                                     //3001

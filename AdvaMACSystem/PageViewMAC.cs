@@ -491,13 +491,28 @@ namespace AdvaMACSystem
                     break;
                 case ControlModeType.CylinderManual:
                     controlModeButton.Text = "手动模式";
-                    MessageBox.Show("当前为手动模式，请注意！");
+                    //MessageBox.Show("当前为手动模式，请注意！");
                     PumpSettingButton.Enabled = true;
                     PumpInstallButton.Enabled = true;
                     UpdateCylinderControlButtonEnabled();
+
+                    ResetManualStart_Pump();
                     break;
             }
         }
+
+        private void ResetManualStart_Pump()
+        {
+            for (int j = 0; j < pumpList.Count; j++)
+
+            DataPool.CDataPool.GetDataPoolObject().SetboolValue(
+                            j,
+                            0,
+                            CmdDataType.cdtManualStart_Pump, false);
+
+            PumpInstallButton.Text = "启动泵站";
+        }
+
 
         private void controlModeButton_Click(object sender, EventArgs e)
         {
