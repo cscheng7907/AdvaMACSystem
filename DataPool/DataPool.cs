@@ -519,6 +519,9 @@ namespace DataPool
                 case CmdDataType.cdtEStop_1010_1013:
                     rtv = in_EStop_1010_1013[id];
                     break;
+                case CmdDataType.cdtSetupFinish_Confirm_seperate:
+                    rtv = sign_View_SetupFinish_Confirm_seperate[id * 8 + subid];
+                    break;
                 default:
                     break;
             }
@@ -622,6 +625,9 @@ namespace DataPool
                 case CmdDataType.cdtManualStart_Pump://手动启动泵站  4
                     out_ManualStart_Pump[id] = value;
                     break;
+                case CmdDataType.cdtSetupFinish_Confirm_seperate:
+                    sign_View_SetupFinish_Confirm_seperate[id * 8 + subid] = value;
+                    break;
                 default:
                     break;
             }
@@ -681,7 +687,7 @@ namespace DataPool
 
         public ControlModeType ControlMode = ControlModeType.Auto;
 #else
-        public ControlModeType ControlMode = ControlModeType.MachLockManual ;
+        public ControlModeType ControlMode = ControlModeType.MachLockManual;
 
 #endif
         public MotionStateType out_MotionState = MotionStateType.stsStop;
@@ -772,7 +778,9 @@ namespace DataPool
                     //public List<short> out_MAXPressure_Value = new List<short>();//油缸最大压力 4*8
                             sizeof(short) * Number_Pump * Number_Cylinder +
                     //public List<short> out_MAXPosition_Value = new List<short>();//油缸最大位移 4*8
-                            sizeof(short) * Number_Pump * Number_Cylinder;
+                            sizeof(short) * Number_Pump * Number_Cylinder +
+                    //public List<bool> sign_View_SetupFinish_Confirm_seperate = new List<bool>();//安装调试完毕确认_油缸 4*8
+                            sizeof(bool) * Number_Pump * Number_Cylinder;
 
                 try
                 {
@@ -832,6 +840,7 @@ namespace DataPool
                                     out_SectionalArea_Value[i * 8 + j] = br.ReadInt16();//油缸截面积 4*8
                                     out_MAXPressure_Value[i * 8 + j] = br.ReadInt16(); //油缸最大压力 4*8
                                     out_MAXPosition_Value[i * 8 + j] = br.ReadInt16(); //油缸最大位移 4*8
+                                    sign_View_SetupFinish_Confirm_seperate[i * 8 + j] = br.ReadBoolean();  //安装调试完毕确认_油缸 4*8
                                 }
                             }
                         }
@@ -905,6 +914,7 @@ namespace DataPool
                         bw.Write(out_SectionalArea_Value[i * 8 + j]);//油缸截面积 4*8
                         bw.Write(out_MAXPressure_Value[i * 8 + j]); //油缸最大压力 4*8
                         bw.Write(out_MAXPosition_Value[i * 8 + j]); //油缸最大位移 4*8
+                        bw.Write(sign_View_SetupFinish_Confirm_seperate[i * 8 + j]);  //安装调试完毕确认_油缸 4*8
                     }
                 }
 
@@ -1040,8 +1050,9 @@ namespace DataPool
 
         cdtSectionalArea_Value,//油缸截面积 4*8
         cdtMAXPressure_Value,//油缸最大压力 4*8
-        cdtMAXPosition_Value //油缸最大位移 4*8
+        cdtMAXPosition_Value, //油缸最大位移 4*8
 
+        cdtSetupFinish_Confirm_seperate//安装调试完毕确认_油缸 4*8
     }
 
     /*
