@@ -635,7 +635,11 @@ namespace AdvaMACSystem
 
                 if (PreUICtrl == pvMAC && c != pvMAC &&
                     pvMAC.ControlMode == ControlModeType.CylinderManual)
-                    MessageBox.Show("当前为手动模式，请注意！");
+                    //MessageBox.Show("当前为手动模式，请注意！");
+                    MessageBox.Show("当前为手动模式，请注意！", "",
+                          MessageBoxButtons.YesNo,
+                          MessageBoxIcon.Exclamation,
+                          MessageBoxDefaultButton.Button1);         
             }
         }
 
