@@ -54,9 +54,9 @@
             // 
             this.lbStatus.Font = new System.Drawing.Font("微软雅黑", 20F, System.Drawing.FontStyle.Regular);
             this.lbStatus.ForeColor = System.Drawing.Color.Blue;
-            this.lbStatus.Location = new System.Drawing.Point(80, 5);
+            this.lbStatus.Location = new System.Drawing.Point(80, 2);
             this.lbStatus.Name = "lbStatus";
-            this.lbStatus.Size = new System.Drawing.Size(80, 40);
+            this.lbStatus.Size = new System.Drawing.Size(80, 30);
             this.lbStatus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lbStatus.Visible = false;
             // 

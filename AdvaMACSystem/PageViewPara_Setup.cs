@@ -25,6 +25,7 @@ namespace AdvaMACSystem
     {
         private List<ImageButton> btnlst_id = new List<ImageButton>();
         private List<ImageButton> btnlst_subid = new List<ImageButton>();
+        private List<ImageButton> btnlst_ok = new List<ImageButton>();
 
         private List<ImageLabel> btnlst_subid_Row = new List<ImageLabel>();
         private List<ImageLabel> btnlst_subid_Col = new List<ImageLabel>();
@@ -39,6 +40,7 @@ namespace AdvaMACSystem
             InitializeComponent();
 
             ComCtrls.ImageButton btn1;
+            ComCtrls.ImageButton btn2;
             Label lb1;
             this.SuspendLayout();
 
@@ -106,6 +108,7 @@ namespace AdvaMACSystem
                 btn1.Tag = i;
 
                 btnlst_subid.Add(btn1);
+
                 // 
                 // label1
                 // 
@@ -119,11 +122,40 @@ namespace AdvaMACSystem
                 lb1.Text = string.Format("{0:0}# 油缸", i + 1);
                 lb1.ForeColor = System.Drawing.Color.Black;
 
+
+                // 
+                // btn2  确定按钮
+                // 
+                btn2 = new ImageButton(this.components);
+                btn2.Checked = false;
+                btn2.DownColor = System.Drawing.SystemColors.Control;
+                btn2.Layout = ComCtrls.KTLayout.GlyphTop;
+
+                btn2.Location = new System.Drawing.Point(lb1.Location.X + lb1.Width + 20, lb1.Location.Y);
+
+                btn2.ShortcutKeys = System.Windows.Forms.Keys.None;
+                btn2.Size = new System.Drawing.Size(60, 23);
+                btn2.TabIndex = 0;
+                btn2.TabStop = false;
+                btn2.Text = "确认";
+                btn2.TransParent = true;
+                btn2.UPImg = AdvaMACSystemRes.Set_up;
+                btn2.DNImg = AdvaMACSystemRes.Set_down;
+                btn2.Toggle = true;
+                btn2.UpColor = System.Drawing.SystemColors.Control;
+                btn2.Tag = i;
+                btn2.MouseUp += new MouseEventHandler(cylinder_SetOK_MouseUp);
+
+                btnlst_ok.Add(btn2);
+
+
                 this.Controls.Add(btn1);
                 this.Controls.Add(lb1);
+                this.Controls.Add(btn2);
 
                 this.panel_body.Controls.Add(btn1);
                 this.panel_body.Controls.Add(lb1);
+                this.panel_body.Controls.Add(btn2);
 
                 CreateInputBox(i, new Point(lb1.Left, lb1.Top + lb1.Height + 5), false, true);
                 CreateInputBox(i, new Point(lb1.Left, lb1.Top + lb1.Height + 35), false, false);
@@ -131,6 +163,22 @@ namespace AdvaMACSystem
             this.ResumeLayout(false);
 
 
+        }
+
+        private void cylinder_SetOK_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (sender == null || !(sender is ImageButton))
+                return;
+
+            ImageButton ib = (ImageButton)sender;
+            if (ib.Checked)
+            {
+                //DataPool.CDataPool.GetDataPoolObject().SetboolValue(pumpindex, (int)ib.Tag, CmdDataType.安装调试完毕, true);
+            }
+            else
+            {
+                //DataPool.CDataPool.GetDataPoolObject().SetboolValue(pumpindex, (int)ib.Tag, CmdDataType.安装调试完毕, false);
+            }
         }
 
         private void CreateInputBox(int subid, Point topleft, bool istotal, bool isRow)
@@ -433,6 +481,8 @@ namespace AdvaMACSystem
                       pumpindex,
                          i,
                          CmdDataType.cdtView_SetupPosition_Col).ToString();
+
+                //btnlst_ok[i].Checked = DataPool.CDataPool.GetDataPoolObject().GetBoolValue(pumpindex, i, CmdDataType.安装调试完毕);
 
             }
         }

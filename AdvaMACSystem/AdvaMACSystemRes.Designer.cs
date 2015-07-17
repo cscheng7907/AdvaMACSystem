@@ -105,6 +105,15 @@ namespace AdvaMACSystem {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+
+        internal static System.Drawing.Bitmap estop64
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("estop64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
         
         internal static System.Drawing.Bitmap fix2 {
             get {
@@ -371,7 +380,34 @@ namespace AdvaMACSystem {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+
+        internal static System.Drawing.Bitmap Set_disable
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("Set_disable", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap Set_down
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("Set_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap Set_up
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("Set_up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
         internal static System.Drawing.Bitmap settings64 {
             get {
                 object obj = ResourceManager.GetObject("settings64", resourceCulture);

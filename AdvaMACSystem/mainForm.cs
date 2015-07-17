@@ -165,7 +165,29 @@ namespace AdvaMACSystem
             lb_date.Text = string.Format("{0:0000}-{1:00}-{2:00}", dt.Year, dt.Month, dt.Day);//"日期：2015-02-12";
 
             lb_time.Text = string.Format("{0:00} : {1:00} : {2:00}", dt.Hour, dt.Minute, dt.Second);//"时间：12 : 11 : 18";
+
+            //刷新紧停标志
+            int pumpCount = (int)dataPool.PumpCount;
+            isEmergencyStop = false;
+            for (int i = 0; i < pumpCount; i++)
+            {
+                isEmergencyStop = isEmergencyStop || dataPool.GetBoolValue(i, 0, CmdDataType.cdtEStop_1010_1013);
+            }
+            if (isEmergencyStop)
+            {
+                imageLabel_Estop.Visible = showEStopIcon;
+                showEStopIcon = !showEStopIcon;
+            }
+            else
+            {
+                imageLabel_Estop.Visible = false;
+                showEStopIcon = true;
+            }
         }
+
+        private CDataPool dataPool = CDataPool.GetDataPoolObject();
+        private bool isEmergencyStop = false;
+        private bool showEStopIcon = true;
 
         #region 加载字体
 #if WindowsCE
