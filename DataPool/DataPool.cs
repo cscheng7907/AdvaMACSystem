@@ -666,6 +666,8 @@ namespace DataPool
         public List<short> out_MAXPressure_Value = new List<short>();//油缸最大压力 4*8
         public List<short> out_MAXPosition_Value = new List<short>();//油缸最大位移 4*8
 
+        public byte out_id_controledPump = 0;//被控泵站
+        public byte out_id_redundantPump = 0;//冗余泵站
 
 
         //-------sign

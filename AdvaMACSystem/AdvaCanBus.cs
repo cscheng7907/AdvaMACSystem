@@ -774,6 +774,10 @@ namespace AdvaMACSystem
                         msgSend[canmsgIndex].data[1] = 0;
                         msgSend[canmsgIndex].data[2] = 0;
                         msgSend[canmsgIndex].data[3] = 0;
+
+
+                        CanDatapool.out_id_controledPump = 0;
+                        CanDatapool.out_id_redundantPump = 0;
                     }
                     else
                     {
@@ -851,6 +855,8 @@ namespace AdvaMACSystem
                         msgSend[canmsgIndex].data[4] = 0;
                         msgSend[canmsgIndex].data[5] = 0;
                     }
+                    CanDatapool.out_id_controledPump = id_controledPump;
+                    CanDatapool.out_id_redundantPump = id_redundantPump;
 
                     canmsgIndex++;
                 }
@@ -973,7 +979,7 @@ namespace AdvaMACSystem
                                         CanDatapool.in_CompAct_Pump_1010_1013[idArray0] = msgRecieve[j].data[3] != 0;
                                         CanDatapool.ControlMode = (ControlModeType)msgRecieve[j].data[4];
                                         CanDatapool.in_EStop_1010_1013[idArray0] = msgRecieve[j].data[5] != 0;
-                                       
+
                                         break;
                                     #region 3001-3008
                                     //3001
