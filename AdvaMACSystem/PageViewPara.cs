@@ -38,7 +38,9 @@ namespace AdvaMACSystem
             lbList.Add(imageLabel_PressureLowerLimitAlarm_Value);
             lbList.Add(imageLabel_PressureUpperLimitAlarm_Value);
             lbList.Add(imageLabel_Pressure_Value);
-
+            lbList.Add(imageLabel_MAXPressure_Value);
+            lbList.Add(imageLabel_MAXPosition_Value);
+            lbList.Add(imageLabel_Area);
 
             btnList.Add(imageButton_PositionControl_Enable);
             btnList.Add(imageButton_PressureUpperLimitAlarm_Enable);
@@ -193,11 +195,63 @@ namespace AdvaMACSystem
                             MessageBox.Show("输入非法！");
                         }
                     }
+
+                    //截面积范围0.00～99.99dm^2 
+                    //cdtSectionalArea_Value,//油缸截面积 4*8
+                    else if ((CmdDataType)lb.Tag == CmdDataType.cdtSectionalArea_Value)
+                    {
+                        try
+                        {
+                            dv = Convert.ToDouble(f.KeyText);
+
+                            if (dv >= 0 && dv <= 99.99)
+                                lb.Text = dv.ToString("0.0");
+                            else
+                                MessageBox.Show("输入数值越界！");
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("输入非法！");
+                        }
+                    }
+                    //最大压力范围：0.0～400.0bar 
+                    //cdtMAXPressure_Value,//油缸最大压力 4*8
+                    else if ((CmdDataType)lb.Tag == CmdDataType.cdtMAXPressure_Value)
+                    {
+                        try
+                        {
+                            dv = Convert.ToDouble(f.KeyText);
+
+                            if (dv >= 0 && dv <= 400)
+                                lb.Text = dv.ToString("0.0");
+                            else
+                                MessageBox.Show("输入数值越界！");
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("输入非法！");
+                        }
+                    }
+                    //最大位移范围：0.0～999.9mm
+                    //cdtMAXPosition_Value, //油缸最大位移 4*8
+                    else if ((CmdDataType)lb.Tag == CmdDataType.cdtMAXPosition_Value)
+                    {
+                        try
+                        {
+                            dv = Convert.ToDouble(f.KeyText);
+
+                            if (dv >= 0 && dv <= 999.9)
+                                lb.Text = dv.ToString("0.0");
+                            else
+                                MessageBox.Show("输入数值越界！");
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("输入非法！");
+                        }
+                    }
                     else
                     {
-
-
-
                         try
                         {
                             dv = Convert.ToDouble(f.KeyText);
