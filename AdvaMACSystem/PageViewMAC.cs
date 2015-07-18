@@ -666,22 +666,6 @@ namespace AdvaMACSystem
                     }
                 }
 
-                int pumpType = 0;
-                /* //获取冗余站设置
-                pumpType = _candatapool.GetintValue(j, 0, CmdDataType.冗余站信息);
-                switch (pumpType)
-                {
-                    case 0:
-                        pumpList[j].Type = PumpType.ptEmpty;
-                        break;
-                    case 1:
-                        pumpList[j].Type = PumpType.ptControlled;
-                        break;
-                    case 2:
-                        pumpList[j].Type = PumpType.ptRedundancy;
-                        break;
-                }
-                 */
                 pumpList[j].Unit = PumpUnit;
             }
 
@@ -783,6 +767,12 @@ namespace AdvaMACSystem
                 {
                     pumpList[j].CurrentPara = _candatapool.GetRealValue(j, 0, CmdDataType.cdtPressure_Pump_Real_3301_3304);
                     pumpList[j].CurrentStatus = pumpList[j].CurrentPara > 30 ? "运行" : "";
+                    if (j == Convert.ToInt32(_candatapool.out_id_controledPump))
+                        pumpList[j].Type = PumpType.ptControlled;
+                    else if (j == Convert.ToInt32(_candatapool.out_id_redundantPump))
+                        pumpList[j].Type = PumpType.ptRedundancy;
+                    else
+                        pumpList[j].Type = PumpType.ptEmpty;
                 }
             }
             UpdatePumpButtonEnabled();
