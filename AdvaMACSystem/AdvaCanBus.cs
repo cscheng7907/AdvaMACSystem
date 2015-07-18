@@ -776,8 +776,8 @@ namespace AdvaMACSystem
                         msgSend[canmsgIndex].data[3] = 0;
 
 
-                        CanDatapool.out_id_controledPump = 0;
-                        CanDatapool.out_id_redundantPump = 0;
+                        //CanDatapool.out_id_controledPump = 0;
+                        //CanDatapool.out_id_redundantPump = 0;
                     }
                     else
                     {

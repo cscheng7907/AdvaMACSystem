@@ -14,6 +14,7 @@ namespace DataPool
         public string DataPoolRecFileName = Application.StartupPath + @"\Record\DataPool.Rec";
 #endif
 
+        #region Singleton
         private static CDataPool DataPoolObject = null;
 
         public static CDataPool GetDataPoolObject()
@@ -30,6 +31,9 @@ namespace DataPool
             Initial_out();
         }
 
+        #endregion
+
+        #region Initial vars
         private void Initial_in()
         {
             for (int i = 0; i < Number_Pump; i++)
@@ -182,6 +186,9 @@ namespace DataPool
             }
         }
 
+        #endregion
+
+        #region Count属性
         private uint Number_Pump = 4;
         public uint PumpCount
         {
@@ -193,6 +200,8 @@ namespace DataPool
         {
             get { return Number_Cylinder; }
         }
+
+        #endregion
 
         //in values
         #region CAN 读取的数据
@@ -522,6 +531,12 @@ namespace DataPool
                 case CmdDataType.cdtSetupFinish_Confirm_seperate:
                     rtv = sign_View_SetupFinish_Confirm_seperate[id * 8 + subid];
                     break;
+                case CmdDataType.cdtStartFailed_Pump_1010_1013:// 泵站建压失败 4
+                    rtv = in_StartFailed_Pump_1010_1013[id];
+                    break;
+                case CmdDataType.cdtCompAct_Pump_1010_1013: // 泵站补偿动作情况 4
+                    rtv = in_CompAct_Pump_1010_1013[id];
+                    break;
                 default:
                     break;
             }
@@ -627,6 +642,13 @@ namespace DataPool
                     break;
                 case CmdDataType.cdtSetupFinish_Confirm_seperate:
                     sign_View_SetupFinish_Confirm_seperate[id * 8 + subid] = value;
+                    break;
+
+                case CmdDataType.cdtStartFailed_Pump_1010_1013:// 泵站建压失败 4
+                    in_StartFailed_Pump_1010_1013[id] = value;
+                    break;
+                case CmdDataType.cdtCompAct_Pump_1010_1013: // 泵站补偿动作情况 4
+                    in_CompAct_Pump_1010_1013[id] = value;
                     break;
                 default:
                     break;
@@ -1054,7 +1076,13 @@ namespace DataPool
         cdtMAXPressure_Value,//油缸最大压力 4*8
         cdtMAXPosition_Value, //油缸最大位移 4*8
 
-        cdtSetupFinish_Confirm_seperate//安装调试完毕确认_油缸 4*8
+        cdtSetupFinish_Confirm_seperate,//安装调试完毕确认_油缸 4*8
+
+        cdtid_controledPump,//被控泵站
+        cdtid_redundantPump,//冗余泵站
+        cdtStartFailed_Pump_1010_1013,// 泵站建压失败 4
+        cdtCompAct_Pump_1010_1013 // 泵站补偿动作情况 4
+
     }
 
     /*

@@ -80,6 +80,10 @@ List<bool> in_Error_MachLock_retract_3511_3514 = new List<bool>();//油缸机械
             boolDic.Add(rb_Error_PressureSenser, CDataPool.GetDataPoolObject().in_Error_PressureSenser_3501_3504);
             boolDic.Add(rb_Error_PositionSenser, CDataPool.GetDataPoolObject().in_Error_PositionSenser_3501_3504);
 
+            boolDic.Add(rb_CompAct_Pump, CDataPool.GetDataPoolObject().in_CompAct_Pump_1010_1013);
+            boolDic.Add(rb_StartFailed_Pump, CDataPool.GetDataPoolObject().in_StartFailed_Pump_1010_1013);
+
+
             WarnLst.Add(rb_Warn_HighPressure);
             WarnLst.Add(rb_Warn_LowPosition);
             WarnLst.Add(rb_Warn_HighPosition);
@@ -142,39 +146,43 @@ List<bool> in_Error_MachLock_retract_3511_3514 = new List<bool>();//油缸机械
 
         private void DoUpdate()
         {
-            foreach (KeyValuePair<Control, List<MotionStateType>> item in doubleDic)
+            if (comboBox1.SelectedIndex >= 0 && comboBox2.SelectedIndex >= 0 &&
+                 comboBox_PumpErr.SelectedIndex >= 0)
             {
-                ((ComboBox)item.Key).SelectedIndex = CDataPool.GetDataPoolObject().GetintValue(
-                     comboBox1.SelectedIndex,
-                     comboBox2.SelectedIndex,
-                     (CmdDataType)item.Key.Tag);
+                foreach (KeyValuePair<Control, List<MotionStateType>> item in doubleDic)
+                {
+                    ((ComboBox)item.Key).SelectedIndex = CDataPool.GetDataPoolObject().GetintValue(
+                         comboBox1.SelectedIndex,
+                         comboBox2.SelectedIndex,
+                         (CmdDataType)item.Key.Tag);
+                }
+
+                foreach (KeyValuePair<Control, List<Int32>> item in IntDic)
+                {
+                    item.Key.Text = CDataPool.GetDataPoolObject().GetRealValue(
+                       comboBox1.SelectedIndex,
+                       comboBox2.SelectedIndex,
+                       (CmdDataType)item.Key.Tag).ToString();
+                }
+
+                foreach (KeyValuePair<Control, List<bool>> item in boolDic)
+                {
+                    if (item.Key == rb_Error_Pump)
+                        ((CheckBox)item.Key).Checked = CDataPool.GetDataPoolObject().GetBoolValue(
+                                      comboBox1.SelectedIndex,
+                                      comboBox_PumpErr.SelectedIndex,
+                                      (CmdDataType)item.Key.Tag);
+
+                    else
+                        ((CheckBox)item.Key).Checked = CDataPool.GetDataPoolObject().GetBoolValue(
+                                      comboBox1.SelectedIndex,
+                                      comboBox2.SelectedIndex,
+                                      (CmdDataType)item.Key.Tag);
+                }
+
+
+                comboBox_PumpErr.SelectedIndex = 0;
             }
-
-            foreach (KeyValuePair<Control, List<Int32>> item in IntDic)
-            {
-                item.Key.Text = CDataPool.GetDataPoolObject().GetRealValue(
-                   comboBox1.SelectedIndex,
-                   comboBox2.SelectedIndex,
-                   (CmdDataType)item.Key.Tag).ToString();
-            }
-
-            foreach (KeyValuePair<Control, List<bool>> item in boolDic)
-            {
-                if (item.Key == rb_Error_Pump)
-                    ((CheckBox)item.Key).Checked = CDataPool.GetDataPoolObject().GetBoolValue(
-                                  comboBox1.SelectedIndex,
-                                  comboBox_PumpErr.SelectedIndex,
-                                  (CmdDataType)item.Key.Tag);
-
-                else
-                    ((CheckBox)item.Key).Checked = CDataPool.GetDataPoolObject().GetBoolValue(
-                                  comboBox1.SelectedIndex,
-                                  comboBox2.SelectedIndex,
-                                  (CmdDataType)item.Key.Tag);
-            }
-
-
-            comboBox_PumpErr.SelectedIndex = 0;
         }
 
 
@@ -227,10 +235,18 @@ List<bool> in_Error_MachLock_retract_3511_3514 = new List<bool>();//油缸机械
         }
         private void comboBox_PumpErr_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ((CheckBox)rb_Error_Pump).Checked = CDataPool.GetDataPoolObject().GetBoolValue(
-              comboBox1.SelectedIndex,
-              comboBox_PumpErr.SelectedIndex,
-              (CmdDataType)rb_Error_Pump.Tag);
+            if (comboBox1.SelectedIndex >= 0 && comboBox2.SelectedIndex >= 0 &&
+                 comboBox_PumpErr.SelectedIndex >= 0)
+                ((CheckBox)rb_Error_Pump).Checked = CDataPool.GetDataPoolObject().GetBoolValue(
+                  comboBox1.SelectedIndex,
+                  comboBox_PumpErr.SelectedIndex,
+                  (CmdDataType)rb_Error_Pump.Tag);
+        }
+
+        private void VirtualSetForm_Click(object sender, EventArgs e)
+        {
+            label11.Text = "被控泵站 " + CDataPool.GetDataPoolObject().out_id_controledPump.ToString();
+            label12.Text = "冗余泵站" + CDataPool.GetDataPoolObject().out_id_redundantPump.ToString();
         }
     }
 }

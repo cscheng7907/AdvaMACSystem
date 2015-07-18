@@ -64,39 +64,42 @@ namespace AdvaMACSystem
             this.rb_Error_MachLock_extend = new System.Windows.Forms.CheckBox();
             this.rb_Error_PressureSenser = new System.Windows.Forms.CheckBox();
             this.rb_Error_PositionSenser = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.rb_CompAct_Pump = new System.Windows.Forms.CheckBox();
+            this.rb_StartFailed_Pump = new System.Windows.Forms.CheckBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox1
             // 
-            this.comboBox1.Items.Add("#1 泵站");
-            this.comboBox1.Items.Add("#2 泵站");
-            this.comboBox1.Items.Add("#3 泵站");
-            this.comboBox1.Items.Add("#4 泵站");
+            this.comboBox1.Items.AddRange(new object[] {
+            "#1 泵站",
+            "#2 泵站",
+            "#3 泵站",
+            "#4 泵站"});
             this.comboBox1.Location = new System.Drawing.Point(55, 22);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(100, 23);
+            this.comboBox1.Size = new System.Drawing.Size(100, 20);
             this.comboBox1.TabIndex = 0;
-            this.comboBox1.SelectedIndex = 0;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // comboBox2
             // 
-            this.comboBox2.Items.Add("#1 油缸");
-            this.comboBox2.Items.Add("#2 油缸");
-            this.comboBox2.Items.Add("#3 油缸");
-            this.comboBox2.Items.Add("#4 油缸");
-            this.comboBox2.Items.Add("#5 油缸");
-            this.comboBox2.Items.Add("#6 油缸");
-            this.comboBox2.Items.Add("#7 油缸");
-            this.comboBox2.Items.Add("#8 油缸");
+            this.comboBox2.Items.AddRange(new object[] {
+            "#1 油缸",
+            "#2 油缸",
+            "#3 油缸",
+            "#4 油缸",
+            "#5 油缸",
+            "#6 油缸",
+            "#7 油缸",
+            "#8 油缸"});
             this.comboBox2.Location = new System.Drawing.Point(217, 22);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(100, 23);
+            this.comboBox2.Size = new System.Drawing.Size(100, 20);
             this.comboBox2.TabIndex = 1;
-            this.comboBox2.SelectedIndex = 0;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // label1
@@ -104,6 +107,7 @@ namespace AdvaMACSystem
             this.label1.Location = new System.Drawing.Point(19, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 20);
+            this.label1.TabIndex = 35;
             this.label1.Text = "ID";
             // 
             // label2
@@ -111,6 +115,7 @@ namespace AdvaMACSystem
             this.label2.Location = new System.Drawing.Point(166, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 20);
+            this.label2.TabIndex = 34;
             this.label2.Text = "subID";
             // 
             // label3
@@ -118,15 +123,15 @@ namespace AdvaMACSystem
             this.label3.Location = new System.Drawing.Point(19, 71);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(118, 20);
+            this.label3.TabIndex = 33;
             this.label3.Text = "油缸压力当前值";
             // 
             // il_Presure
             // 
             this.il_Presure.BackColor = System.Drawing.Color.White;
             this.il_Presure.BackImg = null;
-            this.il_Presure.Checked = false;
             this.il_Presure.IMGContainer = null;
-            this.il_Presure.Layout = ComCtrls.KTLayout.GlyphTop;
+            this.il_Presure.ImgDisable = null;
             this.il_Presure.Location = new System.Drawing.Point(143, 71);
             this.il_Presure.Name = "il_Presure";
             this.il_Presure.Size = new System.Drawing.Size(104, 20);
@@ -135,22 +140,21 @@ namespace AdvaMACSystem
             this.il_Presure.Text = "0";
             this.il_Presure.TextX = -1F;
             this.il_Presure.TextY = -1F;
-            this.il_Presure.TransParent = false;
             // 
             // label4
             // 
             this.label4.Location = new System.Drawing.Point(253, 71);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(118, 20);
+            this.label4.TabIndex = 28;
             this.label4.Text = "油缸当前长度值";
             // 
             // il_Position
             // 
             this.il_Position.BackColor = System.Drawing.Color.White;
             this.il_Position.BackImg = null;
-            this.il_Position.Checked = false;
             this.il_Position.IMGContainer = null;
-            this.il_Position.Layout = ComCtrls.KTLayout.GlyphTop;
+            this.il_Position.ImgDisable = null;
             this.il_Position.Location = new System.Drawing.Point(377, 71);
             this.il_Position.Name = "il_Position";
             this.il_Position.Size = new System.Drawing.Size(104, 20);
@@ -159,30 +163,29 @@ namespace AdvaMACSystem
             this.il_Position.Text = "0";
             this.il_Position.TextX = -1F;
             this.il_Position.TextY = -1F;
-            this.il_Position.TransParent = false;
             // 
             // comboBoxcylinderState
             // 
-            this.comboBoxcylinderState.Items.Add("0：停");
-            this.comboBoxcylinderState.Items.Add("1：伸");
-            this.comboBoxcylinderState.Items.Add("2：缩");
+            this.comboBoxcylinderState.Items.AddRange(new object[] {
+            "0：停",
+            "1：伸",
+            "2：缩"});
             this.comboBoxcylinderState.Location = new System.Drawing.Point(143, 106);
             this.comboBoxcylinderState.Name = "comboBoxcylinderState";
-            this.comboBoxcylinderState.Size = new System.Drawing.Size(100, 23);
+            this.comboBoxcylinderState.Size = new System.Drawing.Size(100, 20);
             this.comboBoxcylinderState.TabIndex = 10;
-            this.comboBoxcylinderState.SelectedIndex  = 0;
             this.comboBoxcylinderState.Tag = DataPool.CmdDataType.cdtcylinderState_Real_3201_3208;
             // 
             // comboBoxMachLockState
             // 
-            this.comboBoxMachLockState.Items.Add("0：停");
-            this.comboBoxMachLockState.Items.Add("1：伸");
-            this.comboBoxMachLockState.Items.Add("2：缩");
+            this.comboBoxMachLockState.Items.AddRange(new object[] {
+            "0：停",
+            "1：伸",
+            "2：缩"});
             this.comboBoxMachLockState.Location = new System.Drawing.Point(381, 106);
             this.comboBoxMachLockState.Name = "comboBoxMachLockState";
-            this.comboBoxMachLockState.Size = new System.Drawing.Size(100, 23);
+            this.comboBoxMachLockState.Size = new System.Drawing.Size(100, 20);
             this.comboBoxMachLockState.TabIndex = 11;
-            this.comboBoxMachLockState.SelectedIndex = 0;
             this.comboBoxMachLockState.Tag = DataPool.CmdDataType.cdtMachLockState_Real_3201_3208;
             // 
             // label5
@@ -190,6 +193,7 @@ namespace AdvaMACSystem
             this.label5.Location = new System.Drawing.Point(19, 106);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(118, 20);
+            this.label5.TabIndex = 32;
             this.label5.Text = "油缸运行状态";
             // 
             // label6
@@ -197,6 +201,7 @@ namespace AdvaMACSystem
             this.label6.Location = new System.Drawing.Point(257, 109);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(118, 20);
+            this.label6.TabIndex = 29;
             this.label6.Text = "机械锁运行状态";
             // 
             // label7
@@ -204,15 +209,15 @@ namespace AdvaMACSystem
             this.label7.Location = new System.Drawing.Point(19, 139);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(118, 17);
+            this.label7.TabIndex = 31;
             this.label7.Text = "泵站压力";
             // 
             // il_Pressure_Pump
             // 
             this.il_Pressure_Pump.BackColor = System.Drawing.Color.White;
             this.il_Pressure_Pump.BackImg = null;
-            this.il_Pressure_Pump.Checked = false;
             this.il_Pressure_Pump.IMGContainer = null;
-            this.il_Pressure_Pump.Layout = ComCtrls.KTLayout.GlyphTop;
+            this.il_Pressure_Pump.ImgDisable = null;
             this.il_Pressure_Pump.Location = new System.Drawing.Point(143, 137);
             this.il_Pressure_Pump.Name = "il_Pressure_Pump";
             this.il_Pressure_Pump.Size = new System.Drawing.Size(104, 20);
@@ -221,22 +226,21 @@ namespace AdvaMACSystem
             this.il_Pressure_Pump.Text = "0";
             this.il_Pressure_Pump.TextX = -1F;
             this.il_Pressure_Pump.TextY = -1F;
-            this.il_Pressure_Pump.TransParent = false;
             // 
             // label8
             // 
             this.label8.Location = new System.Drawing.Point(257, 140);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(118, 17);
+            this.label8.TabIndex = 30;
             this.label8.Text = "控制器电压";
             // 
             // il_Voltage
             // 
             this.il_Voltage.BackColor = System.Drawing.Color.White;
             this.il_Voltage.BackImg = null;
-            this.il_Voltage.Checked = false;
             this.il_Voltage.IMGContainer = null;
-            this.il_Voltage.Layout = ComCtrls.KTLayout.GlyphTop;
+            this.il_Voltage.ImgDisable = null;
             this.il_Voltage.Location = new System.Drawing.Point(381, 139);
             this.il_Voltage.Name = "il_Voltage";
             this.il_Voltage.Size = new System.Drawing.Size(104, 20);
@@ -245,15 +249,13 @@ namespace AdvaMACSystem
             this.il_Voltage.Text = "0";
             this.il_Voltage.TextX = -1F;
             this.il_Voltage.TextY = -1F;
-            this.il_Voltage.TransParent = false;
             // 
             // rb__PowerSupply
             // 
             this.rb__PowerSupply.BackColor = System.Drawing.Color.White;
             this.rb__PowerSupply.BackImg = null;
-            this.rb__PowerSupply.Checked = false;
             this.rb__PowerSupply.IMGContainer = null;
-            this.rb__PowerSupply.Layout = ComCtrls.KTLayout.GlyphTop;
+            this.rb__PowerSupply.ImgDisable = null;
             this.rb__PowerSupply.Location = new System.Drawing.Point(19, 177);
             this.rb__PowerSupply.Name = "rb__PowerSupply";
             this.rb__PowerSupply.Size = new System.Drawing.Size(104, 20);
@@ -262,13 +264,6 @@ namespace AdvaMACSystem
             this.rb__PowerSupply.Text = "0";
             this.rb__PowerSupply.TextX = -1F;
             this.rb__PowerSupply.TextY = -1F;
-            this.rb__PowerSupply.TransParent = false;
-            //this.rb__PowerSupply.Location = new System.Drawing.Point(19, 177);
-            //this.rb__PowerSupply.Name = "rb__PowerSupply";
-            //this.rb__PowerSupply.Size = new System.Drawing.Size(298, 20);
-            //this.rb__PowerSupply.TabIndex = 16;
-            //this.rb__PowerSupply.Tag = DataPool.CmdDataType.cdtPowerSupply_3301_3304;
-            //this.rb__PowerSupply.Text = "控制器检测当前供电 0：市电 1：发电机";
             // 
             // rb_Limit_5
             // 
@@ -298,12 +293,14 @@ namespace AdvaMACSystem
             this.panel1.Location = new System.Drawing.Point(19, 240);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(224, 130);
+            this.panel1.TabIndex = 27;
             // 
             // label9
             // 
             this.label9.Location = new System.Drawing.Point(53, 3);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(41, 20);
+            this.label9.TabIndex = 0;
             this.label9.Text = "报警";
             // 
             // rb_Warn_LowPosition
@@ -356,22 +353,24 @@ namespace AdvaMACSystem
             this.panel2.Location = new System.Drawing.Point(257, 240);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(348, 130);
+            this.panel2.TabIndex = 26;
             // 
             // comboBox_PumpErr
             // 
-            this.comboBox_PumpErr.Items.Add("泵站电动机启动线路短路\t\t        ");
-            this.comboBox_PumpErr.Items.Add("泵站电动机启动线路断路\t\t\t    ");
-            this.comboBox_PumpErr.Items.Add("泵站冗余电磁阀线路短路\t\t\t    ");
-            this.comboBox_PumpErr.Items.Add("泵站冗余电磁阀线路断路\t\t\t    ");
-            this.comboBox_PumpErr.Items.Add("泵站机械锁马达电磁阀线路短路\t\t");
-            this.comboBox_PumpErr.Items.Add("泵站机械锁马达电磁阀线路断路\t\t");
-            this.comboBox_PumpErr.Items.Add("控制器发电机启动线路短路\t\t\t");
-            this.comboBox_PumpErr.Items.Add("控制器发电机启动线路断路\t\t\t");
-            this.comboBox_PumpErr.Items.Add("泵站比例阀线路短路\t\t                ");
-            this.comboBox_PumpErr.Items.Add("泵站比例阀线路断路\t            ");
+            this.comboBox_PumpErr.Items.AddRange(new object[] {
+            "泵站电动机启动线路短路\t\t        ",
+            "泵站电动机启动线路断路\t\t\t    ",
+            "泵站冗余电磁阀线路短路\t\t\t    ",
+            "泵站冗余电磁阀线路断路\t\t\t    ",
+            "泵站机械锁马达电磁阀线路短路\t\t",
+            "泵站机械锁马达电磁阀线路断路\t\t",
+            "控制器发电机启动线路短路\t\t\t",
+            "控制器发电机启动线路断路\t\t\t",
+            "泵站比例阀线路短路\t\t                ",
+            "泵站比例阀线路断路\t            "});
             this.comboBox_PumpErr.Location = new System.Drawing.Point(39, 22);
             this.comboBox_PumpErr.Name = "comboBox_PumpErr";
-            this.comboBox_PumpErr.Size = new System.Drawing.Size(122, 23);
+            this.comboBox_PumpErr.Size = new System.Drawing.Size(122, 20);
             this.comboBox_PumpErr.TabIndex = 2;
             this.comboBox_PumpErr.SelectedIndexChanged += new System.EventHandler(this.comboBox_PumpErr_SelectedIndexChanged);
             // 
@@ -380,6 +379,7 @@ namespace AdvaMACSystem
             this.label10.Location = new System.Drawing.Point(120, 3);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(41, 20);
+            this.label10.TabIndex = 3;
             this.label10.Text = "故障";
             // 
             // rb_Error_cylinder_extend
@@ -445,13 +445,39 @@ namespace AdvaMACSystem
             this.rb_Error_PositionSenser.Tag = DataPool.CmdDataType.cdtError_PositionSenser_3501_3504;
             this.rb_Error_PositionSenser.Text = "油缸长度传感器故障";
             // 
-            // checkBox1
+            // rb_CompAct_Pump
             // 
-            this.checkBox1.Location = new System.Drawing.Point(495, 177);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(100, 20);
-            this.checkBox1.TabIndex = 25;
-            this.checkBox1.Text = "checkBox1";
+            this.rb_CompAct_Pump.Location = new System.Drawing.Point(190, 177);
+            this.rb_CompAct_Pump.Name = "rb_CompAct_Pump";
+            this.rb_CompAct_Pump.Size = new System.Drawing.Size(100, 20);
+            this.rb_CompAct_Pump.TabIndex = 25;
+            this.rb_CompAct_Pump.Text = "补偿动作";
+            // 
+            // rb_StartFailed_Pump
+            // 
+            this.rb_StartFailed_Pump.Location = new System.Drawing.Point(347, 177);
+            this.rb_StartFailed_Pump.Name = "rb_StartFailed_Pump";
+            this.rb_StartFailed_Pump.Size = new System.Drawing.Size(100, 20);
+            this.rb_StartFailed_Pump.TabIndex = 36;
+            this.rb_StartFailed_Pump.Text = "建压失败";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(377, 22);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(47, 12);
+            this.label11.TabIndex = 37;
+            this.label11.Text = "label11";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(486, 22);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(47, 12);
+            this.label12.TabIndex = 38;
+            this.label12.Text = "label12";
             // 
             // VirtualSetForm
             // 
@@ -459,7 +485,10 @@ namespace AdvaMACSystem
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(633, 409);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.rb_StartFailed_Pump);
+            this.Controls.Add(this.rb_CompAct_Pump);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.rb_Limit_10);
@@ -483,9 +512,11 @@ namespace AdvaMACSystem
             this.Controls.Add(this.comboBox1);
             this.Name = "VirtualSetForm";
             this.Text = "VirtualSetForm";
+            this.Click += new System.EventHandler(this.VirtualSetForm_Click);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -526,6 +557,9 @@ namespace AdvaMACSystem
         private System.Windows.Forms.CheckBox rb_Error_PositionSenser;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox comboBox_PumpErr;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox rb_CompAct_Pump;
+        private System.Windows.Forms.CheckBox rb_StartFailed_Pump;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
     }
 }

@@ -227,6 +227,11 @@ namespace AdvaMACSystem
                     _Error_Pump_3501_3504.Add(false); //泵站及控制器 故障 4*16
                 }
             }
+
+            id_controledPump = _candatapool.out_id_controledPump; //被控泵站            
+
+            id_redundantPump = _candatapool.out_id_redundantPump;//冗余泵站
+
         }
 
         public void Update()
@@ -288,11 +293,9 @@ namespace AdvaMACSystem
                 //        }
                 //    }
                 //}
+                ID_controledPump = _candatapool.out_id_controledPump;//被控泵站
 
-
-
-
-
+                ID_redundantPump = _candatapool.out_id_redundantPump;//冗余泵站
 
                 if (ischanged)
                     DoDataChanged();
@@ -327,6 +330,16 @@ namespace AdvaMACSystem
                 {
                     _curwarninglist.Remove(listkey);
                 }
+            }
+            else if (type == CmdDataType.cdtid_controledPump)
+            {
+                RecFile = new FileStream(WarningRecFileName, FileMode.Append);
+                listkey = -100 * id;
+            }
+            else if (type == CmdDataType.cdtid_redundantPump)
+            {
+                RecFile = new FileStream(WarningRecFileName, FileMode.Append);
+                listkey = -200 * id;
             }
             else//故障系列
             {
@@ -373,6 +386,37 @@ namespace AdvaMACSystem
             File.Delete(WarningRecFileName);
             File.Delete(ErrorRecFileName);
         }
+
+
+        private byte id_controledPump = 0;//被控泵站
+        protected byte ID_controledPump
+        {
+            set
+            {
+                if (id_controledPump != value)
+                {
+                    id_controledPump = value;
+                    SaveChangedData(id_controledPump, 0, CmdDataType.cdtid_controledPump, true);
+
+                }
+            }
+        }
+
+        private byte id_redundantPump = 0;//冗余泵站
+        protected byte ID_redundantPump
+        {
+            set
+            {
+                if (id_redundantPump != value)
+                {
+                    id_redundantPump = value;
+                    SaveChangedData(id_redundantPump, 0, CmdDataType.cdtid_redundantPump, true);
+
+                }
+            }
+        }
+
+
     }
 
 }
