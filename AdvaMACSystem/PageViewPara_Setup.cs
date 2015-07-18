@@ -137,7 +137,7 @@ namespace AdvaMACSystem
                 btn2.Size = new System.Drawing.Size(60, 23);
                 btn2.TabIndex = 0;
                 btn2.TabStop = false;
-                btn2.Text = "确认";
+                //btn2.Text = "确认";
                 btn2.TransParent = true;
                 btn2.UPImg = AdvaMACSystemRes.Set_up;
                 btn2.DNImg = AdvaMACSystemRes.Set_down;
@@ -173,11 +173,13 @@ namespace AdvaMACSystem
             ImageButton ib = (ImageButton)sender;
             if (ib.Checked)
             {
-                //DataPool.CDataPool.GetDataPoolObject().SetboolValue(pumpindex, (int)ib.Tag, CmdDataType.安装调试完毕, true);
+                DataPool.CDataPool.GetDataPoolObject().SetboolValue(pumpindex, (int)ib.Tag, CmdDataType.cdtSetupFinish_Confirm_seperate, true);
+                ib.Text = "已确认";
             }
             else
             {
-                //DataPool.CDataPool.GetDataPoolObject().SetboolValue(pumpindex, (int)ib.Tag, CmdDataType.安装调试完毕, false);
+                DataPool.CDataPool.GetDataPoolObject().SetboolValue(pumpindex, (int)ib.Tag, CmdDataType.cdtSetupFinish_Confirm_seperate, false);
+                ib.Text = "确认";
             }
         }
 
@@ -482,7 +484,15 @@ namespace AdvaMACSystem
                          i,
                          CmdDataType.cdtView_SetupPosition_Col).ToString();
 
-                //btnlst_ok[i].Checked = DataPool.CDataPool.GetDataPoolObject().GetBoolValue(pumpindex, i, CmdDataType.安装调试完毕);
+                btnlst_ok[i].Checked = DataPool.CDataPool.GetDataPoolObject().GetBoolValue(pumpindex, i, CmdDataType.cdtSetupFinish_Confirm_seperate);
+                if (btnlst_ok[i].Checked)
+                {
+                    btnlst_ok[i].Text = "已确认";
+                }
+                else
+                {
+                    btnlst_ok[i].Text = "确认";
+                }
 
             }
         }
