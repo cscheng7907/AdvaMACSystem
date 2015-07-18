@@ -68,6 +68,8 @@ namespace AdvaMACSystem
             this.rb_StartFailed_Pump = new System.Windows.Forms.CheckBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.il_idControl = new ComCtrls.ImageLabel();
+            this.il_idrongyu = new ComCtrls.ImageLabel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -479,12 +481,46 @@ namespace AdvaMACSystem
             this.label12.TabIndex = 38;
             this.label12.Text = "label12";
             // 
+            // il_idControl
+            // 
+            this.il_idControl.BackColor = System.Drawing.Color.White;
+            this.il_idControl.BackImg = null;
+            this.il_idControl.IMGContainer = null;
+            this.il_idControl.ImgDisable = null;
+            this.il_idControl.Location = new System.Drawing.Point(379, 37);
+            this.il_idControl.Name = "il_idControl";
+            this.il_idControl.Size = new System.Drawing.Size(68, 20);
+            this.il_idControl.TabIndex = 39;
+            this.il_idControl.Tag = DataPool.CmdDataType.cdtPosition_Real_3101_3108;
+            this.il_idControl.Text = "0";
+            this.il_idControl.TextX = -1F;
+            this.il_idControl.TextY = -1F;
+            this.il_idControl.Tag = DataPool.CmdDataType.cdtid_controledPump;
+            // 
+            // il_idrongyu
+            // 
+            this.il_idrongyu.BackColor = System.Drawing.Color.White;
+            this.il_idrongyu.BackImg = null;
+            this.il_idrongyu.IMGContainer = null;
+            this.il_idrongyu.ImgDisable = null;
+            this.il_idrongyu.Location = new System.Drawing.Point(488, 37);
+            this.il_idrongyu.Name = "il_idrongyu";
+            this.il_idrongyu.Size = new System.Drawing.Size(68, 20);
+            this.il_idrongyu.TabIndex = 40;
+            this.il_idrongyu.Tag = DataPool.CmdDataType.cdtPosition_Real_3101_3108;
+            this.il_idrongyu.Text = "0";
+            this.il_idrongyu.TextX = -1F;
+            this.il_idrongyu.TextY = -1F;
+            this.il_idrongyu.Tag = DataPool.CmdDataType.cdtid_redundantPump;
+            // 
             // VirtualSetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(633, 409);
+            this.Controls.Add(this.il_idrongyu);
+            this.Controls.Add(this.il_idControl);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.rb_StartFailed_Pump);
@@ -561,5 +597,7 @@ namespace AdvaMACSystem
         private System.Windows.Forms.CheckBox rb_StartFailed_Pump;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
+        private ComCtrls.ImageLabel il_idControl;
+        private ComCtrls.ImageLabel il_idrongyu;
     }
 }

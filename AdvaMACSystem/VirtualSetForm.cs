@@ -51,7 +51,8 @@ List<bool> in_Error_MachLock_retract_3511_3514 = new List<bool>();//油缸机械
 
 */
 
-
+            id_controledPump.Add(CDataPool.GetDataPoolObject().out_id_controledPump);
+            id_redundantPump.Add(CDataPool.GetDataPoolObject().out_id_redundantPump);
 
 
             this.SuspendLayout();
@@ -61,6 +62,10 @@ List<bool> in_Error_MachLock_retract_3511_3514 = new List<bool>();//油缸机械
             IntDic.Add(il_Pressure_Pump, CDataPool.GetDataPoolObject().in_Pressure_Pump_Real_3301_3304);
             IntDic.Add(il_Voltage, CDataPool.GetDataPoolObject().in_Voltage_Real_3301_3304);
             IntDic.Add(rb__PowerSupply, CDataPool.GetDataPoolObject().in_PowerSupply_3301_3304);
+            IntDic.Add(il_idControl, id_controledPump);
+            IntDic.Add(il_idrongyu, id_redundantPump);
+
+
 
             doubleDic.Add(comboBoxcylinderState, CDataPool.GetDataPoolObject().in_cylinderState_Real_3201_3208);
             doubleDic.Add(comboBoxMachLockState, CDataPool.GetDataPoolObject().in_MachLockState_Real_3201_3208);
@@ -132,6 +137,8 @@ List<bool> in_Error_MachLock_retract_3511_3514 = new List<bool>();//油缸机械
         private List<Control> WarnLst = new List<Control>();
         private List<Control> ErrLst = new List<Control>();
 
+        private List<int> id_controledPump = new List<int>();
+        private List<int> id_redundantPump = new List<int>();
 
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -200,6 +207,16 @@ List<bool> in_Error_MachLock_retract_3511_3514 = new List<bool>();//油缸机械
                     IntDic[(Control)Sender]
                         [comboBox1.SelectedIndex] =
                         Convert.ToInt32(f.KeyText);
+                }
+                else if (Sender == il_idControl)
+                {
+                    CDataPool.GetDataPoolObject().out_id_controledPump =
+                         Convert.ToByte(f.KeyText);
+                }
+                else if (Sender == il_idrongyu)
+                {                                   
+                    CDataPool.GetDataPoolObject().out_id_redundantPump =
+                         Convert.ToByte(f.KeyText);
                 }
                 else
                     //in_Pressure_Pump_Real_3301_3304.Add(0);

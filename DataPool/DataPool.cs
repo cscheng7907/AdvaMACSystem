@@ -371,7 +371,12 @@ namespace DataPool
                 case CmdDataType.cdtView_SetupPosition_Col://油缸安装所在的支数 4*8
                     rtv = (int)View_SetupPosition_Col[id * 8 + subid];
                     break;
-
+                case CmdDataType.cdtid_controledPump://被控泵站
+                    rtv = out_id_controledPump;
+                    break;
+                case CmdDataType.cdtid_redundantPump://冗余泵站
+                    rtv = out_id_redundantPump;
+                    break;
                 default:
                     break;
             }
@@ -613,6 +618,16 @@ namespace DataPool
                 case CmdDataType.cdtView_SetupPosition_Col://油缸安装所在的支数 4*8
                     View_SetupPosition_Col[id * 8 + subid] = (byte)value;
                     break;
+#if WindowsCE
+#else
+
+                case CmdDataType.cdtid_controledPump://被控泵站
+                    out_id_controledPump = (byte)value;
+                    break;
+                case CmdDataType.cdtid_redundantPump://冗余泵站
+                    out_id_redundantPump = (byte)value;
+                    break;
+#endif
                 default:
                     break;
             }
