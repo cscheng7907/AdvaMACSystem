@@ -722,7 +722,8 @@ namespace AdvaMACSystem
                 //设定压力条下限值
                 cylinderList[i].MinPressureValue = MinPressureValue;
                 //设定压力条上限值
-                cylinderList[i].MaxPressureValue = MaxPressureValue;
+                cylinderList[i].MaxPressureValue = _candatapool.GetRealValue(selectedPumpIndex, i, CmdDataType.cdtSectionalArea_Value)
+                                                                        * _candatapool.GetRealValue(selectedPumpIndex, i, CmdDataType.cdtMAXPressure_Value);
                 //设定压力条下限报警值
                 cylinderList[i].LowerWarningPressureValue = _candatapool.GetRealValue(selectedPumpIndex, i, CmdDataType.cdtPressureLowerLimitAlarm_Value);
                 //设定压力条上限报警值
@@ -735,7 +736,7 @@ namespace AdvaMACSystem
                 //设定长度条下限值
                 cylinderList[i].MinPositionValue = MinPositionValue;
                 //设定长度条上限值
-                cylinderList[i].MaxPositionValue = MaxPositionValue;
+                cylinderList[i].MaxPositionValue = _candatapool.GetRealValue(selectedPumpIndex, i, CmdDataType.cdtMAXPosition_Value);
                 //设定长度条下限报警值
                 cylinderList[i].LowerWarningPositionValue = _candatapool.GetRealValue(selectedPumpIndex, i, CmdDataType.cdtPositionLowerLimitAlarm_Value);
                 //设定长度条上限报警值

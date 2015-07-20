@@ -486,7 +486,7 @@ namespace AdvaMACSystem
             if (drawPressure)
             {
                 Scale = 10.17;
-                maxValue = 3560.7;
+                maxValue = 400;
                 minValue = 0;
 
                 tempFile = string.Format(historyOper.PressureRecFileName, pumpIndex, cylinderIndex, startTime.ToString("yyyy-MM-dd HH-mm-ss"));
@@ -495,7 +495,7 @@ namespace AdvaMACSystem
             else
             {
                 Scale = 1;
-                maxValue = 100;
+                maxValue = 1000;
                 minValue = 0;
 
                 tempFile = string.Format(historyOper.PositionRecFileName, pumpIndex, cylinderIndex, startTime.ToString("yyyy-MM-dd HH-mm-ss"));
