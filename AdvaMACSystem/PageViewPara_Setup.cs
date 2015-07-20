@@ -174,7 +174,6 @@ namespace AdvaMACSystem
             if (ib.Checked)
             {
                 DataPool.CDataPool.GetDataPoolObject().SetboolValue(pumpindex, (int)ib.Tag, CmdDataType.cdtSetupFinish_Confirm_seperate, true);
-                SaveSingleViewData(pumpindex, (int)ib.Tag);
 
                 ib.Text = "已确认";
             }
@@ -183,6 +182,8 @@ namespace AdvaMACSystem
                 DataPool.CDataPool.GetDataPoolObject().SetboolValue(pumpindex, (int)ib.Tag, CmdDataType.cdtSetupFinish_Confirm_seperate, false);
                 ib.Text = "确认";
             }
+
+            SaveSingleViewData(pumpindex, (int)ib.Tag);
         }
 
         private void CreateInputBox(int subid, Point topleft, bool istotal, bool isRow)
@@ -466,19 +467,19 @@ namespace AdvaMACSystem
                 id,
                 subid,
                 CmdDataType.cdtInstalled,
-                !btnlst_subid[i].Checked);
+                !btnlst_subid[subid].Checked);
 
             DataPool.CDataPool.GetDataPoolObject().SetintValue(
                 id,
                 subid,
                 CmdDataType.cdtView_SetupPosition_Row,
-                Convert.ToInt32(btnlst_subid_Row[i].Text));
+                Convert.ToInt32(btnlst_subid_Row[subid].Text));
 
             DataPool.CDataPool.GetDataPoolObject().SetintValue(
                 id,
                 subid,
                 CmdDataType.cdtView_SetupPosition_Col,
-                Convert.ToInt32(btnlst_subid_Col[i].Text));
+                Convert.ToInt32(btnlst_subid_Col[subid].Text));
 
             DataPool.CDataPool.GetDataPoolObject().SavetoFile();
         }
