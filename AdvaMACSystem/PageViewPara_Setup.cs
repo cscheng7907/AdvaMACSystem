@@ -283,7 +283,7 @@ namespace AdvaMACSystem
                 {
                     int input = Convert.ToInt32(f.KeyText);
 
-                    if (input >= 0 && input < DataPool.CDataPool.GetDataPoolObject().View_SetupPosition_RowCount)
+                    if (input >= 0 && input <= DataPool.CDataPool.GetDataPoolObject().View_SetupPosition_RowCount)
                         lb.Text = input.ToString();
                     else
                         MessageBox.Show("输入数值越界！");
@@ -309,7 +309,7 @@ namespace AdvaMACSystem
                 {
                     int input = Convert.ToInt32(f.KeyText);
 
-                    if (input >= 0 && input < DataPool.CDataPool.GetDataPoolObject().View_SetupPosition_ColCount)
+                    if (input >= 0 && input <= DataPool.CDataPool.GetDataPoolObject().View_SetupPosition_ColCount)
                         lb.Text = input.ToString();
                     else
                         MessageBox.Show("输入数值越界！");

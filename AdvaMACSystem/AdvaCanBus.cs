@@ -26,12 +26,12 @@ namespace AdvaMACSystem
         private bool m_bRun1 = false;
 
         private Thread Thread1;
-        private int ThreadInterval = 500;
+        private int ThreadInterval = 200;//500;
 
         private const uint M_SENDCOUNT = 164;
         private AdvCan.canmsg_t[] msgSend = new AdvCan.canmsg_t[M_SENDCOUNT];                 //Package for write 
 
-        private const uint M_RECIEVECOUNT = 100;//44;
+        private const uint M_RECIEVECOUNT = 400;//100;//44;
         private AdvCan.canmsg_t[] msgRecieve = new AdvCan.canmsg_t[M_RECIEVECOUNT];                 //Package for write 
 
         private static AdvaCanBus AdvaCanBusObject = null;

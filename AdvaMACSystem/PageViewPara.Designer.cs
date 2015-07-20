@@ -295,7 +295,7 @@
             this.label15.Location = new System.Drawing.Point(950, 139);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(47, 29);
-            this.label15.Text = "m";
+            this.label15.Text = "mm";
             // 
             // imageLabel_PositionLowerLimitAlarm_Value
             // 
@@ -328,7 +328,7 @@
             this.label13.Location = new System.Drawing.Point(950, 93);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(47, 29);
-            this.label13.Text = "m";
+            this.label13.Text = "mm";
             // 
             // imageLabel_PositionUpperLimitAlarm_Value
             // 
@@ -361,7 +361,7 @@
             this.label11.Location = new System.Drawing.Point(950, 48);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(47, 29);
-            this.label11.Text = "m";
+            this.label11.Text = "mm";
             // 
             // imageLabel_Position_Value
             // 
@@ -394,7 +394,7 @@
             this.label9.Location = new System.Drawing.Point(446, 139);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(54, 29);
-            this.label9.Text = "bar";
+            this.label9.Text = "KN";
             // 
             // imageLabel_PressureLowerLimitAlarm_Value
             // 
@@ -427,7 +427,7 @@
             this.label7.Location = new System.Drawing.Point(446, 93);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(54, 29);
-            this.label7.Text = "bar";
+            this.label7.Text = "KN";
             // 
             // imageLabel_PressureUpperLimitAlarm_Value
             // 
@@ -460,7 +460,7 @@
             this.label5.Location = new System.Drawing.Point(446, 48);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(54, 29);
-            this.label5.Text = "bar";
+            this.label5.Text = "KN";
             // 
             // imageLabel_Pressure_Value
             // 

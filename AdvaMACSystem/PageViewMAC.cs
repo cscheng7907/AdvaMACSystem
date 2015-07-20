@@ -187,7 +187,7 @@ namespace AdvaMACSystem
             //PumpInstallButton.MouseUp += new MouseEventHandler();
             PumpInstallButton.Enabled = false;
 
-            PumpSettingButton.Text = "压力设定";
+            PumpSettingButton.Text = "轴力设定";
             PumpSettingButton.Click += new EventHandler(PumpSettingButton_Click);
             //PumpSettingButton.MouseDown += new MouseEventHandler();
             //PumpSettingButton.MouseUp += new MouseEventHandler();
@@ -483,11 +483,11 @@ namespace AdvaMACSystem
                     PumpSettingButton.Enabled = false;
                     break;
                 case ControlModeType.MachLockManual:
-                    controlModeButton.Text = "无线遥感";
+                    controlModeButton.Text = "无线遥控";
                     cylinderExtendButton.Enabled = true;
                     cylinderRetractButton.Enabled = true;
                     PumpInstallButton.Enabled = false;
-                    PumpSettingButton.Enabled = false;
+                    PumpSettingButton.Enabled = true;
                     break;
                 case ControlModeType.CylinderManual:
                     controlModeButton.Text = "手动模式";
@@ -505,10 +505,10 @@ namespace AdvaMACSystem
         {
             for (int j = 0; j < pumpList.Count; j++)
 
-            DataPool.CDataPool.GetDataPoolObject().SetboolValue(
-                            j,
-                            0,
-                            CmdDataType.cdtManualStart_Pump, false);
+                DataPool.CDataPool.GetDataPoolObject().SetboolValue(
+                                j,
+                                0,
+                                CmdDataType.cdtManualStart_Pump, false);
 
             PumpInstallButton.Text = "启动泵站";
         }

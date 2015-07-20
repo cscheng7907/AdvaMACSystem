@@ -248,7 +248,7 @@ namespace AdvaMACSystem
         }
 
         private const string numberFormat = "F1";
-        private const string PressureUnit = "kN";
+        private const string PressureUnit = "bar";
         private const string VoltageUnit = "V";
 
         private int diagnoseItem = 0;//0: 5mm接近开关限位; 1: 10mm接近开关限位; 2:油缸运行状态; 3:油缸机械锁状态  

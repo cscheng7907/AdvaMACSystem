@@ -210,10 +210,10 @@ namespace AdvaMACSystem
         public WarnErrOperator Optor { set { if (optor != value)optor = value; } }
 
         private string[] strlst = new string[]{
-        /*cdtWarn_HighPressure_3401_3404,// */"油缸压力过高",// 4*8
-        /*cdtWarn_LowPressure_3401_3404,// */"油缸压力过低",// 4*8
-        /*cdtWarn_HighPosition_3401_3404,// */"油缸长度过高",// 4*8
-        /*cdtWarn_LowPosition_3401_3404,//*/ "油缸长度过低" //4*8
+        /*cdtWarn_HighPressure_3401_3404,// */"油缸轴力过高",// 4*8
+        /*cdtWarn_LowPressure_3401_3404,// */"油缸轴力过低",// 4*8
+        /*cdtWarn_HighPosition_3401_3404,// */"油缸位移大",// 4*8
+        /*cdtWarn_LowPosition_3401_3404,//*/ "油缸位移小" //4*8
         };
 
         private int firstcmdtype = (int)CmdDataType.cdtWarn_HighPressure_3401_3404;
