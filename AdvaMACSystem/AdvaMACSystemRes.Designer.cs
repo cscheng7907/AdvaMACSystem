@@ -114,6 +114,15 @@ namespace AdvaMACSystem {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+
+        internal static System.Drawing.Bitmap estop64_1
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("estop64_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
         
         internal static System.Drawing.Bitmap fix2 {
             get {
