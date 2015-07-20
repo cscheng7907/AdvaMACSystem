@@ -767,9 +767,9 @@ namespace AdvaMACSystem
                 {
                     pumpList[j].CurrentPara = _candatapool.GetRealValue(j, 0, CmdDataType.cdtPressure_Pump_Real_3301_3304);
                     pumpList[j].CurrentStatus = pumpList[j].CurrentPara > 30 ? "运行" : "";
-                    if (j == Convert.ToInt32(_candatapool.out_id_controledPump))
+                    if ((j + 1) == Convert.ToInt32(_candatapool.out_id_controledPump))
                         pumpList[j].Type = PumpType.ptControlled;
-                    else if (j == Convert.ToInt32(_candatapool.out_id_redundantPump))
+                    else if ((j + 1) == Convert.ToInt32(_candatapool.out_id_redundantPump))
                         pumpList[j].Type = PumpType.ptRedundancy;
                     else
                         pumpList[j].Type = PumpType.ptEmpty;
