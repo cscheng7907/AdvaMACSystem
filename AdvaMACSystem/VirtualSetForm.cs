@@ -88,6 +88,7 @@ List<bool> in_Error_MachLock_retract_3511_3514 = new List<bool>();//油缸机械
             boolDic.Add(rb_CompAct_Pump, CDataPool.GetDataPoolObject().in_CompAct_Pump_1010_1013);
             boolDic.Add(rb_StartFailed_Pump, CDataPool.GetDataPoolObject().in_StartFailed_Pump_1010_1013);
 
+            boolDic.Add(rb_Estop1, CDataPool.GetDataPoolObject().in_EStop_1010_1013);
 
             WarnLst.Add(rb_Warn_HighPressure);
             WarnLst.Add(rb_Warn_LowPosition);
@@ -214,7 +215,7 @@ List<bool> in_Error_MachLock_retract_3511_3514 = new List<bool>();//油缸机械
                          Convert.ToByte(f.KeyText);
                 }
                 else if (Sender == il_idrongyu)
-                {                                   
+                {
                     CDataPool.GetDataPoolObject().out_id_redundantPump =
                          Convert.ToByte(f.KeyText);
                 }
@@ -236,19 +237,22 @@ List<bool> in_Error_MachLock_retract_3511_3514 = new List<bool>();//油缸机械
         }
         private void OnCheckedChanged(object Sender, EventArgs e)
         {
-            if (Sender == rb__PowerSupply)
+            if (Sender == rb__PowerSupply ||
+                Sender == rb_CompAct_Pump ||
+                Sender == rb_StartFailed_Pump ||
+                Sender == rb_Estop1
+                )
                 boolDic[(Control)Sender]
                    [comboBox1.SelectedIndex] =
                    ((CheckBox)Sender).Checked;
+            else if (Sender == rb_Error_Pump)
+                boolDic[(Control)Sender]
+                    [comboBox1.SelectedIndex * 16 + comboBox_PumpErr.SelectedIndex] =
+                    ((CheckBox)Sender).Checked;
             else
-                if (Sender == rb_Error_Pump)
-                    boolDic[(Control)Sender]
-                        [comboBox1.SelectedIndex * 16 + comboBox_PumpErr.SelectedIndex] =
-                        ((CheckBox)Sender).Checked;
-                else
-                    boolDic[(Control)Sender]
-                        [comboBox1.SelectedIndex * 8 + comboBox2.SelectedIndex] =
-                        ((CheckBox)Sender).Checked;
+                boolDic[(Control)Sender]
+                    [comboBox1.SelectedIndex * 8 + comboBox2.SelectedIndex] =
+                    ((CheckBox)Sender).Checked;
         }
         private void comboBox_PumpErr_SelectedIndexChanged(object sender, EventArgs e)
         {

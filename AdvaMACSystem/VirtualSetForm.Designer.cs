@@ -70,6 +70,7 @@ namespace AdvaMACSystem
             this.label12 = new System.Windows.Forms.Label();
             this.il_idControl = new ComCtrls.ImageLabel();
             this.il_idrongyu = new ComCtrls.ImageLabel();
+            this.rb_Estop1 = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -454,6 +455,7 @@ namespace AdvaMACSystem
             this.rb_CompAct_Pump.Size = new System.Drawing.Size(100, 20);
             this.rb_CompAct_Pump.TabIndex = 25;
             this.rb_CompAct_Pump.Text = "补偿动作";
+            this.rb_CompAct_Pump.Tag = DataPool.CmdDataType.cdtCompAct_Pump_1010_1013;
             // 
             // rb_StartFailed_Pump
             // 
@@ -462,6 +464,7 @@ namespace AdvaMACSystem
             this.rb_StartFailed_Pump.Size = new System.Drawing.Size(100, 20);
             this.rb_StartFailed_Pump.TabIndex = 36;
             this.rb_StartFailed_Pump.Text = "建压失败";
+            this.rb_StartFailed_Pump.Tag = DataPool.CmdDataType.cdtStartFailed_Pump_1010_1013;
             // 
             // label11
             // 
@@ -495,7 +498,6 @@ namespace AdvaMACSystem
             this.il_idControl.Text = "0";
             this.il_idControl.TextX = -1F;
             this.il_idControl.TextY = -1F;
-            this.il_idControl.Tag = DataPool.CmdDataType.cdtid_controledPump;
             // 
             // il_idrongyu
             // 
@@ -511,7 +513,15 @@ namespace AdvaMACSystem
             this.il_idrongyu.Text = "0";
             this.il_idrongyu.TextX = -1F;
             this.il_idrongyu.TextY = -1F;
-            this.il_idrongyu.Tag = DataPool.CmdDataType.cdtid_redundantPump;
+            // 
+            // rb_Estop1
+            // 
+            this.rb_Estop1.Location = new System.Drawing.Point(495, 71);
+            this.rb_Estop1.Name = "rb_Estop1";
+            this.rb_Estop1.Size = new System.Drawing.Size(100, 20);
+            this.rb_Estop1.TabIndex = 41;
+            this.rb_Estop1.Text = "急停1";
+            this.rb_Estop1.Tag = DataPool.CmdDataType.cdtEStop_1010_1013;
             // 
             // VirtualSetForm
             // 
@@ -519,6 +529,7 @@ namespace AdvaMACSystem
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(633, 409);
+            this.Controls.Add(this.rb_Estop1);
             this.Controls.Add(this.il_idrongyu);
             this.Controls.Add(this.il_idControl);
             this.Controls.Add(this.label12);
@@ -599,5 +610,6 @@ namespace AdvaMACSystem
         private System.Windows.Forms.Label label12;
         private ComCtrls.ImageLabel il_idControl;
         private ComCtrls.ImageLabel il_idrongyu;
+        private System.Windows.Forms.CheckBox rb_Estop1;
     }
 }

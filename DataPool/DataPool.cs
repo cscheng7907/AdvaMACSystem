@@ -665,6 +665,12 @@ namespace DataPool
                 case CmdDataType.cdtCompAct_Pump_1010_1013: // 泵站补偿动作情况 4
                     in_CompAct_Pump_1010_1013[id] = value;
                     break;
+#if WindowsCE
+#else
+                case CmdDataType.cdtEStop_1010_1013:
+                    in_EStop_1010_1013[id] = value;
+                    break;
+#endif
                 default:
                     break;
             }
