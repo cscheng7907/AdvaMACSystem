@@ -174,6 +174,8 @@ namespace AdvaMACSystem
             if (ib.Checked)
             {
                 DataPool.CDataPool.GetDataPoolObject().SetboolValue(pumpindex, (int)ib.Tag, CmdDataType.cdtSetupFinish_Confirm_seperate, true);
+                SaveSingleViewData(pumpindex, (int)ib.Tag);
+
                 ib.Text = "已确认";
             }
             else
@@ -457,6 +459,30 @@ namespace AdvaMACSystem
             DataPool.CDataPool.GetDataPoolObject().SavetoFile();
             MessageBox.Show(string.Format("#{0:00}泵站，参数已经保存！", pumpindex + 1));
         }
+
+        private void SaveSingleViewData(int id, int subid)
+        {
+            DataPool.CDataPool.GetDataPoolObject().SetboolValue(
+                id,
+                subid,
+                CmdDataType.cdtInstalled,
+                !btnlst_subid[i].Checked);
+
+            DataPool.CDataPool.GetDataPoolObject().SetintValue(
+                id,
+                subid,
+                CmdDataType.cdtView_SetupPosition_Row,
+                Convert.ToInt32(btnlst_subid_Row[i].Text));
+
+            DataPool.CDataPool.GetDataPoolObject().SetintValue(
+                id,
+                subid,
+                CmdDataType.cdtView_SetupPosition_Col,
+                Convert.ToInt32(btnlst_subid_Col[i].Text));
+
+            DataPool.CDataPool.GetDataPoolObject().SavetoFile();
+        }
+
 
         private void UpdateViewData()
         {
