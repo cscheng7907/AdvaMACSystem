@@ -334,12 +334,12 @@ namespace AdvaMACSystem
             else if (type == CmdDataType.cdtid_controledPump)
             {
                 RecFile = new FileStream(WarningRecFileName, FileMode.Append);
-                listkey = -100 * id;
+                listkey = -100 - id;
             }
             else if (type == CmdDataType.cdtid_redundantPump)
             {
                 RecFile = new FileStream(WarningRecFileName, FileMode.Append);
-                listkey = -200 * id;
+                listkey = -200 - id;
             }
             else//故障系列
             {
