@@ -835,7 +835,8 @@ namespace AdvaMACSystem
                             else
                                 tp_id_redundantPump = (byte)(i - CanDatapool.PumpCount);
 
-                            if (!CanDatapool.in_CompAct_Pump_1010_1013[tp_id_redundantPump] &&
+                            if (CanDatapool.GetBoolValue(tp_id_redundantPump, 0, CmdDataType.cdt_PumpInstalled) &&
+                                !CanDatapool.in_CompAct_Pump_1010_1013[tp_id_redundantPump] &&
                                 !CanDatapool.in_StartFailed_Pump_1010_1013[tp_id_redundantPump])
                                 id_redundantPump = (byte)(tp_id_redundantPump + 1);
                         }

@@ -542,6 +542,13 @@ namespace DataPool
                 case CmdDataType.cdtCompAct_Pump_1010_1013: // 泵站补偿动作情况 4
                     rtv = in_CompAct_Pump_1010_1013[id];
                     break;
+                case CmdDataType.cdt_PumpInstalled:
+                    for (int i = 0; i < 8; i++)
+                    {
+                        rtv = rtv | out_Installed[id * 8 + i];
+                    }
+
+                    break;
                 default:
                     break;
             }
@@ -1102,8 +1109,8 @@ namespace DataPool
         cdtid_controledPump,//被控泵站
         cdtid_redundantPump,//冗余泵站
         cdtStartFailed_Pump_1010_1013,// 泵站建压失败 4
-        cdtCompAct_Pump_1010_1013 // 泵站补偿动作情况 4
-
+        cdtCompAct_Pump_1010_1013, // 泵站补偿动作情况 4
+        cdt_PumpInstalled//泵站是否安装 4
     }
 
     /*
