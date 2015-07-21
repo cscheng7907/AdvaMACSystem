@@ -39,6 +39,18 @@
             this.imageLabel_idbk = new ComCtrls.ImageLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label25 = new System.Windows.Forms.Label();
+            this.imageLabel_PumpTodayPositionHighout = new ComCtrls.ImageLabel();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.imageLabel_PumpPositionHighout = new ComCtrls.ImageLabel();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.imageLabel_PumpPressureHighout = new ComCtrls.ImageLabel();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.imageLabel_Area = new ComCtrls.ImageLabel();
+            this.label22 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.imageLabel_MAXPosition_Value = new ComCtrls.ImageLabel();
             this.label18 = new System.Windows.Forms.Label();
@@ -81,9 +93,9 @@
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.imageLabel2 = new ComCtrls.ImageLabel();
             this.imageLabel1 = new ComCtrls.ImageLabel();
-            this.label21 = new System.Windows.Forms.Label();
-            this.imageLabel_Area = new ComCtrls.ImageLabel();
-            this.label22 = new System.Windows.Forms.Label();
+            this.imageLabel3 = new ComCtrls.ImageLabel();
+            this.imageLabel5 = new ComCtrls.ImageLabel();
+            this.imageLabel4 = new ComCtrls.ImageLabel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -189,6 +201,15 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel2.Controls.Add(this.label25);
+            this.panel2.Controls.Add(this.imageLabel_PumpTodayPositionHighout);
+            this.panel2.Controls.Add(this.label26);
+            this.panel2.Controls.Add(this.label27);
+            this.panel2.Controls.Add(this.imageLabel_PumpPositionHighout);
+            this.panel2.Controls.Add(this.label28);
+            this.panel2.Controls.Add(this.label23);
+            this.panel2.Controls.Add(this.imageLabel_PumpPressureHighout);
+            this.panel2.Controls.Add(this.label24);
             this.panel2.Controls.Add(this.label21);
             this.panel2.Controls.Add(this.imageLabel_Area);
             this.panel2.Controls.Add(this.label22);
@@ -221,12 +242,141 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Location = new System.Drawing.Point(7, 113);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1010, 265);
+            this.panel2.Size = new System.Drawing.Size(1010, 276);
+            // 
+            // label25
+            // 
+            this.label25.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
+            this.label25.Location = new System.Drawing.Point(951, 236);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(76, 29);
+            this.label25.Text = "mm";
+            // 
+            // imageLabel_PumpTodayPositionHighout
+            // 
+            this.imageLabel_PumpTodayPositionHighout.BackColor = System.Drawing.Color.White;
+            this.imageLabel_PumpTodayPositionHighout.Checked = false;
+            this.imageLabel_PumpTodayPositionHighout.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
+            this.imageLabel_PumpTodayPositionHighout.Layout = ComCtrls.KTLayout.GlyphTop;
+            this.imageLabel_PumpTodayPositionHighout.Location = new System.Drawing.Point(761, 233);
+            this.imageLabel_PumpTodayPositionHighout.Name = "imageLabel_PumpTodayPositionHighout";
+            this.imageLabel_PumpTodayPositionHighout.Size = new System.Drawing.Size(173, 29);
+            this.imageLabel_PumpTodayPositionHighout.TabIndex = 99;
+            this.imageLabel_PumpTodayPositionHighout.Tag = DataPool.CmdDataType.cdtPumpTodayPositionHighout;
+            this.imageLabel_PumpTodayPositionHighout.Text = "0";
+            this.imageLabel_PumpTodayPositionHighout.TextX = -1F;
+            this.imageLabel_PumpTodayPositionHighout.TextY = -1F;
+            this.imageLabel_PumpTodayPositionHighout.TransParent = false;
+            // 
+            // label26
+            // 
+            this.label26.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Bold);
+            this.label26.Location = new System.Drawing.Point(528, 236);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(236, 33);
+            this.label26.Text = "当天行程最大设定值：";
+            // 
+            // label27
+            // 
+            this.label27.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
+            this.label27.Location = new System.Drawing.Point(446, 237);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(76, 29);
+            this.label27.Text = "mm";
+            // 
+            // imageLabel_PumpPositionHighout
+            // 
+            this.imageLabel_PumpPositionHighout.BackColor = System.Drawing.Color.White;
+            this.imageLabel_PumpPositionHighout.Checked = false;
+            this.imageLabel_PumpPositionHighout.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
+            this.imageLabel_PumpPositionHighout.Layout = ComCtrls.KTLayout.GlyphTop;
+            this.imageLabel_PumpPositionHighout.Location = new System.Drawing.Point(256, 234);
+            this.imageLabel_PumpPositionHighout.Name = "imageLabel_PumpPositionHighout";
+            this.imageLabel_PumpPositionHighout.Size = new System.Drawing.Size(173, 29);
+            this.imageLabel_PumpPositionHighout.TabIndex = 98;
+            this.imageLabel_PumpPositionHighout.Tag = DataPool.CmdDataType.cdtPumpPositionHighout;
+            this.imageLabel_PumpPositionHighout.Text = "0";
+            this.imageLabel_PumpPositionHighout.TextX = -1F;
+            this.imageLabel_PumpPositionHighout.TextY = -1F;
+            this.imageLabel_PumpPositionHighout.TransParent = false;
+            // 
+            // label28
+            // 
+            this.label28.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Bold);
+            this.label28.Location = new System.Drawing.Point(23, 237);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(236, 33);
+            this.label28.Text = "油缸最大行程设定值：";
+            // 
+            // label23
+            // 
+            this.label23.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
+            this.label23.Location = new System.Drawing.Point(951, 197);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(76, 29);
+            this.label23.Text = "bar";
+            // 
+            // imageLabel_PumpPressureHighout
+            // 
+            this.imageLabel_PumpPressureHighout.BackColor = System.Drawing.Color.White;
+            this.imageLabel_PumpPressureHighout.Checked = false;
+            this.imageLabel_PumpPressureHighout.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
+            this.imageLabel_PumpPressureHighout.Layout = ComCtrls.KTLayout.GlyphTop;
+            this.imageLabel_PumpPressureHighout.Location = new System.Drawing.Point(761, 194);
+            this.imageLabel_PumpPressureHighout.Name = "imageLabel_PumpPressureHighout";
+            this.imageLabel_PumpPressureHighout.Size = new System.Drawing.Size(173, 29);
+            this.imageLabel_PumpPressureHighout.TabIndex = 91;
+            this.imageLabel_PumpPressureHighout.Tag = DataPool.CmdDataType.cdtPumpPressureHighout;
+            this.imageLabel_PumpPressureHighout.Text = "0";
+            this.imageLabel_PumpPressureHighout.TextX = -1F;
+            this.imageLabel_PumpPressureHighout.TextY = -1F;
+            this.imageLabel_PumpPressureHighout.TransParent = false;
+            // 
+            // label24
+            // 
+            this.label24.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Bold);
+            this.label24.Location = new System.Drawing.Point(528, 197);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(236, 33);
+            this.label24.Text = "马达最大压力：";
+            // 
+            // label21
+            // 
+            this.label21.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
+            this.label21.Location = new System.Drawing.Point(446, 198);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(76, 29);
+            this.label21.Text = "dm^2";
+            // 
+            // imageLabel_Area
+            // 
+            this.imageLabel_Area.BackColor = System.Drawing.Color.White;
+            this.imageLabel_Area.Checked = false;
+            this.imageLabel_Area.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
+            this.imageLabel_Area.Layout = ComCtrls.KTLayout.GlyphTop;
+            this.imageLabel_Area.Location = new System.Drawing.Point(256, 195);
+            this.imageLabel_Area.Name = "imageLabel_Area";
+            this.imageLabel_Area.Size = new System.Drawing.Size(173, 29);
+            this.imageLabel_Area.TabIndex = 70;
+            this.imageLabel_Area.Tag = DataPool.CmdDataType.cdtSectionalArea_Value;
+            this.imageLabel_Area.Text = "0";
+            this.imageLabel_Area.TextX = -1F;
+            this.imageLabel_Area.TextY = -1F;
+            this.imageLabel_Area.TransParent = false;
+            this.imageLabel_Area.Click += new System.EventHandler(this.imageLabel_Input_Click);
+            // 
+            // label22
+            // 
+            this.label22.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Bold);
+            this.label22.Location = new System.Drawing.Point(23, 198);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(236, 33);
+            this.label22.Text = "油缸截面积：";
             // 
             // label17
             // 
             this.label17.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
-            this.label17.Location = new System.Drawing.Point(950, 185);
+            this.label17.Location = new System.Drawing.Point(950, 168);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(47, 29);
             this.label17.Text = "mm";
@@ -237,7 +387,7 @@
             this.imageLabel_MAXPosition_Value.Checked = false;
             this.imageLabel_MAXPosition_Value.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
             this.imageLabel_MAXPosition_Value.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageLabel_MAXPosition_Value.Location = new System.Drawing.Point(761, 182);
+            this.imageLabel_MAXPosition_Value.Location = new System.Drawing.Point(761, 156);
             this.imageLabel_MAXPosition_Value.Name = "imageLabel_MAXPosition_Value";
             this.imageLabel_MAXPosition_Value.Size = new System.Drawing.Size(173, 29);
             this.imageLabel_MAXPosition_Value.TabIndex = 51;
@@ -251,7 +401,7 @@
             // label18
             // 
             this.label18.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Bold);
-            this.label18.Location = new System.Drawing.Point(526, 185);
+            this.label18.Location = new System.Drawing.Point(526, 159);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(234, 33);
             this.label18.Text = "油缸最大位移值：";
@@ -259,7 +409,7 @@
             // label19
             // 
             this.label19.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
-            this.label19.Location = new System.Drawing.Point(446, 185);
+            this.label19.Location = new System.Drawing.Point(446, 159);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(54, 29);
             this.label19.Text = "bar";
@@ -270,7 +420,7 @@
             this.imageLabel_MAXPressure_Value.Checked = false;
             this.imageLabel_MAXPressure_Value.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
             this.imageLabel_MAXPressure_Value.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageLabel_MAXPressure_Value.Location = new System.Drawing.Point(256, 182);
+            this.imageLabel_MAXPressure_Value.Location = new System.Drawing.Point(256, 156);
             this.imageLabel_MAXPressure_Value.Name = "imageLabel_MAXPressure_Value";
             this.imageLabel_MAXPressure_Value.Size = new System.Drawing.Size(173, 29);
             this.imageLabel_MAXPressure_Value.TabIndex = 50;
@@ -284,7 +434,7 @@
             // label20
             // 
             this.label20.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Bold);
-            this.label20.Location = new System.Drawing.Point(23, 185);
+            this.label20.Location = new System.Drawing.Point(23, 159);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(236, 33);
             this.label20.Text = "油缸最大压力值：";
@@ -292,7 +442,7 @@
             // label15
             // 
             this.label15.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
-            this.label15.Location = new System.Drawing.Point(950, 139);
+            this.label15.Location = new System.Drawing.Point(950, 122);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(47, 29);
             this.label15.Text = "mm";
@@ -303,7 +453,7 @@
             this.imageLabel_PositionLowerLimitAlarm_Value.Checked = false;
             this.imageLabel_PositionLowerLimitAlarm_Value.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
             this.imageLabel_PositionLowerLimitAlarm_Value.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageLabel_PositionLowerLimitAlarm_Value.Location = new System.Drawing.Point(761, 136);
+            this.imageLabel_PositionLowerLimitAlarm_Value.Location = new System.Drawing.Point(761, 119);
             this.imageLabel_PositionLowerLimitAlarm_Value.Name = "imageLabel_PositionLowerLimitAlarm_Value";
             this.imageLabel_PositionLowerLimitAlarm_Value.Size = new System.Drawing.Size(173, 29);
             this.imageLabel_PositionLowerLimitAlarm_Value.TabIndex = 33;
@@ -317,7 +467,7 @@
             // label16
             // 
             this.label16.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Bold);
-            this.label16.Location = new System.Drawing.Point(526, 139);
+            this.label16.Location = new System.Drawing.Point(526, 122);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(234, 33);
             this.label16.Text = "油缸位移下限报警值：";
@@ -325,7 +475,7 @@
             // label13
             // 
             this.label13.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
-            this.label13.Location = new System.Drawing.Point(950, 93);
+            this.label13.Location = new System.Drawing.Point(950, 85);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(47, 29);
             this.label13.Text = "mm";
@@ -336,7 +486,7 @@
             this.imageLabel_PositionUpperLimitAlarm_Value.Checked = false;
             this.imageLabel_PositionUpperLimitAlarm_Value.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
             this.imageLabel_PositionUpperLimitAlarm_Value.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageLabel_PositionUpperLimitAlarm_Value.Location = new System.Drawing.Point(761, 90);
+            this.imageLabel_PositionUpperLimitAlarm_Value.Location = new System.Drawing.Point(761, 82);
             this.imageLabel_PositionUpperLimitAlarm_Value.Name = "imageLabel_PositionUpperLimitAlarm_Value";
             this.imageLabel_PositionUpperLimitAlarm_Value.Size = new System.Drawing.Size(173, 29);
             this.imageLabel_PositionUpperLimitAlarm_Value.TabIndex = 28;
@@ -350,7 +500,7 @@
             // label14
             // 
             this.label14.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Bold);
-            this.label14.Location = new System.Drawing.Point(526, 93);
+            this.label14.Location = new System.Drawing.Point(526, 85);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(234, 33);
             this.label14.Text = "油缸位移上限报警值：";
@@ -391,7 +541,7 @@
             // label9
             // 
             this.label9.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
-            this.label9.Location = new System.Drawing.Point(446, 139);
+            this.label9.Location = new System.Drawing.Point(446, 122);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(54, 29);
             this.label9.Text = "KN";
@@ -402,7 +552,7 @@
             this.imageLabel_PressureLowerLimitAlarm_Value.Checked = false;
             this.imageLabel_PressureLowerLimitAlarm_Value.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
             this.imageLabel_PressureLowerLimitAlarm_Value.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageLabel_PressureLowerLimitAlarm_Value.Location = new System.Drawing.Point(256, 136);
+            this.imageLabel_PressureLowerLimitAlarm_Value.Location = new System.Drawing.Point(256, 119);
             this.imageLabel_PressureLowerLimitAlarm_Value.Name = "imageLabel_PressureLowerLimitAlarm_Value";
             this.imageLabel_PressureLowerLimitAlarm_Value.Size = new System.Drawing.Size(173, 29);
             this.imageLabel_PressureLowerLimitAlarm_Value.TabIndex = 18;
@@ -416,7 +566,7 @@
             // label10
             // 
             this.label10.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Bold);
-            this.label10.Location = new System.Drawing.Point(23, 139);
+            this.label10.Location = new System.Drawing.Point(23, 122);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(236, 33);
             this.label10.Text = "油缸轴力下限报警值：";
@@ -424,7 +574,7 @@
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
-            this.label7.Location = new System.Drawing.Point(446, 93);
+            this.label7.Location = new System.Drawing.Point(446, 85);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(54, 29);
             this.label7.Text = "KN";
@@ -435,7 +585,7 @@
             this.imageLabel_PressureUpperLimitAlarm_Value.Checked = false;
             this.imageLabel_PressureUpperLimitAlarm_Value.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
             this.imageLabel_PressureUpperLimitAlarm_Value.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageLabel_PressureUpperLimitAlarm_Value.Location = new System.Drawing.Point(256, 90);
+            this.imageLabel_PressureUpperLimitAlarm_Value.Location = new System.Drawing.Point(256, 82);
             this.imageLabel_PressureUpperLimitAlarm_Value.Name = "imageLabel_PressureUpperLimitAlarm_Value";
             this.imageLabel_PressureUpperLimitAlarm_Value.Size = new System.Drawing.Size(173, 29);
             this.imageLabel_PressureUpperLimitAlarm_Value.TabIndex = 13;
@@ -449,7 +599,7 @@
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Bold);
-            this.label8.Location = new System.Drawing.Point(23, 93);
+            this.label8.Location = new System.Drawing.Point(23, 85);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(236, 33);
             this.label8.Text = "油缸轴力上限报警值：";
@@ -569,9 +719,9 @@
             this.panel3.Controls.Add(this.label_PressureUpperLimitAlarm_Enable);
             this.panel3.Controls.Add(this.label_PositionLowerLimitAlarm_Enable);
             this.panel3.Controls.Add(this.label_PositionUpperLimitAlarm_Enable);
-            this.panel3.Location = new System.Drawing.Point(7, 385);
+            this.panel3.Location = new System.Drawing.Point(7, 398);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1010, 228);
+            this.panel3.Size = new System.Drawing.Size(1010, 216);
             // 
             // imageButton_PositionControl_Enable
             // 
@@ -580,7 +730,7 @@
             this.imageButton_PositionControl_Enable.DownColor = System.Drawing.SystemColors.Control;
             this.imageButton_PositionControl_Enable.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
             this.imageButton_PositionControl_Enable.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageButton_PositionControl_Enable.Location = new System.Drawing.Point(610, 122);
+            this.imageButton_PositionControl_Enable.Location = new System.Drawing.Point(610, 115);
             this.imageButton_PositionControl_Enable.Name = "imageButton_PositionControl_Enable";
             this.imageButton_PositionControl_Enable.ShortcutKeys = System.Windows.Forms.Keys.None;
             this.imageButton_PositionControl_Enable.Size = new System.Drawing.Size(100, 93);
@@ -600,7 +750,7 @@
             this.imageButton_PressureUpperLimitAlarm_Enable.DownColor = System.Drawing.SystemColors.Control;
             this.imageButton_PressureUpperLimitAlarm_Enable.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
             this.imageButton_PressureUpperLimitAlarm_Enable.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageButton_PressureUpperLimitAlarm_Enable.Location = new System.Drawing.Point(610, 15);
+            this.imageButton_PressureUpperLimitAlarm_Enable.Location = new System.Drawing.Point(610, 8);
             this.imageButton_PressureUpperLimitAlarm_Enable.Name = "imageButton_PressureUpperLimitAlarm_Enable";
             this.imageButton_PressureUpperLimitAlarm_Enable.ShortcutKeys = System.Windows.Forms.Keys.None;
             this.imageButton_PressureUpperLimitAlarm_Enable.Size = new System.Drawing.Size(100, 93);
@@ -620,7 +770,7 @@
             this.imageButton_PositionLowerLimitAlarm_Enable.DownColor = System.Drawing.SystemColors.Control;
             this.imageButton_PositionLowerLimitAlarm_Enable.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
             this.imageButton_PositionLowerLimitAlarm_Enable.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageButton_PositionLowerLimitAlarm_Enable.Location = new System.Drawing.Point(97, 122);
+            this.imageButton_PositionLowerLimitAlarm_Enable.Location = new System.Drawing.Point(97, 115);
             this.imageButton_PositionLowerLimitAlarm_Enable.Name = "imageButton_PositionLowerLimitAlarm_Enable";
             this.imageButton_PositionLowerLimitAlarm_Enable.ShortcutKeys = System.Windows.Forms.Keys.None;
             this.imageButton_PositionLowerLimitAlarm_Enable.Size = new System.Drawing.Size(100, 93);
@@ -640,7 +790,7 @@
             this.imageButton_PositionUpperLimitAlarm_Enable.DownColor = System.Drawing.SystemColors.Control;
             this.imageButton_PositionUpperLimitAlarm_Enable.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
             this.imageButton_PositionUpperLimitAlarm_Enable.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageButton_PositionUpperLimitAlarm_Enable.Location = new System.Drawing.Point(97, 15);
+            this.imageButton_PositionUpperLimitAlarm_Enable.Location = new System.Drawing.Point(97, 8);
             this.imageButton_PositionUpperLimitAlarm_Enable.Name = "imageButton_PositionUpperLimitAlarm_Enable";
             this.imageButton_PositionUpperLimitAlarm_Enable.ShortcutKeys = System.Windows.Forms.Keys.None;
             this.imageButton_PositionUpperLimitAlarm_Enable.Size = new System.Drawing.Size(100, 93);
@@ -656,7 +806,7 @@
             // label_PositionControl_Enable
             // 
             this.label_PositionControl_Enable.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
-            this.label_PositionControl_Enable.Location = new System.Drawing.Point(710, 157);
+            this.label_PositionControl_Enable.Location = new System.Drawing.Point(710, 150);
             this.label_PositionControl_Enable.Name = "label_PositionControl_Enable";
             this.label_PositionControl_Enable.Size = new System.Drawing.Size(298, 40);
             this.label_PositionControl_Enable.Text = "油缸位移控制功能";
@@ -664,7 +814,7 @@
             // label_PressureUpperLimitAlarm_Enable
             // 
             this.label_PressureUpperLimitAlarm_Enable.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
-            this.label_PressureUpperLimitAlarm_Enable.Location = new System.Drawing.Point(710, 50);
+            this.label_PressureUpperLimitAlarm_Enable.Location = new System.Drawing.Point(710, 43);
             this.label_PressureUpperLimitAlarm_Enable.Name = "label_PressureUpperLimitAlarm_Enable";
             this.label_PressureUpperLimitAlarm_Enable.Size = new System.Drawing.Size(298, 40);
             this.label_PressureUpperLimitAlarm_Enable.Text = "油缸轴力上限报警功能";
@@ -672,7 +822,7 @@
             // label_PositionLowerLimitAlarm_Enable
             // 
             this.label_PositionLowerLimitAlarm_Enable.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
-            this.label_PositionLowerLimitAlarm_Enable.Location = new System.Drawing.Point(197, 157);
+            this.label_PositionLowerLimitAlarm_Enable.Location = new System.Drawing.Point(197, 150);
             this.label_PositionLowerLimitAlarm_Enable.Name = "label_PositionLowerLimitAlarm_Enable";
             this.label_PositionLowerLimitAlarm_Enable.Size = new System.Drawing.Size(298, 40);
             this.label_PositionLowerLimitAlarm_Enable.Text = "油缸位移下限报警功能";
@@ -680,7 +830,7 @@
             // label_PositionUpperLimitAlarm_Enable
             // 
             this.label_PositionUpperLimitAlarm_Enable.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
-            this.label_PositionUpperLimitAlarm_Enable.Location = new System.Drawing.Point(197, 50);
+            this.label_PositionUpperLimitAlarm_Enable.Location = new System.Drawing.Point(197, 43);
             this.label_PositionUpperLimitAlarm_Enable.Name = "label_PositionUpperLimitAlarm_Enable";
             this.label_PositionUpperLimitAlarm_Enable.Size = new System.Drawing.Size(298, 40);
             this.label_PositionUpperLimitAlarm_Enable.Text = "油缸位移上限报警功能";
@@ -755,38 +905,53 @@
             this.imageLabel1.TextY = -1F;
             this.imageLabel1.TransParent = false;
             // 
-            // label21
+            // imageLabel3
             // 
-            this.label21.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular);
-            this.label21.Location = new System.Drawing.Point(446, 231);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(76, 29);
-            this.label21.Text = "dm^2";
+            this.imageLabel3.BackColor = System.Drawing.Color.White;
+            this.imageLabel3.Checked = false;
+            this.imageLabel3.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
+            this.imageLabel3.Layout = ComCtrls.KTLayout.GlyphTop;
+            this.imageLabel3.Location = new System.Drawing.Point(761, 194);
+            this.imageLabel3.Name = "imageLabel3";
+            this.imageLabel3.Size = new System.Drawing.Size(173, 29);
+            this.imageLabel3.TabIndex = 91;
+            this.imageLabel3.Tag = DataPool.CmdDataType.cdtSectionalArea_Value;
+            this.imageLabel3.Text = "0";
+            this.imageLabel3.TextX = -1F;
+            this.imageLabel3.TextY = -1F;
+            this.imageLabel3.TransParent = false;
             // 
-            // imageLabel_Area
+            // imageLabel5
             // 
-            this.imageLabel_Area.BackColor = System.Drawing.Color.White;
-            this.imageLabel_Area.Checked = false;
-            this.imageLabel_Area.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
-            this.imageLabel_Area.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageLabel_Area.Location = new System.Drawing.Point(256, 228);
-            this.imageLabel_Area.Name = "imageLabel_Area";
-            this.imageLabel_Area.Size = new System.Drawing.Size(173, 29);
-            this.imageLabel_Area.TabIndex = 70;
-            this.imageLabel_Area.Tag = DataPool.CmdDataType.cdtSectionalArea_Value;
-            this.imageLabel_Area.Text = "0";
-            this.imageLabel_Area.TextX = -1F;
-            this.imageLabel_Area.TextY = -1F;
-            this.imageLabel_Area.TransParent = false;
-            this.imageLabel_Area.Click += new System.EventHandler(this.imageLabel_Input_Click);
+            this.imageLabel5.BackColor = System.Drawing.Color.White;
+            this.imageLabel5.Checked = false;
+            this.imageLabel5.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
+            this.imageLabel5.Layout = ComCtrls.KTLayout.GlyphTop;
+            this.imageLabel5.Location = new System.Drawing.Point(256, 234);
+            this.imageLabel5.Name = "imageLabel5";
+            this.imageLabel5.Size = new System.Drawing.Size(173, 29);
+            this.imageLabel5.TabIndex = 98;
+            this.imageLabel5.Tag = DataPool.CmdDataType.cdtSectionalArea_Value;
+            this.imageLabel5.Text = "0";
+            this.imageLabel5.TextX = -1F;
+            this.imageLabel5.TextY = -1F;
+            this.imageLabel5.TransParent = false;
             // 
-            // label22
+            // imageLabel4
             // 
-            this.label22.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Bold);
-            this.label22.Location = new System.Drawing.Point(23, 231);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(236, 33);
-            this.label22.Text = "油缸截面积：";
+            this.imageLabel4.BackColor = System.Drawing.Color.White;
+            this.imageLabel4.Checked = false;
+            this.imageLabel4.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular);
+            this.imageLabel4.Layout = ComCtrls.KTLayout.GlyphTop;
+            this.imageLabel4.Location = new System.Drawing.Point(761, 233);
+            this.imageLabel4.Name = "imageLabel4";
+            this.imageLabel4.Size = new System.Drawing.Size(173, 29);
+            this.imageLabel4.TabIndex = 99;
+            this.imageLabel4.Tag = DataPool.CmdDataType.cdtSectionalArea_Value;
+            this.imageLabel4.Text = "0";
+            this.imageLabel4.TextX = -1F;
+            this.imageLabel4.TextY = -1F;
+            this.imageLabel4.TransParent = false;
             // 
             // PageViewPara
             // 
@@ -864,5 +1029,17 @@
         private System.Windows.Forms.Label label21;
         private ComCtrls.ImageLabel imageLabel_Area;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label25;
+        private ComCtrls.ImageLabel imageLabel_PumpTodayPositionHighout;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private ComCtrls.ImageLabel imageLabel_PumpPositionHighout;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label23;
+        private ComCtrls.ImageLabel imageLabel_PumpPressureHighout;
+        private System.Windows.Forms.Label label24;
+        private ComCtrls.ImageLabel imageLabel3;
+        private ComCtrls.ImageLabel imageLabel5;
+        private ComCtrls.ImageLabel imageLabel4;
     }
 }

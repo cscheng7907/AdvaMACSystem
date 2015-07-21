@@ -35,11 +35,17 @@ namespace AdvaMACSystem
             dic.Add(CmdDataType.cdtWarn_HighPosition_3401_3404, _Warn_HighPosition_3401_3404);// 油缸长度过高 4*8
             dic.Add(CmdDataType.cdtWarn_LowPosition_3401_3404, _Warn_LowPosition_3401_3404);// 油缸长度过低 4*8
 
+            dic.Add(CmdDataType.cdtWarn_PumpPressureHighout_3401_3404, _Warn_PumpPressureHighout_3401_3404); //泵站马达压力过大 4*8
+            dic.Add(CmdDataType.cdtWarn_PumpPositionHighout_3401_3404, _Warn_PumpPositionHighout_3401_3404);  //泵站油缸行程过大 4*8
+            dic.Add(CmdDataType.cdtWarn_PumpTodayPositionHighout_3401_3404, _Warn_PumpTodayPositionHighout_3401_3404);//泵站油缸当天位移过大 4*8
+
             //dic.Add(CmdDataType.cdtError_Pump_3501_3504,_Error_Pump_3501_3504);//泵站及控制器 故障 4*16
             dic.Add(CmdDataType.cdtError_PressureSenser_3501_3504, _Error_PressureSenser_3501_3504);//油缸压力传感器故障 4*8
             dic.Add(CmdDataType.cdtError_PositionSenser_3501_3504, _Error_PositionSenser_3501_3504);//油缸长度传感器故障 4*8
 
-
+            dic4.Add(CmdDataType.cdtWarn_PumpLevelLowout_3401_3404, _Warn_PumpLevelLowout_3401_3404);  //泵站油位过低 4
+            dic4.Add(CmdDataType.cdtWarn_PumpLevelHighout_3401_3404, _Warn_PumpLevelHighout_3401_3404);   //泵站油位过高 4
+            dic4.Add(CmdDataType.cdtWarn_PumpNotReach_3401_3404, _Warn_PumpNotReach_3401_3404);    //泵站达不到设定值 4
 
             dic4.Add(CmdDataType.cdtError_pump_motor_shortcircuit_3501_3504, _Error_pump_motor_shortcircuit_3501_3504);                    //泵站电动机启动线路短路  // 4
             dic4.Add(CmdDataType.cdtError_pump_motor_opencircuit_3501_3504, _Error_pump_motor_opencircuit_3501_3504);                      //泵站电动机启动线路断路  // 4
@@ -76,6 +82,13 @@ namespace AdvaMACSystem
         private List<bool> _Warn_HighPosition_3401_3404 = new List<bool>();// 油缸长度过高 4*8
         private List<bool> _Warn_LowPosition_3401_3404 = new List<bool>();// 油缸长度过低 4*8
 
+        public List<bool> _Warn_PumpLevelLowout_3401_3404 = new List<bool>();//泵站油位过低 4
+        public List<bool> _Warn_PumpLevelHighout_3401_3404 = new List<bool>();//泵站油位过高 4
+        public List<bool> _Warn_PumpNotReach_3401_3404 = new List<bool>();//泵站达不到设定值 4
+
+        public List<bool> _Warn_PumpPressureHighout_3401_3404 = new List<bool>();//泵站马达压力过大 4*8
+        public List<bool> _Warn_PumpPositionHighout_3401_3404 = new List<bool>();//泵站油缸行程过大 4*8
+        public List<bool> _Warn_PumpTodayPositionHighout_3401_3404 = new List<bool>();//泵站油缸当天位移过大 4*8
 
         private List<bool> _Error_Pump_3501_3504 = new List<bool>();//泵站及控制器 故障 4*16
         private List<bool> _Error_PressureSenser_3501_3504 = new List<bool>();//油缸压力传感器故障 4*8
@@ -174,6 +187,14 @@ namespace AdvaMACSystem
             _Warn_HighPosition_3401_3404.Clear();
             _Warn_LowPosition_3401_3404.Clear();
 
+            _Warn_PumpPressureHighout_3401_3404.Clear();         //泵站马达压力过大 4*8
+            _Warn_PumpPositionHighout_3401_3404.Clear();        //泵站油缸行程过大 4*8
+            _Warn_PumpTodayPositionHighout_3401_3404.Clear();//泵站油缸当天位移过大 4*8
+
+            _Warn_PumpLevelLowout_3401_3404.Clear();  //泵站油位过低 4
+            _Warn_PumpLevelHighout_3401_3404.Clear();//泵站油位过高 4
+            _Warn_PumpNotReach_3401_3404.Clear();//泵站达不到设定值 4
+
             _Error_Pump_3501_3504.Clear();
             _Error_PressureSenser_3501_3504.Clear();
             _Error_PositionSenser_3501_3504.Clear();
@@ -193,6 +214,10 @@ namespace AdvaMACSystem
                     _Warn_HighPosition_3401_3404.Add(false);// 油缸长度过高 4*8
                     _Warn_LowPosition_3401_3404.Add(false); // 油缸长度过低 4*8
 
+                    _Warn_PumpPressureHighout_3401_3404.Add(false);         //泵站马达压力过大 4*8
+                    _Warn_PumpPositionHighout_3401_3404.Add(false);        //泵站油缸行程过大 4*8
+                    _Warn_PumpTodayPositionHighout_3401_3404.Add(false);//泵站油缸当天位移过大 4*8
+
                     _Error_PressureSenser_3501_3504.Add(false); //油缸压力传感器故障 4*8                          
                     _Error_PositionSenser_3501_3504.Add(false); //油缸长度传感器故障 4*8                     
                     _Error_cylinder_extend_3511_3514.Add(false); //油缸伸出电磁阀线路短路 4*8                    
@@ -200,6 +225,10 @@ namespace AdvaMACSystem
                     _Error_MachLock_extend_3511_3514.Add(false); //油缸机械锁伸出电磁阀线路短路 4*8                    
                     _Error_MachLock_retract_3511_3514.Add(false); //油缸机械锁缩回电磁阀线路短路 4*8
                 }
+
+                _Warn_PumpLevelLowout_3401_3404.Add(false);  //泵站油位过低 4
+                _Warn_PumpLevelHighout_3401_3404.Add(false);//泵站油位过高 4
+                _Warn_PumpNotReach_3401_3404.Add(false);//泵站达不到设定值 4
 
                 _Error_pump_motor_shortcircuit_3501_3504.Add(false);                      //泵站电动机启动线路短路  // 4
                 _Error_pump_motor_opencircuit_3501_3504.Add(false);                       //泵站电动机启动线路断路  // 4
@@ -293,9 +322,13 @@ namespace AdvaMACSystem
                 //        }
                 //    }
                 //}
-                ID_controledPump = _candatapool.out_id_controledPump;//被控泵站
 
-                ID_redundantPump = _candatapool.out_id_redundantPump;//冗余泵站
+                //ID_controledPump = _candatapool.out_id_controledPump;//被控泵站
+
+                //ID_redundantPump = _candatapool.out_id_redundantPump;//冗余泵站
+
+                SetID_XXPump(_candatapool.out_id_controledPump,
+                   _candatapool.out_id_redundantPump);
 
                 if (ischanged)
                     DoDataChanged();
@@ -303,11 +336,22 @@ namespace AdvaMACSystem
 
         }
 
-        private CmdDataType[] WarnDataTypeList = new CmdDataType[4]{
+        private CmdDataType[] WarnDataTypeList = new CmdDataType[]{
                 CmdDataType.cdtWarn_HighPressure_3401_3404,// 油缸压力过高 4*8
                 CmdDataType.cdtWarn_LowPressure_3401_3404,// 油缸压力过低 4*8
                 CmdDataType.cdtWarn_HighPosition_3401_3404,// 油缸长度过高 4*8
-                CmdDataType.cdtWarn_LowPosition_3401_3404// 油缸长度过低 4*8   
+                CmdDataType.cdtWarn_LowPosition_3401_3404,// 油缸长度过低 4*8   
+                  
+                CmdDataType.cdtWarn_PumpLevelLowout_3401_3404,//泵站油位过低 4
+                CmdDataType.cdtWarn_PumpLevelHighout_3401_3404,//泵站油位过高 4
+                CmdDataType.cdtWarn_PumpNotReach_3401_3404,//泵站达不到设定值 4
+
+                CmdDataType.cdtWarn_PumpPressureHighout_3401_3404,//泵站马达压力过大 4*8
+                CmdDataType.cdtWarn_PumpPositionHighout_3401_3404,//泵站油缸行程过大 4*8
+                CmdDataType.cdtWarn_PumpTodayPositionHighout_3401_3404,//泵站油缸当天位移过大 4*8
+                
+                CmdDataType.cdtid_controledPump,        //被控泵站
+                 CmdDataType.cdtid_redundantPump  //冗余泵站
         };
 
         private void SaveChangedData(int id, int subid, CmdDataType type, bool val)
@@ -322,24 +366,26 @@ namespace AdvaMACSystem
             //报警系列
             if (Array.IndexOf<CmdDataType>(WarnDataTypeList, type) >= 0)
             {
+                //else if (type == CmdDataType.cdtid_controledPump)
+                //{
+                //    RecFile = new FileStream(WarningRecFileName, FileMode.Append);
+                //    listkey = -100 - id;
+                //}
+                if (type == CmdDataType.cdtid_redundantPump ||
+                    type == CmdDataType.cdtid_controledPump)
+                {
+                    //listkey = -200 - id;
+                    listkey =
+                         id_controledPump * -100 +
+                         id_redundantPump * -1;
+                }
+
                 RecFile = new FileStream(WarningRecFileName, FileMode.Append);
 
                 if (val)
                     _curwarninglist.Add(listkey, t);
                 else
-                {
                     _curwarninglist.Remove(listkey);
-                }
-            }
-            else if (type == CmdDataType.cdtid_controledPump)
-            {
-                RecFile = new FileStream(WarningRecFileName, FileMode.Append);
-                listkey = -100 - id;
-            }
-            else if (type == CmdDataType.cdtid_redundantPump)
-            {
-                RecFile = new FileStream(WarningRecFileName, FileMode.Append);
-                listkey = -200 - id;
             }
             else//故障系列
             {
@@ -417,6 +463,21 @@ namespace AdvaMACSystem
         }
 
 
-    }
+        private void SetID_XXPump(byte _controledPumpid, byte _redundantPumpid)
+        {
+            if ((id_controledPump != _controledPumpid) ||
+                (id_redundantPump != _redundantPumpid)
+                )
+            {
+                if (id_controledPump == 0 && id_redundantPump == 0)
+                    SaveChangedData(0, 0, CmdDataType.cdtid_redundantPump, false);
 
+                id_controledPump = _controledPumpid;
+                id_redundantPump = _redundantPumpid;
+
+                if (id_controledPump != 0 || id_redundantPump != 0)
+                    SaveChangedData(0, 0, CmdDataType.cdtid_redundantPump, true);
+            }
+        }
+    }
 }
