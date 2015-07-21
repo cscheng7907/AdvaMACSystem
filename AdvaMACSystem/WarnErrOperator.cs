@@ -293,9 +293,13 @@ namespace AdvaMACSystem
                 //        }
                 //    }
                 //}
-                ID_controledPump = _candatapool.out_id_controledPump;//被控泵站
 
-                ID_redundantPump = _candatapool.out_id_redundantPump;//冗余泵站
+                //ID_controledPump = _candatapool.out_id_controledPump;//被控泵站
+
+                //ID_redundantPump = _candatapool.out_id_redundantPump;//冗余泵站
+
+                SetID_XXPump(_candatapool.out_id_controledPump,
+                   _candatapool.out_id_redundantPump);
 
                 if (ischanged)
                     DoDataChanged();
@@ -303,11 +307,13 @@ namespace AdvaMACSystem
 
         }
 
-        private CmdDataType[] WarnDataTypeList = new CmdDataType[4]{
+        private CmdDataType[] WarnDataTypeList = new CmdDataType[6]{
                 CmdDataType.cdtWarn_HighPressure_3401_3404,// 油缸压力过高 4*8
                 CmdDataType.cdtWarn_LowPressure_3401_3404,// 油缸压力过低 4*8
                 CmdDataType.cdtWarn_HighPosition_3401_3404,// 油缸长度过高 4*8
-                CmdDataType.cdtWarn_LowPosition_3401_3404// 油缸长度过低 4*8   
+                CmdDataType.cdtWarn_LowPosition_3401_3404,// 油缸长度过低 4*8   
+                CmdDataType.cdtid_controledPump,        //被控泵站
+                 CmdDataType.cdtid_redundantPump  //冗余泵站
         };
 
         private void SaveChangedData(int id, int subid, CmdDataType type, bool val)
@@ -322,24 +328,25 @@ namespace AdvaMACSystem
             //报警系列
             if (Array.IndexOf<CmdDataType>(WarnDataTypeList, type) >= 0)
             {
+                //else if (type == CmdDataType.cdtid_controledPump)
+                //{
+                //    RecFile = new FileStream(WarningRecFileName, FileMode.Append);
+                //    listkey = -100 - id;
+                //}
+                if (type == CmdDataType.cdtid_redundantPump)
+                {
+                    //listkey = -200 - id;
+                    listkey =
+                         id_controledPump * -100 +
+                         id_redundantPump * -1;
+                }
+
                 RecFile = new FileStream(WarningRecFileName, FileMode.Append);
 
                 if (val)
                     _curwarninglist.Add(listkey, t);
                 else
-                {
                     _curwarninglist.Remove(listkey);
-                }
-            }
-            else if (type == CmdDataType.cdtid_controledPump)
-            {
-                RecFile = new FileStream(WarningRecFileName, FileMode.Append);
-                listkey = -100 - id;
-            }
-            else if (type == CmdDataType.cdtid_redundantPump)
-            {
-                RecFile = new FileStream(WarningRecFileName, FileMode.Append);
-                listkey = -200 - id;
             }
             else//故障系列
             {
@@ -417,6 +424,21 @@ namespace AdvaMACSystem
         }
 
 
-    }
+        private void SetID_XXPump(byte _controledPumpid, byte _redundantPumpid)
+        {
+            if ((id_controledPump != _controledPumpid) ||
+                (id_redundantPump != _redundantPumpid)
+                )
+            {
+                if (id_controledPump == 0 && id_redundantPump == 0)
+                    SaveChangedData(0, 0, CmdDataType.cdtid_redundantPump, false);
 
+                id_controledPump = _controledPumpid;
+                id_redundantPump = _redundantPumpid;
+
+                if (id_controledPump != 0 || id_redundantPump != 0)
+                    SaveChangedData(0, 0, CmdDataType.cdtid_redundantPump, true);
+            }
+        }
+    }
 }
