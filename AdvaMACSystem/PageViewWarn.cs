@@ -229,7 +229,15 @@ namespace AdvaMACSystem
         /*cdtWarn_HighPressure_3401_3404,// */"油缸轴力过高",// 4*8
         /*cdtWarn_LowPressure_3401_3404,// */"油缸轴力过低",// 4*8
         /*cdtWarn_HighPosition_3401_3404,// */"油缸位移大",// 4*8
-        /*cdtWarn_LowPosition_3401_3404,//*/ "油缸位移小" //4*8
+        /*cdtWarn_LowPosition_3401_3404,//*/ "油缸位移小", //4*8
+
+        /*cdtWarn_PumpLevelLowout_3401_3404,//*/ "泵站油位过低",// 4
+        /*cdtWarn_PumpLevelHighout_3401_3404,//*/ "泵站油位过高",// 4
+        /*cdtWarn_PumpNotReach_3401_3404,//*/ "泵站达不到设定值",// 4
+
+        /*cdtWarn_PumpPressureHighout_3401_3404,//*/ "油缸马达压力过大",// 4*8
+        /*cdtWarn_PumpPositionHighout_3401_3404,//*/ "油缸行程过大",// 4*8
+        /*cdtWarn_PumpTodayPositionHighout_3401_3404,//*/ "油缸当天位移过大"// 4*8
         };
 
         private int firstcmdtype = (int)CmdDataType.cdtWarn_HighPressure_3401_3404;

@@ -54,6 +54,10 @@ namespace DataPool
                     in_Warn_HighPosition_3401_3404.Add(false);// 油缸长度过高 4*8
                     in_Warn_LowPosition_3401_3404.Add(false); // 油缸长度过低 4*8
 
+                    in_Warn_PumpPressureHighout_3401_3404.Add(false);         //泵站马达压力过大 4*8
+                    in_Warn_PumpPositionHighout_3401_3404.Add(false);        //泵站油缸行程过大 4*8
+                    in_Warn_PumpTodayPositionHighout_3401_3404.Add(false);//泵站油缸当天位移过大 4*8
+                    
                     in_Error_PressureSenser_3501_3504.Add(false); //油缸压力传感器故障 4*8                          
                     in_Error_PositionSenser_3501_3504.Add(false); //油缸长度传感器故障 4*8                     
                     in_Error_cylinder_extend_shortcircuit_3511_3514.Add(false); //油缸伸出电磁阀线路短路 4*8                    
@@ -100,6 +104,11 @@ namespace DataPool
                 in_CompAct_Pump_1010_1013.Add(false); // 泵站补偿动作情况 4
 
                 in_EStop_1010_1013.Add(false); //急停按钮 // 4
+
+                in_Warn_PumpLevelLowout_3401_3404.Add(false);  //泵站油位过低 4
+                in_Warn_PumpLevelHighout_3401_3404.Add(false);//泵站油位过高 4
+                in_Warn_PumpNotReach_3401_3404.Add(false);//泵站达不到设定值 4
+
 
                 for (int j = 0; j < 16; j++)
                 {
@@ -229,6 +238,14 @@ namespace DataPool
         public List<bool> in_Warn_LowPressure_3401_3404 = new List<bool>();// 油缸压力过低 4*8
         public List<bool> in_Warn_HighPosition_3401_3404 = new List<bool>();// 油缸长度过高 4*8
         public List<bool> in_Warn_LowPosition_3401_3404 = new List<bool>();// 油缸长度过低 4*8
+
+        public List<bool> in_Warn_PumpLevelLowout_3401_3404 = new List<bool>();//泵站油位过低 4
+        public List<bool> in_Warn_PumpLevelHighout_3401_3404 = new List<bool>();//泵站油位过高 4
+        public List<bool> in_Warn_PumpNotReach_3401_3404 = new List<bool>();//泵站达不到设定值 4
+
+        public List<bool> in_Warn_PumpPressureHighout_3401_3404 = new List<bool>();//泵站马达压力过大 4*8
+        public List<bool> in_Warn_PumpPositionHighout_3401_3404 = new List<bool>();//泵站油缸行程过大 4*8
+        public List<bool> in_Warn_PumpTodayPositionHighout_3401_3404 = new List<bool>();//泵站油缸当天位移过大 4*8
 
 
         public List<bool> in_Error_Pump_3501_3504 = new List<bool>();//泵站及控制器 故障 4*16
@@ -1030,6 +1047,14 @@ namespace DataPool
         cdtWarn_LowPressure_3401_3404,// 油缸压力过低 4*8
         cdtWarn_HighPosition_3401_3404,// 油缸长度过高 4*8
         cdtWarn_LowPosition_3401_3404,// 油缸长度过低 4*8
+
+        cdtWarn_PumpLevelLowout_3401_3404,//泵站油位过低 4
+        cdtWarn_PumpLevelHighout_3401_3404,//泵站油位过高 4
+        cdtWarn_PumpNotReach_3401_3404,//泵站达不到设定值 4
+
+        cdtWarn_PumpPressureHighout_3401_3404,//泵站马达压力过大 4*8
+        cdtWarn_PumpPositionHighout_3401_3404,//泵站油缸行程过大 4*8
+        cdtWarn_PumpTodayPositionHighout_3401_3404,//泵站油缸当天位移过大 4*8
 
 
         cdtError_Pump_3501_3504,//泵站及控制器 故障 4*16
