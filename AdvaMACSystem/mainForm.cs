@@ -170,12 +170,11 @@ namespace AdvaMACSystem
 
             //刷新紧停标志
             int pumpCount = (int)dataPool.PumpCount;
-            isEmergencyStop = true;
-            //isEmergencyStop = false;
-            //for (int i = 0; i < pumpCount; i++)
-            //{
-            //    isEmergencyStop = isEmergencyStop || dataPool.GetBoolValue(i, 0, CmdDataType.cdtEStop_1010_1013);
-            //}
+            isEmergencyStop = false;
+            for (int i = 0; i < pumpCount; i++)
+            {
+                isEmergencyStop = isEmergencyStop || dataPool.GetBoolValue(i, 0, CmdDataType.cdtEStop_1010_1013);
+            }
             if (isEmergencyStop)
             {
                 imageLabel_Estop.Visible = true;
