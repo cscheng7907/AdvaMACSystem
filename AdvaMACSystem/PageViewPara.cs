@@ -42,6 +42,10 @@ namespace AdvaMACSystem
             lbList.Add(imageLabel_MAXPosition_Value);
             lbList.Add(imageLabel_Area);
 
+            lbList.Add(imageLabel_PumpTodayPositionHighout);
+            lbList.Add(imageLabel_PumpPositionHighout);
+            lbList.Add(imageLabel_PumpPressureHighout);
+
             btnList.Add(imageButton_PositionControl_Enable);
             btnList.Add(imageButton_PressureUpperLimitAlarm_Enable);
             btnList.Add(imageButton_PositionLowerLimitAlarm_Enable);
@@ -235,6 +239,61 @@ namespace AdvaMACSystem
                     //最大位移范围：0.0～999.9mm
                     //cdtMAXPosition_Value, //油缸最大位移 4*8
                     else if ((CmdDataType)lb.Tag == CmdDataType.cdtMAXPosition_Value)
+                    {
+                        try
+                        {
+                            dv = Convert.ToDouble(f.KeyText);
+
+                            if (dv >= 0 && dv <= 999.9)
+                                lb.Text = dv.ToString("0.0");
+                            else
+                                MessageBox.Show("输入数值越界！");
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("输入非法！");
+                        }
+                    }
+
+//马达最大压力设定：0～400.0bar
+                    //cdtPumpPressureHighout,          //马达最大压力设定	       4*8
+                    else if ((CmdDataType)lb.Tag == CmdDataType.cdtPumpPressureHighout)
+                    {
+                        try
+                        {
+                            dv = Convert.ToDouble(f.KeyText);
+
+                            if (dv >= 0 && dv <= 400)
+                                lb.Text = dv.ToString("0.0");
+                            else
+                                MessageBox.Show("输入数值越界！");
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("输入非法！");
+                        }
+                    }
+                    //油缸最大行程设定值：0.0～999.9mm
+                    //cdtPumpPositionHighout,          //油缸最大行程设定值		   4*8
+                    else if ((CmdDataType)lb.Tag == CmdDataType.cdtPumpPositionHighout)
+                    {
+                        try
+                        {
+                            dv = Convert.ToDouble(f.KeyText);
+
+                            if (dv >= 0 && dv <= 999.9)
+                                lb.Text = dv.ToString("0.0");
+                            else
+                                MessageBox.Show("输入数值越界！");
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("输入非法！");
+                        }
+                    }
+                    //油缸当天行程最大设定值：0.0～999.9mm
+                    //cdtPumpTodayPositionHighout //油缸当天行程最大设定值 4*8
+                    else if ((CmdDataType)lb.Tag == CmdDataType.cdtPumpTodayPositionHighout)
                     {
                         try
                         {

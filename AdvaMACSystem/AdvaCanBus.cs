@@ -734,6 +734,27 @@ namespace AdvaMACSystem
                     canmsgIndex++;
                 }
 
+                //2007
+                //马达最大压力设定	            0,1		0.1		
+                //油缸最大行程设定值		        2,3		0.1		
+                //油缸当天行程最大设定值		4,5		0.1		
+                {
+                    msgSend[canmsgIndex].id = 0x2007;
+
+                    msgSend[canmsgIndex].data[0] = (byte)(CanDatapool.out_SectionalArea_Value[(int)(id * CanDatapool.CylinderCount + subid)] & 0xFF);
+                    msgSend[canmsgIndex].data[1] = (byte)(CanDatapool.out_SectionalArea_Value[(int)(id * CanDatapool.CylinderCount + subid)] >> 8);
+
+                    msgSend[canmsgIndex].data[2] = (byte)(CanDatapool.out_MAXPressure_Value[(int)(id * CanDatapool.CylinderCount + subid)] & 0xFF);
+                    msgSend[canmsgIndex].data[3] = (byte)(CanDatapool.out_MAXPressure_Value[(int)(id * CanDatapool.CylinderCount + subid)] >> 8);
+
+                    msgSend[canmsgIndex].data[4] = (byte)(CanDatapool.out_MAXPosition_Value[(int)(id * CanDatapool.CylinderCount + subid)] & 0xFF);
+                    msgSend[canmsgIndex].data[5] = (byte)(CanDatapool.out_MAXPosition_Value[(int)(id * CanDatapool.CylinderCount + subid)] >> 8);
+                    canmsgIndex++;
+                }
+
+
+
+
                 //当前泵站无补偿动作	1000	0		1	"值为0：否，值为1：是
                 //计算规则：
                 //1#泵站无补偿动作 AND 2#泵站无补偿动作 AND
@@ -1653,7 +1674,7 @@ namespace AdvaMACSystem
                                         CanDatapool.in_Warn_PumpLevelLowout_3401_3404[(idArray0 - 1)] = ((msgRecieve[j].data[4] & (1 << 0)) != 0);//泵站油位过低 4
                                         CanDatapool.in_Warn_PumpLevelHighout_3401_3404[(idArray0 - 1)] = ((msgRecieve[j].data[4] & (1 << 1)) != 0);//泵站油位过高 4
                                         CanDatapool.in_Warn_PumpNotReach_3401_3404[(idArray0 - 1)] = ((msgRecieve[j].data[4] & (1 << 2)) != 0);//泵站达不到设定值 4
-                                        
+
                                         break;
                                     #region 3501-3504
                                     //故障信息
