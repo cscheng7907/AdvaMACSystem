@@ -655,13 +655,13 @@ namespace AdvaMACSystem
                     c == pvPara_Setup;
                 panel_Para.BringToFront();
 
-                if (PreUICtrl == pvMAC && c != pvMAC &&
-                    pvMAC.ControlMode == ControlModeType.CylinderManual)
-                    //MessageBox.Show("当前为手动模式，请注意！");
-                    MessageBox.Show("当前为手动模式，请注意！", "",
-                          MessageBoxButtons.YesNo,
-                          MessageBoxIcon.Exclamation,
-                          MessageBoxDefaultButton.Button1);         
+                //if (PreUICtrl == pvMAC && c != pvMAC &&
+                //    pvMAC.ControlMode == ControlModeType.CylinderManual)
+                //MessageBox.Show("当前为手动模式，请注意！");
+                //MessageBox.Show("当前为手动模式，请注意！", "",
+                //      MessageBoxButtons.YesNo,
+                //      MessageBoxIcon.Exclamation,
+                //      MessageBoxDefaultButton.Button1);         
             }
         }
 
