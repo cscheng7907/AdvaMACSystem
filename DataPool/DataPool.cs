@@ -156,6 +156,8 @@ namespace DataPool
                 out_PumpPositionHighout.Clear(); //油缸最大行程设定值		   4*8
                 out_PumpTodayPositionHighout.Clear(); //油缸当天行程最大设定值 4*8
 
+                ControlMode.Clear();
+
                 for (int i = 0; i < Number_Pump; i++)
                 {
                     for (int j = 0; j < Number_Cylinder; j++)
@@ -195,6 +197,8 @@ namespace DataPool
                     out_Pressure_Pump.Add(0);//泵站压力设定值 4
                     out_StartPressure_Pump.Add(0); //泵站启动压力设定值 4
                     out_ManualStart_Pump.Add(false); //手动启动泵站  4
+
+                    ControlMode.Add(ControlModeType.MachLockManual);
                 }
             }
             finally
@@ -787,9 +791,9 @@ namespace DataPool
         public int CurSubId = 0;
 #if WindowsCE
 
-        public ControlModeType ControlMode = ControlModeType.Auto;
+        public ListControlModeType> ControlMode = new List<ControlModeType>();//ControlModeType.Auto;
 #else
-        public ControlModeType ControlMode = ControlModeType.MachLockManual;
+        public List<ControlModeType> ControlMode = new List<ControlModeType>();//ControlModeType.MachLockManual;
 
 #endif
         public MotionStateType out_MotionState = MotionStateType.stsStop;

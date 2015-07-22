@@ -705,7 +705,7 @@ namespace AdvaMACSystem
                     msgSend[canmsgIndex].length = (short)AdvCan.DATALENGTH;
 
                     //todo 手动控制 通过单独发送还是遍历设备？
-                    msgSend[canmsgIndex].data[0] = (byte)CanDatapool.ControlMode;
+                    msgSend[canmsgIndex].data[0] = (byte)CanDatapool.ControlMode[id];
                     msgSend[canmsgIndex].data[1] = (byte)(id + 1);
                     msgSend[canmsgIndex].data[2] = (byte)(subid + 1);
                     msgSend[canmsgIndex].data[3] = (byte)CanDatapool.out_MotionState;
@@ -875,7 +875,7 @@ namespace AdvaMACSystem
                     msgSend[canmsgIndex].length = 6;// (short)AdvCan.DATALENGTH;
 
                     //(注意：在手动模式下，第1、2、3、4字节全发送0）
-                    if (CanDatapool.ControlMode != ControlModeType.Auto)
+                    if (CanDatapool.ControlMode[id] != ControlModeType.Auto)
                     {
                         msgSend[canmsgIndex].data[0] = 0;
                         msgSend[canmsgIndex].data[1] = 0;
@@ -1085,7 +1085,7 @@ namespace AdvaMACSystem
                                         CanDatapool.in_CurPressureHigh_Pump_Real_1010_1013[idArray0] = msgRecieve[j].data[1];
                                         CanDatapool.in_StartFailed_Pump_1010_1013[idArray0] = msgRecieve[j].data[2] != 0;
                                         CanDatapool.in_CompAct_Pump_1010_1013[idArray0] = msgRecieve[j].data[3] != 0;
-                                        CanDatapool.ControlMode = (ControlModeType)msgRecieve[j].data[4];
+                                        CanDatapool.ControlMode[idArray0]  = (ControlModeType)msgRecieve[j].data[4];
                                         CanDatapool.in_EStop_1010_1013[idArray0] = msgRecieve[j].data[5] != 0;
 
                                         break;

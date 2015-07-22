@@ -759,7 +759,7 @@ namespace AdvaMACSystem
             //if (!this.Visible)
             //    return;
 
-            ControlMode = _candatapool.ControlMode;
+            ControlMode = _candatapool.ControlMode[selectedPumpIndex];
 
             //pumps
             for (int j = 0; j < pumpList.Count; j++)
