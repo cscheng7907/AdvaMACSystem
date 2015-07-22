@@ -53,6 +53,8 @@ namespace AdvaMACSystem
         private const string password_Setting = "555";//参数设置密码
         private const string password_Diagnose = "666";//诊断界面密码
 
+        private Bitmap estop = new Bitmap(AdvaMACSystem.AdvaMACSystemRes.estop64);
+        private Bitmap estop_1 = new Bitmap(AdvaMACSystem.AdvaMACSystemRes.estop64_1);
 
         //private const string password_PageSetup = "555555";
         //private const string password_PagePara = "666666";
@@ -175,7 +177,15 @@ namespace AdvaMACSystem
             }
             if (isEmergencyStop)
             {
-                imageLabel_Estop.Visible = showEStopIcon;
+                imageLabel_Estop.Visible = true;
+                if (showEStopIcon)
+                {
+                    imageLabel_Estop.BackImg = estop;
+                }
+                else
+                {
+                    imageLabel_Estop.BackImg = estop_1;
+                }
                 showEStopIcon = !showEStopIcon;
             }
             else
