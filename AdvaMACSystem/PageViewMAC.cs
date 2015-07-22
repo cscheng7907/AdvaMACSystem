@@ -272,11 +272,20 @@ namespace AdvaMACSystem
                                     dv);
                         }
                         else
-                            MessageBox.Show("输入非法！");
+                            //MessageBox.Show("输入非法！");
+                            MessageBox.Show("输入非法！", "",
+                                 MessageBoxButtons.YesNo,
+                                 MessageBoxIcon.Error,
+                                 MessageBoxDefaultButton.Button1);
+
                     }
                     catch (Exception)
                     {
-                        MessageBox.Show("输入非法！");
+                        //MessageBox.Show("输入非法！");
+                        MessageBox.Show("输入非法！", "",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Error,
+                            MessageBoxDefaultButton.Button1);
                     }
                 }
             }

@@ -174,9 +174,9 @@ namespace AdvaMACSystem
             ilPumpIndex.Location = new Point(CylinderMarginLeft + 50, CylinderMarginTop - CylinderHeight - CylinderSpacingY);
             ilPumpIndex.Click += new EventHandler(ilPumpIndex_Click);
             this.Controls.Add(ilPumpIndex);
-            
+
             lbPage.Size = new Size(300, 40);
-            lbPage.Location = new Point(BmpLeft+45, 572);
+            lbPage.Location = new Point(BmpLeft + 45, 572);
             lbPage.Font = currentFont;
             this.Controls.Add(lbPage);
 
@@ -200,7 +200,7 @@ namespace AdvaMACSystem
 
         private void ibPrevDay_Click(object sender, EventArgs e)
         {
-            if (startTime.Subtract(new TimeSpan(1, 0, 0, 0)).Date >= DateTime.Now.Date.Subtract(new TimeSpan(reserveDays, 0,0,0)).Date)
+            if (startTime.Subtract(new TimeSpan(1, 0, 0, 0)).Date >= DateTime.Now.Date.Subtract(new TimeSpan(reserveDays, 0, 0, 0)).Date)
             {
                 startTime = startTime.Subtract(new TimeSpan(1, 0, 0, 0));
                 ilDate.Text = startTime.ToString("yyyy-MM-dd HH:mm");
@@ -316,7 +316,7 @@ namespace AdvaMACSystem
         private ImagesContaner buttonImage = null;//按钮背景图
         private List<ImageButton> cylinderList = null;
         private PictureBox pBox = null;
-        
+
         private Label lbPumpName;
         private SimpleImagesContaner inputImage = null;
         private SimpleImagesContaner dateImage = null;
@@ -335,7 +335,7 @@ namespace AdvaMACSystem
         private ImageButton prevPage;//上一页
         private ImageButton nextPage;//下一页
 
-       
+
         //绘图
         private Image chart = null;
         private Graphics g = null;
@@ -361,7 +361,7 @@ namespace AdvaMACSystem
         private int reserveDays = 60;
         private DateTime startTime = DateTime.Now.Date;
         private DateTime endTime;
-        private TimeSpan ts= new TimeSpan(24, 0, 0);
+        private TimeSpan ts = new TimeSpan(24, 0, 0);
 
         private bool drawPressure = true;
         private int pumpNumber = 4;
@@ -438,7 +438,7 @@ namespace AdvaMACSystem
 
         public override void DoEnter()
         {
-            ilPumpIndex.Text = (pumpIndex+1).ToString();
+            ilPumpIndex.Text = (pumpIndex + 1).ToString();
             pumpNumber = (int)_candatapool.PumpCount;
             ilDate.Text = DateTime.Now.Date.ToString("yyyy-MM-dd HH:mm");
             cylinderList[cylinderIndex].Checked = true;
@@ -472,12 +472,21 @@ namespace AdvaMACSystem
                 startTime = DateTime.Now.Date;
                 ts = new TimeSpan(24, 0, 0);
                 endTime = startTime.Add(ts);
-                MessageBox.Show("日期格式不正确！");
+                //MessageBox.Show("日期格式不正确！");
+                MessageBox.Show("日期格式不正确！", "",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1);
                 return 2;
             }
             if (cylinderIndex < 0)
             {
-                MessageBox.Show("请选择油缸！");
+                //MessageBox.Show("请选择油缸！");
+                MessageBox.Show("请选择油缸！", "",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
+
                 return 3;
             }
 
@@ -557,7 +566,7 @@ namespace AdvaMACSystem
             Pen backPen = new Pen(Color.White);
             Pen realValuePen = new Pen(Color.Yellow);
             Brush yellowBrush = new SolidBrush(Color.Yellow);
-            Pen settingValuePen = new Pen(Color.FromArgb(0,255,255));
+            Pen settingValuePen = new Pen(Color.FromArgb(0, 255, 255));
             Brush blueBrush = new SolidBrush(Color.FromArgb(0, 255, 255));
             #region 画背景
             //draw background
@@ -587,7 +596,7 @@ namespace AdvaMACSystem
             DateTime xdate = startTime;
             sf.Alignment = StringAlignment.Center;
             sf.LineAlignment = StringAlignment.Center;
-            
+
             for (int i = 0; i <= 12; i++)
             {
                 g.DrawLine(backPen, i * 60 + 40, 270, i * 60 + 40, 265);
@@ -598,7 +607,7 @@ namespace AdvaMACSystem
             //draw setting line
             int ysetting = (int)(270 - (settingValue - minValue) / (maxValue - minValue) * 240);
             g.DrawLine(settingValuePen, 40, ysetting, 40 + 720, ysetting);
-            
+
             //draw legend
             g.DrawRectangle(backPen, new Rectangle(320, 300, 150, 20));
             g.FillRectangle(blueBrush, new Rectangle(325, 305, 10, 10));
@@ -624,82 +633,82 @@ namespace AdvaMACSystem
                 #region 获取数据
                 //try
                 //{
-                    File.Copy(filesToDraw[key], tempFolder + Path.GetFileName(filesToDraw[key]), true);
-                    FileStream fs = new FileStream(tempFolder + Path.GetFileName(filesToDraw[key]), FileMode.Open);
-                    BinaryReader br = new BinaryReader(fs);
-                    try
-                    {
-                        br.BaseStream.Seek(0, SeekOrigin.Begin); //将文件指针设置到文件开始
-                        startTimeInRec = br.ReadInt64();
-                        int pumpInFile = br.ReadInt32();
-                        int cylinderInFile = br.ReadInt32();
-                        interval = br.ReadInt32();
-                        multiplyingFactor = br.ReadInt32();
+                File.Copy(filesToDraw[key], tempFolder + Path.GetFileName(filesToDraw[key]), true);
+                FileStream fs = new FileStream(tempFolder + Path.GetFileName(filesToDraw[key]), FileMode.Open);
+                BinaryReader br = new BinaryReader(fs);
+                try
+                {
+                    br.BaseStream.Seek(0, SeekOrigin.Begin); //将文件指针设置到文件开始
+                    startTimeInRec = br.ReadInt64();
+                    int pumpInFile = br.ReadInt32();
+                    int cylinderInFile = br.ReadInt32();
+                    interval = br.ReadInt32();
+                    multiplyingFactor = br.ReadInt32();
 
-                        //验证数据
-                        if (pumpInFile != pumpIndex || cylinderInFile != cylinderIndex || multiplyingFactor <= 0)
+                    //验证数据
+                    if (pumpInFile != pumpIndex || cylinderInFile != cylinderIndex || multiplyingFactor <= 0)
+                        continue;
+
+                    long firstValidDataIndex = 0;
+                    //调整记录起始点
+                    if (startTimeInRec < startTime.Ticks)
+                    {
+                        //需要调整记录起始点
+                        long dataCountInRec = (fs.Length - historyOper.CONST_FILE_HEAD_SIZE) / sizeof(int);
+
+                        if (dataCountInRec <= 0)
                             continue;
 
-                        long firstValidDataIndex = 0;
-                        //调整记录起始点
-                        if (startTimeInRec < startTime.Ticks)
+                        long endTimeInRec = startTimeInRec + (dataCountInRec - 1) * 10000 * interval;
+                        if (endTimeInRec < startTime.Ticks)
+                            continue;
+                        else//记录中包含查询数据
                         {
-                            //需要调整记录起始点
-                            long dataCountInRec = (fs.Length - historyOper.CONST_FILE_HEAD_SIZE) / sizeof(int);
-                            
-                            if (dataCountInRec <= 0)
-                                continue;
-
-                            long endTimeInRec = startTimeInRec + (dataCountInRec - 1) * 10000 * interval;
-                            if (endTimeInRec < startTime.Ticks)
-                                continue;
-                            else//记录中包含查询数据
-                            {
-                                firstValidDataIndex = (long)Math.Ceiling((startTime.Ticks - startTimeInRec) / 10000.0 / interval);
-                                startTimeInRec = startTimeInRec + firstValidDataIndex * 10000 * interval;//调整记录起始点
-                            }
-                        }
-
-                        //计算有效数据总数
-                        int maxValidDataCount = (int)Math.Ceiling((endTime.Ticks - startTimeInRec) / 10000.0 / interval);
-
-                        int pos = 0;
-                        for (; pos < startTimeInFileList.Count; pos++)
-                        {
-                            if (startTimeInRec <= startTimeInFileList[pos])
-                            {
-                                startTimeInFileList.Insert(pos, startTimeInRec);
-                                intervalTimeInFileList.Insert(pos, interval);
-                                dataList.Insert(pos, currentSegment);
-                                break;
-                            }
-                        }
-                        if (pos == startTimeInFileList.Count)
-                        {
-                            startTimeInFileList.Add(startTimeInRec);
-                            intervalTimeInFileList.Add(interval);
-                            dataList.Add(currentSegment);
-                        }
-
-                        br.BaseStream.Seek(historyOper.CONST_FILE_HEAD_SIZE + sizeof(int) * firstValidDataIndex, SeekOrigin.Begin);
-
-                        //读文件体
-                        MinValueInImg = (int)(minValue * multiplyingFactor);
-                        ValueRangeInImg = (int)((maxValue - minValue) * multiplyingFactor);
-                        int value;
-                        int count = 0;
-                        for (count = 0; count < maxValidDataCount && br.BaseStream.Position < br.BaseStream.Length; count++) // 当未到达文件结尾时
-                        {
-                            value = br.ReadInt32();
-                            currentSegment.Add(value);
+                            firstValidDataIndex = (long)Math.Ceiling((startTime.Ticks - startTimeInRec) / 10000.0 / interval);
+                            startTimeInRec = startTimeInRec + firstValidDataIndex * 10000 * interval;//调整记录起始点
                         }
                     }
-                    finally
+
+                    //计算有效数据总数
+                    int maxValidDataCount = (int)Math.Ceiling((endTime.Ticks - startTimeInRec) / 10000.0 / interval);
+
+                    int pos = 0;
+                    for (; pos < startTimeInFileList.Count; pos++)
                     {
-                        br.Close();
-                        fs.Close();
-                        File.Delete(tempFolder + Path.GetFileName(filesToDraw[key]));
+                        if (startTimeInRec <= startTimeInFileList[pos])
+                        {
+                            startTimeInFileList.Insert(pos, startTimeInRec);
+                            intervalTimeInFileList.Insert(pos, interval);
+                            dataList.Insert(pos, currentSegment);
+                            break;
+                        }
                     }
+                    if (pos == startTimeInFileList.Count)
+                    {
+                        startTimeInFileList.Add(startTimeInRec);
+                        intervalTimeInFileList.Add(interval);
+                        dataList.Add(currentSegment);
+                    }
+
+                    br.BaseStream.Seek(historyOper.CONST_FILE_HEAD_SIZE + sizeof(int) * firstValidDataIndex, SeekOrigin.Begin);
+
+                    //读文件体
+                    MinValueInImg = (int)(minValue * multiplyingFactor);
+                    ValueRangeInImg = (int)((maxValue - minValue) * multiplyingFactor);
+                    int value;
+                    int count = 0;
+                    for (count = 0; count < maxValidDataCount && br.BaseStream.Position < br.BaseStream.Length; count++) // 当未到达文件结尾时
+                    {
+                        value = br.ReadInt32();
+                        currentSegment.Add(value);
+                    }
+                }
+                finally
+                {
+                    br.Close();
+                    fs.Close();
+                    File.Delete(tempFolder + Path.GetFileName(filesToDraw[key]));
+                }
                 //}
                 //catch
                 //{ }
@@ -783,7 +792,7 @@ namespace AdvaMACSystem
             gt.DrawString("序号", currentFont, blackBrush, CellWidth / 2, CellHeight / 2, sf);
             gt.DrawString("时间", currentFont, blackBrush, CellWidth / 2, 3 * CellHeight / 2, sf);
             gt.DrawString("记录", currentFont, blackBrush, CellWidth / 2, 5 * CellHeight / 2, sf);
-            
+
             pbDataTable.Image = table;
 
         }
@@ -847,7 +856,7 @@ namespace AdvaMACSystem
                     count++;
                     if (count >= dataPerPage)
                         return result;
-                }         
+                }
             }
 
             return result;

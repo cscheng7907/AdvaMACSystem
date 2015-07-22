@@ -131,7 +131,11 @@ namespace AdvaMACSystem
             DataPool.CDataPool.GetDataPoolObject().SetRealValue(comboBox_id.SelectedIndex,
                 comboBox_subid.SelectedIndex, CmdDataType.cdtPositionSenserLow_Value, Convert.ToDouble(imageLabel4.Text));
             DataPool.CDataPool.GetDataPoolObject().SavetoFile();
-            MessageBox.Show(string.Format("{0:00}#泵站-{1:00}#油缸，参数已经保存！", comboBox_id.SelectedIndex + 1, comboBox_subid.SelectedIndex + 1));
+            //MessageBox.Show(string.Format("{0:00}#泵站-{1:00}#油缸，参数已经保存！", comboBox_id.SelectedIndex + 1, comboBox_subid.SelectedIndex + 1));
+            MessageBox.Show(string.Format("{0:00}#泵站-{1:00}#油缸，参数已经保存！", comboBox_id.SelectedIndex + 1, comboBox_subid.SelectedIndex + 1), "",
+                   MessageBoxButtons.YesNo,
+                   MessageBoxIcon.None,
+                   MessageBoxDefaultButton.Button1);
 
         }
         private void SaveViewData_High()
@@ -139,7 +143,11 @@ namespace AdvaMACSystem
             DataPool.CDataPool.GetDataPoolObject().SetRealValue(comboBox_id.SelectedIndex,
                 comboBox_subid.SelectedIndex, CmdDataType.cdtPositionSenserHigh_Value, Convert.ToDouble(imageLabel5.Text));
             DataPool.CDataPool.GetDataPoolObject().SavetoFile();
-            MessageBox.Show(string.Format("{0:00}#泵站-{1:00}#油缸，参数已经保存！", comboBox_id.SelectedIndex + 1, comboBox_subid.SelectedIndex + 1));
+            //MessageBox.Show(string.Format("{0:00}#泵站-{1:00}#油缸，参数已经保存！", comboBox_id.SelectedIndex + 1, comboBox_subid.SelectedIndex + 1));
+            MessageBox.Show(string.Format("#{0:00}泵站-{1:00}#油缸，参数已经保存！", comboBox_id.SelectedIndex + 1, comboBox_subid.SelectedIndex + 1), "",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.None,
+                MessageBoxDefaultButton.Button1);
         }
 
         private void imageLabel_Input_Click(object sender, EventArgs e)
@@ -162,7 +170,11 @@ namespace AdvaMACSystem
                         }
                         catch (Exception)
                         {
-                            MessageBox.Show("输入非法！");
+                            //MessageBox.Show("输入非法！");
+                            MessageBox.Show("输入非法！", "",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Error,
+                                MessageBoxDefaultButton.Button1);
                         }
                     }
                 }

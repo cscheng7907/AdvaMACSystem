@@ -146,7 +146,13 @@ namespace AdvaMACSystem
                 }
             }
             DataPool.CDataPool.GetDataPoolObject().SavetoFile();
-            MessageBox.Show(string.Format("#{0:00}泵站-#{1:00}油缸，参数已经保存！", comboBox_id.SelectedIndex + 1, comboBox_subid.SelectedIndex + 1));
+            //MessageBox.Show(string.Format("#{0:00}泵站-#{1:00}油缸，参数已经保存！", comboBox_id.SelectedIndex + 1, comboBox_subid.SelectedIndex + 1));
+            MessageBox.Show(string.Format("#{0:00}泵站-#{1:00}油缸，参数已经保存！", comboBox_id.SelectedIndex + 1, comboBox_subid.SelectedIndex + 1), "",
+                   MessageBoxButtons.YesNo,
+                   MessageBoxIcon.None,
+                   MessageBoxDefaultButton.Button1);
+
+
         }
 
 
@@ -175,6 +181,60 @@ namespace AdvaMACSystem
 
         }
 
+        private bool CheckValue(CmdDataType DataType, double val)
+        {
+            bool bv = false;
+
+            switch (DataType)
+            {
+                case CmdDataType.cdtPressureAlarm_Pump:
+                    bv = true;
+                    break;
+                //截面积范围0.00～99.99dm^2 
+                //cdtSectionalArea_Value,//油缸截面积 4*8
+                case CmdDataType.cdtSectionalArea_Value:
+                    bv = (val >= 0 && val <= 99.99);
+                    break;
+                //最大压力范围：0.0～400.0bar 
+                //cdtMAXPressure_Value,//油缸最大压力 4*8
+                case CmdDataType.cdtMAXPressure_Value:
+                    bv = (val >= 0 && val <= 400);
+                    break;
+                //最大位移范围：0.0～999.9mm
+                //cdtMAXPosition_Value, //油缸最大位移 4*8
+                case CmdDataType.cdtMAXPosition_Value:
+                    bv = (val >= 0 && val <= 999.9);
+                    break;
+                //马达最大压力设定：0～400.0bar
+                //cdtPumpPressureHighout,          //马达最大压力设定	       4*8
+                case CmdDataType.cdtPumpPressureHighout:
+                    bv = (val >= 0 && val <= 400);
+                    break;
+                //油缸最大行程设定值：0.0～999.9mm
+                //cdtPumpPositionHighout,          //油缸最大行程设定值		   4*8
+                case CmdDataType.cdtPumpPositionHighout:
+                    bv = (val >= 0 && val <= 999.9);
+                    break;
+                //油缸当天行程最大设定值：0.0～999.9mm
+                //cdtPumpTodayPositionHighout //油缸当天行程最大设定值 4*8
+                case CmdDataType.cdtPumpTodayPositionHighout:
+                    bv = (val >= 0 && val <= 999.9);
+                    break;
+                default:
+                    bv = true;
+                    break;
+            }
+
+            if (!bv)
+                MessageBox.Show("输入数值越界！", "",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning,
+                        MessageBoxDefaultButton.Button1);
+
+            return bv;
+        }
+
+
         private void imageLabel_Input_Click(object sender, EventArgs e)
         {
             double dv = 0;
@@ -186,145 +246,22 @@ namespace AdvaMACSystem
                 KeypadForm f = KeypadForm.GetKeypadForm(lb.Text);
                 if (f.ShowDialog() == DialogResult.OK)
                 {
-                    if ((CmdDataType)lb.Tag == CmdDataType.cdtPressureAlarm_Pump)
+                    try
                     {
-                        try
-                        {
-                            dv = Convert.ToDouble(f.KeyText);
+                        dv = Convert.ToDouble(f.KeyText);
 
+                        if (CheckValue((CmdDataType)lb.Tag, dv))
                             lb.Text = dv.ToString("0.0");
-                        }
-                        catch (Exception)
-                        {
-                            MessageBox.Show("输入非法！");
-                        }
                     }
-
-                    //截面积范围0.00～99.99dm^2 
-                    //cdtSectionalArea_Value,//油缸截面积 4*8
-                    else if ((CmdDataType)lb.Tag == CmdDataType.cdtSectionalArea_Value)
+                    catch (Exception)
                     {
-                        try
-                        {
-                            dv = Convert.ToDouble(f.KeyText);
-
-                            if (dv >= 0 && dv <= 99.99)
-                                lb.Text = dv.ToString("0.0");
-                            else
-                                MessageBox.Show("输入数值越界！");
-                        }
-                        catch (Exception)
-                        {
-                            MessageBox.Show("输入非法！");
-                        }
-                    }
-                    //最大压力范围：0.0～400.0bar 
-                    //cdtMAXPressure_Value,//油缸最大压力 4*8
-                    else if ((CmdDataType)lb.Tag == CmdDataType.cdtMAXPressure_Value)
-                    {
-                        try
-                        {
-                            dv = Convert.ToDouble(f.KeyText);
-
-                            if (dv >= 0 && dv <= 400)
-                                lb.Text = dv.ToString("0.0");
-                            else
-                                MessageBox.Show("输入数值越界！");
-                        }
-                        catch (Exception)
-                        {
-                            MessageBox.Show("输入非法！");
-                        }
-                    }
-                    //最大位移范围：0.0～999.9mm
-                    //cdtMAXPosition_Value, //油缸最大位移 4*8
-                    else if ((CmdDataType)lb.Tag == CmdDataType.cdtMAXPosition_Value)
-                    {
-                        try
-                        {
-                            dv = Convert.ToDouble(f.KeyText);
-
-                            if (dv >= 0 && dv <= 999.9)
-                                lb.Text = dv.ToString("0.0");
-                            else
-                                MessageBox.Show("输入数值越界！");
-                        }
-                        catch (Exception)
-                        {
-                            MessageBox.Show("输入非法！");
-                        }
-                    }
-
-//马达最大压力设定：0～400.0bar
-                    //cdtPumpPressureHighout,          //马达最大压力设定	       4*8
-                    else if ((CmdDataType)lb.Tag == CmdDataType.cdtPumpPressureHighout)
-                    {
-                        try
-                        {
-                            dv = Convert.ToDouble(f.KeyText);
-
-                            if (dv >= 0 && dv <= 400)
-                                lb.Text = dv.ToString("0.0");
-                            else
-                                MessageBox.Show("输入数值越界！");
-                        }
-                        catch (Exception)
-                        {
-                            MessageBox.Show("输入非法！");
-                        }
-                    }
-                    //油缸最大行程设定值：0.0～999.9mm
-                    //cdtPumpPositionHighout,          //油缸最大行程设定值		   4*8
-                    else if ((CmdDataType)lb.Tag == CmdDataType.cdtPumpPositionHighout)
-                    {
-                        try
-                        {
-                            dv = Convert.ToDouble(f.KeyText);
-
-                            if (dv >= 0 && dv <= 999.9)
-                                lb.Text = dv.ToString("0.0");
-                            else
-                                MessageBox.Show("输入数值越界！");
-                        }
-                        catch (Exception)
-                        {
-                            MessageBox.Show("输入非法！");
-                        }
-                    }
-                    //油缸当天行程最大设定值：0.0～999.9mm
-                    //cdtPumpTodayPositionHighout //油缸当天行程最大设定值 4*8
-                    else if ((CmdDataType)lb.Tag == CmdDataType.cdtPumpTodayPositionHighout)
-                    {
-                        try
-                        {
-                            dv = Convert.ToDouble(f.KeyText);
-
-                            if (dv >= 0 && dv <= 999.9)
-                                lb.Text = dv.ToString("0.0");
-                            else
-                                MessageBox.Show("输入数值越界！");
-                        }
-                        catch (Exception)
-                        {
-                            MessageBox.Show("输入非法！");
-                        }
-                    }
-                    else
-                    {
-                        try
-                        {
-                            dv = Convert.ToDouble(f.KeyText);
-
-                            lb.Text = dv.ToString("0.0");
-                        }
-                        catch (Exception)
-                        {
-                            MessageBox.Show("输入非法！");
-
-                        }
+                        //MessageBox.Show("输入非法！");
+                        MessageBox.Show("输入非法！", "",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Error,
+                            MessageBoxDefaultButton.Button1);
                     }
                 }
-
             }
         }
     }

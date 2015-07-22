@@ -286,11 +286,19 @@ namespace AdvaMACSystem
                     if (input >= 0 && input <= DataPool.CDataPool.GetDataPoolObject().View_SetupPosition_RowCount)
                         lb.Text = input.ToString();
                     else
-                        MessageBox.Show("输入数值越界！");
+                        //MessageBox.Show("输入数值越界！");
+                        MessageBox.Show("输入数值越界！", "",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Warning,
+                                MessageBoxDefaultButton.Button1);
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("非法输入！");
+                    //MessageBox.Show("非法输入！");
+                    MessageBox.Show("输入非法！", "",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Error,
+                        MessageBoxDefaultButton.Button1);
                 }
             }
         }
@@ -312,11 +320,21 @@ namespace AdvaMACSystem
                     if (input >= 0 && input <= DataPool.CDataPool.GetDataPoolObject().View_SetupPosition_ColCount)
                         lb.Text = input.ToString();
                     else
-                        MessageBox.Show("输入数值越界！");
+                        //MessageBox.Show("输入数值越界！");
+                        MessageBox.Show("输入数值越界！", "",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning,
+                            MessageBoxDefaultButton.Button1);
+
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("非法输入！");
+                    //MessageBox.Show("非法输入！");
+                    MessageBox.Show("输入非法！", "",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Error,
+                        MessageBoxDefaultButton.Button1);
+
                 }
             }
         }
@@ -341,11 +359,19 @@ namespace AdvaMACSystem
                         DataPool.CDataPool.GetDataPoolObject().SavetoFile();
                     }
                     else
-                        MessageBox.Show("输入数值越界！");
+                        //MessageBox.Show("输入数值越界！");
+                        MessageBox.Show("输入数值越界！", "",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning,
+                            MessageBoxDefaultButton.Button1);
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("非法输入！");
+                    //MessageBox.Show("非法输入！");
+                    MessageBox.Show("输入非法！", "",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Error,
+                        MessageBoxDefaultButton.Button1);
                 }
             }
 
@@ -371,11 +397,20 @@ namespace AdvaMACSystem
                         DataPool.CDataPool.GetDataPoolObject().SavetoFile();
                     }
                     else
-                        MessageBox.Show("输入数值越界！");
+                        //MessageBox.Show("输入数值越界！");
+                        MessageBox.Show("输入数值越界！", "",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning,
+                            MessageBoxDefaultButton.Button1);
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("非法输入！");
+                    //MessageBox.Show("非法输入！");
+                    MessageBox.Show("输入非法！", "",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Error,
+                        MessageBoxDefaultButton.Button1);
+
                 }
             }
         }
@@ -458,7 +493,12 @@ namespace AdvaMACSystem
                     Convert.ToInt32(btnlst_subid_Col[i].Text));
             }
             DataPool.CDataPool.GetDataPoolObject().SavetoFile();
-            MessageBox.Show(string.Format("#{0:00}泵站，参数已经保存！", pumpindex + 1));
+            //MessageBox.Show(string.Format("#{0:00}泵站，参数已经保存！", pumpindex + 1));
+            MessageBox.Show(string.Format("#{0:00}泵站，参数已经保存！", pumpindex + 1), "",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.None,
+                MessageBoxDefaultButton.Button1);
+
         }
 
         private void SaveSingleViewData(int id, int subid)

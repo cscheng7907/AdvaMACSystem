@@ -137,8 +137,13 @@ namespace AdvaMACSystem
             //AdvaCanBusObj.CanDatapool = CDataPool.GetDataPoolObject();
             if (!AdvaCanBusObj.Open())
             {
-                MessageBox.Show(AdvaCanBusObj.canErrStrArray[AdvaCanBusObj.CanErrCode]);
-                return;
+                //MessageBox.Show(AdvaCanBusObj.canErrStrArray[AdvaCanBusObj.CanErrCode]);
+                MessageBox.Show(AdvaCanBusObj.canErrStrArray[AdvaCanBusObj.CanErrCode], "",
+                     MessageBoxButtons.YesNo,
+                     MessageBoxIcon.Error,
+                     MessageBoxDefaultButton.Button1);
+
+            return;
             }
 #else
             //this.FormBorderStyle = FormBorderStyle.Fixed3D;
