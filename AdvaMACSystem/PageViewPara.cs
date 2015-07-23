@@ -228,7 +228,7 @@ namespace AdvaMACSystem
             if (!bv)
                 MessageBox.Show("输入数值越界！", "",
                         MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Warning,
+                        MessageBoxIcon.Exclamation,
                         MessageBoxDefaultButton.Button1);
 
             return bv;
@@ -258,7 +258,7 @@ namespace AdvaMACSystem
                         //MessageBox.Show("输入非法！");
                         MessageBox.Show("输入非法！", "",
                             MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Error,
+                            MessageBoxIcon.Hand,
                             MessageBoxDefaultButton.Button1);
                     }
                 }

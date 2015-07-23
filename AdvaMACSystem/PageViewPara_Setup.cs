@@ -289,7 +289,7 @@ namespace AdvaMACSystem
                         //MessageBox.Show("输入数值越界！");
                         MessageBox.Show("输入数值越界！", "",
                                 MessageBoxButtons.YesNo,
-                                MessageBoxIcon.Warning,
+                                MessageBoxIcon.Exclamation,
                                 MessageBoxDefaultButton.Button1);
                 }
                 catch (Exception)
@@ -297,7 +297,7 @@ namespace AdvaMACSystem
                     //MessageBox.Show("非法输入！");
                     MessageBox.Show("输入非法！", "",
                         MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Error,
+                        MessageBoxIcon.Hand,
                         MessageBoxDefaultButton.Button1);
                 }
             }
@@ -323,7 +323,7 @@ namespace AdvaMACSystem
                         //MessageBox.Show("输入数值越界！");
                         MessageBox.Show("输入数值越界！", "",
                             MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Warning,
+                            MessageBoxIcon.Exclamation,
                             MessageBoxDefaultButton.Button1);
 
                 }
@@ -332,7 +332,7 @@ namespace AdvaMACSystem
                     //MessageBox.Show("非法输入！");
                     MessageBox.Show("输入非法！", "",
                         MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Error,
+                        MessageBoxIcon.Hand,
                         MessageBoxDefaultButton.Button1);
 
                 }
@@ -362,7 +362,7 @@ namespace AdvaMACSystem
                         //MessageBox.Show("输入数值越界！");
                         MessageBox.Show("输入数值越界！", "",
                             MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Warning,
+                            MessageBoxIcon.Exclamation,
                             MessageBoxDefaultButton.Button1);
                 }
                 catch (Exception)
@@ -370,7 +370,7 @@ namespace AdvaMACSystem
                     //MessageBox.Show("非法输入！");
                     MessageBox.Show("输入非法！", "",
                         MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Error,
+                        MessageBoxIcon.Hand,
                         MessageBoxDefaultButton.Button1);
                 }
             }
@@ -400,7 +400,7 @@ namespace AdvaMACSystem
                         //MessageBox.Show("输入数值越界！");
                         MessageBox.Show("输入数值越界！", "",
                             MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Warning,
+                            MessageBoxIcon.Exclamation,
                             MessageBoxDefaultButton.Button1);
                 }
                 catch (Exception)
@@ -408,7 +408,7 @@ namespace AdvaMACSystem
                     //MessageBox.Show("非法输入！");
                     MessageBox.Show("输入非法！", "",
                         MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Error,
+                        MessageBoxIcon.Hand,
                         MessageBoxDefaultButton.Button1);
 
                 }

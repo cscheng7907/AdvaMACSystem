@@ -791,7 +791,7 @@ namespace DataPool
         public int CurSubId = 0;
 #if WindowsCE
 
-        public ListControlModeType> ControlMode = new List<ControlModeType>();//ControlModeType.Auto;
+        public List<ControlModeType> ControlMode = new List<ControlModeType>();//ControlModeType.Auto;
 #else
         public List<ControlModeType> ControlMode = new List<ControlModeType>();//ControlModeType.MachLockManual;
 

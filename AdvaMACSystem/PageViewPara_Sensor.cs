@@ -173,7 +173,7 @@ namespace AdvaMACSystem
                             //MessageBox.Show("输入非法！");
                             MessageBox.Show("输入非法！", "",
                                 MessageBoxButtons.YesNo,
-                                MessageBoxIcon.Error,
+                                MessageBoxIcon.Hand,
                                 MessageBoxDefaultButton.Button1);
                         }
                     }

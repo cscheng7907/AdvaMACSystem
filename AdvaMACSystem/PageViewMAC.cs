@@ -275,7 +275,7 @@ namespace AdvaMACSystem
                             //MessageBox.Show("输入非法！");
                             MessageBox.Show("输入非法！", "",
                                  MessageBoxButtons.YesNo,
-                                 MessageBoxIcon.Error,
+                                 MessageBoxIcon.Hand,
                                  MessageBoxDefaultButton.Button1);
 
                     }
@@ -284,7 +284,7 @@ namespace AdvaMACSystem
                         //MessageBox.Show("输入非法！");
                         MessageBox.Show("输入非法！", "",
                             MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Error,
+                            MessageBoxIcon.Hand,
                             MessageBoxDefaultButton.Button1);
                     }
                 }
@@ -503,7 +503,7 @@ namespace AdvaMACSystem
                     //MessageBox.Show("当前为手动模式，请注意！");
                     MessageBox.Show("当前为手动模式，请注意！", "",
                          MessageBoxButtons.YesNo,
-                         MessageBoxIcon.Exclamation,
+                         MessageBoxIcon.Asterisk,
                          MessageBoxDefaultButton.Button1);
 
                     PumpSettingButton.Enabled = true;

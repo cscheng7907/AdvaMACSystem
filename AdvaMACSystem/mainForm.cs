@@ -140,10 +140,10 @@ namespace AdvaMACSystem
                 //MessageBox.Show(AdvaCanBusObj.canErrStrArray[AdvaCanBusObj.CanErrCode]);
                 MessageBox.Show(AdvaCanBusObj.canErrStrArray[AdvaCanBusObj.CanErrCode], "",
                      MessageBoxButtons.YesNo,
-                     MessageBoxIcon.Error,
+                     MessageBoxIcon.Hand,
                      MessageBoxDefaultButton.Button1);
 
-            return;
+                return;
             }
 #else
             //this.FormBorderStyle = FormBorderStyle.Fixed3D;

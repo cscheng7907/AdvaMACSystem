@@ -475,7 +475,7 @@ namespace AdvaMACSystem
                 //MessageBox.Show("日期格式不正确！");
                 MessageBox.Show("日期格式不正确！", "",
                     MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Error,
+                    MessageBoxIcon.Hand,
                     MessageBoxDefaultButton.Button1);
                 return 2;
             }
