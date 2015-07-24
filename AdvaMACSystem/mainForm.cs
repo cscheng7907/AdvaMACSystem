@@ -375,6 +375,7 @@ namespace AdvaMACSystem
         private PageViewWarn pvWarn = null;
         private PageViewPara_Sensor pvPara_Sensor = null;
         private PageViewPara_Setup pvPara_Setup = null;
+        private PageViewPara_Cylinder pvPara_Cylinder = null;
 
         //private PagePanel_WarnErr ppWarnErr = null;
         //private PagePanel_Para ppPara = null;
@@ -424,7 +425,17 @@ namespace AdvaMACSystem
                 this.Controls.Add(this.pvPara_Setup);
             }
         }
-
+        public void Create_pvPara_Cylinder()
+        {
+            if (pvPara_Cylinder == null)
+            {
+                pvPara_Cylinder = new PageViewPara_Cylinder();
+                pvPara_Cylinder.Location = bigviewLocation;
+                pvPara_Cylinder.Size = bigviewsize;
+                pvPara_Cylinder.Enabled = false;
+                this.Controls.Add(this.pvPara_Cylinder);
+            }
+        }
         public void Create_pvHistory()
         {
             if (pvHistory == null)
@@ -665,6 +676,7 @@ namespace AdvaMACSystem
                 panel_Err.Visible = c == pvError; panel_Err.BringToFront();
 
                 panel_Para.Visible =
+                    c == pvPara_Cylinder ||
                     c == pvPara ||
                     c == pvPara_Sensor ||
                     c == pvPara_Setup;
@@ -698,6 +710,9 @@ namespace AdvaMACSystem
                     break;
                 case 2:
                     EnterpvPara_Sensor();
+                    break;
+                case 3:
+                    EnterpvPara_Cylinder();
                     break;
                 default:
                     break;
@@ -879,6 +894,9 @@ namespace AdvaMACSystem
             //}
             pvPara_Setup.DoEnter();
         }
+        private void EnterpvCylinderPara()
+        { }
+
         private void EnterpvPara()
         {
             Create_pvPara();
@@ -897,6 +915,7 @@ namespace AdvaMACSystem
             pvPara.DoEnter();
 
         }
+
         private void EnterpvPara_Sensor()
         {
             Create_pvPara_Sensor();
@@ -914,6 +933,24 @@ namespace AdvaMACSystem
             //}
 
             pvPara_Sensor.DoEnter();
+        }
+        private void EnterpvPara_Cylinder()
+        {
+            Create_pvPara_Cylinder();
+            //if (pvPara_Sensor != null)
+            //{
+            //    KeypadForm f = KeypadForm.GetKeypadForm("", KeypadMode.password);
+            //    if (f.ShowDialog() == DialogResult.OK)
+            //    {
+            //        // 传感器标定
+            //        if (f.KeyText == password_PagePara_Sensor)
+            //        {
+            //            pvPara_Sensor.DoEnter();
+            //        }
+            //    }
+            //}
+
+            pvPara_Cylinder.DoEnter();
         }
         #endregion
 

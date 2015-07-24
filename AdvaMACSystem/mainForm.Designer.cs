@@ -48,6 +48,7 @@
             this.panel_Para = new System.Windows.Forms.Panel();
             this.imageLabel_Sensor = new ComCtrls.ImageLabel();
             this.imageLabel_Para = new ComCtrls.ImageLabel();
+            this.imageLabel_CylinderPara = new ComCtrls.ImageLabel();
             this.imageLabel_Setup = new ComCtrls.ImageLabel();
             this.panel_Err = new System.Windows.Forms.Panel();
             this.imageLabel_Err_History = new ComCtrls.ImageLabel();
@@ -306,11 +307,12 @@
             // 
             this.panel_Para.BackColor = System.Drawing.Color.Silver;
             this.panel_Para.Controls.Add(this.imageLabel_Sensor);
+            this.panel_Para.Controls.Add(this.imageLabel_CylinderPara);
             this.panel_Para.Controls.Add(this.imageLabel_Para);
             this.panel_Para.Controls.Add(this.imageLabel_Setup);
             this.panel_Para.Location = new System.Drawing.Point(5, 95);
             this.panel_Para.Name = "panel_Para";
-            this.panel_Para.Size = new System.Drawing.Size(387, 45);
+            this.panel_Para.Size = new System.Drawing.Size(516, 45);
             this.panel_Para.Visible = false;
             // 
             // imageLabel_Sensor
@@ -322,7 +324,7 @@
             this.imageLabel_Sensor.IMGContainer = null;
             this.imageLabel_Sensor.ImgDisable = global::AdvaMACSystem.AdvaMACSystemRes.Menu_disable;
             this.imageLabel_Sensor.Layout = ComCtrls.KTLayout.GlyphTop;
-            this.imageLabel_Sensor.Location = new System.Drawing.Point(258, 0);
+            this.imageLabel_Sensor.Location = new System.Drawing.Point(387, 0);
             this.imageLabel_Sensor.Name = "imageLabel_Sensor";
             this.imageLabel_Sensor.Size = new System.Drawing.Size(129, 45);
             this.imageLabel_Sensor.TabIndex = 2;
@@ -332,6 +334,28 @@
             this.imageLabel_Sensor.TextY = -1F;
             this.imageLabel_Sensor.TransParent = false;
             this.imageLabel_Sensor.Click += new System.EventHandler(this.imageLabel_ParaSet_Click);
+            // 
+            // imageLabel_CylinderPara
+            // 
+            this.imageLabel_CylinderPara.BackImg = global::AdvaMACSystem.AdvaMACSystemRes.Menu;
+            this.imageLabel_CylinderPara.Checked = false;
+            this.imageLabel_CylinderPara.Dock = System.Windows.Forms.DockStyle.Left;
+            this.imageLabel_CylinderPara.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold);
+            this.imageLabel_CylinderPara.IMGContainer = null;
+            this.imageLabel_CylinderPara.ImgDisable = global::AdvaMACSystem.AdvaMACSystemRes.Menu_disable;
+            this.imageLabel_CylinderPara.Layout = ComCtrls.KTLayout.GlyphTop;
+            this.imageLabel_CylinderPara.Location = new System.Drawing.Point(258, 0);
+            this.imageLabel_CylinderPara.Name = "imageLabel_CylinderPara";
+            this.imageLabel_CylinderPara.Size = new System.Drawing.Size(129, 45);
+            this.imageLabel_CylinderPara.TabIndex = 1;
+            this.imageLabel_CylinderPara.Tag = "3";
+            this.imageLabel_CylinderPara.Text = "油缸设定";
+            this.imageLabel_CylinderPara.TextX = -1F;
+            this.imageLabel_CylinderPara.TextY = -1F;
+            this.imageLabel_CylinderPara.TransParent = false;
+            this.imageLabel_CylinderPara.Click += new System.EventHandler(this.imageLabel_ParaSet_Click);
+
+
             // 
             // imageLabel_Para
             // 
@@ -469,6 +493,7 @@
         private ComCtrls.ImageLabel imageLabel_Warn_History;
         private ComCtrls.ImageLabel imageLabel_Warn_Real;
         private System.Windows.Forms.Panel panel_Para;
+        private ComCtrls.ImageLabel imageLabel_CylinderPara;
         private ComCtrls.ImageLabel imageLabel_Para;
         private ComCtrls.ImageLabel imageLabel_Setup;
         private ComCtrls.ImageLabel imageLabel_Sensor;

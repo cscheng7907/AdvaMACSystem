@@ -143,6 +143,14 @@
       <Link>PageViewPara.designer.cs</Link>
       <DependentUpon>PageViewPara.cs</DependentUpon>
     </Compile>
+    <Compile Include="..\AdvaMACSystem\PageViewPara_Cylinder.cs">
+      <Link>PageViewPara_Cylinder.cs</Link>
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="..\AdvaMACSystem\PageViewPara_Cylinder.Designer.cs">
+      <Link>PageViewPara_Cylinder.Designer.cs</Link>
+      <DependentUpon>PageViewPara_Cylinder.cs</DependentUpon>
+    </Compile>
     <Compile Include="..\AdvaMACSystem\PageViewPara_Sensor.cs">
       <Link>PageViewPara_Sensor.cs</Link>
       <SubType>UserControl</SubType>
@@ -234,6 +242,10 @@
     <EmbeddedResource Include="..\AdvaMACSystem\PageViewPara.resx">
       <Link>PageViewPara.resx</Link>
       <DependentUpon>PageViewPara.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\AdvaMACSystem\PageViewPara_Cylinder.resx">
+      <Link>PageViewPara_Cylinder.resx</Link>
+      <DependentUpon>PageViewPara_Cylinder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="..\AdvaMACSystem\PageViewPara_Sensor.resx">
       <Link>PageViewPara_Sensor.resx</Link>
