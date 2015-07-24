@@ -344,6 +344,7 @@ namespace AdvaMACSystem
             bool Csign_View_Parameter_Confirm = CanDatapool.sign_View_Parameter_Confirm;
             bool Csign_View_SenserCalibration = CanDatapool.sign_View_SenserCalibration;
             bool Csign_View_SetupFinish_Confirm = CanDatapool.sign_View_SetupFinish_Confirm;
+            bool Csign_View_CylinderParameter_Confirm = CanDatapool.sign_View_CylinderParameter_Confirm;//油缸、马达参数设定确认标志位
 
             int id = CanDatapool.CurId;
             int subid = CanDatapool.CurSubId;
@@ -749,6 +750,8 @@ namespace AdvaMACSystem
 
                     msgSend[canmsgIndex].data[4] = (byte)(CanDatapool.out_PumpTodayPositionHighout[id] & 0xFF);
                     msgSend[canmsgIndex].data[5] = (byte)(CanDatapool.out_PumpTodayPositionHighout[id] >> 8);
+
+                    msgSend[canmsgIndex].data[6] = (byte)((Csign_View_CylinderParameter_Confirm) ? 1 : 0);
                     canmsgIndex++;
                 }
 
@@ -1085,7 +1088,7 @@ namespace AdvaMACSystem
                                         CanDatapool.in_CurPressureHigh_Pump_Real_1010_1013[idArray0] = msgRecieve[j].data[1];
                                         CanDatapool.in_StartFailed_Pump_1010_1013[idArray0] = msgRecieve[j].data[2] != 0;
                                         CanDatapool.in_CompAct_Pump_1010_1013[idArray0] = msgRecieve[j].data[3] != 0;
-                                        CanDatapool.ControlMode[idArray0]  = (ControlModeType)msgRecieve[j].data[4];
+                                        CanDatapool.ControlMode[idArray0] = (ControlModeType)msgRecieve[j].data[4];
                                         CanDatapool.in_EStop_1010_1013[idArray0] = msgRecieve[j].data[5] != 0;
 
                                         break;

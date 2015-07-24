@@ -789,6 +789,8 @@ namespace DataPool
         public bool sign_View_SetupFinish_Confirm = false;//安装调试完毕确定标志
         public List<bool> sign_View_SetupFinish_Confirm_seperate = new List<bool>();//安装调试完毕确认_油缸 4*8
 
+        public bool sign_View_CylinderParameter_Confirm = false; //油缸、马达参数设定确认标志位
+
         public int CurId = 0;
         public int CurSubId = 0;
 #if WindowsCE
