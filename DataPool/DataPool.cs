@@ -180,23 +180,25 @@ namespace DataPool
                         out_PositionSenserLow_Value.Add(0);//油缸长度传感器低位值 4*8
                         out_PositionSenserHigh_Value.Add(0);//油缸长度传感器高位值 4*8
 
-                        out_SectionalArea_Value.Add(0);  //油缸截面积 4*8
-                        out_MAXPressure_Value.Add(0);  //油缸最大压力 4*8
-                        out_MAXPosition_Value.Add(0);   //油缸最大位移 4*8
 
                         View_SetupPosition_Row.Add(0);//油缸安装所在的层数 4*8
                         View_SetupPosition_Col.Add(0);//油缸安装所在的支数 4*8
                         sign_View_SetupFinish_Confirm_seperate.Add(false);//安装调试完毕确认_油缸 4*8
 
-                        out_PumpPressureHighout.Add(0);  //马达最大压力设定	       4*8
-                        out_PumpPositionHighout.Add(0); //油缸最大行程设定值		   4*8
-                        out_PumpTodayPositionHighout.Add(0); //油缸当天行程最大设定值 4*8
                     }
 
                     out_PressureAlarm_Pump.Add(0);//泵站压力报警值 4
                     out_Pressure_Pump.Add(0);//泵站压力设定值 4
                     out_StartPressure_Pump.Add(0); //泵站启动压力设定值 4
                     out_ManualStart_Pump.Add(false); //手动启动泵站  4
+                 
+                    out_SectionalArea_Value.Add(0);  //油缸截面积 4
+                    out_MAXPressure_Value.Add(0);  //油缸最大压力 4
+                    out_MAXPosition_Value.Add(0);   //油缸最大位移 4
+
+                    out_PumpPressureHighout.Add(0);  //马达最大压力设定	       4
+                    out_PumpPositionHighout.Add(0); //油缸最大行程设定值		   4
+                    out_PumpTodayPositionHighout.Add(0); //油缸当天行程最大设定值 4
 
                     ControlMode.Add(ControlModeType.MachLockManual);
                 }
@@ -357,24 +359,24 @@ namespace DataPool
                 case CmdDataType.cdtPressureAlarm_Pump://泵站压力报警值 4
                     rtv = out_PressureAlarm_Pump[id] * 0.1;
                     break;
-                case CmdDataType.cdtSectionalArea_Value://油缸截面积 4*8
-                    rtv = out_SectionalArea_Value[id * 8 + subid] * 0.01;
+                case CmdDataType.cdtSectionalArea_Value://油缸截面积 4
+                    rtv = out_SectionalArea_Value[id] * 0.01;
                     break;
-                case CmdDataType.cdtMAXPressure_Value://油缸最大压力 4*8
-                    rtv = out_MAXPressure_Value[id * 8 + subid] * 0.1;
+                case CmdDataType.cdtMAXPressure_Value://油缸最大压力 4
+                    rtv = out_MAXPressure_Value[id] * 0.1;
                     break;
-                case CmdDataType.cdtMAXPosition_Value: //油缸最大位移 4*8
-                    rtv = out_MAXPosition_Value[id * 8 + subid] * 0.1;
+                case CmdDataType.cdtMAXPosition_Value: //油缸最大位移 4
+                    rtv = out_MAXPosition_Value[id] * 0.1;
                     break;
 
-                case CmdDataType.cdtPumpPressureHighout:          //马达最大压力设定	       4*8
-                    rtv = out_PumpPressureHighout[id * 8 + subid] * 0.1;
+                case CmdDataType.cdtPumpPressureHighout:          //马达最大压力设定	       4
+                    rtv = out_PumpPressureHighout[id] * 0.1;
                     break;
-                case CmdDataType.cdtPumpPositionHighout:          //油缸最大行程设定值		   4*8
-                    rtv = out_PumpPositionHighout[id * 8 + subid] * 0.1;
+                case CmdDataType.cdtPumpPositionHighout:          //油缸最大行程设定值		   4
+                    rtv = out_PumpPositionHighout[id] * 0.1;
                     break;
-                case CmdDataType.cdtPumpTodayPositionHighout: //油缸当天行程最大设定值 4*8
-                    rtv = out_PumpTodayPositionHighout[id * 8 + subid] * 0.1;
+                case CmdDataType.cdtPumpTodayPositionHighout: //油缸当天行程最大设定值 4
+                    rtv = out_PumpTodayPositionHighout[id] * 0.1;
                     break;
 
                 default:
@@ -635,24 +637,24 @@ namespace DataPool
                 case CmdDataType.cdtPressureAlarm_Pump://泵站压力报警值 4
                     out_PressureAlarm_Pump[id] = Convert.ToInt16(value * 10);
                     break;
-                case CmdDataType.cdtSectionalArea_Value://油缸截面积 4*8
-                    out_SectionalArea_Value[id * 8 + subid] = Convert.ToInt16(value * 100);
+                case CmdDataType.cdtSectionalArea_Value://油缸截面积 4
+                    out_SectionalArea_Value[id] = Convert.ToInt16(value * 100);
                     break;
-                case CmdDataType.cdtMAXPressure_Value://油缸最大压力 4*8
-                    out_MAXPressure_Value[id * 8 + subid] = Convert.ToInt16(value * 10);
+                case CmdDataType.cdtMAXPressure_Value://油缸最大压力 4
+                    out_MAXPressure_Value[id] = Convert.ToInt16(value * 10);
                     break;
-                case CmdDataType.cdtMAXPosition_Value: //油缸最大位移 4*8
-                    out_MAXPosition_Value[id * 8 + subid] = Convert.ToInt16(value * 10);
+                case CmdDataType.cdtMAXPosition_Value: //油缸最大位移 4
+                    out_MAXPosition_Value[id] = Convert.ToInt16(value * 10);
                     break;
 
-                case CmdDataType.cdtPumpPressureHighout:          //马达最大压力设定	       4*8
-                    out_PumpPressureHighout[id * 8 + subid] = Convert.ToUInt16(value * 10);
+                case CmdDataType.cdtPumpPressureHighout:          //马达最大压力设定	       4
+                    out_PumpPressureHighout[id] = Convert.ToUInt16(value * 10);
                     break;
-                case CmdDataType.cdtPumpPositionHighout:          //油缸最大行程设定值		   4*8
-                    out_PumpPositionHighout[id * 8 + subid] = Convert.ToUInt16(value * 10);
+                case CmdDataType.cdtPumpPositionHighout:          //油缸最大行程设定值		   4
+                    out_PumpPositionHighout[id] = Convert.ToUInt16(value * 10);
                     break;
-                case CmdDataType.cdtPumpTodayPositionHighout: //油缸当天行程最大设定值 4*8
-                    out_PumpTodayPositionHighout[id * 8 + subid] = Convert.ToUInt16(value * 10);
+                case CmdDataType.cdtPumpTodayPositionHighout: //油缸当天行程最大设定值 4
+                    out_PumpTodayPositionHighout[id] = Convert.ToUInt16(value * 10);
                     break;
 
                 default:
@@ -763,9 +765,9 @@ namespace DataPool
         public List<byte> out_PositionSenserLow_Value = new List<byte>();//油缸长度传感器低位值 4*8
         public List<byte> out_PositionSenserHigh_Value = new List<byte>();//油缸长度传感器高位值 4*8
 
-        public List<short> out_SectionalArea_Value = new List<short>();//油缸截面积 4*8
-        public List<short> out_MAXPressure_Value = new List<short>();//油缸最大压力 4*8
-        public List<short> out_MAXPosition_Value = new List<short>();//油缸最大位移 4*8
+        public List<short> out_SectionalArea_Value = new List<short>();//油缸截面积 4
+        public List<short> out_MAXPressure_Value = new List<short>();//油缸最大压力 4
+        public List<short> out_MAXPosition_Value = new List<short>();//油缸最大位移 4
 
         public byte out_id_controledPump = 0;//被控泵站
         public byte out_id_redundantPump = 0;//冗余泵站
@@ -879,20 +881,20 @@ namespace DataPool
                            sizeof(byte) * Number_Pump * Number_Cylinder +
                     //public List<byte> View_SetupPosition_Col = new List<byte>();//油缸安装所在的支数 4*8
                            sizeof(byte) * Number_Pump * Number_Cylinder +
-                    //public List<short> out_SectionalArea_Value = new List<short>();//油缸截面积 4*8
-                            sizeof(short) * Number_Pump * Number_Cylinder +
-                    //public List<short> out_MAXPressure_Value = new List<short>();//油缸最大压力 4*8
-                            sizeof(short) * Number_Pump * Number_Cylinder +
-                    //public List<short> out_MAXPosition_Value = new List<short>();//油缸最大位移 4*8
-                            sizeof(short) * Number_Pump * Number_Cylinder +
+                    //public List<short> out_SectionalArea_Value = new List<short>();//油缸截面积 4
+                            sizeof(short) * Number_Pump +//* Number_Cylinder +
+                    //public List<short> out_MAXPressure_Value = new List<short>();//油缸最大压力 4
+                            sizeof(short) * Number_Pump +//* Number_Cylinder +
+                    //public List<short> out_MAXPosition_Value = new List<short>();//油缸最大位移 4
+                            sizeof(short) * Number_Pump +//* Number_Cylinder +
                     //public List<bool> sign_View_SetupFinish_Confirm_seperate = new List<bool>();//安装调试完毕确认_油缸 4*8
                             sizeof(bool) * Number_Pump * Number_Cylinder +
-                    //public List<UInt16> out_PumpPressureHighout = new List<UInt16>();           //马达最大压力设定	       4*8
-                            sizeof(UInt16) * Number_Pump * Number_Cylinder +
-                    //public List<UInt16> out_PumpPositionHighout = new List<UInt16>();           //油缸最大行程设定值		   4*8
-                            sizeof(UInt16) * Number_Pump * Number_Cylinder +
-                    //public List<UInt16> out_PumpTodayPositionHighout = new List<UInt16>(); //油缸当天行程最大设定值 4*8
-                            sizeof(UInt16) * Number_Pump * Number_Cylinder;
+                    //public List<UInt16> out_PumpPressureHighout = new List<UInt16>();           //马达最大压力设定	       4
+                            sizeof(UInt16) * Number_Pump +//* Number_Cylinder +
+                    //public List<UInt16> out_PumpPositionHighout = new List<UInt16>();           //油缸最大行程设定值		   4
+                            sizeof(UInt16) * Number_Pump +//* Number_Cylinder +
+                    //public List<UInt16> out_PumpTodayPositionHighout = new List<UInt16>(); //油缸当天行程最大设定值 4
+                            sizeof(UInt16) * Number_Pump;//* Number_Cylinder;
 
                 try
                 {
@@ -912,6 +914,12 @@ namespace DataPool
                                 out_PressureAlarm_Pump[i] = br.ReadInt16();  //泵站压力报警值 4
                                 out_Pressure_Pump[i] = br.ReadInt16();  //泵站压力设定值 4
                                 out_StartPressure_Pump[i] = br.ReadUInt16();//泵站启动压力设定值 4
+                                out_SectionalArea_Value[i] = br.ReadInt16();//油缸截面积 4
+                                out_MAXPressure_Value[i] = br.ReadInt16(); //油缸最大压力 4
+                                out_MAXPosition_Value[i] = br.ReadInt16(); //油缸最大位移 4
+                                out_PumpPressureHighout[i] = br.ReadUInt16();  //马达最大压力设定	       4
+                                out_PumpPositionHighout[i] = br.ReadUInt16(); //油缸最大行程设定值		   4
+                                out_PumpTodayPositionHighout[i] = br.ReadUInt16(); //油缸当天行程最大设定值 4
                             }
 
                             for (int i = 0; i < Number_Pump; i++)
@@ -949,14 +957,8 @@ namespace DataPool
                                     /*List<byte>*/
                                     View_SetupPosition_Col[i * 8 + j] = br.ReadByte();   //油缸安装所在的支数 4*8
 
-                                    out_SectionalArea_Value[i * 8 + j] = br.ReadInt16();//油缸截面积 4*8
-                                    out_MAXPressure_Value[i * 8 + j] = br.ReadInt16(); //油缸最大压力 4*8
-                                    out_MAXPosition_Value[i * 8 + j] = br.ReadInt16(); //油缸最大位移 4*8
                                     sign_View_SetupFinish_Confirm_seperate[i * 8 + j] = br.ReadBoolean();  //安装调试完毕确认_油缸 4*8
 
-                                    out_PumpPressureHighout[i * 8 + j] = br.ReadUInt16();  //马达最大压力设定	       4*8
-                                    out_PumpPositionHighout[i * 8 + j] = br.ReadUInt16(); //油缸最大行程设定值		   4*8
-                                    out_PumpTodayPositionHighout[i * 8 + j] = br.ReadUInt16(); //油缸当天行程最大设定值 4*8
                                 }
                             }
                         }
@@ -990,6 +992,12 @@ namespace DataPool
                     bw.Write(out_PressureAlarm_Pump[i]); //泵站压力报警值 4
                     bw.Write(out_Pressure_Pump[i]); //泵站压力设定值 4
                     bw.Write(out_StartPressure_Pump[i]); //泵站启动压力设定值 4
+                    bw.Write(out_SectionalArea_Value[i]);//油缸截面积 4
+                    bw.Write(out_MAXPressure_Value[i]); //油缸最大压力 4
+                    bw.Write(out_MAXPosition_Value[i]); //油缸最大位移 4
+                    bw.Write(out_PumpPressureHighout[i]);  //马达最大压力设定	       4
+                    bw.Write(out_PumpPositionHighout[i]); //油缸最大行程设定值		   4
+                    bw.Write(out_PumpTodayPositionHighout[i]); //油缸当天行程最大设定值 4
                 }
 
                 for (int i = 0; i < Number_Pump; i++)
@@ -1027,14 +1035,8 @@ namespace DataPool
                         /*List<byte>*/
                         bw.Write(View_SetupPosition_Col[i * 8 + j]);   //油缸安装所在的支数 4*8
 
-                        bw.Write(out_SectionalArea_Value[i * 8 + j]);//油缸截面积 4*8
-                        bw.Write(out_MAXPressure_Value[i * 8 + j]); //油缸最大压力 4*8
-                        bw.Write(out_MAXPosition_Value[i * 8 + j]); //油缸最大位移 4*8
                         bw.Write(sign_View_SetupFinish_Confirm_seperate[i * 8 + j]);  //安装调试完毕确认_油缸 4*8
 
-                        bw.Write(out_PumpPressureHighout[i * 8 + j]);  //马达最大压力设定	       4*8
-                        bw.Write(out_PumpPositionHighout[i * 8 + j]); //油缸最大行程设定值		   4*8
-                        bw.Write(out_PumpTodayPositionHighout[i * 8 + j]); //油缸当天行程最大设定值 4*8
                     }
                 }
             }

@@ -723,14 +723,14 @@ namespace AdvaMACSystem
                 {
                     msgSend[canmsgIndex].id = 0x2006;
 
-                    msgSend[canmsgIndex].data[0] = (byte)(CanDatapool.out_SectionalArea_Value[(int)(id * CanDatapool.CylinderCount + subid)] & 0xFF);
-                    msgSend[canmsgIndex].data[1] = (byte)(CanDatapool.out_SectionalArea_Value[(int)(id * CanDatapool.CylinderCount + subid)] >> 8);
+                    msgSend[canmsgIndex].data[0] = (byte)(CanDatapool.out_SectionalArea_Value[id] & 0xFF);
+                    msgSend[canmsgIndex].data[1] = (byte)(CanDatapool.out_SectionalArea_Value[id] >> 8);
 
-                    msgSend[canmsgIndex].data[2] = (byte)(CanDatapool.out_MAXPressure_Value[(int)(id * CanDatapool.CylinderCount + subid)] & 0xFF);
-                    msgSend[canmsgIndex].data[3] = (byte)(CanDatapool.out_MAXPressure_Value[(int)(id * CanDatapool.CylinderCount + subid)] >> 8);
+                    msgSend[canmsgIndex].data[2] = (byte)(CanDatapool.out_MAXPressure_Value[id] & 0xFF);
+                    msgSend[canmsgIndex].data[3] = (byte)(CanDatapool.out_MAXPressure_Value[id] >> 8);
 
-                    msgSend[canmsgIndex].data[4] = (byte)(CanDatapool.out_MAXPosition_Value[(int)(id * CanDatapool.CylinderCount + subid)] & 0xFF);
-                    msgSend[canmsgIndex].data[5] = (byte)(CanDatapool.out_MAXPosition_Value[(int)(id * CanDatapool.CylinderCount + subid)] >> 8);
+                    msgSend[canmsgIndex].data[4] = (byte)(CanDatapool.out_MAXPosition_Value[id] & 0xFF);
+                    msgSend[canmsgIndex].data[5] = (byte)(CanDatapool.out_MAXPosition_Value[id] >> 8);
                     canmsgIndex++;
                 }
 
@@ -741,14 +741,14 @@ namespace AdvaMACSystem
                 {
                     msgSend[canmsgIndex].id = 0x2007;
 
-                    msgSend[canmsgIndex].data[0] = (byte)(CanDatapool.out_SectionalArea_Value[(int)(id * CanDatapool.CylinderCount + subid)] & 0xFF);
-                    msgSend[canmsgIndex].data[1] = (byte)(CanDatapool.out_SectionalArea_Value[(int)(id * CanDatapool.CylinderCount + subid)] >> 8);
+                    msgSend[canmsgIndex].data[0] = (byte)(CanDatapool.out_PumpPressureHighout[id] & 0xFF);
+                    msgSend[canmsgIndex].data[1] = (byte)(CanDatapool.out_PumpPressureHighout[id] >> 8);
 
-                    msgSend[canmsgIndex].data[2] = (byte)(CanDatapool.out_MAXPressure_Value[(int)(id * CanDatapool.CylinderCount + subid)] & 0xFF);
-                    msgSend[canmsgIndex].data[3] = (byte)(CanDatapool.out_MAXPressure_Value[(int)(id * CanDatapool.CylinderCount + subid)] >> 8);
+                    msgSend[canmsgIndex].data[2] = (byte)(CanDatapool.out_PumpPositionHighout[id] & 0xFF);
+                    msgSend[canmsgIndex].data[3] = (byte)(CanDatapool.out_PumpPositionHighout[id] >> 8);
 
-                    msgSend[canmsgIndex].data[4] = (byte)(CanDatapool.out_MAXPosition_Value[(int)(id * CanDatapool.CylinderCount + subid)] & 0xFF);
-                    msgSend[canmsgIndex].data[5] = (byte)(CanDatapool.out_MAXPosition_Value[(int)(id * CanDatapool.CylinderCount + subid)] >> 8);
+                    msgSend[canmsgIndex].data[4] = (byte)(CanDatapool.out_PumpTodayPositionHighout[id] & 0xFF);
+                    msgSend[canmsgIndex].data[5] = (byte)(CanDatapool.out_PumpTodayPositionHighout[id] >> 8);
                     canmsgIndex++;
                 }
 
