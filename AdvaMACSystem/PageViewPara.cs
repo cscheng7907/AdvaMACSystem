@@ -38,13 +38,13 @@ namespace AdvaMACSystem
             lbList.Add(imageLabel_PressureLowerLimitAlarm_Value);
             lbList.Add(imageLabel_PressureUpperLimitAlarm_Value);
             lbList.Add(imageLabel_Pressure_Value);
-            lbList.Add(imageLabel_MAXPressure_Value);
-            lbList.Add(imageLabel_MAXPosition_Value);
-            lbList.Add(imageLabel_Area);
+            //lbList.Add(imageLabel_MAXPressure_Value);
+            //lbList.Add(imageLabel_MAXPosition_Value);
+            //lbList.Add(imageLabel_Area);
 
-            lbList.Add(imageLabel_PumpTodayPositionHighout);
-            lbList.Add(imageLabel_PumpPositionHighout);
-            lbList.Add(imageLabel_PumpPressureHighout);
+            //lbList.Add(imageLabel_PumpTodayPositionHighout);
+            //lbList.Add(imageLabel_PumpPositionHighout);
+            //lbList.Add(imageLabel_PumpPressureHighout);
 
             btnList.Add(imageButton_PositionControl_Enable);
             btnList.Add(imageButton_PressureUpperLimitAlarm_Enable);

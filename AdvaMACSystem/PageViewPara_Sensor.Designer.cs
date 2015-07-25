@@ -68,8 +68,8 @@
             this.imageLabel_title.Size = new System.Drawing.Size(1024, 57);
             this.imageLabel_title.TabIndex = 0;
             this.imageLabel_title.Text = "传感器标定";
-            this.imageLabel_title.TextX = -1F;
-            this.imageLabel_title.TextY = -1F;
+            this.imageLabel_title.TextX = 600;//-1F;
+            this.imageLabel_title.TextY = 15;//-1F;
             this.imageLabel_title.TransParent = false;
             // 
             // panel1
@@ -224,6 +224,7 @@
             this.imageLabel3.TextX = -1F;
             this.imageLabel3.TextY = -1F;
             this.imageLabel3.TransParent = false;
+            this.imageLabel3.Click += new System.EventHandler(imageLabel_Input_Click);
             // 
             // imageLabel2
             // 
@@ -239,6 +240,7 @@
             this.imageLabel2.TextX = -1F;
             this.imageLabel2.TextY = -1F;
             this.imageLabel2.TransParent = false;
+            this.imageLabel2.Click += new System.EventHandler(imageLabel_Input_Click);
             // 
             // imageLabel1
             // 
@@ -254,6 +256,7 @@
             this.imageLabel1.TextX = -1F;
             this.imageLabel1.TextY = -1F;
             this.imageLabel1.TransParent = false;
+            this.imageLabel1.Click += new System.EventHandler(imageLabel_Input_Click);
             // 
             // label6
             // 

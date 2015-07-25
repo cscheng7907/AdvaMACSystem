@@ -48,8 +48,8 @@
             this.imageLabel_title.Size = new System.Drawing.Size(1024, 57);
             this.imageLabel_title.TabIndex = 0;
             this.imageLabel_title.Text = "安装设定";
-            this.imageLabel_title.TextX = -1F;
-            this.imageLabel_title.TextY = -1F;
+            this.imageLabel_title.TextX = 600;//-1F;
+            this.imageLabel_title.TextY = 15;//-1F;
             this.imageLabel_title.TransParent = false;
             
             // 
