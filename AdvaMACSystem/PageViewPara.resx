@@ -194,4 +194,7 @@
         Ow==
 </value>
   </data>
+  <metadata name="$this.FormFactorShadowProperty" xml:space="preserve">
+    <value>WEBPAD</value>
+  </metadata>
 </root>
