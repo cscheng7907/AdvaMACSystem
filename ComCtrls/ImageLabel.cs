@@ -364,6 +364,7 @@ namespace ComCtrls
 
 
         private Image backimg = null;
+        [DefaultValue(null)]
         public Image BackImg
         {
             get
@@ -381,6 +382,7 @@ namespace ComCtrls
         }
 
         private Image imgdisable = null;
+        [DefaultValue(null)]
         public Image ImgDisable
         {
             get
