@@ -12,9 +12,6 @@ namespace ComCtrls
     [Serializable]
     public partial class ImageLabel : Control
     {
-
-
-
         public ImageLabel()
         {
             InitializeComponent();
@@ -363,9 +360,9 @@ namespace ComCtrls
         }
 
 
-        private Image backimg = null;
+        private Bitmap backimg = null;
         [DefaultValue(null)]
-        public Image BackImg
+        public Bitmap BackImg
         {
             get
             {
@@ -381,9 +378,9 @@ namespace ComCtrls
             }
         }
 
-        private Image imgdisable = null;
+        private Bitmap imgdisable = null;
         [DefaultValue(null)]
-        public Image ImgDisable
+        public Bitmap ImgDisable
         {
             get
             {

@@ -45,8 +45,8 @@ namespace ComCtrls
             //}
         }
 
-        private Image upimg = null;
-        public Image UPImg
+        private Bitmap upimg = null;
+        public Bitmap UPImg
         {
             get
             {
@@ -62,8 +62,8 @@ namespace ComCtrls
             }
         }
 
-        private Image upimgdisaable = null;
-        public Image UPImgDisaable
+        private Bitmap upimgdisaable = null;
+        public Bitmap UPImgDisaable
         {
             get
             {
@@ -79,8 +79,8 @@ namespace ComCtrls
             }
         }
 
-        private Image dnimg = null;
-        public Image DNImg
+        private Bitmap dnimg = null;
+        public Bitmap DNImg
         {
             get
             {
@@ -95,8 +95,8 @@ namespace ComCtrls
                 }
             }
         }
-        private Image dnimgdisable = null;
-        public Image DNImgDisable
+        private Bitmap dnimgdisable = null;
+        public Bitmap DNImgDisable
         {
             get
             {
@@ -112,8 +112,8 @@ namespace ComCtrls
             }
         }
 
-        private Image icon = null;
-        public Image Icon
+        private Bitmap icon = null;
+        public Bitmap Icon
         {
             get
             {

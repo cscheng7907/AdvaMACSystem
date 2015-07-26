@@ -704,9 +704,9 @@ namespace ComCtrls
             return bmp.GetPixel(0, 0);
         }
 
-        private Image upimg = null;
+        private Bitmap upimg = null;
         [DefaultValue(null)]
-        public Image UPImg
+        public Bitmap UPImg
         {
             get
             {
@@ -722,9 +722,9 @@ namespace ComCtrls
             }
         }
 
-        private Image upimgdisable = null;
+        private Bitmap upimgdisable = null;
         [DefaultValue(null)]
-        public Image UPImgDisable
+        public Bitmap UPImgDisable
         {
             get
             {
@@ -740,9 +740,9 @@ namespace ComCtrls
             }
         }
 
-        private Image dnimg = null;
+        private Bitmap dnimg = null;
         [DefaultValue(null)]
-        public Image DNImg
+        public Bitmap DNImg
         {
             get
             {
@@ -758,9 +758,9 @@ namespace ComCtrls
             }
         }
 
-        private Image dnimgdisable = null;
+        private Bitmap dnimgdisable = null;
         [DefaultValue(null)]
-        public Image DNImgDisable
+        public Bitmap DNImgDisable
         {
             get
             {

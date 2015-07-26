@@ -55,7 +55,7 @@
             this.imageButton_ent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_ent.Checked = false;
-            this.imageButton_ent.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_ent.DNImg")));
+            this.imageButton_ent.DNImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_ent.DNImg")));
             this.imageButton_ent.DNImgDisable = null;
             this.imageButton_ent.DownColor = System.Drawing.SystemColors.Control;
             this.imageButton_ent.IMGContainer = null;
@@ -69,7 +69,7 @@
             this.imageButton_ent.Toggle = false;
             this.imageButton_ent.TransParent = false;
             this.imageButton_ent.UpColor = System.Drawing.SystemColors.Control;
-            this.imageButton_ent.UPImg = ((System.Drawing.Image)(resources.GetObject("imageButton_ent.UPImg")));
+            this.imageButton_ent.UPImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_ent.UPImg")));
             this.imageButton_ent.UPImgDisable = null;
             this.imageButton_ent.Click += new System.EventHandler(this.imageButton_ent_Click);
             // 
@@ -78,7 +78,7 @@
             this.imageButton_0.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_0.Checked = false;
-            this.imageButton_0.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_0.DNImg")));
+            this.imageButton_0.DNImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_0.DNImg")));
             this.imageButton_0.DNImgDisable = null;
             this.imageButton_0.DownColor = System.Drawing.SystemColors.Control;
             this.imageButton_0.IMGContainer = null;
@@ -93,7 +93,7 @@
             this.imageButton_0.Toggle = false;
             this.imageButton_0.TransParent = false;
             this.imageButton_0.UpColor = System.Drawing.SystemColors.Control;
-            this.imageButton_0.UPImg = ((System.Drawing.Image)(resources.GetObject("imageButton_0.UPImg")));
+            this.imageButton_0.UPImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_0.UPImg")));
             this.imageButton_0.UPImgDisable = null;
             this.imageButton_0.Click += new System.EventHandler(this.imageButton_Click);
             // 
@@ -102,7 +102,7 @@
             this.imageButton_dot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_dot.Checked = false;
-            this.imageButton_dot.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_dot.DNImg")));
+            this.imageButton_dot.DNImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_dot.DNImg")));
             this.imageButton_dot.DNImgDisable = null;
             this.imageButton_dot.DownColor = System.Drawing.SystemColors.Control;
             this.imageButton_dot.IMGContainer = null;
@@ -117,7 +117,7 @@
             this.imageButton_dot.Toggle = false;
             this.imageButton_dot.TransParent = false;
             this.imageButton_dot.UpColor = System.Drawing.SystemColors.Control;
-            this.imageButton_dot.UPImg = ((System.Drawing.Image)(resources.GetObject("imageButton_dot.UPImg")));
+            this.imageButton_dot.UPImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_dot.UPImg")));
             this.imageButton_dot.UPImgDisable = null;
             this.imageButton_dot.Click += new System.EventHandler(this.imageButton_dot_Click);
             // 
@@ -126,7 +126,7 @@
             this.imageButton_es.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_es.Checked = false;
-            this.imageButton_es.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_es.DNImg")));
+            this.imageButton_es.DNImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_es.DNImg")));
             this.imageButton_es.DNImgDisable = null;
             this.imageButton_es.DownColor = System.Drawing.SystemColors.Control;
             this.imageButton_es.IMGContainer = null;
@@ -140,7 +140,7 @@
             this.imageButton_es.Toggle = false;
             this.imageButton_es.TransParent = false;
             this.imageButton_es.UpColor = System.Drawing.SystemColors.Control;
-            this.imageButton_es.UPImg = ((System.Drawing.Image)(resources.GetObject("imageButton_es.UPImg")));
+            this.imageButton_es.UPImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_es.UPImg")));
             this.imageButton_es.UPImgDisable = null;
             this.imageButton_es.Click += new System.EventHandler(this.imageButton_es_Click);
             // 
@@ -149,7 +149,7 @@
             this.imageButton_3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_3.Checked = false;
-            this.imageButton_3.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_3.DNImg")));
+            this.imageButton_3.DNImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_3.DNImg")));
             this.imageButton_3.DNImgDisable = null;
             this.imageButton_3.DownColor = System.Drawing.SystemColors.Control;
             this.imageButton_3.IMGContainer = null;
@@ -164,7 +164,7 @@
             this.imageButton_3.Toggle = false;
             this.imageButton_3.TransParent = false;
             this.imageButton_3.UpColor = System.Drawing.SystemColors.Control;
-            this.imageButton_3.UPImg = ((System.Drawing.Image)(resources.GetObject("imageButton_3.UPImg")));
+            this.imageButton_3.UPImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_3.UPImg")));
             this.imageButton_3.UPImgDisable = null;
             this.imageButton_3.Click += new System.EventHandler(this.imageButton_Click);
             // 
@@ -173,7 +173,7 @@
             this.imageButton_2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_2.Checked = false;
-            this.imageButton_2.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_2.DNImg")));
+            this.imageButton_2.DNImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_2.DNImg")));
             this.imageButton_2.DNImgDisable = null;
             this.imageButton_2.DownColor = System.Drawing.SystemColors.Control;
             this.imageButton_2.IMGContainer = null;
@@ -188,7 +188,7 @@
             this.imageButton_2.Toggle = false;
             this.imageButton_2.TransParent = false;
             this.imageButton_2.UpColor = System.Drawing.SystemColors.Control;
-            this.imageButton_2.UPImg = ((System.Drawing.Image)(resources.GetObject("imageButton_2.UPImg")));
+            this.imageButton_2.UPImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_2.UPImg")));
             this.imageButton_2.UPImgDisable = null;
             this.imageButton_2.Click += new System.EventHandler(this.imageButton_Click);
             // 
@@ -197,7 +197,7 @@
             this.imageButton_1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_1.Checked = false;
-            this.imageButton_1.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_1.DNImg")));
+            this.imageButton_1.DNImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_1.DNImg")));
             this.imageButton_1.DNImgDisable = null;
             this.imageButton_1.DownColor = System.Drawing.SystemColors.Control;
             this.imageButton_1.IMGContainer = null;
@@ -212,7 +212,7 @@
             this.imageButton_1.Toggle = false;
             this.imageButton_1.TransParent = false;
             this.imageButton_1.UpColor = System.Drawing.SystemColors.Control;
-            this.imageButton_1.UPImg = ((System.Drawing.Image)(resources.GetObject("imageButton_1.UPImg")));
+            this.imageButton_1.UPImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_1.UPImg")));
             this.imageButton_1.UPImgDisable = null;
             this.imageButton_1.Click += new System.EventHandler(this.imageButton_Click);
             // 
@@ -221,7 +221,7 @@
             this.imageButton_cr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_cr.Checked = false;
-            this.imageButton_cr.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_cr.DNImg")));
+            this.imageButton_cr.DNImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_cr.DNImg")));
             this.imageButton_cr.DNImgDisable = null;
             this.imageButton_cr.DownColor = System.Drawing.SystemColors.Control;
             this.imageButton_cr.IMGContainer = null;
@@ -235,7 +235,7 @@
             this.imageButton_cr.Toggle = false;
             this.imageButton_cr.TransParent = false;
             this.imageButton_cr.UpColor = System.Drawing.SystemColors.Control;
-            this.imageButton_cr.UPImg = ((System.Drawing.Image)(resources.GetObject("imageButton_cr.UPImg")));
+            this.imageButton_cr.UPImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_cr.UPImg")));
             this.imageButton_cr.UPImgDisable = null;
             this.imageButton_cr.Click += new System.EventHandler(this.imageButton_cr_Click);
             // 
@@ -244,7 +244,7 @@
             this.imageButton_6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_6.Checked = false;
-            this.imageButton_6.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_6.DNImg")));
+            this.imageButton_6.DNImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_6.DNImg")));
             this.imageButton_6.DNImgDisable = null;
             this.imageButton_6.DownColor = System.Drawing.SystemColors.Control;
             this.imageButton_6.IMGContainer = null;
@@ -259,7 +259,7 @@
             this.imageButton_6.Toggle = false;
             this.imageButton_6.TransParent = false;
             this.imageButton_6.UpColor = System.Drawing.SystemColors.Control;
-            this.imageButton_6.UPImg = ((System.Drawing.Image)(resources.GetObject("imageButton_6.UPImg")));
+            this.imageButton_6.UPImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_6.UPImg")));
             this.imageButton_6.UPImgDisable = null;
             this.imageButton_6.Click += new System.EventHandler(this.imageButton_Click);
             // 
@@ -268,7 +268,7 @@
             this.imageButton_5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_5.Checked = false;
-            this.imageButton_5.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_5.DNImg")));
+            this.imageButton_5.DNImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_5.DNImg")));
             this.imageButton_5.DNImgDisable = null;
             this.imageButton_5.DownColor = System.Drawing.SystemColors.Control;
             this.imageButton_5.IMGContainer = null;
@@ -283,7 +283,7 @@
             this.imageButton_5.Toggle = false;
             this.imageButton_5.TransParent = false;
             this.imageButton_5.UpColor = System.Drawing.SystemColors.Control;
-            this.imageButton_5.UPImg = ((System.Drawing.Image)(resources.GetObject("imageButton_5.UPImg")));
+            this.imageButton_5.UPImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_5.UPImg")));
             this.imageButton_5.UPImgDisable = null;
             this.imageButton_5.Click += new System.EventHandler(this.imageButton_Click);
             // 
@@ -292,7 +292,7 @@
             this.imageButton_4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_4.Checked = false;
-            this.imageButton_4.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_4.DNImg")));
+            this.imageButton_4.DNImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_4.DNImg")));
             this.imageButton_4.DNImgDisable = null;
             this.imageButton_4.DownColor = System.Drawing.SystemColors.Control;
             this.imageButton_4.IMGContainer = null;
@@ -307,7 +307,7 @@
             this.imageButton_4.Toggle = false;
             this.imageButton_4.TransParent = false;
             this.imageButton_4.UpColor = System.Drawing.SystemColors.Control;
-            this.imageButton_4.UPImg = ((System.Drawing.Image)(resources.GetObject("imageButton_4.UPImg")));
+            this.imageButton_4.UPImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_4.UPImg")));
             this.imageButton_4.UPImgDisable = null;
             this.imageButton_4.Click += new System.EventHandler(this.imageButton_Click);
             // 
@@ -316,7 +316,7 @@
             this.imageButton_Minus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_Minus.Checked = false;
-            this.imageButton_Minus.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_Minus.DNImg")));
+            this.imageButton_Minus.DNImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_Minus.DNImg")));
             this.imageButton_Minus.DNImgDisable = null;
             this.imageButton_Minus.DownColor = System.Drawing.SystemColors.Control;
             this.imageButton_Minus.IMGContainer = null;
@@ -331,7 +331,7 @@
             this.imageButton_Minus.Toggle = false;
             this.imageButton_Minus.TransParent = false;
             this.imageButton_Minus.UpColor = System.Drawing.SystemColors.Control;
-            this.imageButton_Minus.UPImg = ((System.Drawing.Image)(resources.GetObject("imageButton_Minus.UPImg")));
+            this.imageButton_Minus.UPImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_Minus.UPImg")));
             this.imageButton_Minus.UPImgDisable = null;
             this.imageButton_Minus.Click += new System.EventHandler(this.imageButton_Minus_Click);
             // 
@@ -340,7 +340,7 @@
             this.imageButton_9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_9.Checked = false;
-            this.imageButton_9.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_9.DNImg")));
+            this.imageButton_9.DNImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_9.DNImg")));
             this.imageButton_9.DNImgDisable = null;
             this.imageButton_9.DownColor = System.Drawing.SystemColors.Control;
             this.imageButton_9.IMGContainer = null;
@@ -355,7 +355,7 @@
             this.imageButton_9.Toggle = false;
             this.imageButton_9.TransParent = false;
             this.imageButton_9.UpColor = System.Drawing.SystemColors.Control;
-            this.imageButton_9.UPImg = ((System.Drawing.Image)(resources.GetObject("imageButton_9.UPImg")));
+            this.imageButton_9.UPImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_9.UPImg")));
             this.imageButton_9.UPImgDisable = null;
             this.imageButton_9.Click += new System.EventHandler(this.imageButton_Click);
             // 
@@ -364,7 +364,7 @@
             this.imageButton_8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_8.Checked = false;
-            this.imageButton_8.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_8.DNImg")));
+            this.imageButton_8.DNImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_8.DNImg")));
             this.imageButton_8.DNImgDisable = null;
             this.imageButton_8.DownColor = System.Drawing.SystemColors.Control;
             this.imageButton_8.IMGContainer = null;
@@ -379,7 +379,7 @@
             this.imageButton_8.Toggle = false;
             this.imageButton_8.TransParent = false;
             this.imageButton_8.UpColor = System.Drawing.SystemColors.Control;
-            this.imageButton_8.UPImg = ((System.Drawing.Image)(resources.GetObject("imageButton_8.UPImg")));
+            this.imageButton_8.UPImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_8.UPImg")));
             this.imageButton_8.UPImgDisable = null;
             this.imageButton_8.Click += new System.EventHandler(this.imageButton_Click);
             // 
@@ -388,7 +388,7 @@
             this.imageButton_7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.imageButton_7.Checked = false;
-            this.imageButton_7.DNImg = ((System.Drawing.Image)(resources.GetObject("imageButton_7.DNImg")));
+            this.imageButton_7.DNImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_7.DNImg")));
             this.imageButton_7.DNImgDisable = null;
             this.imageButton_7.DownColor = System.Drawing.SystemColors.Control;
             this.imageButton_7.IMGContainer = null;
@@ -403,7 +403,7 @@
             this.imageButton_7.Toggle = false;
             this.imageButton_7.TransParent = false;
             this.imageButton_7.UpColor = System.Drawing.SystemColors.Control;
-            this.imageButton_7.UPImg = ((System.Drawing.Image)(resources.GetObject("imageButton_7.UPImg")));
+            this.imageButton_7.UPImg = ((System.Drawing.Bitmap)(resources.GetObject("imageButton_7.UPImg")));
             this.imageButton_7.UPImgDisable = null;
             this.imageButton_7.Click += new System.EventHandler(this.imageButton_Click);
             // 
@@ -411,7 +411,7 @@
             // 
             this.imageLabel_input.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.imageLabel_input.BackImg = ((System.Drawing.Image)(resources.GetObject("imageLabel_input.BackImg")));
+            this.imageLabel_input.BackImg = ((System.Drawing.Bitmap)(resources.GetObject("imageLabel_input.BackImg")));
             this.imageLabel_input.Checked = false;
             this.imageLabel_input.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Regular);
             this.imageLabel_input.IMGContainer = null;
@@ -427,7 +427,7 @@
             // 
             // imageLabel_Back
             // 
-            this.imageLabel_Back.BackImg = ((System.Drawing.Image)(resources.GetObject("imageLabel_Back.BackImg")));
+            this.imageLabel_Back.BackImg = ((System.Drawing.Bitmap)(resources.GetObject("imageLabel_Back.BackImg")));
             this.imageLabel_Back.Checked = false;
             this.imageLabel_Back.Dock = System.Windows.Forms.DockStyle.Fill;
             this.imageLabel_Back.IMGContainer = null;

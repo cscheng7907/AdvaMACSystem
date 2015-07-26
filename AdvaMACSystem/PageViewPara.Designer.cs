@@ -160,7 +160,7 @@
             // 
             // imageLabel_idbk
             // 
-            this.imageLabel_idbk.BackImg = ((System.Drawing.Image)(resources.GetObject("imageLabel_idbk.BackImg")));
+            this.imageLabel_idbk.BackImg = ((System.Drawing.Bitmap)(resources.GetObject("imageLabel_idbk.BackImg")));
             this.imageLabel_idbk.Checked = false;
             this.imageLabel_idbk.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageLabel_idbk.Location = new System.Drawing.Point(206, 11);
@@ -425,7 +425,7 @@
             // 
             // imageLabel_subidbk
             // 
-            this.imageLabel_subidbk.BackImg = ((System.Drawing.Image)(resources.GetObject("imageLabel_subidbk.BackImg")));
+            this.imageLabel_subidbk.BackImg = ((System.Drawing.Bitmap)(resources.GetObject("imageLabel_subidbk.BackImg")));
             this.imageLabel_subidbk.Checked = false;
             this.imageLabel_subidbk.Layout = ComCtrls.KTLayout.GlyphTop;
             this.imageLabel_subidbk.Location = new System.Drawing.Point(507, 14);
