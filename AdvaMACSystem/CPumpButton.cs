@@ -92,7 +92,7 @@ namespace AdvaMACSystem
             if (warningCount > 0)
             {
                 gxOff.FillRectangle(new SolidBrush(Color.Red), 80, 34, 80, 30);
-                gxOff.DrawString(warningCount.ToString("D2"), new System.Drawing.Font("Microsoft YaHei", 20F, System.Drawing.FontStyle.Bold), new SolidBrush(Color.Yellow), 120, 70, sf);
+                gxOff.DrawString(warningCount.ToString("D2"), new System.Drawing.Font("Microsoft YaHei", 20F, System.Drawing.FontStyle.Bold), new SolidBrush(Color.Yellow), 120, 49, sf);
             }
 
             switch (type)
