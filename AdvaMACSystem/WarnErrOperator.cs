@@ -383,9 +383,15 @@ namespace AdvaMACSystem
                 RecFile = new FileStream(WarningRecFileName, FileMode.Append);
 
                 if (val)
-                    _curwarninglist.Add(listkey, t);
+                {
+                    if (!_curwarninglist.ContainsKey(listkey))
+                        _curwarninglist.Add(listkey, t);
+                }
                 else
-                    _curwarninglist.Remove(listkey);
+                {
+                    if (_curwarninglist.ContainsKey(listkey))
+                        _curwarninglist.Remove(listkey);
+                }
             }
             else//故障系列
             {
@@ -398,7 +404,8 @@ namespace AdvaMACSystem
                 }
                 else
                 {
-                    _curerrorlist.Remove(listkey);
+                    if (_curerrorlist.ContainsKey(listkey))
+                        _curerrorlist.Remove(listkey);
                 }
             }
 
