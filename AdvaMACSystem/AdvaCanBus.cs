@@ -901,16 +901,42 @@ namespace AdvaMACSystem
 
                         //*开启冗余控制
                         //某一或几#泵站建压失败，且其它泵站无补偿动作
-                        //即，当某一泵站没有建压失败，且它有补偿动作，则开启冗余控制不成立
-                        //边界条件，1 没有泵站建压失败，且所有泵站无补偿动作 ，目前结果为是
-                        //          2 所有泵站建压失败，目前结果为是
+                        //如2#泵站建压失败，1#、3#、4#无补偿动作；
+                        //或2#、3#泵站建压失败，1#、4#无补偿动作。
 
+                        //即，当某一泵站没有建压失败，且它有补偿动作，则开启冗余控制不成立
+                        //边界条件，1 没有泵站建压失败，且所有泵站无补偿动作 ，目前结果为否//是
+                        //          2 所有泵站建压失败，目前结果为否//是
+
+                        //for (int i = 0; i < CanDatapool.PumpCount; i++)
+                        //{
+                        //    if (!CanDatapool.in_StartFailed_Pump_1010_1013[i] &&
+                        //        CanDatapool.in_CompAct_Pump_1010_1013[i])
+                        //        bval = false;
+                        //}
+
+                        //是否有建圧失败的，若有 ，继续判断；没有，则 不开启
+                        bool hasjianya = false;
                         for (int i = 0; i < CanDatapool.PumpCount; i++)
                         {
-                            if (!CanDatapool.in_StartFailed_Pump_1010_1013[i] &&
-                                CanDatapool.in_CompAct_Pump_1010_1013[i])
-                                bval = false;
+                            if (CanDatapool.in_StartFailed_Pump_1010_1013[i])
+                                hasjianya = true;
                         }
+
+                        if (hasjianya)
+                        {
+                            //非建圧 && 无补偿的，则开启
+                            bval = false;
+                            for (int i = 0; i < CanDatapool.PumpCount; i++)
+                            {
+                                if (!CanDatapool.in_StartFailed_Pump_1010_1013[i] &&
+                                    !CanDatapool.in_CompAct_Pump_1010_1013[i])
+                                    bval = true;
+                            }
+
+                        }
+                        else
+                            bval = false;
 
                         msgSend[canmsgIndex].data[1] = (bval) ? (byte)1 : (byte)0;
 
@@ -938,18 +964,21 @@ namespace AdvaMACSystem
                         //如：被控泵站为2，如3无补偿动作且未建压失败，则3为冗余泵站，如3有补偿动作或建压失败，则4为冗余泵站，以此类推。"	
                         //边界条件，1 如没有被控泵站，从1-4判断，没有则为0
                         //          2 如有被控泵站， 没有符合条件的冗余泵站，目前为0
-                        for (byte i = msgSend[canmsgIndex].data[2]; i < msgSend[canmsgIndex].data[2] + CanDatapool.PumpCount; i++)
-                        {
-                            if (i < CanDatapool.PumpCount)
-                                tp_id_redundantPump = i;
-                            else
-                                tp_id_redundantPump = (byte)(i - CanDatapool.PumpCount);
+                        if (id_controledPump > 0)
+                            for (byte i = msgSend[canmsgIndex].data[2]; i < msgSend[canmsgIndex].data[2] + CanDatapool.PumpCount; i++)
+                            {
+                                if (i < CanDatapool.PumpCount)
+                                    tp_id_redundantPump = i;
+                                else
+                                    tp_id_redundantPump = (byte)(i - CanDatapool.PumpCount);
 
-                            if (CanDatapool.GetBoolValue(tp_id_redundantPump, 0, CmdDataType.cdt_PumpInstalled) &&
-                                !CanDatapool.in_CompAct_Pump_1010_1013[tp_id_redundantPump] &&
-                                !CanDatapool.in_StartFailed_Pump_1010_1013[tp_id_redundantPump])
-                                id_redundantPump = (byte)(tp_id_redundantPump + 1);
-                        }
+                                if (CanDatapool.GetBoolValue(tp_id_redundantPump, 0, CmdDataType.cdt_PumpInstalled) &&
+                                    !CanDatapool.in_CompAct_Pump_1010_1013[tp_id_redundantPump] &&
+                                    !CanDatapool.in_StartFailed_Pump_1010_1013[tp_id_redundantPump])
+                                    id_redundantPump = (byte)(tp_id_redundantPump + 1);
+                            }
+                        else
+                            id_redundantPump = 0;//如没有被控泵站，从1-4判断，没有则为0
 
                         msgSend[canmsgIndex].data[3] = id_redundantPump;
                     }
