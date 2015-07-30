@@ -191,7 +191,7 @@ namespace DataPool
                     out_Pressure_Pump.Add(0);//泵站压力设定值 4
                     out_StartPressure_Pump.Add(0); //泵站启动压力设定值 4
                     out_ManualStart_Pump.Add(false); //手动启动泵站  4
-                 
+
                     out_SectionalArea_Value.Add(0);  //油缸截面积 4
                     out_MAXPressure_Value.Add(0);  //油缸最大压力 4
                     out_MAXPosition_Value.Add(0);   //油缸最大位移 4
@@ -585,10 +585,12 @@ namespace DataPool
                     rtv = in_CompAct_Pump_1010_1013[id];
                     break;
                 case CmdDataType.cdt_PumpInstalled:
-                    for (int i = 0; i < 8; i++)
-                    {
-                        rtv = rtv | out_Installed[id * 8 + i];
-                    }
+                    //for (int i = 0; i < 8; i++)
+                    //{
+                    //    rtv = rtv | out_Installed[id * 8 + i];
+                    //}
+
+                    rtv = out_PressureAlarm_Pump[id] != 0;
 
                     break;
                 default:
