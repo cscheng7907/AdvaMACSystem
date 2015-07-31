@@ -109,6 +109,7 @@ namespace DataPool
                 in_Warn_PumpLevelHighout_3401_3404.Add(false);//泵站油位过高 4
                 in_Warn_PumpNotReach_3401_3404.Add(false);//泵站达不到设定值 4
 
+                in_Listento_id_1010_1013.Add(ListentoidType.ltpNone);//遥控被控冗余站// 4
 
                 for (int j = 0; j < 16; j++)
                 {
@@ -200,7 +201,7 @@ namespace DataPool
                     out_PumpPositionHighout.Add(0); //油缸最大行程设定值		   4
                     out_PumpTodayPositionHighout.Add(0); //油缸当天行程最大设定值 4
 
-                    ControlMode.Add(ControlModeType.MachLockManual);
+                    ControlMode.Add(ControlModeType.Auto);
                 }
             }
             finally
@@ -302,6 +303,10 @@ namespace DataPool
         public List<bool> in_Error_MachLock_retract_opencircuit_3511_3514 = new List<bool>();//油缸机械锁缩回电磁阀线路断路 4*8
 
         public List<bool> in_EStop_1010_1013 = new List<bool>();//急停按钮 // 4
+
+        public List<ListentoidType> in_Listento_id_1010_1013 = new List<ListentoidType>();//遥控被控冗余站// 4
+
+
         #endregion
 
         //Get function
@@ -1196,6 +1201,13 @@ namespace DataPool
         cdtPumpPressureHighout,          //马达最大压力设定	       4*8
         cdtPumpPositionHighout,          //油缸最大行程设定值		   4*8
         cdtPumpTodayPositionHighout //油缸当天行程最大设定值 4*8
+    }
+
+    public enum ListentoidType
+    {
+        ltpNone = 0,//无
+        ltpredundant = 1,//冗余站
+        ltpcontroled = 2//被控站
     }
 
     /*
