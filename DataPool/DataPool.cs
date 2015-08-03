@@ -111,6 +111,8 @@ namespace DataPool
 
                 in_Listento_id_1010_1013.Add(ListentoidType.ltpNone);//遥控被控冗余站// 4
 
+                in_Pump_HartBeating_1010_1013.Add(DateTime.Now); //泵站心跳 4
+
                 for (int j = 0; j < 16; j++)
                 {
                     in_Error_Pump_3501_3504.Add(false); //泵站及控制器 故障 4*16
@@ -306,6 +308,7 @@ namespace DataPool
 
         public List<ListentoidType> in_Listento_id_1010_1013 = new List<ListentoidType>();//遥控被控冗余站// 4
 
+        public List<DateTime> in_Pump_HartBeating_1010_1013 = new List<DateTime>();// 泵站心跳 4
 
         #endregion
 
@@ -1064,6 +1067,20 @@ namespace DataPool
         {
             Initial_out();
             File.Delete(DataPoolRecFileName);
+        }
+
+        public void ResetPump(int id)
+        {
+            if (id >= 0 && id < PumpCount)
+            {
+                in_CurPressureLow_Pump_Real_1010_1013[id] = 0;// msgRecieve[j].data[0];
+                in_CurPressureHigh_Pump_Real_1010_1013[id] = 0;// msgRecieve[j].data[1];
+                in_StartFailed_Pump_1010_1013[id] = false;// msgRecieve[j].data[2] != 0;
+                in_CompAct_Pump_1010_1013[id] = false;// msgRecieve[j].data[3] != 0;
+                ControlMode[id] = ControlModeType.Auto;// (ControlModeType)msgRecieve[j].data[4];
+                in_EStop_1010_1013[id] = false;// msgRecieve[j].data[5] != 0;
+                in_Listento_id_1010_1013[id] = 0;// (ListentoidType)msgRecieve[j].data[6];
+            }
         }
         #endregion
     }

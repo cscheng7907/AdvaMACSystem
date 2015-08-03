@@ -898,7 +898,7 @@ namespace AdvaMACSystem
                             !CanDatapool.in_CompAct_Pump_1010_1013[2] &&
                             !CanDatapool.in_CompAct_Pump_1010_1013[3]
                             ) ? (byte)1 : (byte)0;
-                        
+
 
                         for (int i = 0; i < CanDatapool.PumpCount; i++)
                         {
@@ -1148,6 +1148,8 @@ namespace AdvaMACSystem
                                         CanDatapool.ControlMode[idArray0] = (ControlModeType)msgRecieve[j].data[4];
                                         CanDatapool.in_EStop_1010_1013[idArray0] = msgRecieve[j].data[5] != 0;
                                         CanDatapool.in_Listento_id_1010_1013[idArray0] = (ListentoidType)msgRecieve[j].data[6];
+
+                                        CanDatapool.in_Pump_HartBeating_1010_1013[idArray0] = DateTime.Now;
 
                                         break;
                                     #region 3001-3008

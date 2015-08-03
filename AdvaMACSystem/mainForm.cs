@@ -165,6 +165,8 @@ namespace AdvaMACSystem
 
         }
 
+
+        private int timer1_count = 0;
         private void timer1_Tick(object sender, EventArgs e)
         {
             DateTime dt = DateTime.Now;
@@ -172,6 +174,25 @@ namespace AdvaMACSystem
             lb_date.Text = string.Format("{0:0000}-{1:00}-{2:00}", dt.Year, dt.Month, dt.Day);//"日期：2015-02-12";
 
             lb_time.Text = string.Format("{0:00} : {1:00} : {2:00}", dt.Hour, dt.Minute, dt.Second);//"时间：12 : 11 : 18";
+
+            //hartbeating
+#if WindowsCE
+            //500ms * 4 = 2s
+            if (timer1_count > 4)
+            {
+                for (int i = 0; i < dataPool.PumpCount; i++)
+                {
+                    TimeSpan sub = DateTime.Now.Subtract(dataPool.in_Pump_HartBeating_1010_1013[i]);
+
+                    if (sub.Milliseconds > 2000)
+                        dataPool.ResetPump(i);
+                }
+
+                timer1_count = 0;
+            }
+            else
+                timer1_count++;
+#endif
 
             //刷新紧停标志
             int pumpCount = (int)dataPool.PumpCount;
