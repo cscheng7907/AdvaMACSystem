@@ -398,7 +398,7 @@ namespace AdvaMACSystem
                 if (Csign_View_Setup)
                 {
                     msgSend[canmsgIndex].id = 0x2000;
-                    msgSend[canmsgIndex].length = 4;//(short)AdvCan.DATALENGTH;
+                    msgSend[canmsgIndex].length = 5;//(short)AdvCan.DATALENGTH;
 
                     msgSend[canmsgIndex].data[0] = (Csign_View_Setup) ? (byte)1 : (byte)0;
                     msgSend[canmsgIndex].data[1] = (byte)(id + 1);
