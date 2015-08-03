@@ -495,7 +495,7 @@ namespace AdvaMACSystem
             if (drawPressure)
             {
                 Scale = 10.17;
-                maxValue = 400;
+                maxValue = 4000;
                 minValue = 0;
 
                 tempFile = string.Format(historyOper.PressureRecFileName, pumpIndex, cylinderIndex, startTime.ToString("yyyy-MM-dd HH-mm-ss"));
@@ -585,11 +585,19 @@ namespace AdvaMACSystem
             for (int i = 0; i <= 10; i++)
             {
                 g.DrawLine(backPen, 40, 270 - i * 24, 45, 270 - i * 24);
-                g.DrawString(ymin.ToString(numberFormat), chartFont, whiteBrush, 35, 270 - i * 24, sf);
+                g.DrawString(ymin.ToString(numberFormat), chartFont, whiteBrush, 40, 270 - i * 24, sf);
                 ymin += (maxValue - minValue) / 10;
             }
             sf.Alignment = StringAlignment.Near;
             sf.LineAlignment = StringAlignment.Near;
+            if (drawPressure)
+            {
+                YUnit = "KN";
+            }
+            else
+            {
+                YUnit = "mm";
+            }
             g.DrawString(YUnit, chartFont, whiteBrush, 50, 3);
 
 
