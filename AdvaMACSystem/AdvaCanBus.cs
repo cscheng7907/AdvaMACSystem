@@ -885,6 +885,28 @@ namespace AdvaMACSystem
                         msgSend[canmsgIndex].data[2] = 0;
                         msgSend[canmsgIndex].data[3] = 0;
 
+                        if (CanDatapool.ControlMode[id] != ControlModeType.MachLockManual)
+                        {
+                            for (int i = 0; i < CanDatapool.PumpCount; i++)
+                            {
+                                switch (CanDatapool.in_Listento_id_1010_1013[i])
+                                {
+                                    case ListentoidType.ltpNone:
+                                        break;
+                                    case ListentoidType.ltpredundant:
+                                        id_redundantPump = (byte)(i + 1);
+                                        break;
+                                    case ListentoidType.ltpcontroled:
+                                        id_controledPump = (byte)(i + 1);
+                                        break;
+                                }
+
+                            }
+                            msgSend[canmsgIndex].data[2] = id_controledPump;
+                            msgSend[canmsgIndex].data[3] = id_redundantPump;
+
+                        }
+
 
                         //CanDatapool.out_id_controledPump = 0;
                         //CanDatapool.out_id_redundantPump = 0;
@@ -900,7 +922,7 @@ namespace AdvaMACSystem
                             ) ? (byte)1 : (byte)0;
 
 
-                        for (int i = 0; i < CanDatapool.PumpCount; i++)
+                       /* for (int i = 0; i < CanDatapool.PumpCount; i++)
                         {
                             switch (CanDatapool.in_Listento_id_1010_1013[i])
                             {
@@ -914,7 +936,7 @@ namespace AdvaMACSystem
                                     break;
                             }
 
-                        }
+                        }*/
 
                         if (id_controledPump == 0 &&
                             id_redundantPump == 0)
