@@ -967,6 +967,7 @@ namespace AdvaMACSystem
 
                             if (hasjianya)
                             {
+                                /*
                                 //非建圧 && 无补偿的，则开启
                                 bval = false;
                                 for (int i = 0; i < CanDatapool.PumpCount; i++)
@@ -975,7 +976,22 @@ namespace AdvaMACSystem
                                         !CanDatapool.in_CompAct_Pump_1010_1013[i])
                                         bval = true;
                                 }
-
+                                */
+                                bval = true;
+                                for (int i = 0; i < CanDatapool.PumpCount; i++)
+                                {
+                                    if (CanDatapool.in_StartFailed_Pump_1010_1013[i])
+                                    {
+                                        for (int j = 0; j < CanDatapool.PumpCount; j++)
+                                        {
+                                            if (i != j)
+                                            {
+                                                if (CanDatapool.in_CompAct_Pump_1010_1013[i])
+                                                    bval = false;
+                                            }
+                                        }
+                                    }
+                                }
                             }
                             else
                                 bval = false;
