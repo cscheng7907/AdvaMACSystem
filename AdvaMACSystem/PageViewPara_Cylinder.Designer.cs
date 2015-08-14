@@ -67,7 +67,7 @@
             this.imageLabel_title.Name = "imageLabel_title";
             this.imageLabel_title.Size = new System.Drawing.Size(1024, 57);
             this.imageLabel_title.TabIndex = 0;
-            this.imageLabel_title.Text = "油缸参数设定";
+            this.imageLabel_title.Text = "设备参数设定";
             this.imageLabel_title.TextX = 600;//-1F;
             this.imageLabel_title.TextY = 15;//-1F;
             this.imageLabel_title.TransParent = false;

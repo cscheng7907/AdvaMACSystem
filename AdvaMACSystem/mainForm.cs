@@ -52,6 +52,7 @@ namespace AdvaMACSystem
         private const string password_PageError = "333";//故障界面密码
         private const string password_Setting = "555";//参数设置密码
         private const string password_Diagnose = "666";//诊断界面密码
+        private const string password_Para_Cylinder = "123123";//设备参数界面密码
 
         private Bitmap estop = new Bitmap(AdvaMACSystem.AdvaMACSystemRes.estop64);
         private Bitmap estop_1 = new Bitmap(AdvaMACSystem.AdvaMACSystemRes.estop64_1);
@@ -957,21 +958,29 @@ namespace AdvaMACSystem
         }
         private void EnterpvPara_Cylinder()
         {
-            Create_pvPara_Cylinder();
-            //if (pvPara_Sensor != null)
-            //{
-            //    KeypadForm f = KeypadForm.GetKeypadForm("", KeypadMode.password);
-            //    if (f.ShowDialog() == DialogResult.OK)
-            //    {
-            //        // 传感器标定
-            //        if (f.KeyText == password_PagePara_Sensor)
-            //        {
-            //            pvPara_Sensor.DoEnter();
-            //        }
-            //    }
-            //}
 
+
+#if UNPASSWORD
+            Create_pvPara_Cylinder();
             pvPara_Cylinder.DoEnter();
+#else
+
+            KeypadForm f = KeypadForm.GetKeypadForm("", KeypadMode.password);
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                //设备参数
+                if (f.KeyText == password_Para_Cylinder)
+                {
+                    MessageBox.Show("该页面参数影响设备工作性能，请确定完全后再进行更改。", "",
+                         MessageBoxButtons.YesNo,
+                         MessageBoxIcon.Hand,
+                         MessageBoxDefaultButton.Button1);
+
+                    Create_pvPara_Cylinder();
+                    pvPara_Cylinder.DoEnter();
+                }
+            }
+#endif
         }
         #endregion
 

@@ -569,6 +569,7 @@ namespace AdvaMACSystem
                     msgSend[canmsgIndex].data[2] = (byte)(CanDatapool.out_Position_Value[(int)(id * CanDatapool.CylinderCount + subid)] & 0xFF);
                     msgSend[canmsgIndex].data[3] = (byte)(CanDatapool.out_Position_Value[(int)(id * CanDatapool.CylinderCount + subid)] >> 8);
                     msgSend[canmsgIndex].data[4] = (byte)((Csign_View_Parameter_Confirm) ? 1 : 0);
+                    msgSend[canmsgIndex].data[5] = (byte)((Csign_View_CylinderParameter_Confirm) ? 1 : 0);
 
                     canmsgIndex++;
                 }
@@ -732,6 +733,11 @@ namespace AdvaMACSystem
 
                     msgSend[canmsgIndex].data[4] = (byte)(CanDatapool.out_MAXPosition_Value[id] & 0xFF);
                     msgSend[canmsgIndex].data[5] = (byte)(CanDatapool.out_MAXPosition_Value[id] >> 8);
+
+                    //泵站压力传感器最大量程 4
+                    msgSend[canmsgIndex].data[6] = (byte)(CanDatapool.out_MAXPressure_Pump_Value[id] & 0xFF);
+                    msgSend[canmsgIndex].data[7] = (byte)(CanDatapool.out_MAXPressure_Pump_Value[id] >> 8);
+
                     canmsgIndex++;
                 }
 
@@ -751,7 +757,12 @@ namespace AdvaMACSystem
                     msgSend[canmsgIndex].data[4] = (byte)(CanDatapool.out_PumpTodayPositionHighout[id] & 0xFF);
                     msgSend[canmsgIndex].data[5] = (byte)(CanDatapool.out_PumpTodayPositionHighout[id] >> 8);
 
-                    msgSend[canmsgIndex].data[6] = (byte)((Csign_View_CylinderParameter_Confirm) ? 1 : 0);
+                    //msgSend[canmsgIndex].data[6] = (byte)((Csign_View_CylinderParameter_Confirm) ? 1 : 0);
+
+                    //油缸最大轴力 4
+                    msgSend[canmsgIndex].data[6] = (byte)(CanDatapool.out_MAXPressure2_Value[id] & 0xFF);
+                    msgSend[canmsgIndex].data[7] = (byte)(CanDatapool.out_MAXPressure2_Value[id] >> 8);
+
                     canmsgIndex++;
                 }
 
@@ -922,21 +933,21 @@ namespace AdvaMACSystem
                             ) ? (byte)1 : (byte)0;
 
 
-                       /* for (int i = 0; i < CanDatapool.PumpCount; i++)
-                        {
-                            switch (CanDatapool.in_Listento_id_1010_1013[i])
-                            {
-                                case ListentoidType.ltpNone:
-                                    break;
-                                case ListentoidType.ltpredundant:
-                                    id_redundantPump = (byte)(i + 1);
-                                    break;
-                                case ListentoidType.ltpcontroled:
-                                    id_controledPump = (byte)(i + 1);
-                                    break;
-                            }
+                        /* for (int i = 0; i < CanDatapool.PumpCount; i++)
+                         {
+                             switch (CanDatapool.in_Listento_id_1010_1013[i])
+                             {
+                                 case ListentoidType.ltpNone:
+                                     break;
+                                 case ListentoidType.ltpredundant:
+                                     id_redundantPump = (byte)(i + 1);
+                                     break;
+                                 case ListentoidType.ltpcontroled:
+                                     id_controledPump = (byte)(i + 1);
+                                     break;
+                             }
 
-                        }*/
+                         }*/
 
                         if (id_controledPump == 0 &&
                             id_redundantPump == 0)
