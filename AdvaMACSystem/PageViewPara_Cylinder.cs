@@ -40,43 +40,43 @@ namespace AdvaMACSystem
         {
             InitializeComponent();
 
-            ComCtrls.ImageButton btn1;
+            //ComCtrls.ImageButton btn1;
             //ComCtrls.ImageButton btn2;
             //Label lb1;
             this.SuspendLayout();
 
 
-            for (int i = 0; i < DataPool.CDataPool.GetDataPoolObject().PumpCount; i++)
-            {
-                btn1 = new ImageButton(this.components);
-                btn1.Checked = false;
-                btn1.DownColor = System.Drawing.SystemColors.Control;
-                btn1.Layout = ComCtrls.KTLayout.GlyphTop;
+            //for (int i = 0; i < DataPool.CDataPool.GetDataPoolObject().PumpCount; i++)
+            //{
+            //    btn1 = new ImageButton(this.components);
+            //    btn1.Checked = false;
+            //    btn1.DownColor = System.Drawing.SystemColors.Control;
+            //    btn1.Layout = ComCtrls.KTLayout.GlyphTop;
 
-                btn1.Location = new System.Drawing.Point(0, AdvaMACSystemRes.pumpborder.Height * i);
+            //    btn1.Location = new System.Drawing.Point(0, AdvaMACSystemRes.pumpborder.Height * i);
 
-                btn1.ShortcutKeys = System.Windows.Forms.Keys.None;
-                btn1.Size = new System.Drawing.Size(AdvaMACSystemRes.pumpborder.Width, AdvaMACSystemRes.pumpborder.Height);
-                btn1.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Bold);
-                btn1.TabIndex = 0;
-                btn1.TabStop = false;
-                btn1.Text = string.Format("{0:0}# 泵站", i + 1);
-                btn1.ForeColor = System.Drawing.Color.Black;
-                btn1.TransParent = true;
-                btn1.UPImg = AdvaMACSystemRes.pumpborder;
-                btn1.DNImg = AdvaMACSystemRes.pumpborder_checked;
-                btn1.Toggle = true;
-                btn1.UpColor = System.Drawing.SystemColors.Control;
-                btn1.Tag = i;
-                btn1.Click += new EventHandler(imageButton_pump_Click);
+            //    btn1.ShortcutKeys = System.Windows.Forms.Keys.None;
+            //    btn1.Size = new System.Drawing.Size(AdvaMACSystemRes.pumpborder.Width, AdvaMACSystemRes.pumpborder.Height);
+            //    btn1.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Bold);
+            //    btn1.TabIndex = 0;
+            //    btn1.TabStop = false;
+            //    btn1.Text = string.Format("{0:0}# 泵站", i + 1);
+            //    btn1.ForeColor = System.Drawing.Color.Black;
+            //    btn1.TransParent = true;
+            //    btn1.UPImg = AdvaMACSystemRes.pumpborder;
+            //    btn1.DNImg = AdvaMACSystemRes.pumpborder_checked;
+            //    btn1.Toggle = true;
+            //    btn1.UpColor = System.Drawing.SystemColors.Control;
+            //    btn1.Tag = i;
+            //    btn1.Click += new EventHandler(imageButton_pump_Click);
 
-                btnlst_id.Add(btn1);
+            //    btnlst_id.Add(btn1);
 
-                this.Controls.Add(btn1);
+            //    this.Controls.Add(btn1);
 
-                this.panel_body.Controls.Add(btn1);
-                btn1.BringToFront();
-            }
+            //    this.panel_body.Controls.Add(btn1);
+            //    btn1.BringToFront();
+            //}
 
             lbList.Add(imageLabel_MAXPressure_Value);
             lbList.Add(imageLabel_MAXPosition_Value);
@@ -85,6 +85,9 @@ namespace AdvaMACSystem
             lbList.Add(imageLabel_PumpTodayPositionHighout);
             lbList.Add(imageLabel_PumpPositionHighout);
             lbList.Add(imageLabel_PumpPressureHighout);
+
+            lbList.Add(imageLabel_MAXPressure2_Value);
+            lbList.Add(imageLabel_MAXPressure_Pump_Value);
 
             //CreateInputBox(-1, new Point(400, 0), true, true);
             //CreateInputBox(-1, new Point(700, 0), true, false);
@@ -429,24 +432,39 @@ namespace AdvaMACSystem
         {
             base.DoEnter();
 
-            if (btnlst_id != null && btnlst_id.Count > 0)
-                imageButton_pump_Click(btnlst_id[0], new EventArgs());
-
-            //DataPool.CDataPool.GetDataPoolObject().sign_View_Setup = true;
-        }
-
-        private void imageButton_pump_Click(object sender, EventArgs e)
-        {
-            foreach (ImageButton item in btnlst_id)
+            comboBox_id.Items.Clear();
+            for (int i = 0; i < DataPool.CDataPool.GetDataPoolObject().PumpCount; i++)
             {
-                item.Checked = (item == (ImageButton)sender);
+                comboBox_id.Items.Add(string.Format("{0:0}# 泵站", i + 1));
             }
 
-            pumpindex = Convert.ToInt32(((ImageButton)sender).Tag);
-            DataPool.CDataPool.GetDataPoolObject().CurId = pumpindex;
-            DataPool.CDataPool.GetDataPoolObject().CurSubId = 0;
+            comboBox_subid.Items.Clear();
+            for (int i = 0; i < DataPool.CDataPool.GetDataPoolObject().CylinderCount; i++)
+            {
+                comboBox_subid.Items.Add(string.Format("{0:0}# 油缸", i + 1));
+            }
+
+
+            comboBox_id.SelectedIndex = 0;
+            comboBox_subid.SelectedIndex = 0;
+            DataPool.CDataPool.GetDataPoolObject().CurId = comboBox_id.SelectedIndex;
+            DataPool.CDataPool.GetDataPoolObject().CurSubId = comboBox_subid.SelectedIndex;
             UpdateViewData();
+            DataPool.CDataPool.GetDataPoolObject().sign_View_Parameter = true;
         }
+
+        //private void imageButton_pump_Click(object sender, EventArgs e)
+        //{
+        //    foreach (ImageButton item in btnlst_id)
+        //    {
+        //        item.Checked = (item == (ImageButton)sender);
+        //    }
+
+        //    pumpindex = Convert.ToInt32(((ImageButton)sender).Tag);
+        //    DataPool.CDataPool.GetDataPoolObject().CurId = pumpindex;
+        //    DataPool.CDataPool.GetDataPoolObject().CurSubId = 0;
+        //    UpdateViewData();
+        //}
 
         private void imageButton_back_Click(object sender, EventArgs e)
         {
@@ -460,11 +478,13 @@ namespace AdvaMACSystem
         }
         private void imageButton_OK_MouseUp(object sender, MouseEventArgs e)
         {
-            DataPool.CDataPool.GetDataPoolObject().sign_View_CylinderParameter_Confirm = false;
+            //DataPool.CDataPool.GetDataPoolObject().sign_View_CylinderParameter_Confirm = false;
+            DataPool.CDataPool.GetDataPoolObject().sign_View_Parameter_Confirm = false;
         }
         private void imageButton_OK_MouseDown(object sender, MouseEventArgs e)
         {
-            DataPool.CDataPool.GetDataPoolObject().sign_View_CylinderParameter_Confirm = true;
+            //DataPool.CDataPool.GetDataPoolObject().sign_View_CylinderParameter_Confirm = true;
+            DataPool.CDataPool.GetDataPoolObject().sign_View_Parameter_Confirm = true;
         }
 
         //private void imageButton_Finish_OK_Click(object sender, EventArgs e)
@@ -501,18 +521,36 @@ namespace AdvaMACSystem
             //        CmdDataType.cdtView_SetupPosition_Col,
             //        Convert.ToInt32(btnlst_subid_Col[i].Text));
             //}
-            for (int i = 0; i < lbList.Count; i++)
-                if (pumpindex >= 0)
-                    DataPool.CDataPool.GetDataPoolObject().SetRealValue(pumpindex,
-                    0, (CmdDataType)lbList[i].Tag, Convert.ToDouble(lbList[i].Text));
+
+            //for (int i = 0; i < lbList.Count; i++)
+            //    if (pumpindex >= 0)
+            //        DataPool.CDataPool.GetDataPoolObject().SetRealValue(pumpindex,
+            //        0, (CmdDataType)lbList[i].Tag, Convert.ToDouble(lbList[i].Text));
+
+
+            if (comboBox_id.SelectedIndex >= 0 &&
+                comboBox_subid.SelectedIndex >= 0)
+            {
+                for (int i = 0; i < lbList.Count; i++)
+                {
+                    DataPool.CDataPool.GetDataPoolObject().SetRealValue(comboBox_id.SelectedIndex,
+                        comboBox_subid.SelectedIndex, (CmdDataType)lbList[i].Tag, Convert.ToDouble(lbList[i].Text));
+                }
+            }
 
 
             DataPool.CDataPool.GetDataPoolObject().SavetoFile();
             //MessageBox.Show(string.Format("#{0:00}泵站，参数已经保存！", pumpindex + 1));
-            MessageBox.Show(string.Format("#{0:00}泵站，参数已经保存！", pumpindex + 1), "",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.None,
-                MessageBoxDefaultButton.Button1);
+            //MessageBox.Show(string.Format("#{0:00}泵站，参数已经保存！", pumpindex + 1), "",
+            //    MessageBoxButtons.YesNo,
+            //    MessageBoxIcon.None,
+            //    MessageBoxDefaultButton.Button1);
+
+
+            MessageBox.Show(string.Format("#{0:00}泵站-#{1:00}油缸，参数已经保存！", comboBox_id.SelectedIndex + 1, comboBox_subid.SelectedIndex + 1), "",
+               MessageBoxButtons.YesNo,
+               MessageBoxIcon.None,
+               MessageBoxDefaultButton.Button1);
 
         }
 
@@ -549,7 +587,9 @@ namespace AdvaMACSystem
             //    btnlst_subid_Col_Count.Text = DataPool.CDataPool.GetDataPoolObject().View_SetupPosition_ColCount.ToString();
 
             //for (int i = 0; i < btnlst_subid.Count; i++)
-            if (pumpindex >= 0)
+            //if (pumpindex >= 0)
+            if (comboBox_id.SelectedIndex >= 0 &&
+                 comboBox_subid.SelectedIndex >= 0)
             {
                 //btnlst_subid[i].Checked =
                 //    !DataPool.CDataPool.GetDataPoolObject().GetBoolValue(
@@ -578,8 +618,10 @@ namespace AdvaMACSystem
                 //}
                 for (int i = 0; i < lbList.Count; i++)
                 {
-                    lbList[i].Text = DataPool.CDataPool.GetDataPoolObject().GetRealValue(pumpindex,
-                          0, (CmdDataType)lbList[i].Tag).ToString("0.0");
+                    //lbList[i].Text = DataPool.CDataPool.GetDataPoolObject().GetRealValue(pumpindex,
+                    //      0, (CmdDataType)lbList[i].Tag).ToString("0.0");
+                    lbList[i].Text = DataPool.CDataPool.GetDataPoolObject().GetRealValue(comboBox_id.SelectedIndex,
+                          comboBox_subid.SelectedIndex, (CmdDataType)lbList[i].Tag).ToString("0.0");
                 }
 
             }
@@ -669,6 +711,19 @@ namespace AdvaMACSystem
                 }
             }
         }
+
+        private void comboBox_id_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataPool.CDataPool.GetDataPoolObject().CurId = comboBox_id.SelectedIndex;
+            UpdateViewData();
+        }
+
+        private void comboBox_subid_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataPool.CDataPool.GetDataPoolObject().CurSubId = comboBox_subid.SelectedIndex;
+            UpdateViewData();
+        }
+
 
     }
 }

@@ -344,7 +344,7 @@ namespace AdvaMACSystem
             bool Csign_View_Parameter_Confirm = CanDatapool.sign_View_Parameter_Confirm;
             bool Csign_View_SenserCalibration = CanDatapool.sign_View_SenserCalibration;
             bool Csign_View_SetupFinish_Confirm = CanDatapool.sign_View_SetupFinish_Confirm;
-            bool Csign_View_CylinderParameter_Confirm = CanDatapool.sign_View_CylinderParameter_Confirm;//油缸、马达参数设定确认标志位
+            //bool Csign_View_CylinderParameter_Confirm = CanDatapool.sign_View_CylinderParameter_Confirm;//油缸、马达参数设定确认标志位
 
             int id = CanDatapool.CurId;
             int subid = CanDatapool.CurSubId;
@@ -569,7 +569,7 @@ namespace AdvaMACSystem
                     msgSend[canmsgIndex].data[2] = (byte)(CanDatapool.out_Position_Value[(int)(id * CanDatapool.CylinderCount + subid)] & 0xFF);
                     msgSend[canmsgIndex].data[3] = (byte)(CanDatapool.out_Position_Value[(int)(id * CanDatapool.CylinderCount + subid)] >> 8);
                     msgSend[canmsgIndex].data[4] = (byte)((Csign_View_Parameter_Confirm) ? 1 : 0);
-                    msgSend[canmsgIndex].data[5] = (byte)((Csign_View_CylinderParameter_Confirm) ? 1 : 0);
+                    //msgSend[canmsgIndex].data[5] = (byte)((Csign_View_CylinderParameter_Confirm) ? 1 : 0);
 
                     canmsgIndex++;
                 }
@@ -724,6 +724,7 @@ namespace AdvaMACSystem
                 //油缸最大位移值设定		4,5		0.1		
                 {
                     msgSend[canmsgIndex].id = 0x2006;
+                    msgSend[canmsgIndex].length = (short)AdvCan.DATALENGTH;
 
                     msgSend[canmsgIndex].data[0] = (byte)(CanDatapool.out_SectionalArea_Value[id] & 0xFF);
                     msgSend[canmsgIndex].data[1] = (byte)(CanDatapool.out_SectionalArea_Value[id] >> 8);
@@ -747,6 +748,7 @@ namespace AdvaMACSystem
                 //油缸当天行程最大设定值		4,5		0.1		
                 {
                     msgSend[canmsgIndex].id = 0x2007;
+                    msgSend[canmsgIndex].length = (short)AdvCan.DATALENGTH;
 
                     msgSend[canmsgIndex].data[0] = (byte)(CanDatapool.out_PumpPressureHighout[id] & 0xFF);
                     msgSend[canmsgIndex].data[1] = (byte)(CanDatapool.out_PumpPressureHighout[id] >> 8);
