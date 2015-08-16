@@ -642,15 +642,20 @@ namespace AdvaMACSystem
                 case CmdDataType.cdtSectionalArea_Value:
                     bv = (val >= 0 && val <= 99.99);
                     break;
-                //最大压力范围：0.0～400.0bar 
+                //最大压力范围：0.0～800.0bar 
                 //cdtMAXPressure_Value,//油缸最大压力 4*8
                 case CmdDataType.cdtMAXPressure_Value:
-                    bv = (val >= 0 && val <= 400);
+                    bv = (val >= 0 && val <= 800);
                     break;
                 //最大位移范围：0.0～999.9mm
                 //cdtMAXPosition_Value, //油缸最大位移 4*8
                 case CmdDataType.cdtMAXPosition_Value:
                     bv = (val >= 0 && val <= 999.9);
+                    break;
+                //泵站压力传感器最大量程 400 0.0～500.0
+                //cdtMAXPressure_Pump_Value,//泵站压力传感器最大量程 4
+                case CmdDataType.cdtMAXPressure_Pump_Value:
+                    bv = (val >= 0 && val <= 500.0);
                     break;
                 //马达最大压力设定：0～400.0bar
                 //cdtPumpPressureHighout,          //马达最大压力设定	       4*8
@@ -666,6 +671,11 @@ namespace AdvaMACSystem
                 //cdtPumpTodayPositionHighout //油缸当天行程最大设定值 4*8
                 case CmdDataType.cdtPumpTodayPositionHighout:
                     bv = (val >= 0 && val <= 999.9);
+                    break;
+                //油缸最大轴力 3500 0.0～4000.0
+                //cdtMAXPressure2_Value//油缸最大轴力 4*8
+                case CmdDataType.cdtMAXPressure2_Value:
+                    bv = (val >= 0 && val <= 4000.0);
                     break;
                 default:
                     bv = true;
