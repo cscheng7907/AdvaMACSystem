@@ -78,6 +78,7 @@
             this.imageLabel3 = new ComCtrls.ImageLabel();
             this.imageLabel5 = new ComCtrls.ImageLabel();
             this.imageLabel4 = new ComCtrls.ImageLabel();
+            this.comboBox_PumpInstalled = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -102,6 +103,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel1.Controls.Add(this.comboBox_PumpInstalled);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.imageLabel_PressureAlarm_Pump);
             this.panel1.Controls.Add(this.label3);
@@ -119,6 +121,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 29);
             this.label4.Text = "bar";
+            this.label4.Visible = false;
             // 
             // imageLabel_PressureAlarm_Pump
             // 
@@ -135,6 +138,7 @@
             this.imageLabel_PressureAlarm_Pump.TextX = -1F;
             this.imageLabel_PressureAlarm_Pump.TextY = -1F;
             this.imageLabel_PressureAlarm_Pump.TransParent = false;
+            this.imageLabel_PressureAlarm_Pump.Visible = false;
             this.imageLabel_PressureAlarm_Pump.Click += new System.EventHandler(this.imageLabel_Input_Click);
             // 
             // label3
@@ -143,7 +147,7 @@
             this.label3.Location = new System.Drawing.Point(507, 19);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(212, 33);
-            this.label3.Text = "泵站压力报警值：";
+            this.label3.Text = "泵站是否安装：";
             // 
             // comboBox_id
             // 
@@ -722,6 +726,15 @@
             this.imageLabel4.TextY = -1F;
             this.imageLabel4.TransParent = false;
             // 
+            // comboBox_PumpInstalled
+            // 
+            this.comboBox_PumpInstalled.Items.Add("是");
+            this.comboBox_PumpInstalled.Items.Add("否");
+            this.comboBox_PumpInstalled.Location = new System.Drawing.Point(688, 18);
+            this.comboBox_PumpInstalled.Name = "comboBox_PumpInstalled";
+            this.comboBox_PumpInstalled.Size = new System.Drawing.Size(100, 23);
+            this.comboBox_PumpInstalled.TabIndex = 6;
+            // 
             // PageViewPara
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -792,5 +805,6 @@
         private ComCtrls.ImageLabel imageLabel3;
         private ComCtrls.ImageLabel imageLabel5;
         private ComCtrls.ImageLabel imageLabel4;
+        private System.Windows.Forms.ComboBox comboBox_PumpInstalled;
     }
 }

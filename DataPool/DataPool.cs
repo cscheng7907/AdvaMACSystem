@@ -158,6 +158,7 @@ namespace DataPool
                 out_PumpPressureHighout.Clear();  //马达最大压力设定	       4*8
                 out_PumpPositionHighout.Clear(); //油缸最大行程设定值		   4*8
                 out_PumpTodayPositionHighout.Clear(); //油缸当天行程最大设定值 4*8
+                out_PumpInstalled.Clear(); //泵站是否安装 4
 
                 ControlMode.Clear();
 
@@ -212,6 +213,8 @@ namespace DataPool
                     //out_PumpPositionHighout.Add(1900); //油缸最大行程设定值		   4
                     //out_PumpTodayPositionHighout.Add(2000); //油缸当天行程最大设定值 4
                     //out_MAXPressure2_Value.Add(35000); //油缸最大轴力 4
+
+                    out_PumpInstalled.Add(false); //泵站是否安装 4
 
                     ControlMode.Add(ControlModeType.Auto);
                 }
@@ -613,8 +616,8 @@ namespace DataPool
                     //    rtv = rtv | out_Installed[id * 8 + i];
                     //}
 
-                    rtv = out_PressureAlarm_Pump[id] != 0;
-
+                    //rtv = out_PressureAlarm_Pump[id] != 0;
+                    rtv = out_PumpInstalled[id];
                     break;
                 default:
                     break;
@@ -762,6 +765,10 @@ namespace DataPool
                     in_EStop_1010_1013[id] = value;
                     break;
 #endif
+                case CmdDataType.cdt_PumpInstalled:
+                    out_PumpInstalled[id] = value;
+                    break;
+
                 default:
                     break;
             }
@@ -809,6 +816,8 @@ namespace DataPool
         public List<UInt16> out_PumpTodayPositionHighout = new List<UInt16>(); //油缸当天行程最大设定值 4*8
         public List<UInt16> out_MAXPressure2_Value = new List<UInt16>();//油缸最大轴力 4*8
 
+        public List<bool> out_PumpInstalled = new List<bool>();//泵站是否安装 4
+
         //-------sign
         public bool sign_View_Setup = false;//进入“安装设定”界面标志位
         public bool sign_View_Setup_Confirm = false;//安装确定标志
@@ -822,7 +831,7 @@ namespace DataPool
         public bool sign_View_SetupFinish_Confirm = false;//安装调试完毕确定标志
         public List<bool> sign_View_SetupFinish_Confirm_seperate = new List<bool>();//安装调试完毕确认_油缸 4*8
 
-       //public bool sign_View_CylinderParameter_Confirm = false; //油缸、马达参数设定确认标志位
+        //public bool sign_View_CylinderParameter_Confirm = false; //油缸、马达参数设定确认标志位
 
         public int CurId = 0;
         public int CurSubId = 0;
@@ -933,7 +942,9 @@ namespace DataPool
                     //public List<UInt16> out_PumpTodayPositionHighout = new List<UInt16>(); //油缸当天行程最大设定值 4*8
                             sizeof(UInt16) * Number_Pump * Number_Cylinder +//;
                     //public List<UInt16> out_MAXPressure2_Value = new List<UInt16>();//油缸最大轴力 4*8
-                            sizeof(UInt16) * Number_Pump * Number_Cylinder;//
+                            sizeof(UInt16) * Number_Pump * Number_Cylinder +//
+                    //public List<bool> out_PumpInstalled = new List<bool>();//泵站是否安装 4
+                            sizeof(bool) * Number_Pump;// * Number_Cylinder +
 
                 try
                 {
@@ -961,6 +972,7 @@ namespace DataPool
                                 //out_PumpPositionHighout[i] = br.ReadUInt16(); //油缸最大行程设定值		   4
                                 //out_PumpTodayPositionHighout[i] = br.ReadUInt16(); //油缸当天行程最大设定值 4
                                 //out_MAXPressure2_Value[i] = br.ReadUInt16(); //油缸最大轴力 4
+                                out_PumpInstalled[i] = br.ReadBoolean(); //泵站是否安装 4                            
                             }
 
                             for (int i = 0; i < Number_Pump; i++)
@@ -1049,6 +1061,7 @@ namespace DataPool
                     //bw.Write(out_PumpPositionHighout[i]); //油缸最大行程设定值		   4
                     //bw.Write(out_PumpTodayPositionHighout[i]); //油缸当天行程最大设定值 4
                     //bw.Write(out_MAXPressure2_Value[i]); //油缸最大轴力 4
+                    bw.Write(out_PumpInstalled[i]); //泵站是否安装 4                            
                 }
 
                 for (int i = 0; i < Number_Pump; i++)

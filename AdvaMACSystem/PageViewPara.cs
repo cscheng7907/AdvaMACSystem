@@ -78,11 +78,11 @@ namespace AdvaMACSystem
 
             comboBox_id.SelectedIndex = 0;
             comboBox_subid.SelectedIndex = 0;
+            comboBox_PumpInstalled.SelectedIndex = 1;
             DataPool.CDataPool.GetDataPoolObject().CurId = comboBox_id.SelectedIndex;
             DataPool.CDataPool.GetDataPoolObject().CurSubId = comboBox_subid.SelectedIndex;
             UpdateViewData();
             DataPool.CDataPool.GetDataPoolObject().sign_View_Parameter = true;
-
         }
 
 
@@ -121,6 +121,10 @@ namespace AdvaMACSystem
                     btnList[i].Checked = DataPool.CDataPool.GetDataPoolObject().GetBoolValue(comboBox_id.SelectedIndex,
                           comboBox_subid.SelectedIndex, (CmdDataType)btnList[i].Tag);
                 }
+
+                comboBox_PumpInstalled.SelectedIndex =
+                    DataPool.CDataPool.GetDataPoolObject().GetBoolValue(comboBox_id.SelectedIndex,
+                    comboBox_subid.SelectedIndex, CmdDataType.cdt_PumpInstalled) ? 0 : 1;
             }
         }
 
@@ -144,6 +148,10 @@ namespace AdvaMACSystem
                     DataPool.CDataPool.GetDataPoolObject().SetboolValue(comboBox_id.SelectedIndex,
                           comboBox_subid.SelectedIndex, (CmdDataType)btnList[i].Tag, btnList[i].Checked);
                 }
+
+                DataPool.CDataPool.GetDataPoolObject().SetboolValue(comboBox_id.SelectedIndex,
+                    comboBox_subid.SelectedIndex, CmdDataType.cdt_PumpInstalled,
+                    (comboBox_PumpInstalled.SelectedIndex==0)?true :false  );
             }
             DataPool.CDataPool.GetDataPoolObject().SavetoFile();
             //MessageBox.Show(string.Format("#{0:00}泵站-#{1:00}油缸，参数已经保存！", comboBox_id.SelectedIndex + 1, comboBox_subid.SelectedIndex + 1));

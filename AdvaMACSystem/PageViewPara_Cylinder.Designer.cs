@@ -239,6 +239,7 @@
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(46, 29);
             this.label25.Text = "mm";
+            this.label25.Visible = false;
             // 
             // imageLabel_PumpTodayPositionHighout
             // 
@@ -255,6 +256,7 @@
             this.imageLabel_PumpTodayPositionHighout.TextX = -1F;
             this.imageLabel_PumpTodayPositionHighout.TextY = -1F;
             this.imageLabel_PumpTodayPositionHighout.TransParent = false;
+            this.imageLabel_PumpTodayPositionHighout.Visible = false;
             this.imageLabel_PumpTodayPositionHighout.Click += new System.EventHandler(this.imageLabel_Input_Click);
             // 
             // label26
@@ -264,6 +266,7 @@
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(237, 33);
             this.label26.Text = "当天行程最大设定值：";
+            this.label26.Visible = false;
             // 
             // label27
             // 
