@@ -351,7 +351,7 @@ namespace AdvaMACSystem
                 CmdDataType.cdtWarn_PumpTodayPositionHighout_3401_3404,//泵站油缸当天位移过大 4*8
                 
                 CmdDataType.cdtid_controledPump,        //被控泵站
-                 CmdDataType.cdtid_redundantPump  //冗余泵站
+                CmdDataType.cdtid_redundantPump  //冗余泵站
         };
 
         private void SaveChangedData(int id, int subid, CmdDataType type, bool val)
@@ -362,9 +362,16 @@ namespace AdvaMACSystem
             DateTime t = DateTime.Now;
             int listkey = id * 10000 + subid * 100 + (int)type;
 
+            bool bv = false;
+            for (int i = 0; i < WarnDataTypeList.Length; i++)
+            {
+                if (type == WarnDataTypeList[i])
+                    bv = true;
+            }
 
             //报警系列
-            if (Array.IndexOf<CmdDataType>(WarnDataTypeList, type) >= 0)
+            // if (Array.IndexOf<CmdDataType>(WarnDataTypeList, type) >= 0)
+            if (bv)
             {
                 //else if (type == CmdDataType.cdtid_controledPump)
                 //{
