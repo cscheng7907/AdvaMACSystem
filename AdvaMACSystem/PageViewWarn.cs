@@ -139,32 +139,35 @@ namespace AdvaMACSystem
                     listView1.BeginUpdate();
                     for (int i = 0; i < logbuff.Count; i++)
                     {
-                        ListViewItem lv = new ListViewItem();
-                        lv.Text = (i + 1).ToString();
-                        dt = new DateTime(logbuff[i].time);//time tick
-
-                        lv.SubItems.Add(string.Format("{0:00}-{1:00}-{2:00} {3:00}:{4:00}:{5:00}", dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second));
-                        lv.SubItems.Add(string.Format("{0}", (logbuff[i].val) ? "发生" : "消失"));
-
-                        if (logbuff[i].cmdtype >= 0)
-                            lv.SubItems.Add(string.Format("{0}#泵站 {1}# {2}", logbuff[i].id + 1, logbuff[i].subid + 1, strlst[logbuff[i].cmdtype - firstcmdtype]));
-                        else
+                        if (logbuff[i].cmdtype >= firstcmdtype && logbuff[i].cmdtype <= endcmdtype)
                         {
-                            //switch ((CmdDataType)(logbuff[i].cmdtype * -1))
-                            //{
-                            //    case CmdDataType.cdtid_controledPump:
-                            //        lv.SubItems.Add(string.Format("{0}#泵站 {1}", logbuff[i].id + 1, "为被控泵站"));
-                            //        break;
-                            //    case CmdDataType.cdtid_redundantPump:
-                            //        lv.SubItems.Add(string.Format("{0}#泵站 {1}", logbuff[i].id + 1, "为冗余泵站"));
-                            //        break;
-                            //}
-                            if (logbuff[i].id > 0 && logbuff[i].subid > 0)
-                                lv.SubItems.Add(string.Format("{0}#泵站被控, {1}#泵站冗余", logbuff[i].id, logbuff[i].subid));
+                            ListViewItem lv = new ListViewItem();
+                            lv.Text = (i + 1).ToString();
+                            dt = new DateTime(logbuff[i].time);//time tick
 
+                            lv.SubItems.Add(string.Format("{0:00}-{1:00}-{2:00} {3:00}:{4:00}:{5:00}", dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second));
+                            lv.SubItems.Add(string.Format("{0}", (logbuff[i].val) ? "发生" : "消失"));
+
+                            if (logbuff[i].cmdtype >= 0)
+                                lv.SubItems.Add(string.Format("{0}#泵站 {1}# {2}", logbuff[i].id + 1, logbuff[i].subid + 1, strlst[logbuff[i].cmdtype - firstcmdtype]));
+                            else
+                            {
+                                //switch ((CmdDataType)(logbuff[i].cmdtype * -1))
+                                //{
+                                //    case CmdDataType.cdtid_controledPump:
+                                //        lv.SubItems.Add(string.Format("{0}#泵站 {1}", logbuff[i].id + 1, "为被控泵站"));
+                                //        break;
+                                //    case CmdDataType.cdtid_redundantPump:
+                                //        lv.SubItems.Add(string.Format("{0}#泵站 {1}", logbuff[i].id + 1, "为冗余泵站"));
+                                //        break;
+                                //}
+                                if (logbuff[i].id > 0 && logbuff[i].subid > 0)
+                                    lv.SubItems.Add(string.Format("{0}#泵站被控, {1}#泵站冗余", logbuff[i].id, logbuff[i].subid));
+
+                            }
+
+                            listView1.Items.Add(lv);
                         }
-
-                        listView1.Items.Add(lv);
                     }
                     listView1.EndUpdate();
 
@@ -241,6 +244,8 @@ namespace AdvaMACSystem
         };
 
         private int firstcmdtype = (int)CmdDataType.cdtWarn_HighPressure_3401_3404;
+
+        private int endcmdtype = (int)CmdDataType.cdtWarn_PumpTodayPositionHighout_3401_3404;
 
         private void imageButton_back_Click(object sender, EventArgs e)
         {
