@@ -185,7 +185,7 @@ namespace AdvaMACSystem
                 {
                     TimeSpan sub = DateTime.Now.Subtract(dataPool.in_Pump_HartBeating_1010_1013[i]);
 
-                    if (sub.Milliseconds > 2000)
+                    if (sub.TotalMilliseconds > 2000)
                         dataPool.ResetPump(i);
                 }
 
