@@ -701,8 +701,8 @@ namespace AdvaMACSystem
                     br.BaseStream.Seek(historyOper.CONST_FILE_HEAD_SIZE + sizeof(int) * firstValidDataIndex, SeekOrigin.Begin);
 
                     //读文件体
-                    MinValueInImg = (int)(minValue * multiplyingFactor);
-                    ValueRangeInImg = (int)((maxValue - minValue) * multiplyingFactor);
+                    MinValueInImg = (int)(minValue * multiplyingFactor / Scale);
+                    ValueRangeInImg = (int)((maxValue - minValue) * multiplyingFactor / Scale);
                     int value;
                     int count = 0;
                     for (count = 0; count < maxValidDataCount && br.BaseStream.Position < br.BaseStream.Length; count++) // 当未到达文件结尾时
