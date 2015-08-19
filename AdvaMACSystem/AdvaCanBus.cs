@@ -898,7 +898,7 @@ namespace AdvaMACSystem
                         msgSend[canmsgIndex].data[2] = 0;
                         msgSend[canmsgIndex].data[3] = 0;
 
-                        if (CanDatapool.ControlMode[id] != ControlModeType.MachLockManual)
+                        if (CanDatapool.ControlMode[id] == ControlModeType.MachLockManual)
                         {
                             for (int i = 0; i < CanDatapool.PumpCount; i++)
                             {
