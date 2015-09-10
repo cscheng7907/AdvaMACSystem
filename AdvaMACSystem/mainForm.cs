@@ -54,6 +54,9 @@ namespace AdvaMACSystem
         private const string password_Diagnose = "666";//诊断界面密码
         private const string password_Para_Cylinder = "123123";//设备参数界面密码
 
+        private const string password_Backup_History= "777";//历史记录备份密码
+
+
         private Bitmap estop = new Bitmap(AdvaMACSystem.AdvaMACSystemRes.estop64);
         private Bitmap estop_1 = new Bitmap(AdvaMACSystem.AdvaMACSystemRes.estop64_1);
 
@@ -864,6 +867,10 @@ namespace AdvaMACSystem
 
                         if (historyOper != null)
                             historyOper.Reset();
+                    }
+                    else if (f.KeyText == password_Backup_History)//历史记录备份
+                    {
+                        FileCpyForm.GetFileCpyForm().StartCopy();
                     }
                 }
             }
