@@ -234,7 +234,16 @@ namespace AdvaMACSystem
                     #region 压力记录
                     try
                     {
-                        bwPressureList[i * pumpNumber + j].Write((int)(_candatapool.GetRealValue(i, j, CmdDataType.cdtPressure_Real_3001_3008) * MultiplyingFactor));
+                        int pressureValue;
+                        try
+                        {
+                            pressureValue = Convert.ToInt32(_candatapool.GetRealValue(i, j, CmdDataType.cdtPressure_Real_3001_3008) * MultiplyingFactor);
+                        }
+                        catch
+                        {
+                            pressureValue = 0;
+                        }
+                        bwPressureList[i * pumpNumber + j].Write(pressureValue);
                     }
                     finally
                     {
@@ -245,7 +254,16 @@ namespace AdvaMACSystem
                     #region 位置记录
                     try
                     {
-                        bwPositionList[i * pumpNumber + j].Write((int)(_candatapool.GetRealValue(i, j, CmdDataType.cdtPosition_Real_3101_3108) * MultiplyingFactor));
+                        int positionValue;
+                        try
+                        {
+                            positionValue = Convert.ToInt32(_candatapool.GetRealValue(i, j, CmdDataType.cdtPosition_Real_3101_3108) * MultiplyingFactor);
+                        }
+                        catch
+                        {
+                            positionValue = 0;
+                        }
+                        bwPositionList[i * pumpNumber + j].Write(positionValue);
                     }
                     finally
                     {
