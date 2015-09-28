@@ -1361,7 +1361,7 @@ namespace AdvaMACSystem
                                                (vs_High | vs_low);
                                         //msgRecieve[j].data[0] + (msgRecieve[j].data[1] << 8);
 
-                                        Idx_Cylinder = 2 + (((idArray0 % 2) == 0) ? 4 : 0);
+                                        //Idx_Cylinder = 2 + (((idArray0 % 2) == 0) ? 4 : 0);
                                         vs_High = (short)msgRecieve[j].data[3];
                                         vs_High = (short)(vs_High << 8);
                                         vs_low = msgRecieve[j].data[2];
@@ -1369,7 +1369,7 @@ namespace AdvaMACSystem
                                                (vs_High | vs_low);
                                         //msgRecieve[j].data[2] + (msgRecieve[j].data[3] << 8);
 
-                                        Idx_Cylinder = 3 + (((idArray0 % 2) == 0) ? 4 : 0);
+                                        //Idx_Cylinder = 3 + (((idArray0 % 2) == 0) ? 4 : 0);
                                         vs_High = (short)msgRecieve[j].data[5];
                                         vs_High = (short)(vs_High << 8);
                                         vs_low = msgRecieve[j].data[4];
@@ -1377,7 +1377,7 @@ namespace AdvaMACSystem
                                                (vs_High | vs_low);
                                         //msgRecieve[j].data[4] + (msgRecieve[j].data[5] << 8);
 
-                                        Idx_Cylinder = 4 + (((idArray0 % 2) == 0) ? 4 : 0);
+                                        //Idx_Cylinder = 4 + (((idArray0 % 2) == 0) ? 4 : 0);
                                         vs_High = (short)msgRecieve[j].data[7];
                                         vs_High = (short)(vs_High << 8);
                                         vs_low = msgRecieve[j].data[6];
@@ -1484,7 +1484,7 @@ namespace AdvaMACSystem
                                         {
                                             for (int k = 0; k < msgRecieve[j].data.Length; k++)
                                             {
-                                                CanDatapool.in_cylinderState_Real_3201_3208[(idArray0 / 2) * 8 + k] = (MotionStateType)msgRecieve[j].data[k];
+                                                CanDatapool.in_cylinderState_Real_3201_3208[(idArray0 / 2 - 1) * 8 + k] = (MotionStateType)msgRecieve[j].data[k];
                                             }
                                         }
 
