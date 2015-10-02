@@ -845,7 +845,7 @@ namespace AdvaMACSystem
                             )
                             warncount++;
                     }
-                    pumpList[j].WarningCount = 2;
+                    pumpList[j].WarningCount = warncount;
                 }
                 else
                 {
