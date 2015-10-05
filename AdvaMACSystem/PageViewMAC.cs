@@ -763,6 +763,9 @@ namespace AdvaMACSystem
             }
         }
 
+        private WarnErrOperator optor = null;
+        public WarnErrOperator Optor { set { if (optor != value)optor = value; } }
+
         private void timer_RefreshMac_Tick(object sender, EventArgs e)
         {
             //if (!this.Visible)
@@ -815,37 +818,49 @@ namespace AdvaMACSystem
                 {
                     warncount = 0;
 
-                    for (int i = 0; i < cylinderList.Count; i++)
+                    //for (int i = 0; i < cylinderList.Count; i++)
+                    //{
+                    //    //position UpperLimit
+                    //    if (_candatapool.GetBoolValue(j, i, CmdDataType.cdtPositionUpperLimitAlarm_Enable) &&
+                    //        _candatapool.GetRealValue(j, i, CmdDataType.cdtPosition_Real_3101_3108) >
+                    //        _candatapool.GetRealValue(j, i, CmdDataType.cdtPositionUpperLimitAlarm_Value)
+                    //        )
+                    //        warncount++;
+
+                    //    //position LowerLimit
+                    //    if (_candatapool.GetBoolValue(j, i, CmdDataType.cdtPositionLowerLimitAlarm_Enable) &&
+                    //        _candatapool.GetRealValue(j, i, CmdDataType.cdtPosition_Real_3101_3108) <
+                    //        _candatapool.GetRealValue(j, i, CmdDataType.cdtPositionLowerLimitAlarm_Value)
+                    //        )
+                    //        warncount++;
+
+                    //    //pressure UpperLimit
+                    //    if (_candatapool.GetBoolValue(j, i, CmdDataType.cdtPressureUpperLimitAlarm_Enable) &&
+                    //        _candatapool.GetRealValue(j, i, CmdDataType.cdtPressure_Real_3001_3008) >
+                    //        _candatapool.GetRealValue(j, i, CmdDataType.cdtPressureUpperLimitAlarm_Value)
+                    //        )
+                    //        warncount++;
+
+                    //    //pressure LowerLimit
+                    //    if (//_candatapool.GetBoolValue(j, i, CmdDataType.cdtPressureUpperLimitAlarm_Enable) &&
+                    //        _candatapool.GetRealValue(j, i, CmdDataType.cdtPressure_Real_3001_3008) <
+                    //        _candatapool.GetRealValue(j, i, CmdDataType.cdtPressureLowerLimitAlarm_Value)
+                    //        )
+                    //        warncount++;
+                    //}
+
+                    if (optor != null)
                     {
-                        //position UpperLimit
-                        if (_candatapool.GetBoolValue(j, i, CmdDataType.cdtPositionUpperLimitAlarm_Enable) &&
-                            _candatapool.GetRealValue(j, i, CmdDataType.cdtPosition_Real_3101_3108) >
-                            _candatapool.GetRealValue(j, i, CmdDataType.cdtPositionUpperLimitAlarm_Value)
-                            )
-                            warncount++;
-
-                        //position LowerLimit
-                        if (_candatapool.GetBoolValue(j, i, CmdDataType.cdtPositionLowerLimitAlarm_Enable) &&
-                            _candatapool.GetRealValue(j, i, CmdDataType.cdtPosition_Real_3101_3108) <
-                            _candatapool.GetRealValue(j, i, CmdDataType.cdtPositionLowerLimitAlarm_Value)
-                            )
-                            warncount++;
-
-                        //pressure UpperLimit
-                        if (_candatapool.GetBoolValue(j, i, CmdDataType.cdtPressureUpperLimitAlarm_Enable) &&
-                            _candatapool.GetRealValue(j, i, CmdDataType.cdtPressure_Real_3001_3008) >
-                            _candatapool.GetRealValue(j, i, CmdDataType.cdtPressureUpperLimitAlarm_Value)
-                            )
-                            warncount++;
-
-                        //pressure LowerLimit
-                        if (//_candatapool.GetBoolValue(j, i, CmdDataType.cdtPressureUpperLimitAlarm_Enable) &&
-                            _candatapool.GetRealValue(j, i, CmdDataType.cdtPressure_Real_3001_3008) <
-                            _candatapool.GetRealValue(j, i, CmdDataType.cdtPressureLowerLimitAlarm_Value)
-                            )
-                            warncount++;
+                        foreach (KeyValuePair<int, DateTime> item in optor.CurWarningList)
+                        {
+                            if ((item.Key > 0) &&
+                                (item.Key / 10000 == j))
+                                warncount++;
+                        }
                     }
-                    pumpList[j].WarningCount = 2;
+
+                    //pumpList[j].WarningCount = 2;
+                    pumpList[j].WarningCount = warncount;
                 }
                 else
                 {

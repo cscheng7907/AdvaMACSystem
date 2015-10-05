@@ -508,6 +508,7 @@ namespace AdvaMACSystem
                 pvMAC.Location = smallviewLocation;
                 pvMAC.Size = smallviewsize;
                 pvMAC.Enabled = false;
+                pvMAC.Optor = WarnErrOper;
                 UIControlbase.BaseKTUIControl = pvMAC;
                 this.Controls.Add(this.pvMAC);
             }
