@@ -1484,7 +1484,7 @@ namespace AdvaMACSystem
                                         {
                                             for (int k = 0; k < msgRecieve[j].data.Length; k++)
                                             {
-                                                CanDatapool.in_cylinderState_Real_3201_3208[(idArray0 / 2 - 1) * 8 + k] = (MotionStateType)msgRecieve[j].data[k];
+                                                CanDatapool.in_cylinderState_Real_3201_3208[(idArray0 / 2) * 8 + k] = (MotionStateType)msgRecieve[j].data[k];
                                             }
                                         }
 
