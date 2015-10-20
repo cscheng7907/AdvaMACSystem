@@ -999,7 +999,7 @@ namespace AdvaMACSystem
                                         {
                                             if (i != j)
                                             {
-                                                if (CanDatapool.in_CompAct_Pump_1010_1013[i])
+                                                if (CanDatapool.in_CompAct_Pump_1010_1013[j])
                                                     bval = false;
                                             }
                                         }

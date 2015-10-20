@@ -701,6 +701,8 @@ namespace AdvaMACSystem
             UpdateCylinderControlStatus();
             UpdateCylinderControlButtonEnabled();
 
+            UpdateWarningCount();
+
             this.timer_RefreshMac.Enabled = true;
 
             base.DoReEnter();
@@ -764,7 +766,96 @@ namespace AdvaMACSystem
         }
 
         private WarnErrOperator optor = null;
-        public WarnErrOperator Optor { set { if (optor != value)optor = value; } }
+        public WarnErrOperator Optor
+        {
+            set
+            {
+                if (optor != value)
+                {
+                    if (optor != null)
+                        optor.OnWarnErrChanged -= new EventHandler(DoWarn);
+
+                    optor = value;
+
+                    if (optor != null)
+                        optor.OnWarnErrChanged += new EventHandler(DoWarn);
+                }
+            }
+        }
+
+        public  void UpdateWarningCount()
+        {
+            int warncount = 0;
+            //cylinder warning 
+            for (int j = 0; j < pumpList.Count; j++)
+            {
+                if (pumpList[j].Enabled)
+                {
+                    warncount = 0;
+
+                    #region oldmethed
+                    //for (int i = 0; i < cylinderList.Count; i++)
+                    //{
+                    //    //position UpperLimit
+                    //    if (_candatapool.GetBoolValue(j, i, CmdDataType.cdtPositionUpperLimitAlarm_Enable) &&
+                    //        _candatapool.GetRealValue(j, i, CmdDataType.cdtPosition_Real_3101_3108) >
+                    //        _candatapool.GetRealValue(j, i, CmdDataType.cdtPositionUpperLimitAlarm_Value)
+                    //        )
+                    //        warncount++;
+
+                    //    //position LowerLimit
+                    //    if (_candatapool.GetBoolValue(j, i, CmdDataType.cdtPositionLowerLimitAlarm_Enable) &&
+                    //        _candatapool.GetRealValue(j, i, CmdDataType.cdtPosition_Real_3101_3108) <
+                    //        _candatapool.GetRealValue(j, i, CmdDataType.cdtPositionLowerLimitAlarm_Value)
+                    //        )
+                    //        warncount++;
+
+                    //    //pressure UpperLimit
+                    //    if (_candatapool.GetBoolValue(j, i, CmdDataType.cdtPressureUpperLimitAlarm_Enable) &&
+                    //        _candatapool.GetRealValue(j, i, CmdDataType.cdtPressure_Real_3001_3008) >
+                    //        _candatapool.GetRealValue(j, i, CmdDataType.cdtPressureUpperLimitAlarm_Value)
+                    //        )
+                    //        warncount++;
+
+                    //    //pressure LowerLimit
+                    //    if (//_candatapool.GetBoolValue(j, i, CmdDataType.cdtPressureUpperLimitAlarm_Enable) &&
+                    //        _candatapool.GetRealValue(j, i, CmdDataType.cdtPressure_Real_3001_3008) <
+                    //        _candatapool.GetRealValue(j, i, CmdDataType.cdtPressureLowerLimitAlarm_Value)
+                    //        )
+                    //        warncount++;
+                    //}
+
+                    #endregion
+                    if (optor != null)
+                    {
+                        foreach (KeyValuePair<int, DateTime> item in optor.CurWarningList)
+                        {
+                            if ((item.Key > 0) &&
+                                (item.Key / 10000 == j))
+                                warncount++;
+                        }
+                    }
+
+                    //pumpList[j].WarningCount = 2;
+                    pumpList[j].WarningCount = warncount;
+                }
+                else
+                {
+                    pumpList[j].WarningCount = 0;
+                }
+
+            }
+        }
+
+        private void DoWarn(object sender, EventArgs e)
+        {
+
+            //this.Invoke(SetList, optor.CurWarningList.Count, optor.CurErrorList.Count);
+
+
+           // UpdateWarningCount();
+        }
+
 
         private void timer_RefreshMac_Tick(object sender, EventArgs e)
         {
@@ -810,6 +901,7 @@ namespace AdvaMACSystem
                 }
             }
 
+            /*
             int warncount = 0;
             //cylinder warning 
             for (int j = 0; j < pumpList.Count; j++)
@@ -867,6 +959,7 @@ namespace AdvaMACSystem
                     pumpList[j].WarningCount = 0;
                 }
             }
+             * */
         }
 
 
