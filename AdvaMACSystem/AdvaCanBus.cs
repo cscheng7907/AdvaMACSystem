@@ -1055,7 +1055,20 @@ namespace AdvaMACSystem
                         }
                         else
                         {
-                            msgSend[canmsgIndex].data[1] = (byte)1;
+                            for (int i = 0; i < CanDatapool.PumpCount; i++)
+                            {
+                                if (CanDatapool.in_StartFailed_Pump_1010_1013[i])
+                                {
+                                    if (id_controledPump == i)
+                                        id_controledPump = 0;
+                                    if (id_redundantPump == i)
+                                        id_redundantPump = 0;
+
+                                }
+                            }
+
+                            //msgSend[canmsgIndex].data[1] = (byte)1;
+                            msgSend[canmsgIndex].data[1] = (!(id_controledPump == 0 && id_redundantPump == 0)) ? (byte)1 : (byte)0;
                             msgSend[canmsgIndex].data[2] = id_controledPump;
                             msgSend[canmsgIndex].data[3] = id_redundantPump;
                         }
