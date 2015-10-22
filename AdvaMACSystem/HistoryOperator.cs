@@ -243,11 +243,11 @@ namespace AdvaMACSystem
                         {
                             pressureValue = 0;
                         }
-                        bwPressureList[i * pumpNumber + j].Write(pressureValue);
+                        bwPressureList[i * cylinderNumber + j].Write(pressureValue);
                     }
                     finally
                     {
-                        bwPressureList[i * pumpNumber + j].Flush();
+                        bwPressureList[i * cylinderNumber + j].Flush();
                     }
                     #endregion
 
@@ -263,11 +263,11 @@ namespace AdvaMACSystem
                         {
                             positionValue = 0;
                         }
-                        bwPositionList[i * pumpNumber + j].Write(positionValue);
+                        bwPositionList[i * cylinderNumber + j].Write(positionValue);
                     }
                     finally
                     {
-                        bwPositionList[i * pumpNumber + j].Flush();
+                        bwPositionList[i * cylinderNumber + j].Flush();
                     }
                     #endregion
                 }//end of [for (int j = 0; j < cylinderNumber; j++)]
@@ -283,8 +283,8 @@ namespace AdvaMACSystem
                     #region 压力记录
                     try
                     {
-                        bwPressureList[i * pumpNumber + j].Close();
-                        fsPressureList[i * pumpNumber + j].Close();
+                        bwPressureList[i * cylinderNumber + j].Close();
+                        fsPressureList[i * cylinderNumber + j].Close();
                     }
                     finally
                     { }
@@ -293,8 +293,8 @@ namespace AdvaMACSystem
                     #region 位置记录
                     try
                     {
-                        bwPositionList[i * pumpNumber + j].Close();
-                        fsPositionList[i * pumpNumber + j].Close();
+                        bwPositionList[i * cylinderNumber + j].Close();
+                        fsPositionList[i * cylinderNumber + j].Close();
                     }
                     finally
                     { }
