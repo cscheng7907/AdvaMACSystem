@@ -338,7 +338,7 @@ namespace DataPool
 
                     break;
                 case CmdDataType.cdtPosition_Real_3101_3108:// 油缸当前长度值 4*8
-                    rtv = in_Position_Real_3101_3108[id * 8 + subid] * 0.1;
+                    rtv = (in_Position_Real_3101_3108[id * 8 + subid] - 10000) * 0.1;
 
                     break;
                 case CmdDataType.cdtPressure_Pump_Real_3301_3304:// 泵站压力 4
