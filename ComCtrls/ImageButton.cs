@@ -150,16 +150,24 @@ namespace ComCtrls
         }
 
 
+        private bool _isdown = false;
+
+
         protected override void OnMouseDown(System.Windows.Forms.MouseEventArgs e)
         {
             //bPushed = true;
             if (this.Enabled)
             {
-                Checked = !Checked;
-                this.Focus();
+                if (!_isdown)
+                {
+                    _isdown = true;
 
-                this.Invalidate();
+                    Checked = !Checked;
+                    this.Focus();
 
+                    this.Invalidate();
+
+                }
                 base.OnMouseDown(e);
             }
         }
@@ -176,6 +184,7 @@ namespace ComCtrls
 
                 base.OnMouseUp(e);
             }
+            _isdown = false;
         }
 
         #endregion
